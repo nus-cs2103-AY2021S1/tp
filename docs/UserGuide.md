@@ -349,7 +349,7 @@ Format: `exit`
 ## <a name="faq"></a>4. FAQ (Joe)
 
 **Q**: Do I need to save my data manually?<br>
-**A**: ForgetfulNUS glossary data and scores data is automatically saved in the hard disk upon exiting. There is no need to save manually.
+**A**: ForgetfulNUS glossary and scores data is automatically saved in the hard disk upon exiting. There is no need to save manually.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**:
