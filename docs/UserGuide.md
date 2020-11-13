@@ -840,7 +840,7 @@ are likely to change frequently and hence, will not need to be persisted.
 
 ### 7.2 Edit Command Summary
 
-| Function                   | Tag &nbsp;| Format, Examples                                  |
+| Function                   | Tag &nbsp; | Format, Examples                                  |
 | -------------------------- | --- | ------------------------------------------------- |
 | Edit Login information     | -l  | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
 | Edit `Student` information | -s  | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL]     |
