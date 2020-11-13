@@ -95,7 +95,7 @@ with additional details.
 ### <a name="editing"></a>3.1. Edit the Glossary
 #### <a name="add"></a>3.1.1. Add a Flashcard: `add`
 
-Adds a flashcard to the glossary. You can use this to expand your glossary.
+Adds a flashcard to the glossary. You can use this to expand your glossary of flashcards.
 
 Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...}`
 
@@ -123,7 +123,7 @@ After entering this command, your app should look like this:
 
 #### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit`
 
-Edits a flashcard in the glossary at the specified `INDEX`.
+Edits a flashcard in the glossary at the specified `INDEX`. You can use this to edit any of the flashcard's fields. If a certain phrase has gotten easier for you to remember over time, you can change its difficulty.
 
 Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...`
 
