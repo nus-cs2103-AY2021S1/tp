@@ -611,7 +611,7 @@ contains the data of your previous Taskmania home folder.
  your data.
  
 **Q**: Where do I seek help when I have issue with the application? <br>
-**A**: Do feel free to leave your issues [here](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues).
+**A**: You may leave your issues [here](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues).
 
 # 4 Summary (Tan Chia Qian)
 
