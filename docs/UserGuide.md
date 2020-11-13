@@ -64,7 +64,14 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 **:information_source: Notes about scoping:**<br>
 
 Each command has a restriction on the scope that it can be run. 
-Scopes include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
+Scopes in this app include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
+A command may be valid in some scopes not some others. For example, `startperson` command can only be run under
+`PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
+
+There is a hierarchy of the scopes, and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but this may not always be true.
+The hierarchy only serves as a guideline for you to understand scoping implementations. 
+Given below is the hierarchy list:
+
 The hierarchy of command scoping is as follows:
 * global
     * `PROJECT_LIST` 
@@ -76,12 +83,9 @@ The hierarchy of command scoping is as follows:
 
 <br>
 
-A command may be valid in some scopes or another. For example, `startperson ` command can only be run under
-`PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
-The hierarchy list is above only aims to give you an overview of the meanings of the scopes, 
-and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but may not always be true.
-
-The scope can be told from the user interface as follows: 
+There is also a scoping status at any point in time during execution of the app. 
+A command will be executable only if the current scoping status of the app falls in one of the scopes that is valid for this command.
+The scoping status of an app can be told from the user interface as follows: 
 
 Scope | Left panel | Middle panel | Right panel
 --------|------------------|-------|----------
