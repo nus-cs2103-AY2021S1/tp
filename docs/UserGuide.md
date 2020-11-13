@@ -39,9 +39,9 @@ Table of Contents
     <div markdown="span" class="alert alert-primary" style="margin-top: 1rem;">:bulb: **Note:**
     On newer macOS machines with stricter security settings from Apple, you might need to Ctrl-click on the file, then click on "Open" for your very first run of TAsker. This ensures that TAsker is trusted by your machine. You can then continue to double-click the file for your subsequent runs.
     </div>
-   ![Ui](images/Ui.png)
+    <img src="images/Ui.png" class="diagram" />
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+2. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all students that you manage in TAsker.
@@ -54,9 +54,9 @@ Table of Contents
 
    - **`exit`** : Exits TAsker.
 
-1. Refer to [Navigating the User Inteface](#ui-intro) for details on how to navigate TAsker's interface.
+3. Refer to [Navigating the User Inteface](#ui-intro) for details on how to navigate TAsker's interface.
 
-1. Refer to the [Features](#features) below for details of each command.
+4. Refer to the [Features](#features) below for details of each command.
 
 ---
 <a name="ui-intro"></a>
@@ -142,7 +142,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-![result for 'help'](images/HelpCommand.png)
+<img src="images/HelpCommand.png" class="diagram" />
 
 ### Adding a student : `add`
 
@@ -159,7 +159,7 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`
 - `add n/Betsy Crowe tg/friend e/betsycrowe@example.com t/betsy_crowe m/A0201234C p/1234567 tg/groupmate`
 
-![result for 'add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B'](images/AddCommand.png)
+<img src="images/AddCommand.png" class="diagram" />
 
 ### Listing all students : `list`
 
@@ -169,7 +169,7 @@ You may click on the Students tab to view the full list of students.
 
 Format: `list`
 
-![result for 'list'](images/ListCommand.png)
+<img src="images/ListCommand.png" class="diagram" />
 
 ### Editing a student : `edit`
 
@@ -191,10 +191,10 @@ Examples:
 - `edit 2 n/Betsy Crower tg/` Edits the name of the 2nd students to be `Betsy Crower` and clears all existing tags.
 
   *Before editing*
-  ![Before running 'edit 2 n/Betsy Crower tg/'](images/edit2before.png)
+  <img src="images/edit2before.png" class="diagram" />
   
   *After editing*
-  ![result for 'edit 2 n/Betsy Crower tg/'](images/edit2after.png)
+  <img src="images/edit2after.png" class="diagram" />
   
 ### Locating students by name : `find`
 
@@ -265,7 +265,7 @@ Marks the student as present for tutorial on a specified date.
 
 Format: `attend INDEX d/DATE`
 
-![Attend](images/AddAttendance.png)
+<img src="images/AddAttendance.png" class="diagram" />
 
 For: `attend 1 d/12/12/2000` 
 
@@ -279,6 +279,10 @@ Examples:
 Marks the student as absent (default) for tutorial on a specified date.
 
 Format: `unattend INDEX d/DATE`
+
+<img src="images/RemoveAttendance.png" class="diagram" />
+
+For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)
 
 Examples:
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
@@ -303,7 +307,7 @@ Examples:
 - `add-consult n/Ann Lim d/30/05/2020 tm/11:00 a/Tembusu College ty/group `
   
   *For `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`*
-  ![result for add consult command](images/addConsultResult.png)
+  <img src="images/addConsultResult.png" class="diagram" />
 
 ### Deleting a consultation : `del-consult`
 
@@ -318,7 +322,7 @@ Examples:
 - `del-consult 1`
   
   *For `del-consult 1`*
-  ![result for delete consult command](images/delConsultResult.png)
+  <img src="images/delConsultResult.png" class="diagram" />
 
 ### Listing all consultations : `list-consult`
 
@@ -329,7 +333,7 @@ You may click on the Consultations tab to view the full list of consultations.
 Format: `list-consult`
 
   *Running `list-consult`*
-  ![result for list consult command](images/consultListResult.png)
+  <img src="images/consultListResult.png" class="diagram" />
 
 ### Archiving data files : `archive`
 
@@ -344,7 +348,7 @@ Example:
 - `archive` creates a json file called `tasker_2020-11-09_2113.json` as shown below.
   
   *Running `archive`*
-  ![result for 'archive'](images/archiveResult.png)
+  <img src="images/archiveResult.png" class="diagram" />
 
 ### Exporting attendance : `exportatt`
 
@@ -359,7 +363,7 @@ Example:
 - `exportatt` creates a csv file called `attendance_2020-11-09_2055.csv` as shown below.
   
   *Running `exportatt`*
-  ![result for 'exportatt'](images/exportattResult.png)
+  <img src="images/exportattResult.png" class="diagram" />
 
 ### Exiting the program : `exit`
 
