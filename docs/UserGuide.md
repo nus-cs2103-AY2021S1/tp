@@ -33,15 +33,18 @@ Table of Contents
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TAsker.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The graphical user interface similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+    <div markdown="span" class="alert alert-primary" style="margin-top: 1rem;">:bulb: **Note:**
+    On newer macOS machines with stricter security settings from Apple, you might need to Ctrl-click on the file, then click on "Open" for your very first run of TAsker. This ensures that TAsker is trusted by your machine. You can then continue to double-click the file for your subsequent runs.
+    </div>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all student.
+   - **`list`** : Lists all student that are stored in TAsker.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` to the Address Book.
+   - **`add`**`n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` to TAsker.
 
    - **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
