@@ -362,7 +362,7 @@ More examples:
 
 Format: `remind INDEX [MORE_INDEXES]`
 
-You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the Figure 14) for your easy referral.
+You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the figure below) for your easy referral.
 
    ![YourReminders](images/YourReminders.png)
    *Figure 14: `Your reminders` highlighted in red*
