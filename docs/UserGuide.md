@@ -13,7 +13,7 @@ can get your German revision done quickly and effectively.
 1. [Quick Start](#qs) (Jiyu)
 1. [Commonly used Commands](#cucmds) (Jiyu)
 1. [Features](#features) (Jiyu)
-    1. [Edit the Glossary](#editing)
+    1. [Modify the Glossary](#Modifying)
         1. [Add a Flashcard](#add) : `add` (Jiyu)
         1. [Edit a Flashcard](#edit) : `edit` (Kenny)
         1. [Delete a Flashcard](#delete) : `delete` (Kenny)
@@ -92,7 +92,7 @@ with additional details.
 * Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
 
-### <a name="editing"></a>3.1. Edit the Glossary
+### <a name="Modifying"></a>3.1. Edit the Glossary
 #### <a name="add"></a>3.1.1. Add a Flashcard: `add` (Jiyu)
 
 Adds a flashcard to the glossary. You can use this to expand your glossary.
@@ -123,7 +123,7 @@ After entering this command, your app should look like this:
 
 #### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit` (Kenny)
 
-Edits a flashcard in the glossary at the specified `INDEX`.
+Edits a flashcard in the glossary at the specified `INDEX`. You can use this to edit any of the flashcard's fields. If a certain phrase has gotten easier for you to remember over time, you can change its difficulty.
 
 Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...`
 
