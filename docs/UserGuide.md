@@ -61,7 +61,7 @@ This part above is contributed by Eddy.
 - [**3. Features (Petrick)**](#3-features-petrick)
   - [3.1. Task list in schedule](#31-task-list-in-schedule)
   - [3.2. Time Scale in schedule](#32-time-scale-in-schedule)
-  - [3.3. Flashcards](#33-flashcards)
+  - [3.3. Flashcards](#33-flashcard)
   - [3.4. Quiz](#34-quiz)
   - [3.5. CLI-GUI interactivity](#35-cli-gui-interactivity)
   - [3.6. Auto-save](#36-auto-save)
@@ -156,11 +156,11 @@ when reading this user guide.
 
    - `list task` : Lists all `TASK`
 
-   * `add flset name:Chemistry` : Add a new empty `FLASHCARDSET` with name `Chemistry`.
+   * `add flset name:Chemistry` : Adds a new empty `FLASHCARDSET` with name `Chemistry`.
 
    * `delete flset 3` : Deletes the 3rd `FLASHCARDSET` in the current list of `FLASHCARDSET`.
 
-   * `add fl flset:3 q:What is the chemical formula of water? a:H2O` : Add a flashcard to the 3rd `FLASHCARDSET`.
+   * `add fl flset:3 q:What is the chemical formula of water? a:H2O` : Adds a `FLASHCARD` to the 3rd `FLASHCARDSET`.
 
    * `add task T:CS2100 d: Pipeline tutorial t:2020-10-10 11:00` : Adds Doing CS2100 `TASK` to the `SCHEDULE`.
    
