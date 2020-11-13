@@ -10,6 +10,7 @@ This document is created by CS2101 G05 Team 1 <br>
 - Royce Ho Shou Yee
 - Tin Kah Ong Isaac
 - Udayagiri Nikhila Sai <br>
+
 You may refer to our work distribution at the bottom of this document.
 
 * Table of Contents
