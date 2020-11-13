@@ -670,6 +670,8 @@ These visitation logs store the following as a short summary of a patient's visi
 
 #### 5.3.1 Adding a new visitation log for patient: `addvisit`
 
+(Contributed by Kenneth)
+
 Displays a new window to add a new visitation log for the specified patient.
 
 Format: `addvisit INDEX [vd/VISIT_DATE]`
@@ -713,6 +715,8 @@ You want to add a visitation log with date 23/10/2020 to the 1st patient on the 
 </div>
 
 #### 5.3.2 Editing patient's visitation log: `editvisit`
+
+(Contributed by Eugene)
 
 Displays a new window to edit the visitation log for a specified patient.
 
@@ -772,6 +776,8 @@ You want to edit the 1st visitation log belonging to the 2nd patient on the list
 </div>
 
 #### 5.3.3 Deleting patient's visitation log: `deletevisit`
+
+(Contributed by Eugene)
 
 Delete the patient's visitation log.
 
