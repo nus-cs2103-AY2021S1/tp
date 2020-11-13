@@ -343,7 +343,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 This section includes some general notes on Jarvis.
 
 #### 6.1.1 Notes about Command Format
-(Wiline)
+(Wiline & Eryn)
 
    * Words in UPPER_CASE are the parameters to be supplied by you.
    <br> e.g. in `add -t DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add -t Mark Missions`.
@@ -375,8 +375,9 @@ This section includes some general notes on Jarvis.
    after the alphabet is the index of the `Task` you created with respect to all the `Tasks` you ever created.
 
 #### 6.1.4 Notes about truncation
+(Eryn)
    * If the user input is too long, it is automatically truncated when displayed.
-   <br> e.g. if the user enters a `NAME` parameter that is 150 characters long, Jarvis will automatically truncate it to fit the given screen size.
+   <br> e.g. if the user enters a `NAME` that is 150 characters long, Jarvis will automatically truncate it to fit the given screen size.
    
 #### 6.1.5 Notes about Summary feature
    * As mentioned above in [4.1.1](#411-top-bar), the `Summary` feature is updated when Jarvis is
@@ -406,25 +407,26 @@ Upon entering `help` in the command box, a pop up window, as shown in Figure 6.2
 <div style="page-break-after: always;"></div>
 
 ### 6.3 Adding Information : `add`
+(Eryn)
 In the following subsections, we will explain how the commands for adding information work. Please take note of the
 command inputted into the command box to understand how the respective commands are keyed in.
 
 We have excluded screenshots from some sections as the command works similarly to other add commands in this section.
 
 #### 6.3.1 Adding `Consultations` : `-c`
-
+(Eryn)
 Adds a `Consultation` session with a `Student` at a specific date and time.
 
 <br>**Format: `add -c NAME d/YYYY-MM-DD t/HH:MM`**
-
-<br>:pencil2: Examples:
-* `add -c John Doe d/2020-09-20 t/13:30`
-* `add -c Mary Jane d/2021-01-02 t/09:15`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/addConsultation.png" width="115%" /> <br />
 Figure 6.3.1a: <i>Adding a Consultation</i>
 </div>
+
+<br>:pencil2: Examples:
+* `add -c John Doe d/2020-09-20 t/13:30`
+* `add -c Mary Jane d/2021-01-02 t/09:15`
 
 As shown in Figure 6.3.1a, once we key in the command `add -c NAME d/YYYY-MM-DD t/HH:MM`, a success message will be displayed and Jarvis
 will auto switch to the `Consultation` tab, and the new `Consultation` will be added to the list.
@@ -439,19 +441,19 @@ will auto switch to the `Consultation` tab, and the new `Consultation` will be a
 </div>
 
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
-
+(Eryn)
 Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 
 <br>**Format: `add -mc NAME d/YYYY-MM-DD t/HH:MM`**
-
-<br>:pencil2: Examples:
-* `add -mc John Doe d/2020-09-20 t/13:30`
-* `add -mc Mary Jane d/2021-01-02 t/09:15`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/addMasteryCheck.png" width="115%" /> <br />
 Figure 6.3.2a: <i>Adding a Mastery Check</i>
 </div>
+
+<br>:pencil2: Examples:
+* `add -mc John Doe d/2020-09-20 t/13:30`
+* `add -mc Mary Jane d/2021-01-02 t/09:15`
 
 <div style="page-break-after: always;"></div>
 
@@ -463,7 +465,7 @@ will auto switch to the `Mastery Check` tab, and the new `Mastery Check` will be
 * Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
-* When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
+* When a `Mastery Check` is first added, a `FAIL` value will be assigned initially. The tutor may update this later once the `Mastery Check` session is completed.
 </div>
 
 #### 6.3.3 Adding `Todos` : `-t`
@@ -564,28 +566,28 @@ Edits the fields of a `Student`.
 * `edit -s 3 n/Timots`
 
 <div markdown="block" class="alert alert-info">
-You can refer to Figure 6.4.3a below for how the input will look like as the commands are similar.
+You can refer to Figure 6.4.3a below for how the input will look like.
 </div>
 
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
-
+(Eryn)
 At least one of the optional parameters must be provided.
 Edits the score of a `Mastery Check` session with a `Student`.
 
 <br>**Format: `edit -mc INDEX s/SCORE`**
 
-<br>:pencil2: Examples:
-* `edit -mc 1 s/0`
-* `edit -mc 3 s/1`
-
 ![EditMasteryCheck](images/userguide/editMasteryCheck.png)
 
 <div style="page-break-after: always;"></div>
 
+<br>:pencil2: Examples:
+* `edit -mc 1 s/0`
+* `edit -mc 3 s/1`
+
 <div markdown="block" class="alert alert-info">
-* Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
-* The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
-* Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
+* Do note that `SCORE` can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
+* The `INDEX` should be a non-zero positive number that is a valid index currently displayed on the left side of the target `Mastery Check`.
+* `Jarvis` allows the user to edit to the same value; thus, even if no values are actually updated by the edit command, it will display a success message.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -595,19 +597,19 @@ In the following subsections, we will explain how the commands for deleting info
 command inputted into the command box to understand how the respective commands are keyed in.
 
 #### 6.5.1 Deleting `Consultations` : `-c`
-
+(Eryn)
 Deletes a `Task` based on the `INDEX` you specify.
 
 <br>**Format: `delete -c INDEX`**
 
+![DeleteConsultation](images/userguide/deleteConsultation.png)
+
 <br>:pencil2: Examples:
 * `delete -c 3`
 
-![DeleteConsultation](images/userguide/deleteConsultation.png)
-
 <div markdown="block" class="alert alert-info">
-* The `INDEX` parameter should be a non-zero number that is a valid index currently displayed along with the target
- `Consultation`. You may find the index of the `Consultation` on the left of it in the Infomation Panel.
+* The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
+ `Consultation`. You may find the index of the `Consultation` on the left side of the name of the student who requested the Consultation in the Infomation Panel.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -618,14 +620,14 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 
 <br>**Format: `delete -mc INDEX`**
 
+![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
+
 <br>:pencil2: Examples:
 * `delete -mc 3`
 
-![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
-
 <div markdown="block" class="alert alert-info">
-* The `INDEX` parameter should be a non-zero number that is a valid index currently displayed along with the target
- `Mastery Check`. You may find the index of the `Mastery Check` on the left of it in the Infomation Panel.
+* The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
+ `Mastery Check`. You may find the index of the `Mastery Check` on the left side of the name of the student who requested the Mastery Check in the Infomation Panel.
 </div>
 
 #### 6.5.3 Deleting `Tasks` : `-t`
@@ -635,28 +637,25 @@ Deletes a [`Task`](#613-notes-about-tasks) based on the `TASK_ID` you specify.
 
 <br>**Format: `delete -t TASK_ID`**
 
-<br>:pencil2: Examples:
-* `delete -t T3`
-* `delete -t D2`
-
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/deleteTask.png" width="115%" /> <br />
 Figure 6.5.3a: <i>Deleting a Task</i>
 </div>
 
+<br>:pencil2: Examples:
+* `delete -t T3`
+* `delete -t D2`
+
 <div markdown="block" class="alert alert-info">
-* Note that TASK_ID, once given, is permanent and no other `Tasks` can receive that TASK_ID even after the deletion of the original one. 
-* The Index for `Consultation` and `Mastery Check` is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Tasks`.
+* Note that TASK_ID, once given, is permanent and no other Tasks can receive that TASK_ID even after the deletion of the original one. 
+* The Index for Consultation and MasteryCheck is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Task`s.
 </div>
 
 ### 6.6 Viewing Information : `view`
 In the following subsections, we will explain how the commands for viewing information work. Please take note of the
-command inputted into the command box to understand how the respective commands are keyed in. The `view` command is used to view information for:
-`Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check` and `Task`.
+command inputted into the command box to understand how the respective commands are keyed in.
 
 Certain commands are similar to one another and hence we have excluded screenshots from those sections.
-
-:warning: Note that if there is no data for the any of the information types, the information panel will show that there is no data for it.
 
 #### 6.6.1 Viewing a list of all `Students` : `-s`
 (Zhen Teng)
@@ -687,9 +686,6 @@ Doe will be displayed.
 
 <br>**Format: `view -s NAME`**
 
-<br>:pencil2: Examples:
-* `view -s John Doe`
-
 <div style="page-break-after: always;"></div>
 
 <div style="text-align: center; padding-bottom: 2em">
@@ -697,9 +693,12 @@ Doe will be displayed.
 Figure 6.6.2a: <i>Viewing Students with a keyword</i>
 </div>
 
-As shown in Figure 6.6.2a, once we key in the command `view -s Alex`, a success message will be displayed and Jarvis
+<br>:pencil2: Examples:
+* `view -s John Doe`
+
+As shown in Figure 6.6.2a, once we key in the command `view -s Alex `, a success message will be displayed and Jarvis
 will auto switch to the `Student` tab, showing all `Students` from your classes which match the keyword "Alex". On the
- contrary, keying in `view -s alex` with the keyword "alex" would not work as the keyword has to be case sensitive.
+ contrary, using the keyword "alex" would not work as the keyword has to be case sensitive.
 
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 (Wiline)
@@ -750,19 +749,21 @@ Shows the `Quests` that you have not yet graded.
 <br>**Format: `view -uq`**
 
 #### 6.6.7 Viewing all `Consultations` : `-c`
+(Eryn)
 
 Shows all confirmed `Consultation` sessions, both past and upcoming.
-
 <br>**Format: `view -c`**
 
 <br>:pencil2: Examples:
 * `view -c`
 
 #### 6.6.8 Viewing past `Consultations` : `-cp`
+(Eryn)
 
 Shows all past `Consultation` sessions.
 
 <br>**Format: `view -cp`**
+(Eryn)
 
 <br>:pencil2: Examples:
 * `view -cp`
@@ -774,6 +775,7 @@ Shows all past `Consultation` sessions.
 <div style="page-break-after: always;"></div>
 
 #### 6.6.9 Viewing upcoming `Consultations`: `-cu`
+(Eryn)
 
 Shows all upcoming `Consultation` sessions.
 
@@ -783,10 +785,11 @@ Shows all upcoming `Consultation` sessions.
 * `view -cu`
 
 <div markdown="block" class="alert alert-info">
-* When the time of the `Consultation` displayed by `view -cu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Consultation` when you enter `view -cu`. This is to encourage the tutors to have this screen open while holding the `Consultation` session. When you switch to another command, such as `view -c` or `view -cp`, and then come back, you may see the updated filtered `Consultation` list with the current local time as the standard.
+* When the time of the `Consultation` displayed by `view -cu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Consultation` when you enter `view -cu`. This is to encourage the tutors to have this screen open while holding the `Consultation` session. When you switch to another command, such as `view -c` or `view -cp`, and then come back, you may see the updated `Consultation` list.
 </div>
 
 #### 6.6.10 Viewing all `Mastery Checks` : `-mc`
+(Eryn)
 
 Shows all confirmed `Mastery Check` sessions, both past and upcoming.
 
@@ -796,6 +799,7 @@ Shows all confirmed `Mastery Check` sessions, both past and upcoming.
 * `view -mc`
 
 #### 6.6.11 Viewing past `Mastery Checks` : `-mcp`
+(Eryn)
 
 Shows all past `Mastery Check` sessions.
 
@@ -809,6 +813,7 @@ Shows all past `Mastery Check` sessions.
 </div>
 
 #### 6.6.12 Viewing upcoming `Mastery Checks` : `-mcu`
+(Eryn)
 
 Shows all upcoming `Mastery Check` sessions.
 
@@ -818,7 +823,7 @@ Shows all upcoming `Mastery Check` sessions.
 * `view -mcu`
 
 <div markdown="block" class="alert alert-info">
-* When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated filtered `Mastery Check` list with the current local time as the standard.
+* When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated `Mastery Check` list.
 </div>
 
 #### 6.6.13 Viewing all `Tasks` : `-t`
