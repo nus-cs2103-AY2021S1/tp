@@ -44,13 +44,13 @@ Table of Contents
 
    - **`list`** : Lists all students that you manage in TAsker.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` to TAsker.
+   - **`add`**`n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` (with his associated data) to TAsker.
 
-   - **`delete`**`3` : Deletes the 3rd student shown in the current list.
+   - **`delete`**`3` : Deletes the 3<sup>rd</sup> student shown in the students' details list.
 
-   - **`clear`** : Deletes all students.
+   - **`clear`** : Deletes all students from TAsker.
 
-   - **`exit`** : Exits the app.
+   - **`exit`** : Exits TAsker.
 
 1. Refer to [Navigating the User Inteface](#ui-intro) for details on how to navigate TAsker's interface.
 
