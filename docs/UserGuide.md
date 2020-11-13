@@ -4,6 +4,8 @@ title: User Guide
 ---
 
 ## Introduction
+(Contributed by all members)
+
 Welcome to ProductiveNUS User Guide! :blue_book:
 
 **ProductiveNUS is a desktop application** made for you, **a School of Computing (SoC) student in National University of Singapore (NUS)**, to **manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a [Command Box](#gui-terminologies). If you are fast at typing, you can manage your academic tasks more efficiently.
@@ -20,15 +22,19 @@ As a **student in NUS SoC**, you tend to have a **heavy workload**. ProductiveNU
 <div style="page-break-after: always;"></div>
 
 ## About
+(Contributed by Jia Xin and Andrea)
+
 This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
 You can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
+
 The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
 ![GUI](images/GUI.png)
 *Figure 1: Labelled GUI sections*
 
 ### Icon usages
+
 Wondering what each icon is used for? You can refer to the table below to find out.
 
 | Icon        | Icon usage                                             | Box color |
@@ -97,6 +103,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 ## Features
 
 ### Adding an assignment: `add`
+(Contributed by Jerry)
 
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
@@ -131,6 +138,7 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Deleting assignments : `delete`
+(Contributed by Andrea)
 
 Format: `delete INDEX [MORE_INDEXES]`
 
@@ -167,6 +175,7 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Importing your timetable : `import`
+(Contributed by Yong Kang)
 
 Format: `import url/YOUR_NUSMODS_URL`
 
@@ -202,6 +211,7 @@ An example:
 <div style="page-break-after: always;"></div>
 
 ### Listing assignments : `list`
+(Contributed by Andrea)
 
 Format: `list [NUMBER_OF_DAYS]`
 
@@ -241,10 +251,11 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Finding assignments : `find`
+(Contributed by Andrea)
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
-You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
+You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of an assignment. 
 
 <div markdown="span" class="alert alert-success">
 
@@ -297,7 +308,8 @@ More examples:
 
 <div style="page-break-after: always;"></div>
 
-### Editing your assignment : `edit`
+### Editing an assignment : `edit`
+(Contributed by Andrea)
 
 Format: `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]`
 
@@ -346,6 +358,7 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Setting reminders for assignments : `remind`
+(Contributed by Jia Xin)
 
 Format: `remind INDEX [MORE_INDEXES]`
 
@@ -388,6 +401,7 @@ You can set reminders for **multiple** assignments at a time as well. Here is an
 <div style="page-break-after: always;"></div>
 
 ### Removing reminders for assignments : `unremind`
+(Contributed by Jia Xin)
 
 Format: `unremind INDEX`
 
@@ -414,6 +428,7 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
 <div style="page-break-after: always;"></div>
 
 ### Setting priority for assignments : `prioritise`
+(Contributed by Yong Kang)
 
 Format: `prioritise INDEX p/PRIORITY_OF_ASSIGNMENT`
 
@@ -443,6 +458,7 @@ the figure above, the third assignment, Biology lab report, is marked with a yel
 <div style="page-break-after: always;"></div>
 
 ### Removing priority for assignments : `unprioritise`
+(Contributed by Yong Kang)
 
 Format: `unprioritise INDEX`
 
@@ -465,6 +481,7 @@ The assignment will now be displayed as usual, but without its priority tag.
 <div style="page-break-after: always;"></div>
 
 ### Marking assignments as done : `done`
+(Contributed by Jerry)
 
 Format: `done INDEX [MORE_INDEXES]`
 
@@ -504,6 +521,7 @@ the Command Box. `2 3` refers to the indexes of the assignments as shown in the 
 <div style="page-break-after: always;"></div>
 
 ### Marking assignments as not done : `undone`
+(Contributed by Jerry)
 
 Format: `undone INDEX`
 
@@ -542,6 +560,7 @@ you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` 
 <div style="page-break-after: always;"></div>
 
 ### Scheduling assignments: `schedule`
+(Contributed by Minh)
 
 Format: `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME`
 
@@ -591,6 +610,7 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Removing suggested time for assignments: `unschedule`
+(Contributed by Minh)
 
 Format: `unschedule INDEX`
 
@@ -617,6 +637,7 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Undoing commands: `undo`
+(Contributed by Minh)
 
 Format: `undo`
 
@@ -640,6 +661,7 @@ Here is an example with steps to follow:
 <div style="page-break-after: always;"></div>
 
 ### Clearing all assignments: `clear`
+(Contributed by Jerry)
 
 Format: `clear`
 
@@ -651,6 +673,7 @@ If you cleared all your assignments and lessons by accident, use `undo` to retri
 </div>
 
 ### Accessing help: `help`
+(Contributed by Jerry)
 
 Format: `help`
 
@@ -671,6 +694,8 @@ You can use this command to exit the program.
 <div style="page-break-after: always;"></div>
 
 ### Automated features and enhancements
+(Contributed by Jia Xin)
+
 #### Upcoming tasks
 Your `Upcoming tasks` are updated in real time.
 
@@ -705,6 +730,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 
 ## Command summary
+(Contributed by Jia Xin)
 
 | Action | Format | Examples |
 |-|-|-|
@@ -732,6 +758,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 
 ## FAQ
+(Contributed by Jerry and Minh)
 
 **Q: How do I transfer my data to another Computer?**<br>
 **A:** <br>
