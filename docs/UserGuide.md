@@ -516,6 +516,7 @@ Expected Outcome:
 Figure 4.4.4a Expected outcome of performing the `findTG` command
 
 ### 4.5 Student Features
+###### (written by: Jian Fanmin)
 
 > You should perform the following features while in the Student view.
 
@@ -818,6 +819,7 @@ Command | Description | Compatible View
 
 
 ### 6.5 Student Commands
+###### (written by: Jian Fanmin)
 
 Command | Description | Compatible View
 --------|--------|--------
