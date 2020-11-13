@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide 1
+title: User Guide 0
 ---
 
 ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
@@ -276,6 +276,8 @@ Format: `reset scores`
 After entering this command, your app should look like this:
 
 ![reset-screenshot](images/reset-screenshot.png)
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="navigating"></a>3.3. Navigate the Glossary
 
