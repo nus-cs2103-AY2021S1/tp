@@ -118,7 +118,7 @@ CliniCal contains a Graphical User Interface (GUI) which serves to allow you to 
 <p align="center">
     <img src="images/mainLayout.png"/>
     <br>
-    <em style="color:#CC5500">Figure 2. Main GUI Layout</em>
+    <em style="color:#CC5500">Figure 2. Main GUI Layout (Contributed by Michaelia) </em>
 </p>
 
 The layout of the GUI is as follows:
@@ -136,7 +136,7 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 <p align="center">
     <img src="images/overviewLayout.png"/>
     <br>
-    <em style="color:#CC5500">Figure 3. Overview Tab Layout</em>
+    <em style="color:#CC5500">Figure 3. Overview Tab Layout (Contributed by Michaelia) </em>
 </p>
 
 This would be the main screen of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
@@ -165,7 +165,7 @@ This would be the main screen of CliniCal, where the appointment list would be o
 <p align="center">
     <img src="images/patientLayout.png"/>
     <br>
-    <em style="color:#CC5500">Figure 4. Patient Tab Layout</em>
+    <em style="color:#CC5500">Figure 4. Patient Tab Layout (Contributed by Michaelia) </em>
 </p>
 
 This tab shows you the patient list and the details of each patient, together with the most recent visit date.
@@ -192,7 +192,7 @@ This tab shows you the patient list and the details of each patient, together wi
 <p align="center">
     <img src="images/profileLayout.png"/>
     <br>
-    <em style="color:#CC5500">Figure 5. Profile Window Layout</em>
+    <em style="color:#CC5500">Figure 5. Profile Window Layout (Contributed by Michaelia) </em>
 </p>
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
@@ -346,9 +346,9 @@ Format: `exit`
 
 Patient commands help you make changes to the patient list.
 
-(Contributed by Moon)
-
 #### 5.2.1 Adding a patient: `add`
+
+(Contributed by Moon)
 
 Add a new patient to the patient list.
 
@@ -423,9 +423,9 @@ You want to add a profile picture to the 1st patient on the list.
 
 </div>
 
-(Contributed by Moon)
-
 #### 5.2.3 Editing a patient: `edit`
+
+(Contributed by Moon)
 
 Edit an existing patient in the patient list.
 
@@ -479,9 +479,9 @@ You want to edit the details of the 1st patient.
 
 </div>
 
-(Contributed by Moon)
-
 #### 5.2.4 Deleting a patient: `delete`
+
+(Contributed by Moon)
 
 Delete a specified patient from the patient list.
 
@@ -617,7 +617,7 @@ Format: `profile INDEX`
 <p align="center">
     <img src="images/profileExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 19. Example of Profile Window</em>
+    <em style="color:#CC5500">Figure 19. Example of Profile Window (Contributed by Michaelia) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -658,7 +658,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 <p align="center">
     <img src="images/addVisitExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 20. Example of Add Visit Command</em>
+    <em style="color:#CC5500">Figure 20. Example of Add Visit Command (Contributed by Michaelia) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -704,7 +704,7 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 <p align="center">
     <img src="images/editVisitExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 21. Example of Edit Visit Command</em>
+    <em style="color:#CC5500">Figure 21. Example of Edit Visit Command (Contributed by Michaelia) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -782,9 +782,13 @@ You want to delete the 2nd visitation log belonging to the 1st patient on the li
 
 ### 5.4 Patient Appointment Commands
 
+(Contributed by Michaelia)
+
 Patient Appointment commands help you manage your upcoming patient appointments.
 
 #### 5.4.1 Adding an appointment: `addappt`
+
+(Contributed by Michaelia)
 
 Add a new appointment for the specified patient to the appointment list.
 
@@ -800,7 +804,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 <p align="center">
     <img src="images/addApptExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 23. Example of Add Appointment Command</em>
+    <em style="color:#CC5500">Figure 23. Example of Add Appointment Command (Contributed by Michaelia)</em>
 </p>
 
 
@@ -825,9 +829,10 @@ You want to add an appointment with the 1st patient on the list.
 
 </div>
 
-(Contributed by Moon)
 
 #### 5.4.2 Editing an appointment: `editappt`
+
+(Contributed by Moon)
 
 Edit the specified appointment in the appointment list.
 
@@ -849,7 +854,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 <p align="center">
     <img src="images/editApptExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 24. Example of Edit Appointment Command</em>
+    <em style="color:#CC5500">Figure 24. Example of Edit Appointment Command (Contributed by Michaelia) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -883,6 +888,8 @@ You want to reschedule the 1st appointment in the appointment list.
 
 #### 5.4.3 Deleting an appointment: `deleteappt`
 
+(Contributed by Michaelia)
+
 Delete the specified appointment from the appointment list.
 
 Format: `deleteappt INDEX`
@@ -893,7 +900,7 @@ Format: `deleteappt INDEX`
 <p align="center">
     <img src="images/DeleteApptExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 25. Example of Delete Appointment Command</em>
+    <em style="color:#CC5500">Figure 25. Example of Delete Appointment Command (Contributed by Michaelia) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -913,6 +920,8 @@ You want to delete your next upcoming appointment as your patient could not make
 </div>
 
 ### 5.5 Retrieving past commands using arrow keys
+
+(Contributed by Michaelia)
 
 Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
