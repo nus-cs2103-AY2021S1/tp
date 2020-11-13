@@ -410,3 +410,25 @@ Action | Format, Examples
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Delegation of User Guide
+
+Introduction: Tan Jing Yi Jace
+Quick start: Liu Yuxi, Rachel Gina Abelarde, Tan Jing Yi Jace, Yong Shan Rong, Yuki Akizuki
+Features:
+Help: Rachel Gina Abelarde
+Add: Rachel Gina Abelarde
+Clear: Rachel Gina Abelarde
+Delete: Rachel Gina Abelarde
+Edit: Yong Shan Rong
+View: Liu Yuxi
+List: Tan Jing Yi Jace
+Flip: Yuki  Akizuki
+Search: Yuki  Akizuki
+Sort: Liu Yuxi
+FAQ: Liu Yuxi
+Glossary: Tan Jing Yi Jace
+Command Summary: Liu Yuxi, Rachel Gina Abelarde, Tan Jing Yi Jace, Yong Shan Rong, Yuki Akizuki
