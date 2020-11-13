@@ -652,8 +652,8 @@ Figure 6.5.3a: <i>Deleting a Task</i>
 </div>
 
 <div markdown="block" class="alert alert-info">
-* Note that TASK_ID, once given, is permanent and no other Tasks can receive that TASK_ID even after the deletion of the original one. 
-* The Index for Consultation and MasteryCheck is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Task`s.
+* Note that TASK_ID, once given, is permanent and no other `Tasks` can receive that TASK_ID even after the deletion of the original one. 
+* The Index for `Consultation` and `Mastery Check` is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Tasks`.
 </div>
 
 ### 6.6 Viewing Information : `view`
