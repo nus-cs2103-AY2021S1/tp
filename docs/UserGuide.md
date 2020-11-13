@@ -12,24 +12,25 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 
 ## Table of contents
 
+ * Table of Contents
  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 1 Quick start
+# 1 Quick start (Tan Chia Qian)
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
 2. Download the latest `Taskmania.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-3/tp).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TaskMania.
+3. Copy the file to the folder you want to use as the _home folder_ for your Taskmania.
 
 4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
  the app contains some sample information.<br>
    ![Ui](images/Ui.png)
    *Figure 1: A view of Taskmania at startup*
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing `Enter` to
  open the help window.<br>
    Some commands you can try:
 
@@ -37,7 +38,7 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 
    * `exit` : Exits the app
 
-6. Refer to the Features below for details of each command.
+6. Refer to the features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,10 +47,10 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * One and only one item in parenthesis should be supplied by the user
-  e.g. `(ta/ASSIGNEE_GIHUB_USERNAME)||(td/DEADLINE)` can be used as "ta/Alice98" or "td/31-12-2020 10:00:00", but not as "ta/Alice98 td/31-12-2020 10:00:00" or "".
+  e.g. `(ta/ASSIGNEE_GIHUB_USERNAME)||(td/DEADLINE)` can be used as `ta/Alice98` or `td/31-12-2020 10:00:00`, but not as `ta/Alice98 td/31-12-2020 10:00:00` or empty.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [tg/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -58,7 +59,7 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
   e.g. `[tg/TAG]…​` can be used as ` ` (i.e. 0 times), `tg/friend`, `tg/friend tg/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 **:information_source: Notes about scoping:**<br>
 
@@ -196,30 +197,28 @@ Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_project](images/addProject.png)
 
-   *Figure 8: New project named `The Blair project` is added and shown on the project list*
+   *Figure 8: A new project named `The Blair project` is added and shown on the project list*
 
 Format: `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
-  - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
-  - Repo URL must be a valid link
+  - The user can set the deadline to be in the past to allow the user wants to log finished projects for the completeness of project management
+  - The repository URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
 
 Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
  URL, and not whether the repository exists.
 
-Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` 
-
-Adds a new project with the 
-- projectName Blair project 
+Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` adds a new project with the following: 
+- name of 'Blair project'
 - deadline of 29 February 2020 midnight 
-- URL for the team repository 
-- Coding in Greenwich as the description 
+- URL for the team repository as http://github.com/a/b.git
+- description as 'Coding in Greenwich'
 - 2 tags "hell" and "abs"
 
-### 2.2.3 Delete a project from the catalogue `delete`
+### 2.2.3 Delete a project from the catalogue `delete` (Tai Wen Le Lucas)
 
 Deletes a project and all associated information from the project catalogue.
 
@@ -236,9 +235,9 @@ Format: `delete INDEX `
 
 Examples: `delete 2` deletes the second project from the catalogue.
 
-### 2.2.4 Locate projects by keyword `find`
+### 2.2.4 Locate projects by keyword `find` (Tan Chia Qian)
 
-Finds projects whose names contain the given keywords.
+Finds all the projects with the names containing the given keywords.
 
 Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -249,16 +248,16 @@ Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 - The search is case-insensitive. e.g `run` will match `Run`
 - The order of the keywords does not matter. e.g. `Project CS2103T` will match `CS2103T Project`
-- Only the name of the projects are searched
-- Must provide at least one keyword
-- There can be multiple keywords
-- Keywords provided must be **complete words** and will only match **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
+- It only allows searching by the project name
+- It must include at least one keyword
+- It can include multiple keywords
+- Keywords provided must be the **complete words** and will only match the **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
-Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
+Example: `find scare` returns the `Scare House` and `Easily Scare Night` projects.
 
 Note: Please use `listprojects` command to return to the complete project list.
 
-### 2.2.5 Edits details of a project `edit`
+### 2.2.5 Edits details of a project `edit` (Tan Chia Qian)
 
 Updates the details of a project.
 
@@ -273,21 +272,22 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - The index refers to the index number shown in the displayed task list
   - Any combination of the fields above can be entered
   - The information entered will replace all the data in each respective field
-  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
-  - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
-  - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
-  - Repo URL must be a valid link
+  - The project name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - The deadline follows the format of *DD-MM-YYYY hh:mm:ss*
+  - The user can set the deadline to be in the past to allow the user wants to log finished projects for the completeness of project management
+  - The repository URL must be a valid link
   - Anything can be filled in the description as long as it is not blank
   - Any number of tags can be added, separated by space " "
 
-Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
+Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to `ResidentEvil` and the description to `New Horror`.
+
+Note: Please enter a valid repository URL. Taskmania is an offline application and it can only check the validity of the
  URL, and not whether the repository exists.
-
-Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
-
+ 
+ 
 ## 2.3 Tasks management within a project
 
-### 2.3.1 Add task to a project `addtask`
+### 2.3.1 Add task to a project `addtask` (Tai Wen Le Lucas)
 
 Creates a new task and adds it to the current project.
 
@@ -297,12 +297,12 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
    *Figure 12: The task named `Do User Guide` is added to the project `Aeroknotty`*
 
-Format: `addtask tn/TASK NAME tp/TASK PROGRESS td/TASK DEADLINE `
+Format: `addtask tn/TASK NAME td/TASK DEADLINE [tp/TASK PROGRESS] [d/TASK DESCRIPTION]`
   - All fields above are required
-  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Task name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Task progress is a percentage value indicating how much of the task is done
-  - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
-  - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
+  - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
+  - The user can set the deadline to be in the past to allow the user to log finished tasks for the completeness of project management
 
 Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
@@ -324,7 +324,7 @@ Format: `assign TASKINDEX TEAMMATE_GITHUB_USERNAME  `
 
 Example: `assign 1 Lucas98` assigns task number 1 in the list to user *Lucas98*.
 
-### 2.3.3 Edit task to a project `edittask`
+### 2.3.3 Edit task to a project `edittask` (Tai Wen Le Lucas)
 
 Edits the indicated task in a project.
 
@@ -332,7 +332,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_task](images/editTask.png)
 
-   *Figure 14: The task 2 is edited*
+   *Figure 14: The second task being edited*
 
 Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/TASK_DESCRIPTION]`
   - Edits the task at the specified index
@@ -342,10 +342,10 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/T
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
-  - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
+  - The user can set the deadline to be in the past to allow the user to log finished tasks for the completeness of project management
   - Anything can be filled in the task description as long as it is not blank
 
-Example: `edittask 2 tn/Finish project` changes the name of task 2 in the list to Finish project.
+Example: `edittask 2 tn/Finish project` changes the name of the second task in the list to 'Finish project'.
 
 ### 2.3.4 Delete a task from the project `deletetask` (Tian Fang)
 
@@ -599,7 +599,7 @@ Examples: `startperson 2` starts the second person in the person list displayed 
 # 3 FAQ (Niaaz)
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
+**A**: Install the app in the other computer and overwrite the empty data file with the file that 
 contains the data of your previous Taskmania home folder.
 
 **Q**: Is my data stored in the cloud? Will I be open to data breaches?<br>
@@ -608,8 +608,12 @@ contains the data of your previous Taskmania home folder.
 **Q**: Do I have to save before exiting the application for my data to to safely backed up on my computer? <br>
 **A**: All your data is saved on your computer as soon as you enter in the command. There is no need to manually save
  your data. In the event of a power outage, all your data will be safe.
+ your data.
+ 
+**Q**: Where do I seek help when I have issues with the Taskmania? <br>
+**A**: You may leave your issues [here](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues).
 
-# 4 Summary
+# 4 Summary (Tan Chia Qian)
 
 Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` | `PERSON` | `TASK` | `TEAMMATE`
 --------|------------------|-------|---------------|---------------|-------------|--------|--------|------------
@@ -624,9 +628,9 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 **Deletes project** | `delete INDEX` <br> e.g. `delete 2` |                                                                                                                                                                                                                       | √ |   | √ |   | √ | √
 **Finds KEYWORD** | `find KEYWORD` <br> e.g. `find read` |                                                                                                                                                                                                                        | √ |   | √ |   | √ | √
 **Edits Project** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project d/ new horror`|                                                                                                                   | √ |   | √ |   | √ | √
-**Adds Task** | `addtask n/TASK_NAME tp/TASK_PROGRESS td/TASK_DEADLINE ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
+**Adds Task** | `addtask tn/TASK_NAME td/TASK_DEADLINE [tp/TASK_PROGRESS] [d/TASK DESCRIPTION]` eg, `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
 **Assigns A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` |                                                                                                                                                                                               |   |   | √ |   | √ | √
-**Edits task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` |                                                                                                                                   |   |   | √ |   | √ | √
+**Edits task details** | `edittask INDEX [tn/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/TASK DESCRIPTION]` eg, `edittask 3 tn/Finish project` |                                                                                                                                   |   |   | √ |   | √ | √
 **Deletes a task** | `deletetask INDEX` <br>e.g. `deletetask 1` |                                                                                                                                                                                                                 |   |   | √ |   | √ | √
 **Filters tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` |   |   |   | √ |   | √ | √
 **Shows all the tasks** | `alltasks` |                                                                                                                                                                                                                                            |   |   | √ |   | √ | √
@@ -639,7 +643,7 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 **Views a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`|                                                                                                                                                                                      |   |   | √ |   | √ | √
 **Deletes a teammate** | `deleteperson GITHUB_USERNAME` e.g. `deleteperson Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
 
-# 5 Glossary
+# 5 Glossary (Tai Wen Le Lucas)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Scope**: The confines of when certain commands will work.
@@ -647,3 +651,4 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 * **Person**: A person that could be in any number of the user's team's projects.
 * **Project**: A software project with at least a GitHub repository link and a deadline.
 * **Task**: Something to be done for a project with a certain progress status.
+* **Catalogue**: A saved list for items like projects or persons.
