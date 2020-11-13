@@ -262,7 +262,7 @@ Format: `history`
 <p align="center">
     <img src="images/historyExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 7. Example of History Command</em>
+    <em style="color:#CC5500">Figure 7. Example of History Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-info">
@@ -284,7 +284,7 @@ Format: `clearhistory`
 <p align="center">
     <img src="images/clearHistoryExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 8. Example of Clear History Command</em>
+    <em style="color:#CC5500">Figure 8. Example of Clear History Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-info">
@@ -312,7 +312,7 @@ Format: `undo`
 <p align="center">
     <img src="images/undoExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 9. Example of Undo Command</em>
+    <em style="color:#CC5500">Figure 9. Example of Undo Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -338,7 +338,7 @@ Format: `redo`
 <p align="center">
     <img src="images/redoExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 10. Example of Redo Command</em>
+    <em style="color:#CC5500">Figure 10. Example of Redo Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -383,7 +383,7 @@ Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOO
 <p align="center">
     <img src="images/addExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 11. Example of Add Patient Command</em>
+    <em style="color:#CC5500">Figure 11. Example of Add Patient Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -415,7 +415,7 @@ If the person already has an existing profile picture, you can use this command 
 <p align="center">
     <img src="images/addProfileExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 12. Example of Add Profile Picture Command</em>
+    <em style="color:#CC5500">Figure 12. Example of Add Profile Picture Command (Contributed by Moon) </em>
 </p>
 
 Format: `addpicture INDEX f/FILE_PATH`
@@ -467,7 +467,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 <p align="center">
     <img src="images/editExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 13. Example of Edit Patient Command</em>
+    <em style="color:#CC5500">Figure 13. Example of Edit Patient Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -482,7 +482,7 @@ You want to edit the details of the 1st patient.
 <p align="center">
     <img src="images/editExample2.png"/>
     <br>
-    <em style="color:#CC5500">Figure 14. Example of Removing Allergy and Color Tag with Edit Patient Command</em>
+    <em style="color:#CC5500">Figure 14. Example of Removing Allergy and Color Tag with Edit Patient Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-info">
@@ -511,10 +511,10 @@ Format: `delete INDEX`
 <p align="center">
     <img src="images/deleteExampleBefore.png"/>
     <br>
-    <em style="color:#CC5500">Figure 15.1 Example of Delete Patient Command (Before)</em>
+    <em style="color:#CC5500">Figure 15.1 Example of Delete Patient Command (Before) (Contributed by Moon) </em>
     <img src="images/deleteExampleAfter.png"/>
     <br>
-    <em style="color:#CC5500">Figure 15.2 Example of Delete Patient Command (After)</em>
+    <em style="color:#CC5500">Figure 15.2 Example of Delete Patient Command (After) (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -545,7 +545,7 @@ Format: `clear`
 <p align="center">
     <img src="images/clearExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 16. Example of Clear Command</em>
+    <em style="color:#CC5500">Figure 16. Example of Clear Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -595,7 +595,7 @@ Format: `find KEYWORDS`
 <p align="center">
     <img src="images/findExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 17. Example of Find Command</em>
+    <em style="color:#CC5500">Figure 17. Example of Find Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -618,7 +618,7 @@ Format: `list`
 <p align="center">
     <img src="images/listExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 18. Example of List Command</em>
+    <em style="color:#CC5500">Figure 18. Example of List Command (Contributed by Moon) </em>
 </p>
 
 <div markdown="block" class="alert alert-primary">
