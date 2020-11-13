@@ -96,6 +96,8 @@ with additional details.
 * Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### <a name="modifying"></a>3.1. Modify the Glossary
 #### <a name="add"></a>3.1.1. Add a Flashcard: `add` (Jiyu)
 
