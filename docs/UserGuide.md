@@ -280,13 +280,12 @@ Marks the student as absent (default) for tutorial on a specified date.
 
 Format: `unattend INDEX d/DATE`
 
-![Unattend](images/RemoveAttendance.png)
-
-For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)
-
 Examples:
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
+
+  *For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)*
+  ![Unattend](images/RemoveAttendance.png)
 
 ### Adding a consultation : `add-consult`
 
@@ -302,8 +301,9 @@ Examples:
 
 - `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`
 - `add-consult n/Ann Lim d/30/05/2020 tm/11:00 a/Tembusu College ty/group `
-
-![result for add consult command](images/addConsultResult.png)
+  
+  *For `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`*
+  ![result for add consult command](images/addConsultResult.png)
 
 ### Deleting a consultation : `del-consult`
 
@@ -316,8 +316,9 @@ Format: `del-consult INDEX`
 Examples:
 
 - `del-consult 1`
-
-![result for delete consult command](images/delConsultResult.png)
+  
+  *For `del-consult 1`*
+  ![result for delete consult command](images/delConsultResult.png)
 
 ### Listing all consultations : `list-consult`
 
@@ -327,7 +328,8 @@ You may click on the Consultations tab to view the full list of consultations.
 
 Format: `list-consult`
 
-![result for list consult command](images/listConsultResult.png)
+  *Running `list-consult`*
+  ![result for list consult command](images/consultListResult.png)
 
 ### Archiving data files : `archive`
 
@@ -340,7 +342,8 @@ Format: `archive`
 Example:
 
 - `archive` creates a json file called `tasker_2020-11-09_2113.json` as shown below.
-
+  
+  *Running `archive`*
   ![result for 'archive'](images/archiveResult.png)
 
 ### Exporting attendance : `exportatt`
@@ -354,7 +357,8 @@ Format: `exportatt`
 Example:
 
 - `exportatt` creates a csv file called `attendance_2020-11-09_2055.csv` as shown below.
-
+  
+  *Running `exportatt`*
   ![result for 'exportatt'](images/exportattResult.png)
 
 ### Exiting the program : `exit`
