@@ -16,8 +16,8 @@ title: User Guide
 4. [Features](#4-features)<br>
    4.1 [General Features](#41-general-features)<br>
    --- 4.1.1 [View help: `help`](#411-view-help-help)<br>
-   --- 4.1.2 [Clear Trackr: 'clear'](#412-clear-trackr-clear)<br>
-   --- 4.1.3 [Exit Trackr: 'exit'](#413-exit-trackr-exit)<br>
+   --- 4.1.2 [Clear Trackr: `clear`](#412-clear-trackr-clear)<br>
+   --- 4.1.3 [Exit Trackr: `exit`](#413-exit-trackr-exit)<br>
    4.2 [Navigation Features](#42-navigation-features)<br>
    --- 4.2.1 [List all modules in Trackr: `listMod`](#421-list-all-modules-in-trackr-listmod)<br>
    --- 4.2.2 [View all tutorial groups in a module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
@@ -33,7 +33,7 @@ title: User Guide
    4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
    --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-addtg)<br>
    --- 4.4.2 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-deletetg)<br>
-   --- 4.4.3 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.3 [Edit a tutorial group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
    --- 4.4.4 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
    4.5 [Student Features](#45-student-features)<br>
    --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
@@ -119,6 +119,7 @@ Commands you provide in the command line follow specific rules. These are the ru
 
 
 ## 3. Getting Started
+###### (written by: Sean Tay)
 
 ### 3.1 Setting Up
 Get started by installing __Trackr__ with the following steps:
@@ -162,6 +163,7 @@ Figure 3.3c Student view
 ## 4. Features
 
 ### 4.1 General Features
+###### (written by: Sean Tay)
 
 #### 4.1.1 View help: `help`
 Shows a message explaining how to access the user guide.
@@ -211,6 +213,7 @@ Format: `exit`
 Example: `exit`
 
 ### 4.2 Navigation Features
+###### (written by: Sean Tay)
 
 #### 4.2.1 List all modules in Trackr: `listMod`
 
@@ -324,6 +327,7 @@ Example: `prevView`
 Figure 4.2.6a Expected outcome of performing the `prevView` command
 
 ### 4.3 Module Features
+###### (written by: Juan Davin Lie)
 
 > You should perform the following features while in the Module view.
 
@@ -516,6 +520,7 @@ Expected Outcome:
 Figure 4.4.4a Expected outcome of performing the `findTG` command
 
 ### 4.5 Student Features
+###### (written by: Jian Fanmin)
 
 > You should perform the following features while in the Student view.
 
@@ -798,6 +803,7 @@ Command | Description | Compatible View
 
 
 ### 6.3 Module Commands
+###### (written by: Juan Davin Lie)
 
 Command | Description | Compatible View
 --------|--------|--------
@@ -818,6 +824,7 @@ Command | Description | Compatible View
 
 
 ### 6.5 Student Commands
+###### (written by: Jian Fanmin)
 
 Command | Description | Compatible View
 --------|--------|--------
