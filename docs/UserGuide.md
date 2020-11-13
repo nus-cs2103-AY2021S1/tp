@@ -1032,7 +1032,8 @@ Outcome: <br>
 (Contributed by Aloysius)
 
 This feature allows you to customise command shortcuts. You can add, delete and list shortcuts for 
-longer commands.
+longer commands. This is very helpful as it allows for a shorter time when typing out the commands.
+For example, instead of `edit_hairdresser`, you can add a shortcut and use `eh` instead as an example.
 
 #### 4.5.1 Shortcut Command Parameters
 
@@ -1049,19 +1050,19 @@ You can use this command to add a new shortcut to the program.
 
 `add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT`
 
-**Example:**
+**Example 1:**
 
 You want to create a shortcut `aa` for `add_shortcut`. 
 
 Creating a new shortcut:
 
-* Type `add_shortcut old/add_shortcut new/aa` into the _Command Box_.
-* Press `Enter` to execute.
-
+1. Type `add_shortcut old/add_shortcut new/aa` into the _Command Box_.
+1. Press `Enter` to execute.
+![Ui](images/shortcut/before_add_shortcut.PNG)
 Outcome:
 
-* The _Result Display_ will show a success message.
-* You can now see your new shortcut.
+1. The _Result Display_ will show a success message.
+1. You can now see your new shortcut.
 
 ![Ui](images/shortcut/add_shortcut_success.PNG)
 
@@ -1085,18 +1086,19 @@ You can use this command to delete a shortcut to the program.
 
 `delete_shortcut SHORTCUT`
 
-**Example:**
+**Example 1:**
 
 You want to delete a shortcut `aa`. 
 
 Deleting a shortcut:
 
-* Type `delete_shortcut aa` into the _Command Box_.
-*  Press `Enter` to execute.
+1. Type `delete_shortcut aa` into the _Command Box_.
+1. Press `Enter` to execute.
+![Ui](images/shortcut/before_delete_shortcut.PNG)
 
 Outcome:
 
-* The _Result Display_ will show a success message.
+1. The _Result Display_ will show a success message.
 
 .Outcome of a successful `delete_shortcut` command
 ![Ui](images/shortcut/delete_shortcut.PNG)
@@ -1110,6 +1112,7 @@ You can use this command to list all your shortcuts.
 `list_shortcut`
 
 You can use this command to show all your shortcuts.
+![Ui](images/shortcut/before_list_shortcut.PNG)
 
 ![Ui](images/shortcut/list_shortcut.png)
 
