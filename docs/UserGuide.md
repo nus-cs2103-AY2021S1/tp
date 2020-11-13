@@ -168,7 +168,7 @@ please check that you have installed the correct driver in the _`chrome_driver`_
 
 1. Upon start up, you will be prompted to log in to unlock Jarvis's
  full set of features.
- Please refer to the logging in segment below to complete your login.
+ Please refer to [Logging into Jarvis](#5-logging-into-jarvis) below to complete your login.
  Do note that after editing your login details, exiting and relaunching the Jarvis User interface will take some time
  as Jarvis is attempting to log you into Source Academy.
 
@@ -870,7 +870,6 @@ are likely to change frequently and hence, will not need to be persisted.
 ## 7. Command Summary
 
 ### 7.1 Add Command Summary
-(Zhen Teng)
 
 | Function            | Tag | Format, Examples                        |
 | ------------------- | --- | --------------------------------------- |
@@ -881,7 +880,6 @@ are likely to change frequently and hence, will not need to be persisted.
 | Add `Deadline`      | -d  | add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM |
 
 ### 7.2 Edit Command Summary
-(Jun Jie)
 
 | Function                   | Tag &nbsp; | Format, Examples                                  |
 | -------------------------- | --- | ------------------------------------------------- |
@@ -892,7 +890,6 @@ are likely to change frequently and hence, will not need to be persisted.
 <div style="page-break-after: always;"></div>
 
 ### 7.3 Delete Command Summary
-(Eryn)
 
 | Function               | Tag | Format, Examples                       |
 | ---------------------- | --- | -------------------------------------- |
@@ -926,14 +923,12 @@ are likely to change frequently and hence, will not need to be persisted.
 | View all `Deadlines`               | -td  | view -td        |
 
 ### 7.5 Exit Command Summary
-(Peirong)
 
 | Function      | Format, Examples |
 | ------------- | ---------------- |
 | Exits program | `exit`           |
 
 ### 7.6 Help Command Summary
-(Wiline)
 
 | Function                           | Format, Examples |
 | ---------------------------------- | ---------------- |
