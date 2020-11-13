@@ -39,7 +39,7 @@ Table of Contents
     <div markdown="span" class="alert alert-primary" style="margin-top: 1rem;">:bulb: **Note:**
     On newer macOS machines with stricter security settings from Apple, you might need to Ctrl-click on the file, then click on "Open" for your very first run of TAsker. This ensures that TAsker is trusted by your machine. You can then continue to double-click the file for your subsequent runs.
     </div>
-    <img src="images/Ui.png" class="diagram" />
+    <img src="images/Ui.png" />
 
 2. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
