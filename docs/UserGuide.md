@@ -369,7 +369,8 @@ You can set reminders for specific assignments which will be displayed in `Your 
 
 You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your Assignment List ("Statistics tutorial" as shown in the Figure 15) and adds it to `Your reminders` (Figure 16).
+
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the figure below) and adds it to `Your reminders`.
 
    ![Remind1](images/Remind1.png)
    *Figure 15: Before "Statistics tutorial" is added into `Your reminders`*
@@ -379,12 +380,12 @@ For example, `remind 1` will set reminders for the first assignment in your Assi
 
 You can set reminders for **multiple** assignments at a time as well. Here is an example with steps for you to follow:
 
-1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your Assignment List as shown in Figure 17), you can simply enter `remind 2 4` into the Command Box.
+1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in the figure below), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
    *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
 
-2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders` (Figure 18).
+2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders`.
 
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
    *Figure 18: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
@@ -407,7 +408,7 @@ Format: `unremind INDEX`
 
 You can remove your reminded assignments from `Your reminders` by specifying the `INDEX` of the assignment as shown in `Your reminders`. 
 
-For example, `unremind 1` will remove the first assignment in `Your reminders` ("Statistics tutorial" as shown in the Figure 19).
+For example, `unremind 1` will remove the first assignment in `Your reminders` ("Statistics tutorial" as shown in the figures below).
 
    ![Unemind1](images/Unremind1.png)
    *Figure 19: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
@@ -711,7 +712,7 @@ Only assignments with deadlines **before** the current time and lessons with end
 #### Remarks on deadline of assignments and start time of lessons
 You can easily view how much time you have left before your assignment is due and when your lessons start. As such, you can better plan out your time to ensure you have enough time to complete your assignments and attend your lessons on time.
 
-For your assignments and lessons, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a day's time** will be displayed in red (Figure 29).  
+For your assignments and lessons, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a day's time** will be displayed in red as shown in the figure below.  
  ![AutoDiagram](images/AutoDiagram.png)
    *Figure 29: Hours or days due for assignments and lessons*
                  
