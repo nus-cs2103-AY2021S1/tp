@@ -5,7 +5,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: derive(#F3CE8F, 20%);
 }
 
 .tag-selector {
@@ -17,4 +17,72 @@
 
 .tooltip-text {
     -fx-text-fill: white;
+}
+
+#Header {
+    -fx-font: 20pt"Arial";
+    -fx-background-color: #F3CE8F;
+}
+
+#Title {
+    -fx-font: 25pt"Arial";
+    -fx-background-color: #F3CE8F;
+}
+
+#List {
+    -fx-font: 15pt"Arial";
+}
+
+#dashboardVbox {
+    -fx-background-color: derive(#FEE5B6, 20%);
+}
+
+/*----------------------------------------- Project Dashboard ---------------------------------------------------*/
+
+#dashboardDeadline {
+    -fx-font: 15pt"Arial";
+}
+
+#dashboardPD {
+    -fx-font: 15pt"Arial";
+}
+
+#dashboardRU {
+    -fx-font: 15pt"Arial";
+}
+
+/*--------------------------------------- Task Dashboard ---------------------------------------------------*/
+
+#taskDesc {
+    -fx-font: 15pt"Arial";
+}
+
+#taskPD {
+    -fx-font: 15pt"Arial";
+}
+
+#taskDeadline {
+    -fx-font: 15pt"Arial";
+}
+
+#taskProgress {
+    -fx-font: 15pt"Arial";
+}
+
+/*--------------------------------------- Teammate/Person Dashboard ---------------------------------------------------*/
+
+#teammateGithub {
+    -fx-font: 15pt"Arial";
+}
+
+#teammatePhone {
+    -fx-font: 15pt"Arial";
+}
+
+#teammateEmail {
+    -fx-font: 15pt"Arial";
+}
+
+#teammateAddress {
+    -fx-font: 15pt"Arial";
 }

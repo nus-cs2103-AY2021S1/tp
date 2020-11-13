@@ -1,15 +1,18 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_A;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_EMAIL_A;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_A;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
+import static seedu.address.testutil.TypicalPersons.DESC_A;
+import static seedu.address.testutil.TypicalPersons.DESC_B;
+
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,78 +21,134 @@ import seedu.address.testutil.PersonBuilder;
 public class PersonTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+    public void execute_isValidUpdateFields() {
+        String expectedPersonName = "updatedName";
+        String expectedPhone = "9291";
+        String expectedEmail = "expect@gmail.com";
+        String expectedAddress = "expected street";
+
+        String expectedString = " Person name: updatedName"
+            + " Git Username: Sparrow32"
+            + " Phone: 9291"
+            + " Email: expect@gmail.com"
+            + " Address: expected street";
+
+        Person teammate = new PersonBuilder(DESC_A).build();
+
+        teammate.updatePersonName(expectedPersonName);
+        teammate.updatePhone(expectedPhone);
+        teammate.updateEmail(expectedEmail);
+        teammate.updateAddress(expectedAddress);
+
+        assertEquals(expectedString, teammate.toString());
     }
 
     @Test
-    public void isSamePerson() {
-        // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+    public void execute_isValidFields() {
+        String expectedPersonName = VALID_TEAMMATE_NAME_A;
+        String expectedGitUserName = VALID_TEAMMATE_GIT_USERNAME_A;
+        String expectedPhone = VALID_TEAMMATE_PHONE_A;
+        String expectedEmail = VALID_TEAMMATE_EMAIL_A;
+        String expectedAddress = VALID_TEAMMATE_ADDRESS_A;
 
-        // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertEquals(expectedPersonName, DESC_A.getPersonName().toString());
+        assertEquals(expectedGitUserName, DESC_A.getGitUserName().toString());
+        assertEquals(expectedPhone, DESC_A.getPhone().toString());
+        assertEquals(expectedEmail, DESC_A.getEmail().toString());
+        assertEquals(expectedAddress, DESC_A.getAddress().toString());
 
-        // different phone and email -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+    }
 
-        // different name -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+    @Test
+    public void isSameTeamamate() {
+        // same object -> return true
+        assertTrue(DESC_A.isSamePerson(DESC_A));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // null -> return false
+        assertFalse(DESC_A.isSamePerson(null));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // different personName -> return true
+        Person editedDescAPersonName = new PersonBuilder(DESC_A).withPersonName("luanqiba").build();
+        assertTrue(DESC_A.isSamePerson(editedDescAPersonName));
 
-        // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // different gitUserName -> return false
+        Person editedDescAGitUserName = new PersonBuilder(DESC_A).withGitUserName("different").build();
+        assertFalse(DESC_A.isSamePerson(editedDescAGitUserName));
+
+        // different phone -> return false
+        Person editedDescAPhone = new PersonBuilder(DESC_A).withPhone("38283828311").build();
+        assertFalse(DESC_A.isSamePerson(editedDescAPhone));
+
+        // different email -> return false
+        Person editedDescAEmail = new PersonBuilder(DESC_A).withEmail("jdjf@hmail.com").build();
+        assertFalse(DESC_A.isSamePerson(editedDescAEmail));
+
+        // different address -> return true
+        Person editedDescAAddress = new PersonBuilder(DESC_A).withAddress("timbuktu").build();
+        assertTrue(DESC_A.isSamePerson(editedDescAAddress));
+
+    }
+
+    @Test
+    public void execute_validHashCode() {
+        int expectedHash = Objects.hash(VALID_TEAMMATE_NAME_A, VALID_TEAMMATE_GIT_USERNAME_A, VALID_TEAMMATE_PHONE_A,
+            VALID_TEAMMATE_EMAIL_A, VALID_TEAMMATE_ADDRESS_A);
+
+        int resultHash = DESC_A.hashCode();
+
+        assertTrue(resultHash == expectedHash);
     }
 
     @Test
     public void equals() {
-        // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
-
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertEquals(DESC_A, DESC_A);
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertNotEquals(DESC_A, null);
 
-        // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        // same values, different objects -> return true
+        Person descACopy = new PersonBuilder(DESC_A).build();
+        assertEquals(descACopy, DESC_A);
 
-        // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        // different type -> return false
+        assertNotEquals(DESC_A, 5);
 
-        // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // same type, different objects -> return false
+        assertNotEquals(DESC_B, DESC_A);
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different PersonName
+        Person editedDescAPersonName = new PersonBuilder(DESC_A).withPersonName("Niaaz").build();
+        assertNotEquals(editedDescAPersonName, DESC_A);
 
-        // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different gitUserName
+        Person editedDescAGitUserName = new PersonBuilder(DESC_A).withGitUserName("Geniaaz982").build();
+        assertNotEquals(editedDescAGitUserName, DESC_A);
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different phone
+        Person editedDescAPhone = new PersonBuilder(DESC_A).withPhone("3728271").build();
+        assertNotEquals(editedDescAPhone, DESC_A);
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different email
+        Person editedDescAEmail = new PersonBuilder(DESC_A).withEmail("pb@gmail.com").build();
+        assertNotEquals(editedDescAEmail, DESC_A);
+
+        // different address
+        Person editedDescAAddress = new PersonBuilder(DESC_A).withAddress("247 pasir ris").build();
+        assertNotEquals(editedDescAAddress, DESC_A);
     }
+
+    @Test
+    public void execute_validToString() {
+        String expectedString = " Person name: Jack Nicholson"
+            + " Git Username: Sparrow32"
+            + " Phone: 92883923"
+            + " Email: jack@gmail.com"
+            + " Address: 32 Lake Road";
+
+        String resultString = DESC_A.toString();
+
+        assertEquals(resultString, expectedString);
+    }
+
 }

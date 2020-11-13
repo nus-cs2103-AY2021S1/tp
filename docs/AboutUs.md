@@ -3,57 +3,68 @@ layout: page
 title: About Us
 ---
 
+------------------------------------------------------------------------------------------------
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+[[Visit our homepage](https://ay2021s1-cs2103t-w10-3.github.io/tp/)]
+
+You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Niaaz Wahab
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geniaaz.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/geniaaz)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio](team/geniaaz.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UG, Teammate related features
 
-### Jean Doe
+### Li Jiayu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lll-jy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lll-jy)]
+
+[[portfolio](team/lll-jy.md)]
+
+* Role: Project Member
+* Responsibilities: Developer
+
+### Tian Fang
+
+<img src="images/t-fang.png" width="200px">
+
+[[github](http://github.com/T-Fang)]
+
+[[portfolio](team/t-fang.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Task manipulation
 
-### James Doe
+### Tan Chia Qian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tcqian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TCQian)]
 
-* Role: Developer
-* Responsibilities: UI
+[[portfolio](team/TCQian.md)]
+
+* Role: Project Member
+* Responsibilities: GUI
+
+
+### Lucas Tai
+
+<img src="images/lucastai98.png" width="200px">
+
+[[github](http://github.com/lucastai98)]
+
+[[portfolio](team/lucastai98.md)]
+
+* Role: Project Member
+* Responsibilities: Developer

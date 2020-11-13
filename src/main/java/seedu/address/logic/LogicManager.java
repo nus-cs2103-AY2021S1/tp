@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -10,11 +11,14 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.MainCatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMainCatalogue;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +30,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final MainCatalogueParser mainCatalogueParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        mainCatalogueParser = new MainCatalogueParser();
     }
 
     @Override
@@ -42,11 +46,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = mainCatalogueParser.parseCommand(commandText, model.getStatus());
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveMainCatalogue(model.getProjectCatalogue());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +59,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyMainCatalogue getMainCatalogue() {
+        return model.getProjectCatalogue();
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
     }
 
     @Override
@@ -65,8 +74,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Optional<Project> getProjectToBeDisplayedOnDashBoard() {
+        return model.getProjectToBeDisplayedOnDashboard();
+    }
+
+    @Override
+    public Optional<Task> getTaskToBeDisplayedOnDashboard() {
+        return model.getTaskToBeDisplayedOnDashboard();
+    }
+
+    @Override
+    public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
+        return model.getTeammateToBeDisplayedOnDashboard();
+    }
+
+    @Override
+    public Optional<Person> getPersonToBeDisplayedOnDashboard() {
+        return model.getPersonToBeDisplayedOnDashboard();
+    }
+
+    @Override
+    public Path getMainCatalogueFilePath() {
+        return model.getProjectCatalogueFilePath();
     }
 
     @Override
@@ -77,5 +106,18 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public boolean isProjectsView() {
+        switch (model.getStatus()) {
+        case PROJECT_LIST:
+        case PROJECT:
+        case TASK:
+        case TEAMMATE:
+            return true;
+        default:
+            return false;
+        }
     }
 }

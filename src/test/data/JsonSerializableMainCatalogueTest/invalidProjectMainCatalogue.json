@@ -1,0 +1,11 @@
+{
+  "projects": [ {
+    "projectName": "invalid @ $% pr0j3ct",
+    "deadline": "29-02/020 00:00:00",
+    "repoUrl": "https://invalid.com/invalid/invalid",
+    "projectDescription": "this is n0t v@lid",
+    "projectTagged": ["f@ulty"]
+  } ],
+  "persons": [ ],
+  "participations": [ ]
+}

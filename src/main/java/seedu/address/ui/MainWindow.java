@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -24,6 +25,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String EMPTY_PROJECT_DASHBOARD_MSG = "No project/person to be shown here.";
+    private static final String EMPTY_ATTRIBUTES_DASHBOARD_MSG = "No detail to be shown here.";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,7 +34,14 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private ProjectListPanel projectListPanel;
     private PersonListPanel personListPanel;
+    private ProjectDashboard projectDashboard;
+    private PersonDashboard personDashboard;
+    private EmptyDashboard emptyProjectDashboard;
+    private TaskDashboard taskDashboard;
+    private TeammateDashboard teammateDashboard;
+    private EmptyDashboard emptyAttributesDashboard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +52,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane projectListPanelPlaceholder;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private ScrollPane middleDashboardPlaceHolder;
+
+    @FXML
+    private ScrollPane rightAttributesDashboardPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,7 +97,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     *
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -110,17 +130,72 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        fillPanels();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMainCatalogueFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void fillPanels() {
+        setList();
+        setMiddleDashboard();
+        setRightDashboard();
+    }
+
+    private void setList() {
+        if (logic.isProjectsView()) {
+            projectListPanelPlaceholder.setVisible(true);
+            projectListPanelPlaceholder.setManaged(true);
+            projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+            projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+            personListPanelPlaceholder.setManaged(false);
+            personListPanelPlaceholder.setVisible(false);
+        } else {
+            personListPanelPlaceholder.setVisible(true);
+            personListPanelPlaceholder.setManaged(true);
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            projectListPanelPlaceholder.setManaged(false);
+            projectListPanelPlaceholder.setVisible(false);
+        }
+    }
+
+    private void setMiddleDashboard() {
+        if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
+                && logic.getPersonToBeDisplayedOnDashboard().isEmpty()) {
+            emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
+            middleDashboardPlaceHolder.setContent(emptyProjectDashboard.getRoot());
+        } else if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
+                && logic.getPersonToBeDisplayedOnDashboard().isPresent()) {
+            personDashboard = new PersonDashboard(logic.getPersonToBeDisplayedOnDashboard());
+            middleDashboardPlaceHolder.setContent(personDashboard.getRoot());
+        } else if (logic.getPersonToBeDisplayedOnDashboard().isEmpty()
+                && logic.getProjectToBeDisplayedOnDashBoard().isPresent()) {
+            projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
+            middleDashboardPlaceHolder.setContent(projectDashboard.getRoot());
+        }
+    }
+
+    private void setRightDashboard() {
+        if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
+                && logic.getTeammateToBeDisplayedOnDashboard().isPresent()) {
+            teammateDashboard = new TeammateDashboard(logic.getTeammateToBeDisplayedOnDashboard());
+            rightAttributesDashboardPlaceHolder.setContent(teammateDashboard.getRoot());
+        } else if (logic.getTaskToBeDisplayedOnDashboard().isPresent()
+                && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
+            taskDashboard = new TaskDashboard(logic.getTaskToBeDisplayedOnDashboard());
+            rightAttributesDashboardPlaceHolder.setContent(taskDashboard.getRoot());
+        } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
+                && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
+            emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
+            rightAttributesDashboardPlaceHolder.setContent(emptyAttributesDashboard.getRoot());
+        }
     }
 
     /**
@@ -163,8 +238,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
     }
 
     /**
@@ -176,6 +251,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            fillPanels();
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {

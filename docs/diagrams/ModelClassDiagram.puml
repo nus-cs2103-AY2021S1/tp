@@ -5,52 +5,88 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyMainCatalogue <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class MainCatalogue
+Class ReadOnlyMainCatalogue
 Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Interface ReadOnlyUserPrefs <<Interface>>
+Enum Status <<Enumeration>>
+
+Package Project {
+Class Project
+Class ProjectName
+Class Deadline
+Class RepoUrl
+Class ProjectDescription
+Class UniqueProjectList
+}
 
 Package Person {
 Class Person
+Class GitUserName
+Class PersonName
 Class Address
 Class Email
-Class Name
 Class Phone
 Class UniquePersonList
 }
 
+Package Participation {
+Class Participation
+Class UniqueParticipationList
+Class Role
+Participation .up (Project, Person)
+}
+
 Package Tag {
-Class Tag
+Class ProjectTag
+}
+
+Package Task {
+Class Task
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+MainCatalogue .up.|> ReadOnlyMainCatalogue
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" MainCatalogue
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+Project -- Person
+MainCatalogue *--> "1" UniqueProjectList
+MainCatalogue *--> "1" UniquePersonList
+MainCatalogue *--> "1" UniqueParticipationList
+MainCatalogue *-right-> Status
+UniqueProjectList o--> "*" Project
 UniquePersonList o--> "*" Person
-Person *--> Name
+UniqueParticipationList o--> "*" Participation
+Project *--> ProjectName
+Project *--> Deadline
+Project *--> RepoUrl
+Project *--> ProjectDescription
+Project *--> "*" ProjectTag
+Project *--> "*" Task
+Person *--> GitUserName
+Person *--> PersonName
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Participation *--> Role
+Participation *--> "*" Task
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueProjectList -[hidden]right- UniqueParticipationList
+Task -[hidden]up- RepoUrl
+Tag -[hidden]left- Task
+UniqueParticipationList -[hidden]left- UniquePersonList
 
-ModelManager -->"1" Person : filtered list
 @enduml

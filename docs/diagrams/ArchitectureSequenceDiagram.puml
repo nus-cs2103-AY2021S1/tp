@@ -13,16 +13,16 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("delete 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+logic -[LOGIC_COLOR]> model : deleteProject(p)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : removeProject(project)
 activate storage STORAGE_COLOR
 
-storage -[STORAGE_COLOR]> storage : Save to file
+storage -[STORAGE_COLOR]> storage : delete from storage
 activate storage STORAGE_COLOR_T1
 storage --[STORAGE_COLOR]> storage
 deactivate storage

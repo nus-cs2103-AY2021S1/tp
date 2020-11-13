@@ -24,13 +24,20 @@ public class AddressTest {
         // null address
         assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
 
-        // invalid addresses
+        // invalid address
         assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
+        assertFalse(Address.isValidAddress(" ")); // space only
+        assertFalse(Address.isValidAddress(" 13 Evelyn Road")); // space before address
 
-        // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid address
+        assertTrue(Address.isValidAddress("evelyn road")); // letters only, no capitalization
+        assertTrue(Address.isValidAddress("Evelyn Road")); // letters only
+        assertTrue(Address.isValidAddress("TANJONG RU")); // letters, fully capitalized
+        assertTrue(Address.isValidAddress("12 Evelyn Road")); // letters with numbers
+        assertTrue(Address.isValidAddress("evelyn road #02-453")); // letters and symbols
+        assertTrue(Address.isValidAddress("Block 232 Tanjong Pagar Terminal street 22 industrial park 3 Bizman "
+            + "#102-323")); // long address
     }
+
+
 }

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +14,10 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and
+ * updating of persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added
+ * or updated is unique in terms of identity in the UniquePersonList. However, the removal of a person uses
+ * Person#equals(Object) so as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -46,6 +47,15 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    public Person getPerson(Person person) {
+        requireNonNull(person);
+        if (!contains(person)) {
+            throw new PersonNotFoundException();
+        }
+        Stream<Person> filtered = internalList.stream().filter(person::isSamePerson);
+        return internalList.get(0);
     }
 
     /**
@@ -111,9 +121,15 @@ public class UniquePersonList implements Iterable<Person> {
 
     @Override
     public boolean equals(Object other) {
+        //        boolean test = true;
+        //        for (int i = 0; i < internalList.size() - 1; i++) {
+        //            test = test && internalList.get(i).equals(((UniquePersonList)other).internalList.get(i));
+        //        }
+
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+            || (other instanceof UniquePersonList // instanceof handles nulls
+                //                        && test);
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

@@ -11,10 +11,15 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ProjectListPanel
+Class ProjectCard
 Class StatusBarFooter
 Class CommandBox
+Class EmptyDashboard
+Class TeammateDashboard
+Class TaskDashboard
+Class MeetingDashboard
+Class ProjectDashboard
 }
 
 package Model <<Rectangle>> {
@@ -31,27 +36,38 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
-MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
-MainWindow *-down-> StatusBarFooter
+MainWindow *--> CommandBox
+MainWindow *--> EmptyDashboard
+MainWindow *--> TeammateDashboard
+MainWindow *--> TaskDashboard
+MainWindow *--> MeetingDashboard
+MainWindow *--> ProjectDashboard
+MainWindow *--> ResultDisplay
+MainWindow *--> ProjectListPanel
+MainWindow *--> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+ProjectListPanel -down-> ProjectCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ProjectCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+EmptyDashboard --|> UiPart
+TeammateDashboard --|> UiPart
+TaskDashboard --|> UiPart
+MeetingDashboard --|> UiPart
+ProjectDashboard --|> UiPart
 
-PersonCard ..> Model
+TeammateDashboard ..> Model
+TaskDashboard ..> Model
+ProjectDashboard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ProjectListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

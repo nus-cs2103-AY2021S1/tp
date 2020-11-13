@@ -1,0 +1,10 @@
+{
+  "projects": [ {
+    "name": "Project with invalid name field: Ha!ns Mu@ster",
+    "deadline": "32-42-32322 00:00",
+    "repoUrl": "https://github.con/valid/valid.git",
+    "projectDescription": "inv@lid d3scription",
+    "projectTagged": [ "ss@$5v" ]
+  } ],
+  "persons": [ ]
+}

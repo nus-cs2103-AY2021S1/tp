@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes command (addteammate...);
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([the command scope is valid])
+    :Create new
+    TeammateCommand;
+    :Create new Teammate;
+    :Update Participation
+    Project and teammate;
+
+else ([else])
+    :Throw an exception;
+endif
+stop
+@enduml

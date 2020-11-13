@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([the command scope is valid])
+
+    :Delete person's participation from each project;
+    :Delete Person from storage;
+else ([else])
+    :Throw an
+    exception;
+endif
+stop
+@enduml

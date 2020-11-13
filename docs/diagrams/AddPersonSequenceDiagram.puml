@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MainCatalogueParser" as MainCatalogueParser LOGIC_COLOR
+participant ":AddPersonCommandParser" as AddPersonCommandParser LOGIC_COLOR
+participant ":AddPersonCommand" as AddPersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "Electrek:Project" as Project MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addperson...")
+activate LogicManager
+
+LogicManager -> Model: getStatus()
+activate Model
+
+Model --> LogicManager: status
+deactivate Model
+
+LogicManager -> MainCatalogueParser : parseCommand("addperson...", status)
+activate MainCatalogueParser
+
+create AddPersonCommandParser
+MainCatalogueParser -> AddPersonCommandParser
+activate AddPersonCommandParser
+
+AddPersonCommandParser --> MainCatalogueParser
+deactivate AddPersonCommandParser
+
+MainCatalogueParser -> AddPersonCommandParser : parse("addperson...")
+activate AddPersonCommandParser
+
+create AddPersonCommand
+AddPersonCommandParser -> AddPersonCommand
+activate AddPersonCommand
+
+AddPersonCommand --> AddPersonCommandParser : teammate
+deactivate AddPersonCommand
+
+AddPersonCommandParser --> MainCatalogueParser : teammate
+deactivate AddPersonCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPersonCommandParser -[hidden]-> MainCatalogueParser
+
+
+MainCatalogueParser --> LogicManager : teammate
+deactivate MainCatalogueParser
+
+LogicManager -> AddPersonCommand : execute()
+activate AddPersonCommand
+
+AddPersonCommand -> Model : getProjectToBeDisplayedOnDashboard().get()
+activate Model
+
+Model --> AddPersonCommand : Electrek
+deactivate Model
+
+AddPersonCommand -> Project : addProject(project)
+activate Project
+
+Project --> AddPersonCommand :
+deactivate Project
+
+create CommandResult
+AddPersonCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPersonCommand
+deactivate CommandResult
+
+AddPersonCommand --> LogicManager : result
+deactivate AddPersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

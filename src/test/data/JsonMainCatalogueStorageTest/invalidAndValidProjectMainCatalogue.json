@@ -1,0 +1,16 @@
+{
+  "projects": [ {
+    "name": "Valid Project",
+    "deadline": "29-02-2020 00:00:00",
+    "repoUrl": "https://github.com/valid/valid.git",
+    "projectDescription": "this project is valid",
+    "projectTagged": [ "urgent" ]
+  }, {
+    "name": "Project With Invalid deadline Field",
+    "deadline": "948asdf2424",
+    "email": "hans@example.com",
+    "projectDescription": "4th street",
+    "projectTagged": [ "redundant" ]
+  } ],
+  "persons": [ ]
+}

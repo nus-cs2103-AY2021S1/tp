@@ -14,27 +14,31 @@ public class PhoneTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidPhone = "";
         assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
     }
 
     @Test
     public void isValidPhone() {
-        // null phone number
+        //null phone
         assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
 
-        // invalid phone numbers
+        // invalid phone
         assertFalse(Phone.isValidPhone("")); // empty string
         assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Phone.isValidPhone("phone")); // non-numeric
-        assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(Phone.isValidPhone("invalid")); // letters only
+        assertFalse(Phone.isValidPhone("INVALID")); // capital letters with spaces
+        assertFalse(Phone.isValidPhone("92800f")); // letters and numbers
+        assertFalse(Phone.isValidPhone(" 92800")); // numbers with space in front
+        assertFalse(Phone.isValidPhone("92 3323")); //  numbers with space in between
+        assertFalse(Phone.isValidPhone("3")); // less than 3 digits ( < 3)
+        assertFalse(Phone.isValidPhone("")); // 20 digit number ( > 16)
 
-        // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        // valid phone
+        assertTrue(Phone.isValidPhone("92838392")); // 8 digit number
+        assertTrue(Phone.isValidPhone("234")); // 3 digit number
+        assertTrue(Phone.isValidPhone("1837263859473627")); // 16 digit number
     }
+
 }

@@ -1,14 +1,18 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMainCatalogue;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -16,6 +20,7 @@ import seedu.address.model.person.Person;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
@@ -24,19 +29,44 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the MainCatalogue.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getProjectCatalogue()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyMainCatalogue getMainCatalogue();
+
+    /** Returns an unmodifiable view of the filtered list of projects */
+    ObservableList<Project> getFilteredProjectList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Gets the project to be displayed on dashboard.
+     *
+     * @return the project to be displayed on dashboard.
      */
-    Path getAddressBookFilePath();
+    Optional<Project> getProjectToBeDisplayedOnDashBoard();
+
+    /**
+     * Gets the task to be displayed on dashboard.
+     */
+    Optional<Task> getTaskToBeDisplayedOnDashboard();
+
+    /**
+     * Gets the teammate to be displayed on dashboard.
+     */
+    Optional<Participation> getTeammateToBeDisplayedOnDashboard();
+
+    /**
+     * Gets the person to be displayed on dashboard.
+     */
+    Optional<Person> getPersonToBeDisplayedOnDashboard();
+
+    /**
+     * Returns the user prefs' main catalogue file path.
+     */
+    Path getMainCatalogueFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +77,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Checks whether the app is viewing list of projects.
+     */
+    boolean isProjectsView();
 }
