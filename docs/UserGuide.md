@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide 0
+title: User Guide 
 ---
 
 ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
