@@ -12,6 +12,7 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 
 ## Table of contents
 
+ * Table of Contents
  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -196,30 +197,28 @@ Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_project](images/addProject.png)
 
-   *Figure 8: New project named `The Blair project` is added and shown on the project list*
+   *Figure 8: A new project named `The Blair project` is added and shown on the project list*
 
 Format: `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
-  - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
-  - Repo URL must be a valid link
+  - The user can set the deadline to be in the past to allow the user wants to log finished projects for the completeness of project management
+  - The repository URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
 
 Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
  URL, and not whether the repository exists.
 
-Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` 
-
-Adds a new project with the 
-- projectName Blair project 
+Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` adds a new project with the following: 
+- name of 'Blair project'
 - deadline of 29 February 2020 midnight 
-- URL for the team repository 
-- Coding in Greenwich as the description 
+- URL for the team repository as http://github.com/a/b.git
+- description as 'Coding in Greenwich'
 - 2 tags "hell" and "abs"
 
-### 2.2.3 Delete a project from the catalogue `delete`
+### 2.2.3 Delete a project from the catalogue `delete` (Tai Wen Le Lucas)
 
 Deletes a project and all associated information from the project catalogue.
 
@@ -275,7 +274,7 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - The information entered will replace all the data in each respective field
   - The project name can be any alphanumeric value (containing only alphabets and / or numbers)
   - The deadline follows the format of *DD-MM-YYYY hh:mm:ss*
-  - The deadline can be set to be in the past (in case the user wants to log the finished projects for the completeness of the project management)
+  - The user can set the deadline to be in the past to allow the user wants to log finished projects for the completeness of project management
   - The repository URL must be a valid link
   - Anything can be filled in the description as long as it is not blank
   - Any number of tags can be added, separated by space " "
@@ -288,7 +287,7 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
  
 ## 2.3 Tasks management within a project
 
-### 2.3.1 Add task to a project `addtask`
+### 2.3.1 Add task to a project `addtask` (Tai Wen Le Lucas)
 
 Creates a new task and adds it to the current project.
 
@@ -298,12 +297,12 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
    *Figure 12: The task named `Do User Guide` is added to the project `Aeroknotty`*
 
-Format: `addtask tn/TASK NAME tp/TASK PROGRESS td/TASK DEADLINE `
+Format: `addtask tn/TASK NAME td/TASK DEADLINE [tp/TASK PROGRESS] [d/TASK DESCRIPTION]`
   - All fields above are required
-  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Task name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Task progress is a percentage value indicating how much of the task is done
-  - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
-  - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
+  - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
+  - The user can set the deadline to be in the past to allow the user to log finished tasks for the completeness of project management
 
 Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
@@ -325,7 +324,7 @@ Format: `assign TASKINDEX TEAMMATE_GITHUB_USERNAME  `
 
 Example: `assign 1 Lucas98` assigns task number 1 in the list to user *Lucas98*.
 
-### 2.3.3 Edit task to a project `edittask`
+### 2.3.3 Edit task to a project `edittask` (Tai Wen Le Lucas)
 
 Edits the indicated task in a project.
 
@@ -333,7 +332,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_task](images/editTask.png)
 
-   *Figure 14: The task 2 is edited*
+   *Figure 14: The second task being edited*
 
 Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/TASK_DESCRIPTION]`
   - Edits the task at the specified index
@@ -343,10 +342,10 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/T
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
-  - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
+  - The user can set the deadline to be in the past to allow the user to log finished tasks for the completeness of project management
   - Anything can be filled in the task description as long as it is not blank
 
-Example: `edittask 2 tn/Finish project` changes the name of task 2 in the list to Finish project.
+Example: `edittask 2 tn/Finish project` changes the name of the second task in the list to 'Finish project'.
 
 ### 2.3.4 Delete a task from the project `deletetask` (Tian Fang)
 
@@ -628,9 +627,9 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 **Delete project** | `delete INDEX` <br> e.g. `delete 2` |                                                                                                                                                                                                                       | √ |   | √ |   | √ | √
 **Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` |                                                                                                                                                                                                                        | √ |   | √ |   | √ | √
 **Edit Project** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project d/ new horror`|                                                                                                                   | √ |   | √ |   | √ | √
-**Add Task** | `addtask n/TASK_NAME tp/TASK_PROGRESS td/TASK_DEADLINE ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
+**Add Task** | `addtask tn/TASK_NAME td/TASK_DEADLINE [tp/TASK_PROGRESS] [d/TASK DESCRIPTION]` eg, `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` |                                                                                                                                                                                               |   |   | √ |   | √ | √
-**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` |                                                                                                                                   |   |   | √ |   | √ | √
+**Edit task details** | `edittask INDEX [tn/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/TASK DESCRIPTION]` eg, `edittask 3 tn/Finish project` |                                                                                                                                   |   |   | √ |   | √ | √
 **Delete a task** | `deletetask INDEX` <br>e.g. `deletetask 1` |                                                                                                                                                                                                                 |   |   | √ |   | √ | √
 **Filter tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` |   |   |   | √ |   | √ | √
 **Show all the tasks** | `alltasks` |                                                                                                                                                                                                                                            |   |   | √ |   | √ | √
@@ -643,7 +642,7 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 **View a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`|                                                                                                                                                                                      |   |   | √ |   | √ | √
 **Delete a teammate** | `deleteperson GITHUB_USERNAME` e.g. `deleteperson Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
 
-# 5 Glossary
+# 5 Glossary (Tai Wen Le Lucas)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Scope**: The confines of when certain commands will work.
@@ -651,3 +650,4 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 * **Person**: A person that could be in any number of the user's team's projects.
 * **Project**: A software project with at least a GitHub repository link and a deadline.
 * **Task**: Something to be done for a project with a certain progress status.
+* **Catalogue**: A saved list for items like projects or persons.
