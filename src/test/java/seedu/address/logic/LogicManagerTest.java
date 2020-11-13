@@ -1,36 +1,43 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.budget.DeleteExpenditureCommand.MESSAGE_DELETE_EXPENDITURE_SUCCESS;
+import static seedu.address.logic.commands.main.DeleteBudgetCommand.MESSAGE_DELETE_BUDGET_SUCCESS;
+import static seedu.address.model.budget.Threshold.NO_THRESHOLD_MESSAGE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalBudgets.getTypicalNusave;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.budget.ListExpenditureCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.main.ListBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.budget.Threshold;
+import seedu.address.state.Page;
+import seedu.address.state.PageTitle;
+import seedu.address.state.budgetindex.BudgetIndexManager;
+import seedu.address.storage.JsonNusaveStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -38,59 +45,177 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model;
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonNusaveStorage nusaveStorage =
+                new JsonNusaveStorage(temporaryFolder.resolve("nusave.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(nusaveStorage, userPrefsStorage);
+        model = new ModelManager(getTypicalNusave(), new UserPrefs());
         logic = new LogicManager(model, storage);
     }
 
     @Test
-    public void execute_invalidCommandFormat_throwsParseException() {
+    public void execute_emptyModel_throwsNullPointerException() throws ParseException, CommandException {
+        JsonNusaveStorage nusaveStorage =
+                new JsonNusaveStorage(temporaryFolder.resolve("nusave.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage = new StorageManager(nusaveStorage, userPrefsStorage);
+
+        logic = new LogicManager(null, storage);
+        assertThrows(NullPointerException.class, () -> logic.execute("delete 1"));
+    }
+
+    @Test
+    public void execute_unknownPage_throwsCommandException() throws ParseException, CommandException {
+        JsonNusaveStorage nusaveStorage =
+                new JsonNusaveStorage(temporaryFolder.resolve("nusave.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage = new StorageManager(nusaveStorage, userPrefsStorage);
+
+        model = new ModelManager(getTypicalNusave(), new UserPrefs());
+        model.setPage(Page.TEST);
+
+        logic = new LogicManager(model, storage);
+        assertThrows(CommandException.class, () -> logic.execute("delete 1"));
+    }
+
+    @Test
+    public void execute_invalidCommandFormat_throwsParseException() throws ParseException, CommandException {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertThrows(ParseException.class, () -> logic.execute(invalidCommand));
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    public void execute_validDeleteCommandMainPage_success() throws CommandException, ParseException {
+        String deleteCommand = "delete 2";
+        assertCommandSuccess(deleteCommand, MESSAGE_DELETE_BUDGET_SUCCESS, model);
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    public void execute_validListCommandMainPage_success() throws CommandException, ParseException {
+        String listCommand = ListBudgetCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListBudgetCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validDeleteCommandBudgetPage_success() throws CommandException, ParseException {
+        String deleteCommand = "delete 2";
+        model.openBudget(new BudgetIndexManager(0));
+        assertCommandSuccess(deleteCommand, MESSAGE_DELETE_EXPENDITURE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validListCommandBudgetPage_success() throws Exception {
+        String listCommand = ListBudgetCommand.COMMAND_WORD;
+        model.openBudget(new BudgetIndexManager(0));
+        assertCommandSuccess(listCommand, ListExpenditureCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonNusaveStorage nusaveStorage =
+                new JsonNusaveIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(nusaveStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        // Execute create command
+        String createCommand = "create n/McDonalds p/100";
+        ModelManager expectedModel = new ModelManager(getTypicalNusave(), new UserPrefs());
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertThrows(CommandException.class, expectedMessage, () -> logic.execute(createCommand));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredRenderableList().remove(0));
+    }
+
+    @Test
+    void getNusaveFilePath() {
+        Path actual = Paths.get("data", "nusave.json");
+        assertEquals(actual, logic.getNusaveFilePath());
+    }
+
+    @Test
+    void getGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings();
+        assertEquals(guiSettings, logic.getGuiSettings());
+    }
+
+    @Test
+    void getIsBudgetPageProp() {
+        BooleanProperty isBudgetPageProp = new SimpleBooleanProperty(false);
+        BooleanProperty actual = logic.getIsBudgetPageProp();
+        assertEquals(isBudgetPageProp.getValue(), actual.getValue());
+        assertEquals(isBudgetPageProp.getClass(), actual.getClass());
+    }
+
+    @Test
+    void getThresholdStringProp() {
+        StringProperty thresholdStringProp = new SimpleStringProperty(NO_THRESHOLD_MESSAGE);
+        StringProperty actual = logic.getThresholdStringProp();
+        assertEquals(thresholdStringProp.getValue(), actual.getValue());
+        assertEquals(thresholdStringProp.getClass(), actual.getClass());
+    }
+
+    @Test
+    void getPageTitle() {
+        String pageTitleActual = PageTitle.MAIN_PAGE_TITLE;
+        assertEquals(pageTitleActual, logic.getPageTitle());
+    }
+
+    @Test
+    void getTotalExpenditureValue_isMainPage_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> logic.getTotalExpenditureValue());
+    }
+
+    @Test
+    void getTotalExpenditureValue_isBudgetPage_success() throws ParseException, CommandException {
+        logic.execute("open 1");
+        assertEquals("12.00", logic.getTotalExpenditureValue());
+    }
+
+    @Test
+    void getThreshold_isMainPage_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> logic.getThreshold());
+    }
+
+    @Test
+    void getThreshold_isBudgetPage_throwsAssertionError() throws ParseException, CommandException {
+        logic.execute("open 1");
+        assertEquals(new Threshold("80").toOptional(), logic.getThreshold());
+    }
+
+    @Test
+    void setGuiSettings() {
+        double windowWidth = 200;
+        double windowHeight = 200;
+        int xPosition = 100;
+        int yPosition = 100;
+        logic.setGuiSettings(new GuiSettings(windowWidth, windowHeight, xPosition, yPosition));
+        GuiSettings actual = logic.getGuiSettings();
+        assertEquals(windowWidth, actual.getWindowWidth());
+        assertEquals(windowHeight, actual.getWindowHeight());
+        assertEquals(xPosition, actual.getWindowCoordinates().x);
+        assertEquals(yPosition, actual.getWindowCoordinates().y);
+    }
+
+    @Test
+    void isBudgetPage_isMainPage_false() {
+        assertFalse(logic.isBudgetPage());
+    }
+
+    @Test
+    void isBudgetPage_isBudgetPage_true() throws ParseException, CommandException {
+        logic.execute("open 1");
+        assertTrue(logic.isBudgetPage());
     }
 
     /**
@@ -129,7 +254,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getNusave(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +274,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonNusaveIoExceptionThrowingStub extends JsonNusaveStorage {
+        private JsonNusaveIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveNusave(ReadOnlyNusave addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

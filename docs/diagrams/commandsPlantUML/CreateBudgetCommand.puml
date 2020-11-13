@@ -1,0 +1,79 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+hide footbox
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant ":CreateBudgetCommandParser" as CBCP
+participant "c:CreateBudgetCommand" as CBC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "b:Budget" as Budget
+participant "m:ModelManager" as M
+end box
+
+[-> LM : execute("create n/Temasek Hall Basketball p/100")
+activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
+LM -> MPP : parseCommand("create n/Temasek Hall Basketball p/100")
+activate MPP
+
+create CBCP
+MPP -> CBCP
+activate CBCP
+MPP <-- CBCP
+deactivate CBCP
+MPP -> CBCP : parse("n/Temasek Hall Basketball p/100")
+activate CBCP
+
+create Budget
+CBCP -> Budget
+activate Budget
+CBCP <-- Budget : b
+deactivate Budget
+
+create CBC
+CBCP -> CBC : CreateBudgetCommand(b)
+activate CBC
+CBCP <-- CBC : c
+deactivate CBC
+MPP <-- CBCP : c
+deactivate CBCP
+MPP <-[hidden]- CBCP
+destroy CBCP
+
+deactivate CBCP
+LM <-- MPP : c
+deactivate MPP
+
+LM <-[hidden]- MPP
+destroy MPP
+
+LM -> CBC: execute(m)
+
+activate CBC
+CBC -> M : addBudget(b)
+activate M
+CBC <-- M
+deactivate M
+
+create CR
+CBC -> CR
+activate CR
+CBC <-- CR :result
+deactivate CR
+
+LM <-- CBC: result
+deactivate CBC
+[<-- LM: result
+deactivate LM
+
+@enduml

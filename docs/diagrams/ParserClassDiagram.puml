@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+Package Logic <<Rectangle>>{
+Interface Logic <<Interface>>
+Class LogicManager
+Class "{abstract}\nCommand" as Command
+Class XYZCommand
+
+Package Parser <<Rectangle>> {
+Interface PageParser <<Interface>>
+Interface Parser <<Interface>>
+Class XYZPageParser
+Class XYZCommandParser
+}
+
+LogicManager .up.|> Logic
+LogicManager .down.> XYZPageParser
+XYZPageParser .up.|> PageParser
+XYZPageParser .down.> XYZCommandParser
+XYZCommandParser .up.|> Parser
+XYZCommand -up-|> Command
+XYZCommandParser .left.> XYZCommand : creates >
+
+
+@enduml

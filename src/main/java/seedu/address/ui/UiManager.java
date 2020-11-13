@@ -20,17 +20,19 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/NUSaveIcon.png";
 
     private Logic logic;
     private MainWindow mainWindow;
+    private String initialMessage;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, String initialMessage) {
         super();
         this.logic = logic;
+        this.initialMessage = initialMessage;
     }
 
     @Override
@@ -43,7 +45,8 @@ public class UiManager implements Ui {
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
+            mainWindow.setUpGuiComponents();
+            mainWindow.setResultDisplay(initialMessage);
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

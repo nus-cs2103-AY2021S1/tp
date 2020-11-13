@@ -1,53 +1,75 @@
 @startuml
-!include style.puml
-
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+skinparam Sequence {
+    MessageAlign center
+}
+box Logic #LightBlue
+participant ":LogicManager" as LogicManager
+participant ":MainPageParser" as MainPageParser
+participant "c:UndoCommand" as UndoCommand
+participant "result:CommandResult" as CommandResult
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+box Model #LightYellow
+participant "m:ModelManager" as Model
+participant ":HistoryManager<VersionedNusave>" as HistoryManager
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute("undo")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+create MainPageParser
+LogicManager -> MainPageParser
+activate MainPageParser
+deactivate MainPageParser
+MainPageParser --> LogicManager
+deactivate MainPageParser
+
+LogicManager -> MainPageParser : parseCommand("undo")
+activate MainPageParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+MainPageParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> MainPageParser : c
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+MainPageParser --> LogicManager : c
+deactivate MainPageParser
+MainPageParser -[hidden]-> LogicManager
+destroy MainPageParser
 
-LogicManager -> UndoCommand : execute()
+LogicManager -> UndoCommand : execute(m)
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undo()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> HistoryManager : getHistory()
+activate HistoryManager
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+HistoryManager --> Model : h
+deactivate HistoryManager
+
+
+Model -> Model : loadVersionedNusave(h)
+activate Model
+Model --> Model
+deactivate Model
 
 Model --> UndoCommand
 deactivate Model
 
+create CommandResult
+UndoCommand -> CommandResult
+activate CommandResult
+CommandResult --> UndoCommand : result
+deactivate CommandResult
+
 UndoCommand --> LogicManager : result
 deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
+
+hide footbox
 @enduml

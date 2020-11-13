@@ -1,0 +1,75 @@
+@startuml
+hide footbox
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant ":FindExpenditureCommandParser" as FECP
+participant "c:FindExpenditureCommand" as FEC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "m:ModelManager" as M
+end box
+
+[-> LM : execute("find shirt")
+activate LM
+
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
+
+LM -> BPP : parseCommand("find shirt")
+activate BPP
+
+create FECP
+BPP -> FECP
+activate FECP
+BPP <-- FECP
+deactivate FECP
+
+BPP -> FECP : parse("shirt")
+activate FECP
+
+create FEC
+FECP -> FEC
+activate FEC
+FECP <-- FEC : c
+deactivate FEC
+
+BPP <-- FECP : c
+deactivate FECP
+BPP <-[hidden]- FECP
+destroy FECP
+
+
+LM <-- BPP : c
+deactivate BPP
+LM <-[hidden]- BPP
+destroy BPP
+
+LM -> FEC : execute(m)
+activate FEC
+FEC -> M : findExpenditure("shirt")
+activate M
+FEC <-- M
+deactivate M
+
+create CR
+FEC -> CR
+activate CR
+FEC <-- CR : result
+deactivate CR
+
+LM <-- FEC : result
+deactivate FEC
+
+[<-- LM: result
+deactivate LM
+
+@enduml

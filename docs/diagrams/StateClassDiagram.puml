@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STATE_COLOR
+skinparam classBackgroundColor STATE_COLOR
+
+Interface State <<Interface>>
+
+Enum Page <<enumeration>>
+
+Class StateManager {
+    -PageTitle: String
+}
+Class BudgetIndex
+Class BooleanProperty
+Class StringProperty
+
+StateManager .up.|> State
+StateManager -right-> BudgetIndex
+StateManager --> BooleanProperty
+StateManager --> StringProperty
+StateManager -down-> Page
+
+@enduml

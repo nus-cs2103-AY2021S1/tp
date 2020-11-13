@@ -1,0 +1,95 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+hide footbox
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant ":EditExpenditureCommandParser" as EECP
+participant "c:EditExpenditureCommand" as EEC
+participant "result:CommandResult" as CR
+participant "e:EditExpenditureDescriptor" as EED
+
+end box
+
+box "Model" #LightYellow
+participant "i:ExpenditureIndexManager" as EI
+participant "m:ModelManager" as M
+end box
+
+[-> LM : execute("edit 1 n/Basketball p/50 t/Ball")
+activate LM
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+deactivate BPP
+LM -> BPP : parseCommand("edit 1 n/Basketball p/50 t/Ball")
+activate BPP
+
+create EECP
+BPP -> EECP
+activate EECP
+BPP <-- EECP
+deactivate EECP
+BPP -> EECP : parse("1 n/Basketball p/50 t/Ball")
+activate EECP
+
+create EI
+EECP -> EI
+activate EI
+EECP <-- EI : i
+deactivate EI
+
+create EED
+EECP -> EED
+activate EED
+EECP <-- EED : e
+deactivate EED
+
+create EEC
+EECP -> EEC : EditExpenditureCommand(i, e)
+activate EEC
+EECP <-- EEC : c
+deactivate EEC
+BPP <-- EECP : c
+deactivate EECP
+BPP <-[hidden]- EECP
+destroy EECP
+
+deactivate EECP
+LM <-- BPP : c
+deactivate BPP
+BPP <-[hidden]- LM
+destroy BPP
+
+LM -> EEC: execute(m)
+activate EEC
+EEC -> M: getExpenditureAtIndex(i)
+activate M
+EEC <-- M : toEdit
+deactivate M
+
+EEC -> EEC: createEditedExpenditure(toEdit, e)
+activate EEC
+EEC <-- EEC : edited
+deactivate EEC
+
+EEC -> M : editExpenditure(toEdit, edited)
+activate M
+EEC <-- M
+deactivate M
+
+create CR
+EEC -> CR
+activate CR
+EEC <-- CR : result
+deactivate CR
+
+LM <-- EEC : result
+deactivate EEC
+[<-- LM : result
+deactivate LM
+
+@enduml

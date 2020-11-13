@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="expenditure-card" fx:id="cardPane" styleClass="card" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane id="expenditure-card-box" styleClass="card-box" HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="65.0" prefHeight="65.0" prefWidth="150.0" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="15" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <HBox>
+                    <Label fx:id="id" styleClass="cell_big_label" alignment="TOP_CENTER">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <VBox>
+                        <Label fx:id="name" styleClass="cell_big_label" />
+                        <HBox>
+                            <Label fx:id="createdOn" styleClass="created-on">
+                                <padding>
+                                    <Insets bottom="0" left="0" right="7" top="0" />
+                                </padding>
+                                <minWidth>
+                                    <!-- Ensures that the label text is never truncated -->
+                                    <Region fx:constant="USE_PREF_SIZE" />
+                                </minWidth>
+                            </Label>
+                            <FlowPane fx:id="tags"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+                <Region prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                <Label id="price" fx:id="price" styleClass="cell_big_label" text="price" >
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+            </HBox>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

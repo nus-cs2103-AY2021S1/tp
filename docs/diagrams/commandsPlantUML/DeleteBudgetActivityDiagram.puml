@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes delete budget command;
+if() then ([is valid command])
+    :Delete budget with index;
+    :Remove budget from the hard disk;
+    :Display updated budget list;
+else ([else])
+    :Display invalid command result to user;
+endif
+stop
+@enduml

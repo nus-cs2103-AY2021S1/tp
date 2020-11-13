@@ -3,18 +3,21 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title Initial state
+title Initial State
 
-package States {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+package HistoryManager {
+    class State1 as "__empty:Node<VersionedNusave>__"
+    class State2 as "__empty:Node<VersionedNusave>__"
+    class State3 as "__empty:Node<VersionedNusave>__"
+    class State4 as "__empty:Node<VersionedNusave>__"
 }
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
+State3 -[hidden]right-> State4
 hide State2
 hide State3
+hide State4
 
-class Pointer as "Current State" #FFFFF
+class Pointer as "Current Pointer" #FFFFF
 Pointer -up-> State1
 @end

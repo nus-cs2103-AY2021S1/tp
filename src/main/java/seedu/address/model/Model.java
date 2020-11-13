@@ -1,18 +1,27 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Threshold;
+import seedu.address.model.expenditure.Expenditure;
+import seedu.address.state.Page;
+import seedu.address.state.budgetindex.BudgetIndex;
+import seedu.address.state.expenditureindex.ExpenditureIndex;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Renderable> PREDICATE_SHOW_ALL_RENDERABLES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +46,114 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getNusaveFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNusavePath(Path nusaveFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setNusave(ReadOnlyNusave nusave);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyNusave getNusave();
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
+    void openBudget(BudgetIndex budgetIndex);
 
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
+    void closeBudget();
 
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
+    void addBudget(Budget budget) throws CommandException;
 
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
+    void editBudget(Budget toEdit, Budget editedBudget);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    Budget getBudgetAtIndex(BudgetIndex budgetIndex);
 
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    Expenditure getExpenditureAtIndex(ExpenditureIndex expenditureIndex);
+
+    boolean isIndexOutOfBound(BudgetIndex budgetIndex);
+
+    boolean isIndexOutOfBound(ExpenditureIndex expenditureIndex);
+
+    void deleteBudget(BudgetIndex budgetIndex) throws CommandException;
+
+    void deleteAllBudgets();
+
+    void sortBudgetsByName();
+
+    void sortBudgetsByCreatedDate() throws CommandException;
+
+    void addExpenditure(Expenditure expenditure) throws CommandException;
+
+    void findBudget(String searchTerm) throws CommandException;
+
+    void listBudgets() throws CommandException;
+
+    void deleteExpenditure(ExpenditureIndex expenditure) throws CommandException;
+
+    void findExpenditure(String searchTerm) throws CommandException;
+
+    void sortExpendituresByName();
+
+    void sortExpenditureByCreatedDate();
+
+    void listExpenditures() throws CommandException;
+
+    void editExpenditure(Expenditure oldExpenditure, Expenditure editedExpenditure);
+
+    String calculateExpenditureValue(BudgetIndex budgetIndex);
+
+    Page getPage();
+
+    String getPageName(BudgetIndex index);
+
+    String getPageTitle();
+
+    String getTotalExpenditureValue();
+
+    Optional<Threshold> getThreshold();
+
+    boolean isBudgetPage();
+
+    BooleanProperty getBudgetPageProp();
+
+    StringProperty getTotalExpenditureStringProp();
+
+    StringProperty getThresholdStringProp();
+
+    void setPage(Page page);
+
+    void setThreshold(Optional<Threshold> threshold);
+
+    void setTotalExpenditure(String expenditure);
+
+    void setBudgetIndex(BudgetIndex index);
+
+    void setPageTitle(String page);
+
+    boolean isMain();
+
+    boolean isBudget();
+
+    boolean isWithinRange(BudgetIndex budgetIndex);
+
+    boolean isWithinRange(ExpenditureIndex expenditureIndex);
+
+    /** Returns an unmodifiable view of the filtered renderable list */
+    ObservableList<Renderable> getFilteredRenderableList();
+
+    void updateFilteredRenderableList(Predicate<Renderable> predicate);
+
+    void repopulateObservableList();
+
+    boolean canUndo();
+
+    void undo();
+
+    boolean canRedo();
+
+    void redo();
+
+    void saveToHistory();
 }

@@ -38,10 +38,18 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    /**
+     * Returns a boolean indicating whether the command is an help command.
+     * @return a boolean
+     */
     public boolean isShowHelp() {
         return showHelp;
     }
 
+    /**
+     * Returns a boolean indicating whether the command is an exit command.
+     * @return a boolean
+     */
     public boolean isExit() {
         return exit;
     }

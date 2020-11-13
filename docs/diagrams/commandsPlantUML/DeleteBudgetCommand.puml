@@ -1,0 +1,77 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+hide footbox
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant ":DeleteBudgetCommandParser" as DBCP
+participant "c:DeleteBudgetCommand" as DBC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "i: BudgetIndexManager" as BI
+participant "m:ModelManager" as M
+end box
+
+[-> LM : execute("delete 1")
+activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
+LM -> MPP : parseCommand("delete 1")
+activate MPP
+
+create DBCP
+MPP -> DBCP
+activate DBCP
+MPP <-- DBCP
+deactivate DBCP
+MPP -> DBCP : parse("1")
+activate DBCP
+
+create BI
+DBCP -> BI
+activate BI
+DBCP <-- BI
+deactivate BI
+
+create DBC
+DBCP -> DBC : DeleteBudgetCommand(i)
+activate DBC
+DBCP <-- DBC : c
+deactivate DBC
+MPP <-- DBCP : c
+deactivate DBCP
+MPP <-[hidden]- DBCP
+destroy DBCP
+
+
+LM <-- MPP : c
+deactivate MPP
+LM <-[hidden]- MPP
+destroy MPP
+
+LM -> DBC : execute(m)
+activate DBC
+DBC -> M : deleteBudget(i)
+activate M
+DBC <-- M
+deactivate M
+
+create CR
+DBC -> CR
+activate CR
+DBC <-- CR
+deactivate CR
+
+LM <-- DBC : result
+deactivate DBC
+[<-- LM : result
+deactivate LM
+
+@enduml

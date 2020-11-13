@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes add expenditure command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([is valid command])
+    :Add newly created expenditure into the budget;
+    :Store newly created expenditure into the hard disk;
+    :Display newly added expenditure in the budget;
+else ([else])
+:Display invalid command result to the user;
+endif
+stop
+@enduml

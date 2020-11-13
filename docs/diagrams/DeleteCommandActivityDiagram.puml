@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes delete command: delete 1;
+:Logic checks State of NUSave;
+
+if () then ([is the main page])
+    :Execute command to delete budget;
+
+else ([is a budget page])
+    :Execute command to delete expenditure;
+
+endif
+stop
+
+@enduml

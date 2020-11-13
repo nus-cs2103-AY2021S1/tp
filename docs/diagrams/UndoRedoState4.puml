@@ -3,18 +3,21 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "list"
+title After "create n/demo2"
 
-package States <<rectangle>> {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+package HistoryManager {
+    class State1 as "__vn1:Node<VersionedNusave>__"
+    class State2 as "__vn2:Node<VersionedNusave>__"
+    class State3 as "__vn3:Node<VersionedNusave>__"
+    class State4 as "__empty:Node<VersionedNusave>__"
 }
+State1 -right-> State2
+State2 -left-> State1
+State2 -right-> State3
+State3 -left-> State2
+State3 -right-> State4
+State4 -left-> State3
 
-State1 -[hidden]right-> State2
-State2 -[hidden]right-> State3
-
-class Pointer as "Current State" #FFFFF
-
-Pointer -up-> State2
+class Pointer as "Current Pointer" #FFFFF
+Pointer -up-> State4
 @end

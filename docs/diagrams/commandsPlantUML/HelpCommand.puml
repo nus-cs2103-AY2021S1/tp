@@ -1,0 +1,49 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+hide footbox
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant "c:HelpBudgetCommand" as HBC
+participant "result:CommandResult" as CR
+end box
+
+[-> LM : execute("help")
+activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
+LM -> MPP : parseCommand("help")
+activate MPP
+
+create HBC
+MPP -> HBC
+activate HBC
+MPP <-- HBC : c
+deactivate HBC
+
+LM <-- MPP : c
+deactivate MPP
+LM <-[hidden]- MPP
+destroy MPP
+
+
+LM -> HBC: execute(m)
+activate HBC
+
+create CR
+HBC -> CR
+activate CR
+HBC <-- CR : result
+deactivate CR
+
+LM <-- HBC: result
+deactivate HBC
+[<-- LM: result
+deactivate LM
+
+@enduml

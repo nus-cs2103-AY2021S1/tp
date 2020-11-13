@@ -1,0 +1,106 @@
+@startuml
+
+skinparam Sequence {
+    MessageAlign center
+}
+
+hide footbox
+
+box Ui #LightGreen
+participant ":MainWindow" as MainWindow #LightGreen
+end box
+
+box Logic #LightBlue
+participant ":LogicManager" as LogicManager #LightBlue
+participant ":MainPageParser" as MainPageParser #LightBlue
+participant ":OpenBudgetCommandParser" as OpenBudgetCommandParser #LightBlue
+participant ":OpenBudgetCommand" as OpenBudgetCommand #LightBlue
+participant ":CommandResult" as CommandResult #LightBlue
+end box
+
+box Model #LightYellow
+participant ":ModelManager" as ModelManager
+end box
+
+box State #Orange
+participant ":StateManager" as StateManager #Orange
+end box
+
+[-> MainWindow : "open 1"
+activate MainWindow
+
+MainWindow -> LogicManager : execute("open 1")
+activate LogicManager
+
+create MainPageParser
+LogicManager -> MainPageParser : new MainPageParser()
+activate MainPageParser
+MainPageParser --> LogicManager
+deactivate MainPageParser
+
+LogicManager -> MainPageParser : parseCommand("open 1")
+activate MainPageParser
+
+create OpenBudgetCommandParser
+MainPageParser -> OpenBudgetCommandParser : new OpenBudgetCommandParser()
+activate OpenBudgetCommandParser
+
+OpenBudgetCommandParser --> MainPageParser
+deactivate OpenBudgetCommandParser
+
+MainPageParser -> OpenBudgetCommandParser : parse("1")
+activate OpenBudgetCommandParser
+
+create OpenBudgetCommand
+OpenBudgetCommandParser -> OpenBudgetCommand : new OpenBudgetCommand(1)
+activate OpenBudgetCommand
+
+OpenBudgetCommand --> OpenBudgetCommandParser : command
+deactivate OpenBudgetCommand
+
+OpenBudgetCommandParser --> MainPageParser : command
+deactivate OpenBudgetCommandParser
+OpenBudgetCommandParser -[hidden]-> MainPageParser
+destroy OpenBudgetCommandParser
+
+MainPageParser --> LogicManager : command
+deactivate MainPageParser
+MainPageParser -[hidden]-> LogicManager
+destroy MainPageParser
+
+LogicManager -> OpenBudgetCommand : execute(model)
+activate OpenBudgetCommand
+
+OpenBudgetCommand -> ModelManager : openBudget(budgetIndex)
+activate ModelManager
+
+ModelManager -> ModelManager : setOpenCommandState(budgetIndex)
+activate ModelManager
+ModelManager --> ModelManager
+deactivate ModelManager
+
+ModelManager -> StateManager : setOpenCommandState(pageName, expenditureValue, threshold)
+activate StateManager
+
+StateManager --> ModelManager
+deactivate StateManager
+
+ModelManager --> OpenBudgetCommand
+deactivate ModelManager
+
+create CommandResult
+OpenBudgetCommand -> CommandResult : new CommandResult(MESSAGE_SUCCESS)
+activate CommandResult
+
+CommandResult --> OpenBudgetCommand : commandResult
+deactivate CommandResult
+
+OpenBudgetCommand --> LogicManager : commandResult
+deactivate OpenBudgetCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

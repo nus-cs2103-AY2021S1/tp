@@ -1,0 +1,36 @@
+@startuml
+hide footbox
+skinparam Sequence {
+    MessageAlign center
+}
+box Logic #LightBlue
+participant ":MainPageParser" as MainPageParser
+participant ":DeleteBudgetCommandParser" as DeleteBudgetCommandParser
+participant "c:DeleteBudgetCommand" as DeleteBudgetCommand
+end box
+
+[-> MainPageParser : parseCommand("delete 1")
+activate MainPageParser
+create DeleteBudgetCommandParser
+MainPageParser -> DeleteBudgetCommandParser
+activate DeleteBudgetCommandParser
+DeleteBudgetCommandParser --> MainPageParser
+deactivate DeleteBudgetCommandParser
+
+MainPageParser -> DeleteBudgetCommandParser : parse("1")
+activate DeleteBudgetCommandParser
+
+create DeleteBudgetCommand
+DeleteBudgetCommandParser -> DeleteBudgetCommand
+activate DeleteBudgetCommand
+DeleteBudgetCommand --> DeleteBudgetCommandParser : c
+deactivate DeleteBudgetCommand
+DeleteBudgetCommandParser --> MainPageParser : c
+deactivate DeleteBudgetCommandParser
+DeleteBudgetCommandParser -[hidden]-> MainPageParser
+destroy DeleteBudgetCommandParser
+[<-- MainPageParser : c
+deactivate MainPageParser
+[<-[hidden]- MainPageParser
+destroy MainPageParser
+@enduml

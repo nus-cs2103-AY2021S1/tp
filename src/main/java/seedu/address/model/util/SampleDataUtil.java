@@ -1,51 +1,87 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.Nusave;
+import seedu.address.model.ReadOnlyNusave;
+import seedu.address.model.budget.Budget;
+import seedu.address.model.budget.Name;
+import seedu.address.model.budget.Threshold;
+import seedu.address.model.expenditure.Date;
+import seedu.address.model.expenditure.Expenditure;
+import seedu.address.model.expenditure.ExpenditureList;
+import seedu.address.model.expenditure.Price;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Budget[] getSampleBudgets() {
+        return new Budget[] {
+            new Budget(new Name("Temasek Hall Basketball"),
+                    new seedu.address.model.budget.Date("2020-10-10T00:00:00.000000"),
+                    new Threshold("500").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("Temasek Hall Marketing"),
+                    new seedu.address.model.budget.Date("2020-10-11T00:00:00.000000"),
+                    new Threshold("1000").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("October Budget"),
+                    new seedu.address.model.budget.Date("2020-10-10T00:00:00.000000"),
+                    new Threshold("300").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("Monthly Bills"),
+                    new seedu.address.model.budget.Date("2020-10-12T00:00:00.000000"),
+                    new Threshold("200").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("NUS Hackers Monthly Budget"),
+                    new seedu.address.model.budget.Date("2020-10-18T00:00:00.000000"),
+                    new Threshold("600").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("NUS Fintech Society Monthly Budget"),
+                    new seedu.address.model.budget.Date("2020-10-15T00:00:00.000000"),
+                    new Threshold("900").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("Tembusu College Annual DnD Fund"),
+                    new seedu.address.model.budget.Date("2020-10-11T00:00:00.000000"),
+                    new Threshold("400").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures())))),
+            new Budget(new Name("Personal Expenditure"),
+                    new seedu.address.model.budget.Date("2020-10-01T00:00:00.000000"),
+                    new Threshold("200").toOptional(),
+                    new ExpenditureList(new ArrayList<>(Arrays.asList(getSampleExpenditures()))))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static Expenditure[] getSampleExpenditures() {
+        return new Expenditure[]{
+            new Expenditure(new seedu.address.model.expenditure.Name("Shirt"),
+                    new Price("85.50"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "White")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Pants"),
+                    new Price("100.50"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Belt"),
+                    new Price("50.90"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "Brown")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Shoes"),
+                    new Price("89.90"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Gloves"),
+                    new Price("10.90"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Watch"),
+                    new Price("369.90"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "Black")),
+            new Expenditure(new seedu.address.model.expenditure.Name("Socks"),
+                    new Price("3.00"), new Date("2020-10-10T00:00:00.000000"), getTagSet("Apparel", "Black")),
+        };
+    }
+
+    public static ReadOnlyNusave getSampleNusave() {
+        Nusave sampleNusave = new Nusave();
+        for (Budget budget : getSampleBudgets()) {
+            sampleNusave.addBudgetToFront(budget);
         }
-        return sampleAb;
+        return sampleNusave;
     }
 
     /**
@@ -56,5 +92,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

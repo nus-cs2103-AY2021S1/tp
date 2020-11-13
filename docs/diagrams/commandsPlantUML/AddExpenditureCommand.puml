@@ -1,0 +1,79 @@
+@startuml
+skinparam Sequence {
+    MessageAlign center
+}
+hide footbox
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":BudgetPageParser" as BPP
+participant ":AddExpenditureCommandParser" as AECP
+participant "c:AddExpenditureCommand" as AEC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "e:Expenditure" as Expenditure
+participant "m:ModelManager" as M
+end box
+
+[-> LM : execute("add n/Basketball p/20 t/Ball")
+activate LM
+create BPP
+LM -> BPP
+activate BPP
+LM <-- BPP
+
+deactivate BPP
+LM -> BPP : parseCommand("add n/Basketball p/20 t/Ball")
+activate BPP
+
+create AECP
+BPP -> AECP
+activate AECP
+BPP <-- AECP
+deactivate AECP
+BPP -> AECP : parse("n/Basketball p/20 t/Ball")
+activate AECP
+
+create Expenditure
+AECP -> Expenditure
+activate Expenditure
+AECP <-- Expenditure : e
+deactivate Expenditure
+
+create AEC
+AECP -> AEC : AddExpenditureCommand(e)
+activate AEC
+AECP <-- AEC : c
+deactivate AEC
+BPP <-- AECP : c
+deactivate AECP
+BPP <-[hidden]- AECP
+destroy AECP
+
+deactivate AECP
+LM <-- BPP : c
+deactivate BPP
+LM <-[hidden]- BPP
+destroy BPP
+
+LM -> AEC: execute(m)
+
+activate AEC
+AEC -> M : addExpenditure(e)
+activate M
+AEC <-- M
+deactivate M
+
+create CR
+AEC -> CR
+activate CR
+AEC <-- CR : result
+deactivate CR
+
+LM <-- AEC: result
+deactivate AEC
+[<-- LM : result
+deactivate LM
+
+@enduml

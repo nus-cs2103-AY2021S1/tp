@@ -1,0 +1,71 @@
+@startuml
+hide footbox
+skinparam Sequence {
+    MessageAlign center
+}
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":MainPageParser" as MPP
+participant ":FindBudgetCommandParser" as FBCP
+participant "c:FindBudgetCommand" as FBC
+participant "result:CommandResult" as CR
+end box
+
+box "Model" #LightYellow
+participant "m:ModelManager" as M
+end box
+
+[-> LM : execute("find NUS")
+activate LM
+create MPP
+LM -> MPP
+activate MPP
+LM <-- MPP
+deactivate MPP
+
+LM -> MPP : execute("find NUS")
+activate MPP
+
+create FBCP
+MPP -> FBCP
+activate FBCP
+MPP <-- FBCP
+deactivate FBCP
+
+MPP -> FBCP : parseCommand("NUS")
+activate FBCP
+
+create FBC
+FBCP -> FBC
+activate FBC
+FBCP <-- FBC : c
+deactivate FBC
+MPP <-- FBCP : c
+deactivate FBCP
+FBCP -[hidden]-> MPP
+destroy FBCP
+
+LM <-- MPP : c
+deactivate MPP
+LM <-[hidden]- MPP
+destroy MPP
+
+LM -> FBC : execute(m)
+activate FBC
+
+FBC -> M : findBudget("NUS")
+activate M
+FBC <-- M
+deactivate M
+
+create CR
+FBC -> CR
+activate CR
+FBC <-- CR : result
+deactivate CR
+
+LM <-- FBC : result
+deactivate FBC
+[<-- LM : result
+deactivate LM
+@enduml

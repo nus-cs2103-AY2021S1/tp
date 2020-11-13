@@ -15,16 +15,16 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Nusave;
+import seedu.address.model.ReadOnlyNusave;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonNusaveStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.NusaveStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -40,15 +40,27 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static final String GREETING_MESSAGE = "Welcome to NUSave!";
+    private static final String DATA_LOADED_SUCCESS_MESSAGE = "Successfully loaded existing data.\n";
+    private static final String DATA_NOT_FOUND_ERROR_MESSAGE = "Data file not found.\n"
+            + "Will be starting with sample data.\n";
+    private static final String WRONG_DATA_FORMAT_ERROR_MESSAGE = "Data file not in the correct format.\n"
+            + "Will be starting with an empty NUSave.\n";
+    private static final String UNABLE_TO_READ_DATA_ERROR_MESSAGE = "Error reading from data file.\n"
+            + "Will be starting with an empty NUSave.\n";
+
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
 
+    private String initialMessage = DATA_LOADED_SUCCESS_MESSAGE
+            + GREETING_MESSAGE;
+
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ NUSave ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +68,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        NusaveStorage nusaveStorage = new JsonNusaveStorage(userPrefs.getNusaveFilePath());
+        storage = new StorageManager(nusaveStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -65,29 +77,32 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, initialMessage);
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s NUSave and {@code userPrefs}. <br>
+     * The data from the sample NUSave will be used instead if {@code storage}'s NUSave is not found,
+     * or an empty NUSave will be used instead if errors occur when reading {@code storage}'s NUSave.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyNusave> nusaveOptional;
+        ReadOnlyNusave initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            nusaveOptional = storage.readNusave();
+            if (nusaveOptional.isEmpty()) {
+                logger.info(DATA_NOT_FOUND_ERROR_MESSAGE);
+                initialMessage = DATA_NOT_FOUND_ERROR_MESSAGE + GREETING_MESSAGE;
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = nusaveOptional.orElseGet(SampleDataUtil::getSampleNusave);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning(WRONG_DATA_FORMAT_ERROR_MESSAGE);
+            initialData = new Nusave();
+            initialMessage = WRONG_DATA_FORMAT_ERROR_MESSAGE + GREETING_MESSAGE;
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning(UNABLE_TO_READ_DATA_ERROR_MESSAGE);
+            initialData = new Nusave();
+            initialMessage = UNABLE_TO_READ_DATA_ERROR_MESSAGE + GREETING_MESSAGE;
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +166,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty NUSave");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +182,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting NUSave " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping NUSave ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

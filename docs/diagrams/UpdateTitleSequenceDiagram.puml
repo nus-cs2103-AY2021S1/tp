@@ -1,0 +1,114 @@
+@startuml
+
+skinparam Sequence {
+    MessageAlign center
+}
+
+hide footbox
+
+box Ui #LightGreen
+participant ":MainWindow" as MainWindow #LightGreen
+end box
+
+box Logic #LightBlue
+participant ":LogicManager" as LogicManager #LightBlue
+participant ":MainPageParser" as MainPageParser #LightBlue
+participant ":OpenBudgetCommandParser" as OpenBudgetCommandParser #LightBlue
+participant "c:OpenBudgetCommand" as OpenBudgetCommand #LightBlue
+participant "result:CommandResult" as CommandResult #LightBlue
+participant "i:BudgetIndexManager" as BudgetIndex  #LightBlue
+end box
+
+box Model #LightYellow
+participant "m:ModelManager" as ModelManager
+end box
+
+box State #Orange
+participant ":StateManager" as StateManager #Orange
+end box
+
+[-> MainWindow : executeCommand("open 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("open 1")
+activate LogicManager
+
+create MainPageParser
+LogicManager -> MainPageParser
+activate MainPageParser
+MainPageParser --> LogicManager
+deactivate MainPageParser
+
+LogicManager -> MainPageParser : parseCommand("open 1")
+activate MainPageParser
+
+create OpenBudgetCommandParser
+MainPageParser -> OpenBudgetCommandParser
+activate OpenBudgetCommandParser
+
+OpenBudgetCommandParser --> MainPageParser
+deactivate OpenBudgetCommandParser
+
+MainPageParser -> OpenBudgetCommandParser : parse("1")
+activate OpenBudgetCommandParser
+
+create BudgetIndex
+OpenBudgetCommandParser -> BudgetIndex
+activate BudgetIndex
+BudgetIndex --> OpenBudgetCommandParser : i
+deactivate BudgetIndex
+
+create OpenBudgetCommand
+OpenBudgetCommandParser -> OpenBudgetCommand : OpenBudgetCommand(i)
+activate OpenBudgetCommand
+
+OpenBudgetCommand --> OpenBudgetCommandParser : c
+deactivate OpenBudgetCommand
+
+OpenBudgetCommandParser --> MainPageParser : c
+deactivate OpenBudgetCommandParser
+OpenBudgetCommandParser -[hidden]-> MainPageParser
+destroy OpenBudgetCommandParser
+
+MainPageParser --> LogicManager : c
+deactivate MainPageParser
+MainPageParser -[hidden]-> LogicManager
+destroy MainPageParser
+
+LogicManager -> OpenBudgetCommand : execute(m)
+activate OpenBudgetCommand
+
+OpenBudgetCommand -> ModelManager : openBudget(i)
+activate ModelManager
+
+ModelManager -> ModelManager : setOpenCommandState(i)
+activate ModelManager
+
+ModelManager -> StateManager : setOpenCommandState("PageName", "ExpenditureValue", Threshold(100).toOptional())
+activate StateManager
+
+StateManager --> ModelManager
+deactivate StateManager
+
+ModelManager --> ModelManager
+deactivate ModelManager
+
+ModelManager --> OpenBudgetCommand
+deactivate ModelManager
+
+create CommandResult
+OpenBudgetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> OpenBudgetCommand : result
+deactivate CommandResult
+
+OpenBudgetCommand --> LogicManager : result
+deactivate OpenBudgetCommand
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

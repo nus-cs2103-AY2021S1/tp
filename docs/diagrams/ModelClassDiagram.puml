@@ -5,23 +5,32 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyNusave <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Interface Renderable <<Interface>>
+Class Nusave
+Class ReadOnlyNusave
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Budget {
+Class Budget
+Class Threshold
+Class Expenditure
+Class "Name" as budgetName
+Class "Date" as budgetDate
+Class BudgetList
+}
+
+Package Expenditure {
+Class ExpenditureList
+Class Expenditure
+Class "Name" as expenditureName
+Class Price
+Class "Date" as expenditureDate
 }
 
 Package Tag {
@@ -29,28 +38,42 @@ Class Tag
 }
 }
 
+Package State {
+class StateManager
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Nusave .up.|> ReadOnlyNusave
+Nusave -right-> Renderable : ObservableList
 
-ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+
+ModelManager -right-> StateManager
+ModelManager .up.|> Model
+ModelManager *--> "1" Nusave
+ModelManager *-left-> "1" UserPrefs
+ModelManager --> Renderable : FilteredList
+
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Nusave *--> "1" BudgetList
+BudgetList "1" o--> "*" Budget
+Budget .up.|> Renderable
+Budget *--> budgetName
+Budget *--> budgetDate
+Budget "1" *--> "1" ExpenditureList
+Budget *--> Threshold : "Optional"
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ExpenditureList --> "*" Expenditure
 
-ModelManager -->"1" Person : filtered list
+Expenditure .up.|> Renderable
+Expenditure *-down-> expenditureName
+Expenditure *-down-> Price
+Expenditure *-down-> expenditureDate
+Expenditure *--> "*" Tag
+expenditureDate -[hidden]right-> Threshold
+Threshold -[hidden]right-> Expenditure
+
 @enduml

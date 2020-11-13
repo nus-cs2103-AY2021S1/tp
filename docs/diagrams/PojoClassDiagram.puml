@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+
+package Storage {
+Class JsonNusaveStorage
+Class JsonSerializableNusave
+Class JsonAdaptedBudget
+Class JsonAdaptedExpenditure
+Class JsonAdaptedTag
+}
+
+JsonNusaveStorage .down.> JsonSerializableNusave
+JsonSerializableNusave -right-> "*" JsonAdaptedBudget
+JsonAdaptedBudget -right-> "*" JsonAdaptedExpenditure
+JsonAdaptedExpenditure -right-> "*" JsonAdaptedTag
+@enduml

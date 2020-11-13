@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes help command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([is valid command])
+    :Display help message;
+else ([else])
+:Display invalid command result to the user;
+endif
+stop
+@enduml

@@ -15,6 +15,7 @@ public interface UserPrefsStorage {
 
     /**
      * Returns the file path of the UserPrefs data file.
+     * @return the {@code Path} containing the UserPrefs data file.
      */
     Path getUserPrefsFilePath();
 

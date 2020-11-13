@@ -49,6 +49,37 @@ public class StringUtil {
     }
 
     /**
+     * Returns true is the string {code: s} is a numeric value.
+     * @param s
+     * @return a boolean
+     */
+    public static boolean isNumeric(String s) {
+        requireNonNull(s);
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if the string {code: s} is within the bounds of the maximum budget index.
+     * @param s
+     * @return a boolean
+     */
+    public static boolean isNonOverFlow(String s) {
+        requireNonNull(s);
+        double initialInput = Double.parseDouble(s);
+        if (initialInput > 100 || initialInput < 1) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    /**
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
@@ -57,7 +88,6 @@ public class StringUtil {
      */
     public static boolean isNonZeroUnsignedInteger(String s) {
         requireNonNull(s);
-
         try {
             int value = Integer.parseInt(s);
             return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)

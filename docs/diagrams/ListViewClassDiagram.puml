@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+
+Package Model {
+Interface Model <<Interface>> MODEL_COLOR
+Class ModelManager MODEL_COLOR
+}
+
+Package Ui {
+    Class ListView UI_COLOR
+    Class MainWindow UI_COLOR
+}
+
+Package Logic {
+Interface Logic <<Interface>> LOGIC_COLOR
+Class LogicManager LOGIC_COLOR
+
+}
+
+Package JavaFX {
+Interface ObservableList<<Interface>> #000000
+Class FilteredList #000000
+}
+
+MainWindow -> ListView
+MainWindow -> Logic
+
+LogicManager .up.|> Logic LOGIC_COLOR
+LogicManager -> Model
+
+ModelManager .up.|> Model MODEL_COLOR
+
+FilteredList .up.|> ObservableList
+ListView .down.> ObservableList
+ModelManager -> FilteredList
+
+@enduml

@@ -8,7 +8,9 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Interface PageParser <<Interface>>
+Class PageParser
+Class XYZPageParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -17,7 +19,7 @@ Class ArgumentTokenizer
 Class Prefix
 }
 
-package Command {
+package Commands {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
@@ -35,12 +37,18 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager ..>"1" PageParser
+
+Model .left. PageParser
+
+123PageParser .up.|> PageParser
+123PageParser .left.> XYZ123CommandParser: creates >
+XYZPageParser .up.|> PageParser
+XYZPageParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
+XYZCommandParser .left.> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
 XYZCommandParser ..> CliSyntax
@@ -51,9 +59,12 @@ ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+LogicManager -right-> Model
+Command .up.> Model
+
+note right of XYZPageParser: XYZPageParser =\nBudgetPageParser\nor MainPageParser
+note bottom of XYZCommandParser: XYZCommandParser =\nCreateBudgetCommandParser,\nAddExpenditureCommandParser, etc
+note bottom of XYZCommand: XYZCommand =\nAddExpenditureCommand, \nFindBudgetCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

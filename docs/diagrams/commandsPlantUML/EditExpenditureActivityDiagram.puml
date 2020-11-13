@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes edit expenditure command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([is valid command])
+    :Edit the specific expenditure within the budget;
+    :Replace existing expenditure with the newly edited expenditure into the hard disk;
+    :Display newly edited expenditure in NUSave;
+else ([else])
+:Display invalid command result to the user;
+endif
+stop
+@enduml

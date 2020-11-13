@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface "History<VersionedNusave>" <<Interface>>
+Interface Model <<Interface>>
+Class ModelManager
+Class "HistoryManager<VersionedNusave>"
+Class "Node<VersionedNusave>"
+Class "VersionedNusave"
+
+ModelManager .left.|> Model
+ModelManager -right-> "History<VersionedNusave>"
+"HistoryManager<VersionedNusave>" .up.|> "History<VersionedNusave>"
+"HistoryManager<VersionedNusave>" -left-> "Node<VersionedNusave>"
+"Node<VersionedNusave>" -left-> VersionedNusave
+
+
+@enduml

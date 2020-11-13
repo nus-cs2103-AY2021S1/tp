@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Wen Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wenhaogoh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/wenhaogoh)]
+[[portfolio](team/wenhaogoh.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Database + UI
 
-### Johnny Doe
+### Yu Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yu-ming-chen.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yu-ming-chen)]
+[[portfolio](team/yu-ming-chen.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality + Integration
 
-### James Doe
+### Ek Chin Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ekchinhui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/EkChinHui)]
+[[portfolio](team/ekchinhui.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Database
+
+### Chew Song Yu
+
+<img src="images/sogggy.png" width="200px">
+
+[[github](http://github.com/sogggy)]
+[[portfolio](team/sogggy.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### David
+
+<img src="images/davidliew9.png" width="200px">
+
+[[github](https://github.com/davidliew9)]
+[[portfolio](team/davidliew9.md)]
+
+* Role: Developer
+* Responsibilities: Documentation

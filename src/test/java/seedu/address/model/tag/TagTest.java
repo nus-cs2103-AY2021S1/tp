@@ -1,5 +1,6 @@
 package seedu.address.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -18,9 +19,22 @@ public class TagTest {
     }
 
     @Test
+    void cloneTest() {
+        Tag expected = new Tag("test");
+        assertEquals(expected, Tag.clone(expected));
+    }
+
+    @Test
     public void isValidTagName() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Tag.isValid(null));
+    }
+
+    @Test
+    public void toStringTest() {
+        String expected = "[test]";
+        Tag actual = new Tag("test");
+        assertEquals(expected, actual.toString());
     }
 
 }
