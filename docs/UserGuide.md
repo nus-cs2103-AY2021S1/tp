@@ -589,7 +589,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
-![EditMasteryCheck](images/userguide/editMasteryCheck.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/editMasteryCheck.png" width="115%" /> <br />
 Figure 6.4.3a: <i>Editing a Mastery Check</i>
 </div>
 
@@ -618,7 +619,8 @@ Deletes a `Task` based on the `INDEX` you specify.
 <br>:pencil2: Examples:
 * `delete -c 3`
 
-![DeleteConsultation](images/userguide/deleteConsultation.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/deleteConsultation.png" width="115%" /> <br />
 Figure 6.5.1a: <i>Deleting a Consultation</i>
 </div>
 
