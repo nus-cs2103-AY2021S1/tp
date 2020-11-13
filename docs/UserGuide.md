@@ -259,9 +259,9 @@ left of the Graphical User Interface (GUI).
 #### 4.1.5 Tab Switcher
 (Zhen Teng)
 
-The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check`, `Task
-`. Clicking on each tab brings up the information list for the corresponding field. For instance, clicking on the
- `Students` tab will bring up the list of `Students` from your class.  
+The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check`, `Task`.
+Clicking on each tab brings up the information list for the corresponding field. For instance, clicking on the
+`Student` tab will bring up the list of `Students` from your class.  
 
 `Todo`, `Event` and `Deadline` are all variants of `Task`.
 
@@ -370,8 +370,8 @@ Shows a message explaining how to access the help page.
 
 <br>**Format: `help`**
 
-<div style="text-align: center; padding-bottom: 12em">
-<img src="images/userguide/helpCommand.png" width="50%" /> <br />
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/helpCommand.png" width="50%"/> <br />
 Figure 6.2a: <i>Help Command</i>
 </div>
 
