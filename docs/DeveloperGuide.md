@@ -237,6 +237,8 @@ The following sequence diagrams show how the search operation works.
 
 I chose alternative 1, because only field for search command is `keyword` and amount of responsibilities for `SearchCommand` will not increase a lot.
 
+<div style="page-break-after: always;"></div>
+
 ### View feature
 
 #### Implementation
@@ -354,7 +356,6 @@ The following sequence diagrams show how the edit operation works.
 
 ![Sequence Diagram for Edit Command in Logic Component Steps 6 - 9](images/EditSequenceDiagram2.png)
 
-<div style="page-break-after: always;"></div>
 
 1. The user executes `edit 1 t/New Title` to edit the title of the first flashcard in the list currently shown.
 2. `BagelParser` creates an `EditCommandParser` and calls its parse method with the arguments passed in by the user.
