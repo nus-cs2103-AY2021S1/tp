@@ -227,11 +227,12 @@ the user interface segments 1 to 5 mentioned above.
 #### 4.1.1 Top Bar
 (Zhen Teng)
     
-   <div style="text-align: center; padding-bottom: 2em">
-    <img src="images/userguide/topBar.png" width="115%" /> <br />
-    Figure 4.1.1a: <i>Detailed breakdown of the Top Bar</i>
-    </div>
-    <div style="page-break-after: always;"></div> 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/topBar.png" width="115%" /> <br />
+Figure 4.1.1a: <i>Detailed breakdown of the Top Bar</i>
+</div>
+
+<div style="page-break-after: always;"></div> 
 
    * In Figure 4.1.1a, we can see that the top bar includes the following 5 components.
         1. **Summary information** - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
