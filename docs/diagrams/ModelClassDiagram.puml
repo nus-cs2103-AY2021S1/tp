@@ -1,56 +1,52 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR
-
-Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
-Class UserPrefs
-Class ReadOnlyUserPrefs
-
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+skinparam Class {
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    BackgroundColor MODEL_COLOR
+    StereotypeFontColor BACKGROUND_COLOR
 }
-
-Package Tag {
-Class Tag
-}
-}
+skinparam ArrowColor MODEL_COLOR_T3
 
 Class HiddenOutside #FFFFFF
+
+hide method
+hide attribute
+
+package Model <<Rectangle>> {
+Interface ReadOnlyListManager<<Interface>>
+Interface Model<<Interface>>
+Class ModelManager
+Class UserPrefs
+Class PatientManager
+Class AppointmentManager
+Class CalendarManager
+}
+
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Model <|.. ModelManager
+ModelManager ..> UserPrefs
+ModelManager ..> PatientManager
+ModelManager ..> AppointmentManager
+ModelManager ..> CalendarManager
+AppointmentManager ..|> ReadOnlyListManager
+PatientManager ..|> ReadOnlyListManager
 
-ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+'Patient <-r- ModelManager: filtered list
+'Appointment <-l- ModelManager: filtered list
+'Patient <-- Appointment: < has a list of
+'Appointment <-- Patient: < contains
+'Appointment -- Description
+'Appointment -- AppointmentStatus
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+'ReadOnlyListManager <|.. PatientManager
+'PatientManager <.. ModelManager
+'
+'UniqueListElement <|.. Patient
+'UniqueListElement <|.. Appointment
+'
+'ReadOnlyListManager <|.. AppointmentManager
+'AppointmentManager <.. ModelManager
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"1" Person : filtered list
 @enduml

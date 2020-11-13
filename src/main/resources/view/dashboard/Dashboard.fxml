@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<StackPane fx:id="dashboard" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+        <Label text="Dashboard"/>
+        <HBox styleClass="dashboard-container" minWidth="700" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="20" right="0" bottom="100" left="0"/>
+            </padding>
+            <VBox fx:id="leftPanel" styleClass="pane-with-border" minWidth="430">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="Appointments Today"/>
+                <StackPane fx:id="appointmentListPanelPlaceholder"></StackPane>
+            </VBox>
+            <VBox fx:id="rightPanel" minWidth="300">
+                <VBox styleClass="clock-container" minWidth="150" minHeight="80">
+                    <StackPane fx:id="timePanel" styleClass="time-panel"/>
+                    <Label fx:id="dateLabel"/>
+                </VBox>
+                <VBox fx:id="stats" styleClass="stats-container">
+
+                </VBox>
+            </VBox>
+        </HBox>
+    </VBox>
+</StackPane>

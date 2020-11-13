@@ -1,0 +1,9 @@
+{
+  "patients": [ {
+    "nric": "T7333222F",
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "gender": "invalidGender1@#",
+    "remark": "Likes to code"
+  } ]
+}

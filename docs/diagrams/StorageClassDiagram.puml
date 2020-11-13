@@ -1,24 +1,33 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor STORAGE_COLOR
-skinparam classBackgroundColor STORAGE_COLOR
+skinparam Class {
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    BackgroundColor STORAGE_COLOR_T2
+    StereotypeFontColor BACKGROUND_COLOR
+}
+skinparam ArrowColor STORAGE_COLOR_T2
 
-Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+hide method
+hide attribute
 
-Class StorageManager
+package Storage <<Rectangle>> {
+Interface Storage<<Interface>>
+Interface PatientManagerStorage<<Interface>>
+Interface AppointmentManagerStorage<<Interface>>
+Interface UserPrefsStorage<<Interface>>
+Class JsonAppointmentManagerStorage
+Class JsonPatientManagerStorage
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class StorageManager
+}
 
-StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager .up.|> Storage
+PatientManagerStorage <|-- Storage
+PatientManagerStorage <|.up. JsonPatientManagerStorage
+AppointmentManagerStorage <|-- Storage
+AppointmentManagerStorage <|.up. JsonAppointmentManagerStorage
+UserPrefsStorage <|-- Storage
+UserPrefsStorage <|.up. JsonUserPrefsStorage
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
 @enduml

@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam Class {
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    BackgroundColor MODEL_COLOR_T4
+    StereotypeFontColor BACKGROUND_COLOR
+}
+skinparam ArrowColor MODEL_COLOR_T4
+
+class PatientManager {
++ addPatient(p : Patient)
++ setPatient(target : Patient, editedPatient : Patient)
++ removePatient(key : Patient)
++ hasPatient(patient : Patient) : boolean
++ hasPatient(nric : Nric) : boolean
++ getPatient(name : Name) : Patient
++ getPatient(nric : Nric) : Patient
++ sortPatientList(cmp: Comparator) :
+}
+
+class UniqueList {
+- internalList : ObservableList
+- internalUnmodifiableList : ObservableList
++ contains(toCheck : UniqueListElement) : boolean
++ contains(pred : Predicate) : boolean
++ add(toAdd : UniqueListElement)
++ getByPredicate(pred : Predicate) : UniqueListElement
++ sort(cmp : Comparator)
++ setElement(target : UniqueListElement, edited : UniqueListElement)
++ remove(toRemove : UniqueListElement)
+}
+
+Interface UniqueListElement <<Interface>> {
++ isSame(other : UniqueListElement) : boolean
+}
+
+Interface ReadOnlyListManager <<Interface>> {
++ getReadOnlyList() : ObservableList
+}
+
+Class Patient {
+- nric : Nric
+- name : Name
+- phone : Phone
+- gender : Gender
+- remark : Remark
+- tags : Set
+}
+
+ReadOnlyListManager <|.. PatientManager
+UniqueListElement <|.. Patient
+PatientManager -->"1" UniqueList
+UniqueList -->"*" UniqueListElement
+
+@enduml
