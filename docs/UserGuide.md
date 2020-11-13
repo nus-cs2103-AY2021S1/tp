@@ -803,6 +803,7 @@ Command | Description | Compatible View
 
 
 ### 6.3 Module Commands
+###### (written by: Juan Davin Lie)
 
 Command | Description | Compatible View
 --------|--------|--------
