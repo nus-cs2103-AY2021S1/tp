@@ -153,7 +153,7 @@ You can tag a file without access permission. However, you will not be able to o
 Displays the information of the specified tag.
 
 You can see some basic information of a tagged file by using this command.
-The command result panel will show you the tag's file path and label information, in case the UI can't show them in detail.
+The command result panel will show you the tag's file path and  information, in case the UI can't show them in detail.
 
 Alternatively, you can click on a specific tag in the tag panel to show its details.
 
@@ -297,7 +297,7 @@ If any of the keyword matches the tag name and/or label partially, it will be li
 
 <div style="page-break-after: always;"></div>
 
-### 4.9 Changing current directory: `cd` (Heinrich)
+### 4.9 Changing current directory: `cd` (Yueran)
 
 Changes the current directory of the HelloFile internal File Explorer.
 
