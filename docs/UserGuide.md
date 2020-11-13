@@ -435,7 +435,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 Format: `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)||(done/)` 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
-  - User can apply filter and sorter at the same time
+  - User may apply filter and sorter at the same time
 
 
 ![before_sort](images/beforeSort.png)
