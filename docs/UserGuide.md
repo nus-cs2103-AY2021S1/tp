@@ -10,35 +10,35 @@ can get your German revision done quickly and effectively.
 
 ## Table of Contents
 
-1. [Quick Start](#qs)
-1. [Commonly used Commands](#cucmds)
-1. [Features](#features)
+1. [Quick Start](#qs) (Jiyu)
+1. [Commonly used Commands](#cucmds) (Jiyu)
+1. [Features](#features) (Jiyu)
     1. [Edit the Glossary](#editing)
-        1. [Add a Flashcard](#add) : `add`
-        1. [Edit a Flashcard](#edit) : `edit`
-        1. [Delete a Flashcard](#delete) : `delete`
-        1. [Clear All Flashcards](#clear) : `clear`
+        1. [Add a Flashcard](#add) : `add` (Jiyu)
+        1. [Edit a Flashcard](#edit) : `edit` (Kenny)
+        1. [Delete a Flashcard](#delete) : `delete` (Kenny)
+        1. [Clear All Flashcards](#clear) : `clear` (Kenny)
     1. [Quiz Yourself](#test)
-        1. [Normal Quiz](#quiz) : `quiz`
-        1. [Try](#try) : `try`
-        1. [Next](#next) : `next`
-        1. [End Quiz](#end) : `end`
-        1. [Random Quiz](#random) : `random`
-        1. [View Past Scores](#scores) `scores`
-        1. [Reset Scores](#reset_scores) `reset scores`
+        1. [Normal Quiz](#quiz) : `quiz` (Zhizhi)
+        1. [Try](#try) : `try` (Zhizhi)
+        1. [Next](#next) : `next` (Zhizhi)
+        1. [End Quiz](#end) : `end` (Zhizhi)
+        1. [Random Quiz](#random) : `random` (Kenny)
+        1. [View Past Scores](#scores) `scores` (Harshini)
+        1. [Reset Scores](#reset_scores) `reset scores` (Harshini)
     1. [Navigate the Glossary](#navigating)
-        1. [Find a Flashcard](#find) `find`
-        1. [List All Flashcards](#list) `list`
-        1. [Sort All Flashcards](#sort) `sort`
+        1. [Find a Flashcard](#find) `find` (Harshini)
+        1. [List All Flashcards](#list) `list` (Harshini)
+        1. [Sort All Flashcards](#sort) `sort` (Joe)
     1. [Miscellaneous Commands](#misc)
-        1. [Help](#help) `help`
-        1. [Exit](#exit) `exit`
-1. [FAQ](#faq)
-1. [Command Summary](#cmdsum)
+        1. [Help](#help) `help` (Joe)
+        1. [Exit](#exit) `exit` (Joe)
+1. [FAQ](#faq) (Joe)
+1. [Command Summary](#cmdsum) (Everyone)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="qs"></a>1. Quick Start
+## <a name="qs"></a>1. Quick Start (Jiyu)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -52,7 +52,7 @@ can get your German revision done quickly and effectively.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
   
-## <a name="cucmds"></a>2. Commonly Used Commands
+## <a name="cucmds"></a>2. Commonly Used Commands (Jiyu)
   
    Here are some example commands you can try:
 
@@ -71,7 +71,7 @@ with additional details.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="features"></a>3. Features
+## <a name="features"></a>3. Features (Jiyu)
 
 <div markdown="block" class="alert alert-info">
 
@@ -93,9 +93,9 @@ with additional details.
 </div>
 
 ### <a name="editing"></a>3.1. Edit the Glossary
-#### <a name="add"></a>3.1.1. Add a Flashcard: `add`
+#### <a name="add"></a>3.1.1. Add a Flashcard: `add` (Jiyu)
 
-Adds a flashcard to the glossary. You can use this to expand your glossary of flashcards.
+Adds a flashcard to the glossary. You can use this to expand your glossary.
 
 Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...}`
 
@@ -121,9 +121,9 @@ After entering this command, your app should look like this:
 
 ![add-screenshot](images/add-screenshot.png)
 
-#### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit`
+#### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit` (Kenny)
 
-Edits a flashcard in the glossary at the specified `INDEX`. You can use this to edit any of the flashcard's fields. If a certain phrase has gotten easier for you to remember over time, you can change its difficulty.
+Edits a flashcard in the glossary at the specified `INDEX`.
 
 Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...`
 
@@ -141,7 +141,7 @@ After entering this command, your app should look like this:
 
 ![edit-screenshot](images/edit-screenshot.png)
 
-#### <a name="delete"></a>3.1.3. Delete a Flashcard : `delete`
+#### <a name="delete"></a>3.1.3. Delete a Flashcard : `delete` (Kenny)
 
 Deletes the specified flashcard from the glossary permanently. You can use this command to delete flashcards you consider outdated or not relevant to your learning. 
 
@@ -158,7 +158,7 @@ After entering this command, your app should look like this:
 
 ![delete-screenshot](images/delete-screenshot.png)
 
-#### <a name="clear"></a>3.1.4. Clear all Flashcards : `clear`
+#### <a name="clear"></a>3.1.4. Clear all Flashcards : `clear` (Kenny)
 
 Deletes all flashcards from the glossary permanently. This can be useful if you want to remove all default flashcards and start from scratch.
 
@@ -169,7 +169,7 @@ After entering this command, your app should look like this:
 ![clear-screenshot](images/clear-screenshot.png)
 
 ### <a name="test"></a>3.2. Quiz Yourself
-#### <a name="quiz"></a>3.2.1. Normal Quiz : `quiz`
+#### <a name="quiz"></a>3.2.1. Normal Quiz : `quiz` (Zhizhi)
 
 Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. The English translations for every flashcard will be hidden. You can use this command to test if you remember the definition corresponding to the German phrase on the flashcards. You can start a quiz on any list that is displayed in the app i.e. lists that are the results of `find` or `sort`
 commands.
@@ -180,7 +180,7 @@ After entering this command, your app should look like this:
 
 ![quiz-screenshot](images/quiz-screenshot.png)
 
-#### <a name="try"></a>3.2.2. Try : `try`
+#### <a name="try"></a>3.2.2. Try : `try` (Zhizhi)
 Compares your attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition on a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, you will be prompted to try again or skip this card.
 
 Format: `try <ATTEMPT>`
@@ -191,7 +191,7 @@ After entering this command, your app should look like this:
 
 ![try-screenshot](images/try-screenshot.png)
 
-#### <a name="next"></a>3.2.3. Next : `next`
+#### <a name="next"></a>3.2.3. Next : `next` (Zhizhi)
 Skips the current flashcard and move on to the next card in quiz mode. You can use this command if you cannot get the correct answer but wish to continue with the quiz. The current flashcard will be considered incorrectly answered.
 
 Format: `next`
@@ -201,7 +201,7 @@ After entering this command, your app should look like this:
 ![next-screenshot](images/next-screenshot.png)
 
 
-#### <a name="end"></a>3.2.4. End Quiz : `end`
+#### <a name="end"></a>3.2.4. End Quiz : `end` (Zhizhi)
 
 Ends the round of vocabulary testing. You can use this anytime during the quiz and the quiz score will be the number of correct attempts to that point.
 
@@ -211,7 +211,7 @@ After entering this command, your app should look like this:
 
 ![end-screenshot](images/end-screenshot.png)
 
-#### <a name="random"></a>3.2.5. Random Quiz : `random`
+#### <a name="random"></a>3.2.5. Random Quiz : `random` (Kenny)
 
 Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want a quick, randomised quiz where you can decide the number of questions.
 
@@ -228,7 +228,7 @@ After entering this command, your app should look like this:
 
 Note that the screenshot might not look exactly the same on your end as flashcards are randomised.
 
-#### <a name="scores"></a>3.2.6. View Past Scores : `scores`
+#### <a name="scores"></a>3.2.6. View Past Scores : `scores` (Harshini)
 
 Displays a history of scores from past quizzes. Along with each score, the 
 German phrases tested in the corresponding round are also listed. This way, you can
@@ -258,7 +258,7 @@ After entering this command, your app should look like this:
 
 ![scores-screenshot](images/scores-screenshot.png)
 
-#### <a name="reset_scores"></a>3.2.7. Reset Scores : `reset scores`
+#### <a name="reset_scores"></a>3.2.7. Reset Scores : `reset scores` (Harshini)
 
 Permanently deletes the history of saved scores, including all scores saved in past sessions.
 
@@ -272,7 +272,7 @@ After entering this command, your app should look like this:
 
 These commands allow you to manipulate the glossary so you can find certain phrases more easily.
 
-#### <a name="find"></a>3.3.1. Find a Flashcard : `find`
+#### <a name="find"></a>3.3.1. Find a Flashcard : `find` (Harshini)
 
 Finds certain flashcard(s) according to the **German phrase** entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**. To view the full Glossary again, see [List all Flashcards](#list) below.
 
@@ -285,7 +285,7 @@ After entering this command, your app should look like this:
 
 ![find-screenshot](images/find-screenshot.png)
 
-#### <a name="list"></a>3.3.2. List All Flashcards : `list`
+#### <a name="list"></a>3.3.2. List All Flashcards : `list` (Harshini)
 
 Displays all flashcards in the glossary. You can use this command to return to the full glossary after a find operation.
 
@@ -295,7 +295,7 @@ After entering this command, your app should look like this:
 
 ![list-screenshot](images/list-screenshot.png)
 
-#### <a name="sort"></a>3.3.3. Sort All Flashcards : `sort`
+#### <a name="sort"></a>3.3.3. Sort All Flashcards : `sort` (Joe)
 
 Sorts the all flashcards according to the way you choose. You may find this helpful for browsing the flashcards or 
 changing the order for quizzing.
@@ -331,13 +331,13 @@ After entering this command, your app should look like this:
 ![sort-screenshot](images/sort-screenshot.png)
 
 ### <a name="misc"></a>3.4. Miscellaneous Commands
-#### <a name="help"></a>3.4.1. Help : `help`
+#### <a name="help"></a>3.4.1. Help : `help` (Joe)
 
 Opens a small window containing a link to this User Guide. You can use this command to quickly access the User Guide, such as when you need to refer to the command formats or how to run the app. **This requires an Internet connection.**
 
 Format: `help`
 
-#### <a name="exit"></a>3.4.2 Exit the program : `exit`
+#### <a name="exit"></a>3.4.2 Exit the program : `exit` (Joe)
 
 Saves and exits the program. If this command is used during a quizzing round, the score
 up to that point will be saved.
@@ -346,7 +346,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="faq"></a>4. FAQ
+## <a name="faq"></a>4. FAQ (Joe)
 
 **Q**: Do I need to save my data manually?<br>
 **A**: ForgetfulNUS glossary data is automatically saved in the hard disk upon exiting. There is no need to save manually.
@@ -362,7 +362,7 @@ in your other computer.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a name="cmdsum"></a>5. Command Summary
+## <a name="cmdsum"></a>5. Command Summary (Everyone)
 
 Action | Format, Examples
 --------|------------------
