@@ -232,7 +232,7 @@ You can use the `NUMBER_OF_DAYS` index to quickly view assignments that you need
 
 Here is an example with steps for you to follow: 
 
-1) You can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days from the current date. 
+1) You can enter `list 3` into the [Command Box](#gui-terminologies) as shown in the diagram below to list your assignments that are due within 3 days from the current date. 
 
 ![ListCommand1](images/ListCommandDiagram1.png)
 *Figure 8: `list 3` inputted by user*
