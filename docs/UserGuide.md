@@ -96,7 +96,7 @@ We have also implemented a commander's version that would allow commanders to ha
 ### 2.1 Using this User Guide
 This User Guide has been structured such that users can easily find and understand what they need.  
 [Section 2](#2-about) contains useful tips and information on reading this document.  
-[Section 3](#3-getting-started) consists of instructions to set up this application  
+[Section 3](#3-getting-started) consists of instructions to set up this application.  
 [Section 4](#4-features) includes the details of the 5 main features of My Fitness Buddy which are:
 
 * Profile page
@@ -105,9 +105,9 @@ This User Guide has been structured such that users can easily find and understa
 * Statistics
 * Features for commanders
 
-[Section 5](#5-faq) shows all frequently asked questions (FAQ)  
-[Section 6](#6-command-summary) provides a command summary table  
-[Section 7](#7-glossary) explains some common used terms  
+[Section 5](#5-faq) shows all frequently asked questions (FAQ).  
+[Section 6](#6-command-summary) provides a command summary table.  
+[Section 7](#7-glossary) explains some commonly used terms.  
 
 ### 2.2 Symbols and Syntax
 
@@ -131,11 +131,9 @@ All commands in the following sections follow the same format.
 ### 2.4 Interface
 (Contributed by Hope)   
 
-You can refer to the diagram below to understand how My Fitness Buddy looks like:
-![Interface](images/interface.png)   
+You can refer to the diagram below to understand the interface of My Fitness Buddy:
+![Interface](images/interface.png)
 
-
-​	
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
