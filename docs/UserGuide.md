@@ -255,7 +255,7 @@ More examples:
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
-You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
+You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of an assignment. 
 
 <div markdown="span" class="alert alert-success">
 
@@ -428,6 +428,7 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
 <div style="page-break-after: always;"></div>
 
 ### Setting priority for assignments : `prioritise`
+(Contributed by Yong Kang)
 
 Format: `prioritise INDEX p/PRIORITY_OF_ASSIGNMENT`
 
@@ -457,6 +458,7 @@ the figure above, the third assignment, Biology lab report, is marked with a yel
 <div style="page-break-after: always;"></div>
 
 ### Removing priority for assignments : `unprioritise`
+(Contributed by Yong Kang)
 
 Format: `unprioritise INDEX`
 
@@ -756,6 +758,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 
 ## FAQ
+(Contributed by Jerry and Minh)
 
 **Q: How do I transfer my data to another Computer?**<br>
 **A:** <br>
