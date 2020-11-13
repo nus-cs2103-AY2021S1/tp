@@ -181,7 +181,7 @@ After entering this command, your app should look like this:
 ![quiz-screenshot](images/quiz-screenshot.png)
 
 #### <a name="try"></a>3.2.2. Try an Answer: `try` (Zhizhi)
-Compares your attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition on a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, you will be prompted to try again or skip this card.
+Compares your attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition of a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, you will be prompted to try again or skip this card.
 
 Format: `try <ATTEMPT>`
 
