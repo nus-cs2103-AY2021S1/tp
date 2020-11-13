@@ -33,6 +33,8 @@ The figure below shows the GUI of ProductiveNUS, with its sections labelled.
 ![GUI](images/GUI.png)
 *Figure 1: Labelled GUI sections*
 
+<div style="page-break-after: always;"></div>
+
 ### Icon usages
 
 Wondering what each icon is used for? You can refer to the table below to find out.
@@ -64,6 +66,8 @@ All the commands and their examples are formatted as `markups`.
   e.g. 1, 2, 3, …​
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Date and time format
 
@@ -151,6 +155,7 @@ Here is an example with steps for you to follow:
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
 *Figure 4: `delete 1 3` inputted by user and location of assignment indexes*
 
+<div style="page-break-after: always;"></div>
 
 2) You have successfully deleted both assignments from the Assignment List, and they are no longer displayed.
 
@@ -191,6 +196,8 @@ Follow these steps and try importing your timetable:
    ![NusModsShareSync](images/NusModsShareSync.PNG)
    *Figure 6: The "Share/Sync" at the NUSMods website highlighted in green*
 
+<div style="page-break-after: always;"></div>
+
 2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command. Key in `import url/YOUR_NUSMODS_URL`.
 
 3) This may take a few seconds. After the import process, the added lesson information can be found in your
@@ -229,6 +236,8 @@ Here is an example with steps for you to follow:
 
 ![ListCommand1](images/ListCommandDiagram1.png)
 *Figure 8: `list 3` inputted by user*
+
+<div style="page-break-after: always;"></div>
 
 2) Assignments found are displayed in the [Assignment List](#gui-terminologies). 
 
@@ -296,6 +305,8 @@ Here is an example with steps for you to follow:
 ![FindCommand2](images/FindCommandDiagram2.png)
 *Figure 11: The displayed message and the updated list*
 
+<div style="page-break-after: always;"></div>
+
 More examples: 
 - `find p/medium low`
 - `find d/12-12-2020 13-10-2020`
@@ -345,6 +356,8 @@ Here is an example with steps for you to follow:
 ![EditCommand2](images/EditCommand2.png)
 *Figure 13: The displayed message and the edited assignment*
 
+<div style="page-break-after: always;"></div>
+
 More examples: 
 - `edit 3 mod/CS2100`
 - `edit 1 d/10-10-2020 1200 mod/CS2106`
@@ -367,8 +380,9 @@ You can set reminders for specific assignments which will be displayed in `Your 
    ![YourReminders](images/YourReminders.png)
    *Figure 14: `Your reminders` highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set reminders for that assignment. 
+<div style="page-break-after: always;"></div>
 
+You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set reminders for that assignment. 
 
 For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the figure below) and adds it to `Your reminders`.
 
@@ -377,6 +391,8 @@ For example, `remind 1` will set reminders for the first assignment in your assi
       
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
    *Figure 16: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
+
+<div style="page-break-after: always;"></div>
 
 You can set reminders for **multiple** assignments at a time as well. Here is an example with steps for you to follow:
 
@@ -442,6 +458,8 @@ below).
 
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
    *Figure 21: The priority tags of assignments highlighted in red*
+
+<div style="page-break-after: always;"></div>
 
 You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set priority tag for that assignment.
 
@@ -510,6 +528,8 @@ the Command Box. `2 3` refers to the indexes of the assignments as shown in the 
    ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 24: Message shown in Message Box*
    
+<div style="page-break-after: always;"></div>
+   
 <div markdown="block" class="alert alert-primary">
   
  **:clipboard: Pointers to note:**<br>
@@ -575,6 +595,8 @@ in red in the figure below).
 
 You can be ensured that the suggested time slot will not clash with any of your lessons or the suggested time
 slots of other assignments.
+
+<div style="page-break-after: always;"></div>
 
 Here is an example with steps to follow:
 
