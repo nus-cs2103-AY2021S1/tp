@@ -3,7 +3,14 @@ layout: page
 title: User Guide
 ---
 Welcome to the User Guide for Eva! 
-If you are viewing this on the pdf version, use Adobe Acrobat Reader and zoom in to 200% for the best viewing experience!
+If you are viewing this on the pdf version, use Adobe Acrobat Reader and zoom in to 200% for the best viewing experience! <br>
+This document is created by CS2101 G05 Team 1 <br>
+- Ben-Hanan Choong See Kaay
+- Hou Rui
+- Royce Ho Shou Yee
+- Tin Kah Ong Isaac
+- Udayagiri Nikhila Sai
+You may refer to our work distribution at the bottom of this document.
 
 * Table of Contents
 {:toc}
