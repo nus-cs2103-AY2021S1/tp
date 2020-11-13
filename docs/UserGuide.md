@@ -327,6 +327,7 @@ Example: `prevView`
 Figure 4.2.6a Expected outcome of performing the `prevView` command
 
 ### 4.3 Module Features
+###### (written by: Juan Davin Lie)
 
 > You should perform the following features while in the Module view.
 
@@ -802,6 +803,7 @@ Command | Description | Compatible View
 
 
 ### 6.3 Module Commands
+###### (written by: Juan Davin Lie)
 
 Command | Description | Compatible View
 --------|--------|--------
