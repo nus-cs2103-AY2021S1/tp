@@ -138,7 +138,7 @@ In this case, the index is not needed as the `add` command does not manipulate e
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the User Guide (this page).
 
 Format: `help`
 
@@ -146,7 +146,20 @@ Format: `help`
 
 ### Adding a student : `add`
 
-Adds a student to the address book.
+This is used when we want to save student data into TAsker. 
+
+For administrative purposes, teaching assistants usually need the following information from their students:
+
+- Telegram handles
+- Email
+- Name
+- Telegram
+- Matric Number
+
+They also need the ability to `TAG` students, 
+for providing more details about each student, such as their tutorial class, performance and so on.
+
+This feature allows them add all of the above information for a student.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​`
 
@@ -163,9 +176,9 @@ Examples:
 
 ### Listing all students : `list`
 
-Shows a list of all students that the TA is in-charge of.
+This is useful when you want to view the information of all students.
 
-You may click on the Students tab to view the full list of students.
+The information is displayed under the **Students Tab**.
 
 Format: `list`
 
@@ -173,7 +186,11 @@ Format: `list`
 
 ### Editing a student : `edit`
 
-Edits an existing student's information.
+If you need to update a student's information, you can use this feature to do so. 
+
+In the event you are trying to `delete` a student instead, see the [`delete`](#deleting-a-student--delete) command below.
+
+You can just provide the relevant fields you want to update to the command.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`
 
@@ -198,7 +215,11 @@ Examples:
   
 ### Locating students by name : `find`
 
-Finds students whose names contain any of the given keywords.
+If you only remember fragments of a student's name, you can use feature to lookup that student.
+
+This command finds students whose names contain any of the given keywords.
+
+You can use the [`list`](#listing-all-students--list) command if you want to view all students again.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -220,6 +241,8 @@ Examples:
 
 Deletes the specified student from the address book.
 
+You may use this to remove incorrectly added students.
+
 Format: `delete INDEX`
 
 - Deletes the student at the specified `INDEX`.
@@ -233,7 +256,12 @@ Examples:
 
 ### Clearing all students : `clear`
 
-Clears all entries from the list of students.
+This clears all entries from the list of students.
+
+When starting up for the first time, TAsker is provided with mock data. 
+`clear` can be used to remove all the data to start from a clean slate.
+
+You may also want to use this when starting a new semester, to remove information of the previous semester's students.
 
 Format: `clear`
 
