@@ -651,9 +651,12 @@ Figure 6.5.3a: <i>Deleting a Task</i>
 
 ### 6.6 Viewing Information : `view`
 In the following subsections, we will explain how the commands for viewing information work. Please take note of the
-command inputted into the command box to understand how the respective commands are keyed in.
+command inputted into the command box to understand how the respective commands are keyed in. The `view` command is used to view information for:
+`Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check` and `Task`.
 
 Certain commands are similar to one another and hence we have excluded screenshots from those sections.
+
+:warning: Note that if there is no data for the any of the information types, the information panel will show that there is no data for it.
 
 #### 6.6.1 Viewing a list of all `Students` : `-s`
 (Zhen Teng)
@@ -694,9 +697,9 @@ Figure 6.6.2a: <i>Viewing Students with a keyword</i>
 <br>:pencil2: Examples:
 * `view -s John Doe`
 
-As shown in Figure 6.6.2a, once we key in the command `view -s Alex `, a success message will be displayed and Jarvis
+As shown in Figure 6.6.2a, once we key in the command `view -s Alex`, a success message will be displayed and Jarvis
 will auto switch to the `Student` tab, showing all `Students` from your classes which match the keyword "Alex". On the
- contrary, using the keyword "alex" would not work as the keyword has to be case sensitive.
+ contrary, keying in `view -s alex` with the keyword "alex" would not work as the keyword has to be case sensitive.
 
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 (Wiline)
@@ -749,6 +752,7 @@ Shows the `Quests` that you have not yet graded.
 #### 6.6.7 Viewing all `Consultations` : `-c`
 
 Shows all confirmed `Consultation` sessions, both past and upcoming.
+
 <br>**Format: `view -c`**
 
 <br>:pencil2: Examples:
