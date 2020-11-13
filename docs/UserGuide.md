@@ -46,7 +46,7 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction <a name="introduction"></a>
-
+(Contributed by Wei Hong)
 
 Welcome to the **TrackIt@NUS** user-guide!
 
@@ -62,6 +62,7 @@ It boasts a beautiful *upcoming view* and *module view* so that busy student lik
 What are you waiting for? Head on to [Section 2, **Quick Start**](#quick-start) to learn more
 
 ## 2. Quick Start <a name="quick-start"></a>
+(Contributed by Wei Hong)
 
 1. Ensure you have **Java 11** or above on your Computer. You may install it [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
@@ -83,6 +84,7 @@ Try typing `help` and pressing `Enter` to navigate to the Help Tab!<br>
 For details on the commands you can use, please refer to [Section 5 - Features](#features).
 
 ## 3. Format and Usage <a name="about"></a>
+(Contributed by Tiffany)
 
 There are many things you can use TrackIt@NUS for. We have structured this document so it is easy for you to find
  what you need. In the [Common Symbols](#common-symbols), [Command Format](#command-format), and [Commands and their
@@ -140,6 +142,7 @@ You can specify the same parameter more than once in each command. Depending on 
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Application Layout <a name="layout"></a>
+(Contributed by Tiffany and Wei Hong)
 
 This section gives you a **brief overview** of the **layout** of TrackIt@NUS, and this will help you **get used** to our interface in **a matter of minutes**!
 
@@ -216,6 +219,8 @@ This section contains all the information you need to know about the features of
  sub-feature, you will need to enter the command into the Command Box.
 
 ## 5.1 Module <a name="module"></a>
+(Contributed by Long)
+
 Module is the first thing you need to create when you start using the app, because each module will house its own lessons, tasks and related contacts. So, let's find out how to create a new module! 
 
 ### 5.1.1 Module Command Parameters <a name="module-command-parameter"></a>
@@ -292,6 +297,8 @@ _Figure 9 - Example outcome of deleting a module_
 
 
 ## 5.2 Lesson <a name="lesson"></a>
+(Contributed by Minh)
+
 Lectures, tutorials, labs, lectures, lectures, recitations, lectures... Sometimes, just looking at your crowded timetable makes you question your life choices. 
 
 While TrackIt@NUS can't do much to make those lessons disappear, it can, at the very least, make sure you won't miss any of them!
@@ -385,6 +392,7 @@ Example: To delete a lesson, follow these instructions.
 _Figure 12 - Example outcome of deleting a lesson_
 
 ## 5.3 Task <a name="task"></a> 
+(Contributed by Simon)
 
 Managing all your tasks can be so stressful! TrackIt@NUS helps alleviate that stress with our built-in Task Manager
 :information_source: To view all your tasks, simply click on the [Upcoming Tab](#upcomingtab) as shown below.
@@ -487,6 +495,8 @@ _Figure 15 - Example outcome of deleting a task_
  `INDEX` provided must one of the task indexes shown in the current window.
 
 ## 5.4 Contact <a name="contact"></a>
+(Contributed by Tiffany)
+
 Don't you hate it when you need help for one of your modules but you just can't remember who else is taking the module with you? 
 
 Luckily for you, TrackIt@NUS allows you to tag your contacts with the modules you have in common, and lets you see those contacts all at once! Simply click on a [module tab](#moduletabs) and you will find the list of contacts associated with that module.
@@ -592,6 +602,7 @@ Examples: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ <a name="faq"></a>
+(Contributed by Wei Hong)
 
 **Q: Will my data be saved in the computer?** <br>
 A: TrackIt@NUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -616,6 +627,7 @@ A: It is meant for you to add `contacts` that **may not be taking** the same mod
 
 
 ## 7. Glossary <a name="glossary"></a>
+(Contributed by Wei Hong)
 
 | **Term** | **Explanation** |
 | -- | ----- |
@@ -627,6 +639,7 @@ A: It is meant for you to add `contacts` that **may not be taking** the same mod
 
 
 ## 8. Command Summary <a name="command-summary"></a>
+(Contributed by Wei Hong)
 
 ### Module <a name="module-commands"></a>
 
