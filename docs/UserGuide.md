@@ -592,7 +592,8 @@ As shown in Figure 6.4.3a, once we key in the command `edit -mc 1 s/1`, a succes
 will auto switch to the `Mastery Check` tab, and the `Mastery Check` with index 1 (first Mastery Check in the list) will be marked as PASS rather than FAIL.
 <div style="page-break-after: always;"></div>
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+    
 * Do note that `SCORE` can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed on the left side of the target `Mastery Check`.
 * `Jarvis` allows the user to edit to the same value; thus, even if no values are actually updated by the edit command, it will display a success message.
@@ -619,7 +620,8 @@ Figure 6.5.1a: <i>Deleting a Consultation</i>
 As shown in Figure 6.5.1a, once we key in the command `delete -c 1`, a success message will be displayed and Jarvis
 will auto switch to the `Consultation` tab, and the `Consultation` with index 1 (first Consultation in the list) will be removed from the list.
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+    
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
  `Consultation`. You may find the index of the `Consultation` on the left side of the name of the student who requested the Consultation in the Infomation Panel.
 </div>
@@ -639,7 +641,8 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 You can refer to Figure 6.5.1a above for how the input will look like.
 </div>
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+    
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
  `Mastery Check`. You may find the index of the `Mastery Check` on the left side of the name of the student who requested the Mastery Check in the Infomation Panel.
 </div>
@@ -785,7 +788,8 @@ Shows all past `Consultation` sessions.
 <br>:pencil2: Examples:
 * `view -cp`
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+    
 * When the `Consultation` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
 
@@ -801,7 +805,8 @@ Shows all upcoming `Consultation` sessions.
 <br>:pencil2: Examples:
 * `view -cu`
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+
 * When the time of the `Consultation` displayed by `view -cu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Consultation` when you enter `view -cu`. This is to encourage the tutors to have this screen open while holding the `Consultation` session. When you switch to another command, such as `view -c` or `view -cp`, and then come back, you may see the updated `Consultation` list.
 </div>
 
@@ -825,7 +830,8 @@ Shows all past `Mastery Check` sessions.
 <br>:pencil2: Examples:
 * `view -mcp`
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+
 * When the `Mastery Check` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
 
@@ -839,7 +845,8 @@ Shows all upcoming `Mastery Check` sessions.
 <br>:pencil2: Examples:
 * `view -mcu`
 
-<div markdown="block" class="alert alert-info">
+<br><div markdown="block" class="alert alert-info">
+
 * When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated `Mastery Check` list.
 </div>
 
