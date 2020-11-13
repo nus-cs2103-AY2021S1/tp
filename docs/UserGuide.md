@@ -7,8 +7,8 @@ title: User Guide
 _(Contributed by all members)_
 * [1. Introduction](#1-introduction)
 * [2. About this document](#2-about-this-document)
-  *[2.1. Main sections](#21-main-sections)
-  *[2.2. Symbols](#22-symbols)
+  * [2.1. Main sections](#21-main-sections)
+  * [2.2. Symbols](#22-symbols)
 * [3. Quick start](#3-quick-start)
 * [4. Application layout](#4-application-layout)
 * [5. Features](#5-features)
@@ -77,7 +77,7 @@ The [FAQs](#6-frequently-asked-questions-faqs) section contains some **Frequentl
 
 The [Command Summary](#7-command-summary) section acts as a quick reference point for all the features of SimplyKitchen.
 
-Finally, the [Glossary](#8-glossary) section provides explanations for the commonly used terms in this document and in th SimplyKitchen application.
+Finally, the [Glossary](#8-glossary) section provides explanations for the commonly used terms in this document and in the SimplyKitchen application.
 
 [Back to top](#table-of-contents)
 
@@ -160,7 +160,7 @@ Figure 3 details the main components:
 
 <div style="page-break-after: always;"></div>
 
-The table below provides the descriptions of the main components:
+The table below provides the descriptions of the main components of the application:
 
 Component           | Description
 --------------------|-----------------------------------------------------------------------------------------
@@ -399,22 +399,27 @@ If you have used up all the flour, use the [`delete`](#513-deleting-a-food-item-
 ## 5.2. Sorting commands
 _(Contributed by Roland Yu)_
 
-The commands in this section can be used to sort the food list. The sorting order will remain when restarting the application. 
+The commands in this section can be used to sort your food list. The variety of sorting commands below allows you to be flexible with the ordering of your food list, for a better user experience. 
+
+<div markdown="span" class="alert alert-danger">
+
+**:exclamation: Warning:**<br>
+
+Note that sorting is permanent. Thus, the sorting order of your food list will remain after restarting the application. 
+
+</div>
 
 Before the list of food items is sorted for the first time, it will be ordered by `description` by default. 
 
-Refer to the [Sorting food items by description`](#521-sorting-food-items-by-description-sortdesc) section for a detailed explanation of sorting by description.
+Refer to the [Sorting food items by description](#521-sorting-food-items-by-description-sortdesc) section for a detailed explanation of sorting by description.
 
 ### 5.2.1. Sorting food items by description: `sortdesc`
 _(Contributed by Roland Yu)_
 
-The `sortdesc` command sorts the list of food items by description, allowing you to view your food items by description.
+The `sortdesc` command sorts the list of food items by description in an intuitive alphabetical order.
 
 **Format:** `sortdesc`
 
-* Sorting by description consists of 2 steps:
-    * Firstly, the list is sorted in lexicographical order and is case insensitive to the descriptions' first characters.
-    * Next, if the first characters of two food items' descriptions are the same letters (e.g. `apple` and `Acorn`), descriptions with upper case first characters will be ordered lower compared to descriptions with lower case first characters (i.e. `Acorn` will be ordered below `apple`).
 * Food items of the same description will be sorted by expiry date from oldest to newest.
 * Food items of the same description and same expiry date will be sorted by priority from high to low.
 
@@ -466,6 +471,14 @@ The `sortexpiry` command sorts the list of food items by expiry date from oldest
 _(Contributed by Roland Yu)_
 
 The `sortpriority` command sorts the list of food items by priority from high to low. With this, you can easily tell which food items have higher priorities.
+
+<div markdown="span" class="alert alert-warning">
+
+**:bulb: Tip:**<br>
+
+This feature allows you to order your food items according to your preference! Simply ensure that food items you want ordered higher in the food list are of higher priorities. 
+You may do so when adding food items using the [add](#511-adding-a-food-item-add) command, or editing the `priority` of food items using the [edit](#512-editing-a-food-item-edit) command.
+</div>
 
 **Format:** `sortpriority`
 
@@ -813,7 +826,6 @@ Term | Definition/Description
 **Expiring food item** | A food item is "expiring" if its expiry date is from today, to 7 days after today. For instance, if today is 7-11-2020, food items that expire from 7-11-2020 to 14-11-2020 are deemed as "expiring".
 **Food inventory** | A complete list of food items stored in Simply Kitchen.
 **GUI** | Graphical User Interface. It is a form of user and computer interaction that allows the user to interact via graphical icons such as buttons, scroll bars and windows. SimplyKitchen has a GUI for the user to interact with.
-**Lexicographical order** | The ordering used in dictionaries. 
 **Mainstream OS** | Windows, Linux, Unix, OS-X.
 **Terminal** | A CLI system for Mac OS which allows users to control their Operating System by entering commands.
 
