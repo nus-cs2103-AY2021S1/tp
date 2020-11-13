@@ -5,52 +5,67 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Interface ReadOnlyUserPrefs <<Interface>>
+
 Class Model
 Class ModelManager
+Class ObservableList
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package View {
+Interface View <<Interface>>
+Class View
 }
 
-Package Tag {
-Class Tag
+Package Tab {
+Interface Tab <<Interface>>
+Class Tab
 }
+
+Package Item {
+Class "{abstract}\nItem" as Item
+}
+
+Package Company\n {
+Class CompanyItem
+}
+
+Package Internship\n {
+Class InternshipItem
+}
+
+Package Application\n {
+Class ApplicationItem
+}
+
+Package Profile\n {
+Class ProfileItem
+}
+
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
+Model .left.> ReadOnlyUserPrefs
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager -left-> "1" UserPrefs
+ModelManager -right-> Tab
+ModelManager -right-> View
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+CompanyItem --|> Item
+ApplicationItem --|> Item
+ProfileItem --|> Item
+InternshipItem -right-|> Item
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"1" Person : filtered list
+ModelManager --> "*" CompanyItem : has filterable item list of >
+ModelManager --> "*" ApplicationItem : has filterable item list of >
+ModelManager --> "*" ProfileItem : has filterable item list of >
+CompanyItem --> "*" InternshipItem
+ApplicationItem --> "1" InternshipItem
 @enduml

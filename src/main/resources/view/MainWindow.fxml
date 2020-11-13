@@ -1,60 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ScrollPane?>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" title="InternHunter" minWidth="932" minHeight="743">
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@MainWindow.css"/>
       </stylesheets>
-
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+      <AnchorPane styleClass="main_background_style" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+          <GridPane styleClass="main_background_style" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <VBox GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="0" GridPane.rowSpan="5" styleClass="tabs_background_style">
+                <VBox fx:id="tabsPlaceholder" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" VBox.vgrow="ALWAYS" styleClass="tabs_container_style"/>
+              </VBox>
+              <ScrollPane fx:id="resultDisplayPlaceholder" AnchorPane.bottomAnchor="1.0" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="3" GridPane.valignment="CENTER" styleClass="result_display_style"/>
+              <VBox fillWidth="true" VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" AnchorPane.bottomAnchor="1.0" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+              <VBox maxHeight="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="4" styleClass="cards_container_style">
+                <VBox fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS" styleClass="cards_container_inner_style">
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                </VBox>
+              </VBox>
+              <VBox fx:id="displayPlaceholder" GridPane.columnIndex="5" GridPane.rowIndex="0" styleClass="display_container_style"/>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
     </Scene>
   </scene>
 </fx:root>

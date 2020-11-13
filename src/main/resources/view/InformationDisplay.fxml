@@ -1,0 +1,26 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Region?>
+<ScrollPane fx:id="scrollableInformationDisplay" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="information_display_container_scrollable">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox fx:id="informationDisplay" GridPane.columnIndex="0" styleClass="information_display">
+            <VBox fx:id="informationDisplayContainer"  styleClass="information_display_container">
+                <Label fx:id="informationTitle" styleClass="information_display_title" wrapText="true" textAlignment="CENTER">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <HBox fx:id="nameBar" styleClass="information_display_bar"/>
+            </VBox>
+            <VBox fx:id="information" styleClass="information_container"/>
+        </VBox>
+    </GridPane>
+</ScrollPane>

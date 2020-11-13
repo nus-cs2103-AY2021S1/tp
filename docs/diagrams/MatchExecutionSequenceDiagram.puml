@@ -1,0 +1,61 @@
+@startuml
+!include InternHunterStyle.puml
+
+box Logic LOGIC_COLOR_T1
+participant "m:MatchCommand" as MatchCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+autoactivate on
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+mainframe sd execute match command
+
+[-> MatchCommand : execute()
+
+MatchCommand -> Model : getProfileItemList()
+
+Model --> MatchCommand : profileItemList
+
+MatchCommand -> Model : getCompanyItemList()
+
+Model --> MatchCommand : companyItemList
+
+MatchCommand -> MatchCommand : getSkillList(profileItemList)
+
+return skillList
+
+MatchCommand -> MatchCommand : getInternshipList(companyItemList)
+
+return internshipList
+
+MatchCommand -> MatchCommand : getMatchingInternships(internshipList, skillList)
+
+return matchingInternships
+
+MatchCommand -> MatchCommand : getCommandResult(matchingInternships)
+
+alt matchingInternships is empty
+
+    create CommandResult
+    MatchCommand -> CommandResult : CommandResult(noMatch)
+    CommandResult --> MatchCommand : r
+
+else matchingInternships is not empty
+
+    create CommandResult
+    MatchCommand -> CommandResult : CommandResult(matchSuccess)
+    CommandResult --> MatchCommand : r
+    MatchCommand -> CommandResult : setMatchingInternships()
+    CommandResult --> MatchCommand
+
+end
+
+return r
+
+[<-- MatchCommand : r
+
+@enduml

@@ -1,0 +1,298 @@
+.text_field_style {
+  -fx-background-color: white;
+  -fx-text-fill: #638bfb;
+  -fx-font-family: Nunito;
+  -fx-min-height: 41;
+}
+
+.button_style {
+  -fx-background-color: white;
+  -fx-min-height: 41;
+  -fx-min-width: 76;
+}
+
+.main_background_style {
+  -fx-background-color: #f5F6f8;
+  -fx-min-width: 740;
+  -fx-pref-width: 740;
+  -fx-pref-height: 600;
+}
+
+.tabs_background_style {
+  -fx-background: #dfe8f8;
+  -fx-border-color: #dfe8f8;
+  -fx-min-width: 95;
+  -fx-max-width: 95;
+  -fx-translate-y: -2;
+}
+
+.tabs_container_style {
+  -fx-background-color: #dfe8f8;
+  -fx-pref-height: 600;
+  -fx-pref-width: 95;
+}
+
+.tab_button_style {
+  -fx-background-color: #dfe8f8;
+  -fx-pref-height: 100;
+  -fx-pref-width: 91;
+}
+
+.tab_line_style {
+  -fx-background-color: #384081;
+  -fx-pref-height: 1;
+  -fx-max-height: 1;
+  -fx-pref-width: 70;
+}
+
+.tab_bar_style {
+  -fx-max-height: 82;
+  -fx-max-width: 4;
+  -fx-min-width: 4;
+}
+
+.tab_container_style {
+  -fx-background-color: #dfe8f8;
+  -fx-spacing: 10;
+  -fx-pref-width: 91;
+  -fx-pref-height: 100;
+  -fx-alignment: center;
+}
+
+.tab_parameter_style {
+  -fx-min-height: 95;
+  -fx-max-height: 95;
+  -fx-pref-height: 95;
+  -fx-pref-width: 95;
+}
+
+.result_display_style {
+  -fx-background: white;
+  -fx-background-color: transparent;
+  -fx-fit-to-width: true;
+  -fx-translate-y: 1;
+  -fx-min-height: 80;
+  -fx-max-height: 80;
+  -fx-vbar-policy: never;
+  -fx-hbar-policy: never;
+  -fx-pannable: true;
+}
+
+.display_container_style {
+  -fx-translate-y: 16;
+  -fx-pref-width: 400;
+  -fx-translate-x: -5;
+  -fx-pref-height: 410;
+}
+
+.cards_container_style {
+  -fx-background: #f5f6f8;
+  -fx-background-color:transparent;
+}
+
+.cards_container_inner_style {
+  -fx-translate-x: -2;
+  -fx-pref-width: 350;
+  -fx-pref-height: 600;
+}
+
+
+.tab_label_style {
+  -fx-text-fill: #384081;
+  -fx-font-family: 'Nunito';
+  -fx-font-weight: bold
+}
+
+.text-field {
+  -fx-prompt-text-fill: gray;
+}
+
+.list-view {
+  -fx-background-insets: 0;
+  -fx-background-color: #f5f6f8;
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+  -fx-padding:0;
+}
+
+.list-cell {
+  -fx-label-padding: 0 0 0 0;
+  -fx-graphic-text-gap : 0px;
+  -fx-background-color: #f5f6f8;
+}
+
+.list-cell:filled {
+  -fx-background-color: #f5f6f8;
+}
+
+.cell_big_label {
+  -fx-font-family: "Nunito";
+  -fx-font-weight: bold;
+  -fx-font-size: 16px;
+  -fx-text-fill: #5a4deb;
+}
+
+.cell_small_label {
+  -fx-font-family: "Nunito";
+  -fx-font-weight: bold;
+  -fx-font-size: 13px;
+  -fx-text-fill: #363f80;
+}
+
+.cell_status_label {
+  -fx-font-family: "Nunito";
+  -fx-font-weight: bold;
+  -fx-font-size: 9px;
+  -fx-text-fill: white;
+}
+
+.cell_date_label {
+  -fx-font-family: "Nunito";
+  -fx-font-weight: bold;
+  -fx-font-size: 9px;
+  -fx-text-fill: #8092cc;
+  -fx-translate-y: 30;
+}
+
+.cell_status_box_label{
+  -fx-min-width: 60;
+  -fx-max-width: 60;
+  -fx-min-height: 20;
+  -fx-max-height: 20;
+  -fx-translate-y: 5;
+  -fx-alignment: center;
+}
+
+.cell_right_portion {
+  -fx-min-width: 100;
+  -fx-max-width: 100;
+  -fx-alignment: baseline-center;
+}
+
+.information_display {
+  -fx-min-height: 105;
+  -fx-border-color: transparent;
+  -fx-background-color: #fdfdfd;
+}
+
+.information_display_container_scrollable {
+  -fx-background-color: #fdfdfd;
+  -fx-pref-height: 510;
+  -fx-translate-x: -4;
+  -fx-border-color: transparent;
+  -fx-pannable: true;
+  -fx-vbar-policy: never;
+  -fx-hbar-policy: never;
+  -fx-fit-to-width: true;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.0, 0, 1)
+}
+
+.information_display_container_scrollable > .viewport {
+  -fx-background-color: transparent;
+}
+
+.information_container {
+  -fx-border-width: 1 0 0 0;
+  -fx-border-color: #6a9df7 transparent #6a9df7 transparent;
+  -fx-fill-width: true;
+  -fx-spacing: 5;
+  -fx-alignment: center;
+}
+
+.title_description_container {
+  -fx-border-width: 0 0 1 0;
+  -fx-border-color: #6a9df7 transparent #6a9df7 transparent;
+  -fx-min-height: 35;
+}
+
+.title_information {
+  -fx-alignment: top-center;
+}
+
+.description_information {
+  -fx-alignment: center;
+  -fx-min-width: 150;
+}
+
+.information_display_title {
+  -fx-text-fill: #6f67c6;
+  -fx-font-family: "Nunito";
+  -fx-font-size: 23px;
+  -fx-font-weight: bold;
+  -fx-pref-width: 300;
+  -fx-alignment: center;
+}
+
+.windowTextDisplay {
+  -fx-focus-color: transparent;
+  -fx-control-inner-background: "white";
+  -fx-font-family: "Droid Sans";
+  -fx-font-size: 20px;
+  -fx-text-fill: #6f67c6;
+}
+
+.information_display_bar {
+  -fx-pref-height: 1;
+  -fx-background-color: #dbe8ff;
+}
+
+.information_display_container {
+  -fx-fill-width: true;
+  -fx-spacing: 5;
+  -fx-alignment: center;
+  -fx-min-height: 90;
+}
+
+#cardPane {
+  -fx-background-color: #fdfdfd;
+  -fx-border-width: 0;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.0, 0, 1);
+}
+
+#commandTypeLabel {
+  -fx-font-size: 11px;
+  -fx-text-fill: #f70D1a;
+}
+
+#filterField, #personListPanel, #personWebpage {
+  -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+}
+
+#tags {
+  -fx-hgap: 7;
+  -fx-vgap: 3;
+}
+
+#tags .label {
+  -fx-text-fill: #004cf7;
+  -fx-background-color: #e0eafa;
+  -fx-font-family: Nunito;
+  -fx-font-weight: 600;
+  -fx-padding: 1 3 1 3;
+  -fx-border-radius: 2;
+  -fx-background-radius: 2;
+  -fx-font-size: 11;
+}
+
+.error {
+  -fx-text-fill: #ff3333 !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+  -fx-background: #383838; /* Empty cells will not have alternating colours */
+}
+
+.tag-selector {
+  -fx-border-width: 1;
+  -fx-border-color: white;
+  -fx-border-radius: 3;
+  -fx-background-radius: 3;
+}
+
+.tooltip-text {
+  -fx-text-fill: white;
+}

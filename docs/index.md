@@ -1,19 +1,39 @@
----
-layout: page
-title: AddressBook Level-3
----
+<h1 align="center">InternHunter</h1>
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+<p align="center">
+    <a href="https://github.com/AY2021S1-CS2103T-T15-4/tp/actions">
+        <img src="https://github.com/AY2021S1-CS2103T-T15-4/tp/workflows/Java%20CI/badge.svg" />
+    </a>
+    <a href="https://codecov.io/gh/AY2021S1-CS2103T-T15-4/tp">
+        <img src="https://codecov.io/gh/AY2021S1-CS2103T-T15-4/tp/branch/master/graph/badge.svg" />
+    </a>
+    <a href="https://www.codacy.com/gh/AY2021S1-CS2103T-T15-4/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2103T-T15-4/tp&amp;utm_campaign=Badge_Grade">
+        <img src="https://app.codacy.com/project/badge/Grade/2f97ccafd9c34a85a1a6e15617662159"/>
+    </a>
+</p>
 
-![Ui](images/Ui.png)
+<p align="center"><img src="images/Ui.png" width="100%"/></p>
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+<div>
+  <img src="images/readme/App.png" width="49.7%"/>
+  <img src="images/readme/Profile.png" width="49.7%"/>
+</div>
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+Welcome to **InternHunter**, a CLI-centric desktop application which aids university students in applying for tech
+internships. It lets users manage their own customizable collection of companies, internships, internship applications
+and their own user profile, so that they can keep track of internships that they are interested in.
 
+## Site Map
+- [User Guide](https://ay2021s1-cs2103t-t15-4.github.io/tp/UserGuide.html)
+- [Developer Guide](https://ay2021s1-cs2103t-t15-4.github.io/tp/DeveloperGuide.html)
+- [About Us](https://ay2021s1-cs2103t-t15-4.github.io/tp/AboutUs.html)
+ 
+## Acknowledgements
+- This project was extended from AddressBook-Level3 project created by [SE-EDU initiative](https://se-education.org).
+- Libraries Used: [JavaFX](https://github.com/openjdk/jfx), [Jackson](https://github.com/FasterXML/jackson),
+[JUnit5](https://github.com/junit-team/junit5)
 
-**Acknowledgements**
+### Images Used
+Credits goes to [Freepik](https://www.flaticon.com/authors/freepik), [itim201](https://www.flaticon.com/authors/itim2101), [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs)
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+## Licence : [MIT](https://github.com/AY2021S1-CS2103T-T15-4/tp/blob/master/LICENSE)

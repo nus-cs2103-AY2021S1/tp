@@ -1,0 +1,48 @@
+@startuml
+
+start
+:user enters switch command;
+:InternHunter parse the user input;
+if () then ([switch command, with item type])
+    if () then ([Command is "switch com"])
+        if () then ([tab is at company])
+            :Returns same
+            tab message;
+        else ([tab is not at company])
+            :Switch tab
+            to company;
+            :Returns
+            success message;
+        endif
+    elseif () then ([Command is "switch app"])
+        if () then ([tab is at application])
+            :Returns same
+            tab message;
+        else ([tab is not at application])
+            :Switch tab
+            to application;
+            :Returns
+            success message;
+        endif
+    elseif () then ([Command is "switch me"])
+        if () then ([tab is at profile])
+            :Returns same
+            tab message;
+        else ([tab is not at profile])
+            :Switch tab
+            to profile;
+            :Returns
+            success message;
+        endif
+    else ([Command is neither of the three commands])
+        :Returns
+        failure message;
+    endif
+else ([switch command, without any item type])
+:Returns
+failure message;
+endif
+:InternHunter app prints message to user;
+
+stop
+@enduml

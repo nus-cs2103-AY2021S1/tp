@@ -1,14 +1,39 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+<h1 align="center">InternHunter</h1>
 
-![Ui](docs/images/Ui.png)
+<p align="center">
+    <a href="https://github.com/AY2021S1-CS2103T-T15-4/tp/actions">
+        <img src="https://github.com/AY2021S1-CS2103T-T15-4/tp/workflows/Java%20CI/badge.svg" />
+    </a>
+    <a href="https://codecov.io/gh/AY2021S1-CS2103T-T15-4/tp">
+        <img src="https://codecov.io/gh/AY2021S1-CS2103T-T15-4/tp/branch/master/graph/badge.svg" />
+    </a>
+    <a href="https://www.codacy.com/gh/AY2021S1-CS2103T-T15-4/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2103T-T15-4/tp&amp;utm_campaign=Badge_Grade">
+        <img src="https://app.codacy.com/project/badge/Grade/2f97ccafd9c34a85a1a6e15617662159"/>
+    </a>
+</p>
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+<p align="center"><img src="docs/images/Ui.png" width="100%"/></p>
+
+<div>
+  <img src="docs/images/readme/App.png" width="49.7%"/>
+  <img src="docs/images/readme/Profile.png" width="49.7%"/>
+</div>
+
+Welcome to **InternHunter**, a CLI-centric desktop application which aids university students in applying for tech
+internships. It lets users manage their own customizable collection of companies, internships, internship applications
+and their own user profile, so that they can keep track of internships that they are interested in.
+
+## Site Map
+- [User Guide](https://ay2021s1-cs2103t-t15-4.github.io/tp/UserGuide.html)
+- [Developer Guide](https://ay2021s1-cs2103t-t15-4.github.io/tp/DeveloperGuide.html)
+- [About Us](https://ay2021s1-cs2103t-t15-4.github.io/tp/AboutUs.html)
+ 
+## Acknowledgements
+- This project was extended from AddressBook-Level3 project created by [SE-EDU initiative](https://se-education.org).
+- Libraries Used: [JavaFX](https://github.com/openjdk/jfx), [Jackson](https://github.com/FasterXML/jackson),
+[JUnit5](https://github.com/junit-team/junit5)
+
+### Images Used 
+Credits goes to [Freepik](https://www.flaticon.com/authors/freepik), [itim201](https://www.flaticon.com/authors/itim2101), [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs)
+
+## Licence : [MIT](https://github.com/AY2021S1-CS2103T-T15-4/tp/blob/master/LICENSE)

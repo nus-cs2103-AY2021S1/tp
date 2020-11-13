@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "title": "HTML",
+      "profileType": "SKILL",
+      "descriptors": [
+        "learn to create tables."
+      ]
+    },
+    {
+      "title": "Internship with Govtech",
+      "profileType": "EXPERIENCE",
+      "descriptors": [
+        "DevOps solution to speed up automated testing by 50%",
+        "Developed dashboard to keep track of performance metrics"
+      ]
+    },
+    {
+      "title": "Contribute to NUSMODS",
+      "profileType": "EXPERIENCE",
+      "descriptors": [
+        "Fix UI bugs in Modules View"
+      ]
+    },
+    {
+      "title": "Participation in MS OpenHack",
+      "profileType": "ACHIEVEMENT",
+      "descriptors": [
+        "Solve the Agriculture challenge with satellite imagery"
+      ]
+    }
+  ]
+}

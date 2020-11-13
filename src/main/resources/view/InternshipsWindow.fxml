@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<fx:root minHeight="450"
+         minWidth="450"
+         height="450"
+         width="450"
+         type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1">
+  <scene>
+    <Scene stylesheets="@MainWindow.css">
+      <VBox fx:id="cardList" VBox.vgrow="ALWAYS" styleClass="cards_container_inner_style">
+        <padding>
+          <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
+        <StackPane fx:id="matchingInternships" VBox.vgrow="ALWAYS"/>
+      </VBox>
+    </Scene>
+  </scene>
+</fx:root>

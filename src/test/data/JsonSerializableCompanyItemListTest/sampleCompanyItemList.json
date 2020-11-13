@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "companyName": "Google",
+      "phone": "61231234",
+      "email": "GoogleHires@google.com",
+      "address": "70 Pasir Panjang Rd, #03-71",
+      "industries": [
+        "Artificial Intelligence",
+        "Cloud Computing"
+      ],
+      "internships": []
+    },
+    {
+      "companyName": "Goldman Sachs",
+      "phone": "69792525",
+      "email": "GoldmanSachsHires@gms.com",
+      "address": "60 Anson Rd, #14-01 Mapletree Anson",
+      "industries": [
+        "Banking"
+      ],
+      "internships": [
+        {
+          "companyName": "Goldman Sachs",
+          "jobTitle": "Business Analyst",
+          "period": "Summer break",
+          "wage": "4000",
+          "requirements": ["GraphQL", "R"]
+        }
+      ]
+    },
+    {
+      "companyName": "Facebook",
+      "phone": "61112111",
+      "email": "FacebookHires@facebook.com",
+      "address": "9 Straits View, Marina One",
+      "industries": [
+        "Artificial Intelligence"
+      ],
+      "internships": [
+        {
+          "companyName": "Facebook",
+          "jobTitle": "Business Analyst",
+          "period": "Summer break",
+          "wage": "3000",
+          "requirements": []
+        },
+        {
+          "companyName": "Facebook",
+          "jobTitle": "Front End Engineer",
+          "period": "May - July",
+          "wage": "3500",
+          "requirements": []
+        },
+        {
+          "companyName": "Facebook",
+          "jobTitle": "Software Engineer",
+          "period": "Summer break",
+          "wage": "4000",
+          "requirements": ["HTML"]
+        }
+      ]
+    }
+  ]
+}

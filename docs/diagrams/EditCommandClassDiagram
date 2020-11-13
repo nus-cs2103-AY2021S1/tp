@@ -1,0 +1,43 @@
+@startuml
+!include InternHunterStyle.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam classAttributeFontColor white
+
+
+class EditProfileCommand {
+    {static} +MESSAGE_USAGE: String
+    -targetIndex: Index
+    +EditProfileCommand(targetIndex: Index, e: EditProfileItemDescriptor)
+    +execute(model: Model): CommandResult
+    +equals(other: Object): boolean
+    {static}-createEditedProfileItem(e: EditProfileItemDescriptor, profileItemToEdit: ProfileItem): ProfileItem
+}
+
+class "ABSTRACT\nEditCommand" as EditCommand {
+}
+
+class "ABSTRACT\nCommand" as Command {
+    +execute(model: Model): CommandResult ABSTRACT
+}
+
+class EditProfileItemDescriptor {
+    -title: Title
+    -profileItemCategory: ProfileItemCategory
+    -descriptors: Set<Descriptor>
+    +EditProfileItemDescriptor()
+    +EditProfileItemDescriptor(e: EditProfileItemDescriptor)
+    +equals(other: Object): boolean
+}
+
+class EditProfileCommandParser {
+    +parse(args: String): EditProfileCommand
+}
+
+EditCommand <|-- EditProfileCommand
+Command <|-- EditCommand
+EditProfileCommand <.. EditProfileCommandParser: creates <
+EditProfileItemDescriptor <-- EditProfileCommand
+EditProfileItemDescriptor <.. EditProfileCommandParser: <color:black> creates <
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Profile\n <<Rectangle>>{
+Class ProfileItem
+Class Title
+Class "<<enumeration>>\nProfileItemCategory" as ProfileItemCategory
+Class Descriptor
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> "*" ProfileItem
+
+ProfileItem *--> "1" Title
+ProfileItem *--> "1" ProfileItemCategory
+ProfileItem *--> "*" Descriptor
+
+Title -[hidden]right-> ProfileItemCategory
+ProfileItemCategory -[hidden]right-> Descriptor
+@enduml

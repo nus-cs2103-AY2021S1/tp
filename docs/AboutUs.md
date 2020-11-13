@@ -3,57 +3,59 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+AddressBook - Level 3 was developed by the [SE-EDU](https://se-education.org/docs/team.html) team. Our team was tasked
+to build on top of this project to morph it to something new! We chose to build a internship hunting application,
+InternHunter, to help university students like us!
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Keane Chan Jun Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/keanecjy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/keanecjy)]
+[[portfolio](team/keanecjy.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Logic
 
-### Jean Doe
+### Sean Lum
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seanjyjy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seanjyjy)]
+[[portfolio](team/seanjyjy.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Gan Wan Cheng Isaac
+
+<img src="images/orzymandias.png" width="200px">
+
+[[github](http://github.com/orzymandias)] [[portfolio](team/orzymandias.md)]
+
+* Role: Team lead
+* Responsibilities: Commons
+
+### Shawn Ng Yong Kwang
+
+<img src="images/shawn-nyk.png" width="200px">
+
+[[github](http://github.com/shawn-nyk)]
+[[portfolio](team/shawn-nyk.md)]
+
+* Role: Developer
+* Responsibilities: Model
+
+### Fidella Widjojo
+
+<img src="images/zoroarkdarkrai.png" width="200px">
+
+[[github](http://github.com/zoroarkdarkrai)]
+[[portfolio](team/zoroarkdarkrai.md)]
+
+* Role: Developer
+* Responsibilities: Storage

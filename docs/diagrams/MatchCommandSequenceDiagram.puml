@@ -1,0 +1,30 @@
+@startuml
+!include InternHunterStyle.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MainParser" as MainParser LOGIC_COLOR
+participant "m:MatchCommand" as MatchCommand LOGIC_COLOR
+end box
+
+autoactivate on
+
+[-> LogicManager : execute("match")
+
+LogicManager -> MainParser : parseCommand("match")
+
+create MatchCommand
+MainParser -> MatchCommand
+
+MatchCommand --> MainParser : m
+
+MainParser --> LogicManager : m
+
+LogicManager -> MatchCommand : execute()
+
+ref over MatchCommand : execute match command
+
+MatchCommand --> LogicManager : r
+
+[<--LogicManager : r
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Company\n <<Rectangle>>{
+Class CompanyItem
+Class Address
+Class Email
+Class CompanyName
+Class Phone
+Class Industry
+}
+
+Package Internship\n <<Rectangle>> {
+Class InternshipItem
+Class JobTitle
+Class Period
+Class Requirement
+Class Wage
+}
+
+Package Application\n <<Rectangle>>{
+Class ApplicationItem
+Class "<<enumeration>>\nStatus" as Status
+Class StatusDate
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> "*" CompanyItem
+
+CompanyItem *--> "1" CompanyName
+CompanyItem *--> "1" Phone
+CompanyItem *--> "1" Email
+CompanyItem *--> "1" Address
+CompanyItem *--> "*" Industry
+CompanyItem *-down-> "*" InternshipItem
+
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+Email -[hidden]right-> Industry
+Industry -[hidden]right-> CompanyName
+
+InternshipItem --> "1" CompanyName
+InternshipItem *--> "1" JobTitle
+InternshipItem *--> "1" Wage
+InternshipItem *--> "1" Period
+InternshipItem *--> "*" Requirement
+
+JobTitle -[hidden]right-> Wage
+Wage -[hidden]right-> Period
+Period -[hidden]right-> Requirement
+
+Class HiddenOutside2 #FFFFFF
+HiddenOutside2 --> "*" ApplicationItem
+
+ApplicationItem *--> "1" Status
+ApplicationItem *--> "1" StatusDate
+ApplicationItem -left-> "1" InternshipItem
+@enduml

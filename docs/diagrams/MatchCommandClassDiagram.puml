@@ -1,0 +1,32 @@
+@startuml
+!include InternHunterStyle.puml
+
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam defaultFontColor #DDDDDD
+
+class MatchCommand {
+    +execute(Model) : CommandResult
+    -getSkillList(List<ProfileItem>) : List<String>
+    -getInternshipList(List<CompanyItem>) : List<InternshipItem>
+    -getMatchingInternships(List<InternshipItem>, List<String>) : List<InternshipItem>
+    -getMatchingInternshipsCommandResult(List<InternshipItem>) : CommandResult
+}
+
+class "ABSTRACT\nCommand" as Command {
+    +execute(Model) : CommandResult ABSTRACT
+}
+
+class Model <<interface>> {
+    +getProfileItemList() : ObservableList<ProfileItem>
+    +getCompanyItemList() : ObservableList<CompanyItem>
+}
+
+Command <|-- MatchCommand
+Model <.. MatchCommand
+
+hide fields
+
+@enduml
