@@ -181,7 +181,7 @@ Parameter      | Description                  | Examples
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** How the commands will be executed depend on which mode you are currently in, 
-e.g. `delete 1` in meeting mode deletes the 1st meeting shown.). 
+e.g. `delete 1` in meeting mode deletes the 1st meeting shown. 
 
 </div>
 
@@ -253,9 +253,9 @@ Format: `add t/TITLE by/DEADLINE m/MILESTONE [c/CONTACTS] [d/DESCRIPTION]`
 Parameter      | Description                   | Example(s)
 ---------------|-------------------------------|--------------------------------
 `TITLE`        | The main heading of your deliverable.| `Create login screen`
-`DEADLINE`     | The due date time of your deliverable.<br><br>Details:<br>&emsp;&bull; It must not be earlier than the year 2019.<br>&emsp;&bull; It is in dd-MM-yyyy HH:mm format.| `30-12-2020 18:00`
-`MILESTONE`    | The milestone tagged to your deliverable.<br><br>Detail:<br/>It is a non-negative integer, or a period-separated string of non-negative integers. | <br>&bull;`2`<br>&bull;`14.2.1`
-`CONTACTS`     | The contact(s) involved in seeing through your deliverable.<br><br>Detail: <br/>It is a name, or a comma-separated string of names. | <br>&bull;`conan`<br>&bull;`Zachary, drew, Paul Smith`
+`DEADLINE`     | The due date time of your deliverable.<br><br>It must not be earlier than the year 2019.<br><br>It is in dd-MM-yyyy HH:mm format.|`30-12-2020 18:00`
+`MILESTONE`    | The milestone tagged to your deliverable.<br><br>It is a non-negative integer, or a period-separated string of non-negative integers. |`2`<br><br>`14.2.1`
+`CONTACTS`     | The contact(s) involved in seeing through your deliverable.<br><br>It is a name, or a comma-separated string of names. |`conan`<br><br>`Zachary, drew, Paul Smith`
 `DESCRIPTION`  | Any additional information about your deliverable.|`Remember to include email and password fields`
 
 <div markdown="block" class="alert alert-info">
@@ -279,7 +279,7 @@ Format: `edit INDEX [t/TITLE] [by/DEADLINE] [m/MILESTONE] [c/CONTACTS] [d/DESCRI
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`        | The index number of the deliverable you wish to edit in your displayed deliverable list. <br><br>Detail:<br>It must be a positive integer. |`1`: Represents the 1st deliverable in your list
+`INDEX`        | The index number of the deliverable you wish to edit in your displayed deliverable list.<br><br>It must be a positive integer. |`1`: Represents the 1st deliverable in your list
 
 <div markdown="block" class="alert alert-info">
 
@@ -305,7 +305,7 @@ Format: `done INDEX`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`        | The index number of the deliverable you wish to mark as completed in your displayed deliverable list. <br><br>Detail: <br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
+`INDEX`        | The index number of the deliverable you wish to mark as completed in your displayed deliverable list. <br><br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
 
 <div markdown="block" class="alert alert-info">
 
@@ -324,7 +324,7 @@ Format: `undone INDEX`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`        | The index number of the deliverable you wish to mark as on-going in your displayed deliverable list. <br><br>Detail:<br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
+`INDEX`        | The index number of the deliverable you wish to mark as on-going in your displayed deliverable list. <br><br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
 
 <div markdown="block" class="alert alert-info">
 
@@ -343,7 +343,7 @@ Format: `view INDEX`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`        | The index number of the deliverable you wish to view in your displayed deliverable list. <br><br>Detail:<br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
+`INDEX`        | The index number of the deliverable you wish to view in your displayed deliverable list. <br><br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
 
 Example:
 * `view 2` views the 2nd deliverable in your displayed deliverable list.
@@ -363,7 +363,7 @@ Format: `find KEYWORDS`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`KEYWORDS`     | One or more keywords used to search for the deliverables you need. <br><br>Details:<br>&emsp;&bull; Searches based on title and description.<br>&emsp;&bull; Searches are case-insensitive, <br>&emsp;&nbsp;e.g. `homepage` will match `Homepage`.| `Homepage Navigation`: Will match phrases such as `Complete homepage` and `Increase size of Navigation Bar`
+`KEYWORDS`     |One or more keywords used to search for the deliverables you need. <br><br>Searches based on title and description.<br><br>Searches are case-insensitive, e.g. `homepage` will match `Homepage`.|`Homepage Navigation`: Will match phrases such as `Complete homepage` and `Increase size of Navigation Bar`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 
@@ -389,7 +389,7 @@ Format: `delete INDEX`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`     | The index number of the deliverable you wish to delete in your displayed deliverable list. <br><br>Detail:<br>It must be a positive integer. | `2`: Represents the 2nd deliverable in your list
+`INDEX`     | The index number of the deliverable you wish to delete in your displayed deliverable list. <br><br>It must be a positive integer. | `2`: Represents the 2nd deliverable in your list
 
 <div markdown="block" class="alert alert-info">
 
@@ -437,9 +437,9 @@ Format: `add t/TITLE from/FROM to/TO [c/CONTACTS] [l/LOCATION] [d/DESCRIPTION]`
 Parameter      | Description                   | Example(s) 
 ---------------|-------------------------------|--------------------------------
 `TITLE`        | The main heading of your meeting.| `Daily stand-up meeting`
-`FROM`         | The start date and time of your meeting.<br><br>Details:<br>&emsp;&bull; It must not be earlier than the year 2019.<br>&emsp;&bull; It is in dd-MM-yyyy HH:mm format.| `30-12-2020 18:00` |
-`TO`           | The end time of your meeting.<br><br>Detail:<br/>It is in HH:mm format. |`20:OO`
-`CONTACTS`     | The contact(s) involved in your meeting.<br><br>Detail: <br/>It is a name, or a comma-separated string of names. | <br>&bull;`Louisa Kennedy`<br>&bull;`Nancy, Abraham, Sarah`
+`FROM`         | The start date and time of your meeting.<br><br>It must not be earlier than the year 2019.<br><br>It is in dd-MM-yyyy HH:mm format.| `30-12-2020 18:00` |
+`TO`           | The end time of your meeting.<br><br>It is in HH:mm format. |`20:OO`
+`CONTACTS`     | The contact(s) involved in your meeting.<br><br>It is a name, or a comma-separated string of names. | `Louisa Kennedy`<br><br>`Nancy, Abraham, Sarah`
 `LOCATION`     | The location of your meeting. | `Meeting room 1B`
 `DESCRIPTION`  | Any additional information about your meeting.|`Remember to plan the agenda before the meeting`
 
@@ -465,7 +465,7 @@ Format: `edit INDEX [t/TITLE] [from/FROM] [to/TO] [c/CONTACTS] [l/LOCATION] [d/D
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`        | The index number of the meeting you wish to edit in your displayed meeting list. <br><br>Detail:<br>It must be a positive integer. |`1`: Represents the 1st meeting in your list
+`INDEX`        | The index number of the meeting you wish to edit in your displayed meeting list. <br><br>It must be a positive integer. |`1`: Represents the 1st meeting in your list
 
 <div markdown="block" class="alert alert-info">
 
@@ -491,7 +491,7 @@ Format: `view INDEX`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`        | The index number of the meeting you wish to view in your displayed meeting list. <br><br>Detail:<br>It must be a positive integer. |`2`: Represents the 2nd meeting in your list
+`INDEX`        | The index number of the meeting you wish to view in your displayed meeting list. <br><br>It must be a positive integer. |`2`: Represents the 2nd meeting in your list
 
 Example:
 * `view 2` views the 2nd meeting in your meeting list.
@@ -511,7 +511,7 @@ Format: `find KEYWORDS`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`KEYWORDS`     | One or more keywords used to search for the meetings you need. <br><br>Details:<br>&emsp;&bull; Searches based on title and description.<br>&emsp;&bull; Searches are case-insensitive, <br>&emsp;&nbsp;e.g. `discussion` will match `Discussion`.| `Consult mentor`: Will match phrases such as `Consult advisor` and `Pitch to mentor`
+`KEYWORDS`     | One or more keywords used to search for the meetings you need. <br><br>Searches based on title and description.<br><br>Searches are case-insensitive, e.g. `discussion` will match `Discussion`.| `Consult mentor`: Will match phrases such as `Consult advisor` and `Pitch to mentor`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 
@@ -537,7 +537,7 @@ Format: `delete INDEX`
 
 Parameter      | Description                   | Example 
 ---------------|-------------------------------|--------------------------------
-`INDEX`     | The index number of the meeting you wish to delete in your displayed meeting list. <br><br>Detail:<br>It must be a positive integer. | `2`: Represents the 2nd meeting in your list
+`INDEX`     | The index number of the meeting you wish to delete in your displayed meeting list. <br><br>It must be a positive integer. | `2`: Represents the 2nd meeting in your list
 
 <div markdown="block" class="alert alert-info">
 
