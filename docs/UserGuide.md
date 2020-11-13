@@ -55,7 +55,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Welcome to Productiv
+## 1. Welcome to Productiv  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Are you a product manager looking for a simple way to organise your many product development tasks?
 Or ever found yourself in dire need to conveniently reference your various product-related information? 
@@ -72,22 +72,24 @@ Read on, if you are keen to know more, and we'll take you through this journey t
 
 <div style="page-break-after: always;"></div>
 
-## 2. Reading the user guide
+## 2. Reading the user guide  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 In this user guide, you will see several icons and text styles that will aid you in your Productiv journey.
 View the table below to understand their meaning and usage.
 
 Icon/Text Style | Description                    
-----------------|-------------------------------------------------
+:--------------:|-------------------------------------------------
 [hyperlink]()   | Clicking it takes you to the relevant section in this guide (except [here]() hyperlinks, which takes you to other sites).
 `Markdown`      | Represents a command/part of a command.
+[<img src="images/productivDuck.png" style="width:30px;height:30px;" alt="duck">](#table-of-contents)     | Clicking it takes you back to the Table of Contents.
+<div markdown="block" class="alert alert-success">:information_source:</div> | Represents a note for your information.
 (some icon)     | Clicking it takes you back to the Table of Contents.
 <div markdown="block" class="alert alert-info">:information_source:</div> | Represents a note for your information.
 <div markdown="span" class="alert alert-primary">:bulb:</div> | Represents a tip for your benefit.
 
 Other than reading, you may also watch the demo video of Productiv [here](https://tiny.cc/Productiv-Demo-Video) to supplement this user guide.
 
-## 3. Getting started
+## 3. Getting started  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Ready to be productive? Follow the steps here to _get quacking with Productiv_:
 
@@ -99,7 +101,7 @@ Ready to be productive? Follow the steps here to _get quacking with Productiv_:
 
 1. Double-click the file to launch Productiv. 
 
-## 4. Features
+## 4. Features  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Now that you have Productiv up and running, let's get familiarised with the features of Productiv.
 
@@ -116,6 +118,7 @@ If you have launched Productiv, you should see a window similar to the figure be
 <img src="images/UiLabel.png" alt="Ui Label">
 <i>Figure 1: Layout of Productiv</i>
 </p>
+<br>
 
 Here is the main list of Productiv's layout components and what you can do with them:
    * **Navigation bar**: Navigate to other modes. 
@@ -124,7 +127,7 @@ Here is the main list of Productiv's layout components and what you can do with 
    * **Left panel**: View your product's overall completion percentage or a list of your deliverables/meetings/contacts (depending on your current mode)
    * **Right panel**: View your product management schedule or an expanded view of your selected deliverable/meeting/contact (depending on your current mode)
 
-   <div markdown="block" class="alert alert-info">
+   <div markdown="block" class="alert alert-success">
    **:information_source: GUI components:**<br>
    For modes other than the dashboard, you can see the respective data file path at the bottom of the application. 
    </div>
@@ -141,7 +144,7 @@ Here is a sequence of example commands that you can try:
 
 And it's as simple as that! But of course, there's more to just these three commands.
 
-## 5. Commands
+## 5. Commands  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 This section provides a list of all the available commands you can use to improve your productivity.
 Do take your time to explore each one of them so that you can fully utilize the app.
@@ -160,13 +163,13 @@ For example, here's the breakdown of the command `add t/TITLE by/DEADLINE m/MILE
 * Prefixes - `t/`, `by/`, `m/`, `c/`, `d/`
 * Parameters - `TITLE`, `DEADLINE`, `MILESTONE`, `CONTACTS`, `DESCRIPTION`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** Prefix-parameter pairs in square brackets are optional, i.e. `[c/CONTACTS]` and `[d/DESCRIPTION]` need not be present in the command.
 
 </div>
 
-### 3.1 General
+### 3.1 General   [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 #### 3.1.1 Switching modes: `switch`
 
@@ -178,7 +181,7 @@ Parameter      | Description                  |
 ---------------|------------------------------|
 `MODE`         | The mode that you wish to navigate to. <br><br> It can be only be one of the following:  <br>&emsp;&bull;`db` (dashboard) <br> &emsp;&bull;`dv` (deliverable)<br> &emsp;&bull;`m` (meeting) <br> &emsp;&bull;`c` (contact) | The following are the only valid inputs:<br>&emsp;&bull;`db` (Dashboard)<br> &emsp;&bull;`dv` (Deliverable)<br> &emsp;&bull;`m` (Meeting)<br> &emsp;&bull;`c` (Contact)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** How the commands will be executed depend on which mode you are currently in, 
 e.g. `delete 1` in meeting mode deletes the 1st meeting shown. 
@@ -187,14 +190,17 @@ e.g. `delete 1` in meeting mode deletes the 1st meeting shown.
 
 #### 3.1.2 Viewing help: `help`
 
-Shows a message directing you to this User Guide.
+Shows a message directing you to this User Guide.<br>
 
+<div align = "left">
 <p align="center">
    
-<img src="images/helpMessage.JPG" alt="Help message">
+<img src="images/helpMessage.JPG" alt="Help message"><br>
 <i>Figure 3: Help</i>
    
 </p>
+</div>
+<br>
 
 Format: `help`
 
@@ -210,7 +216,7 @@ Productiv automatically saves any changes that you made, to your computer's hard
 Hence, you can focus on managing your product without fearing any unsaved changes.
 
 
-### 3.2 Dashboard
+### 3.2 Dashboard  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 The dashboard gives you an overview of information related to your product.
 The dashboard is the default landing page of Productiv.
@@ -221,14 +227,14 @@ The Overall Completion Percentage (OCP) will be displayed in the left panel. The
 Your schedule will be displayed in the right panel. The schedule contains all your deliverables and meetings, chronologically sorted.
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** There are no commands specific to the dashboard. 
 You can only use commands found under [General](#31-general). 
   
 </div>
 
-### 3.3 Deliverable
+### 3.3 Deliverable  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
    
 <p align="center">
   
@@ -236,8 +242,9 @@ You can only use commands found under [General](#31-general).
 <i>Figure 4: Initial display of a deliverable list</i>
   
 </p>
+<br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** You must be in the deliverable mode to execute the following commands. 
 Refer to [switch](#311-switching-modes---switch-) for more information.
@@ -281,7 +288,7 @@ Parameter      | Description                   | Example
 ---------------|-------------------------------|--------------------------------
 `INDEX`        | The index number of the deliverable you wish to edit in your displayed deliverable list.<br><br>It must be a positive integer. |`1`: Represents the 1st deliverable in your list
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Notes:**
 
@@ -307,7 +314,7 @@ Parameter      | Description                   | Example
 ---------------|-------------------------------|--------------------------------
 `INDEX`        | The index number of the deliverable you wish to mark as completed in your displayed deliverable list. <br><br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s OCP and Schedule will be updated accordingly.
 
@@ -326,11 +333,12 @@ Parameter      | Description                   | Example
 ---------------|-------------------------------|--------------------------------
 `INDEX`        | The index number of the deliverable you wish to mark as on-going in your displayed deliverable list. <br><br>It must be a positive integer. |`2`: Represents the 2nd deliverable in your list
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s OCP and Schedule will be updated accordingly.
 
 </div>
+
 
 Example:
 * `undone 1` marks the 1st deliverable in your displayed deliverable list as on-going.
@@ -391,7 +399,7 @@ Parameter      | Description                   | Example
 ---------------|-------------------------------|--------------------------------
 `INDEX`     | The index number of the deliverable you wish to delete in your displayed deliverable list. <br><br>It must be a positive integer. | `2`: Represents the 2nd deliverable in your list
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s OCP and Schedule will be updated accordingly.
 
@@ -406,13 +414,13 @@ Clears all deliverables from your deliverable list, if any.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s OCP and Schedule will be updated accordingly.
 
 </div>
 
-### 3.4 Meeting
+### 3.4 Meeting  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 <p align="center">
  
@@ -420,8 +428,9 @@ Format: `clear`
 <i>Figure 6: Initial display of a meeting list</i>
  
 </p>
+<br>
    
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** You must be in the meeting mode to execute the following commands. 
 Refer to [switch](#311-switching-modes---switch-) for more information.
@@ -443,7 +452,7 @@ Parameter      | Description                   | Example(s)
 `LOCATION`     | The location of your meeting. | `Meeting room 1B`
 `DESCRIPTION`  | Any additional information about your meeting.|`Remember to plan the agenda before the meeting`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s Schedule will be updated accordingly.
 
@@ -467,7 +476,7 @@ Parameter      | Description                   | Example
 ---------------|-------------------------------|--------------------------------
 `INDEX`        | The index number of the meeting you wish to edit in your displayed meeting list. <br><br>It must be a positive integer. |`1`: Represents the 1st meeting in your list
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Notes:**
 
@@ -502,6 +511,7 @@ Example:
 <i>Figure 7: Viewing a meeting</i>
  
 </p>
+<br>
 
 #### 3.4.4 Finding meetings: `find`
 
@@ -539,7 +549,7 @@ Parameter      | Description                   | Example
 ---------------|-------------------------------|--------------------------------
 `INDEX`     | The index number of the meeting you wish to delete in your displayed meeting list. <br><br>It must be a positive integer. | `2`: Represents the 2nd meeting in your list
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s Schedule will be updated accordingly.
 
@@ -554,13 +564,13 @@ Clears all meetings from your meeting list, if any.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** The dashboard’s Schedule will be updated accordingly.
 
 </div>
 
-### 3.5 Contact
+### 3.5 Contact  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 <p align="center">
  
@@ -568,8 +578,9 @@ Format: `clear`
 <i>Figure 8: Initial display of a contact list</i>
  
 </p>
+<br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:** You must be in the contact mode to execute the following commands. 
 Refer to [switch](#311-switching-modes---switch-) for more information.
@@ -613,7 +624,7 @@ Parameter      | Description                   | Example
 `INDEX`        | The index number of the contact you wish to edit in your displayed deliverable list. <br><br>Details:<br>It must be a positive integer. |`1`: Represents the 1st contact in your list
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 **:information_source: Note:**
 
@@ -647,6 +658,7 @@ Example:
 <i>Figure 9: Viewing a contact</i>
  
 </p>
+<br>
 
 #### 3.5.4 Finding contacts: `find`
 
@@ -693,13 +705,13 @@ Clears all contacts from your contact list, if any.
 
 Format: `clear`
 
-## 6. Final remarks
+## 6. Final remarks  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 (...)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. FAQ
+## 7. FAQ  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 **Q**: Is Productiv available on both Windows and Mac?<br>
 **A**: Absolutely! Just ensure that you have Java `11` installed on your computer and it is your default Java version.
@@ -715,7 +727,7 @@ Format: `clear`
 
 ---------------------------------------------------------------------------------------------------------------------
 
-## 8.Command summary
+## 8.Command summary  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 ### 8.1 General 
 
@@ -765,7 +777,7 @@ Clear          | `clear`  | `clear`
 
 ---------------------------------------------------------------------------------------------------------------------
 
-## 9. Glossary
+## 9. Glossary  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Term                | Description
 --------------------------------|------------------------------------------------------------------------------------------------|
