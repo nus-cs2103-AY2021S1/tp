@@ -38,11 +38,58 @@ If you can type fast, Bagel will be sure to aid you in managing your flashcards 
     * `sort r/atitle`: Sorts the flashcard list according to title, in ascending order.
     * `exit` : Exits the app.<br>
 
-Refer to the [Features](#features) below for details of each command.
+Read on to find out more about Bagel with us!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Preface (How should I navigate this entire document?)
+
+### Structure
+
+Our team at Bagel has structured this User Guide to improve your reading experience and aid you in locating the information you are searching for efficiently. 
+Below, we will provide a few useful tips on how to optimally read this guide.
+We will then proceed to elaborate on the features of Bagels with concrete examples that you can try out to get used to our interface!
+
+### How can you optimally read this guide?
+
+Dread that you'll not be familiar with command-line interfaces or conventional technical terms? Afraid to feel lost amongst complicated technical jargon?
+Here, we will guide you with through technical terms, symbols and syntax that are used throughout this guide. You may want to
+take a brief look through this section before moving to the next section!
+
+#### Understanding our GUI
+
+The figure below is the GUI of **Bagel** with some annotations that we would like to guide you through:
+
+![AnnotatedUI](images/GUIGuidance.png) <br>
+
+Here is a table to better understand how to put our GUI into best use:
+
+| GUI Feature |  What will it do? / What is this for? |
+|----------|-------------|
+| User Input Command Box  | This is where you can enter the relevant Bagel commands for it to execute. |
+| Command Feedback Box | This box will provide you with feedback accordingly, (i.e. if your command has been executed). It is especially useful if your command fails to execute as it will provide you with the source of error! |
+| Buttons for Sets | These buttons will appear and disappear automatically when you add a new set or delete all your flashcards in an existing set. This is a feature for point-and-click navigation, just in case you simply opened Bagel to revise and not make any changes! |
+| Flashcard Display List | This list will display your selected list of flashcards (i.e. filtered or not). It will even show you a specific flashcard with all its details when you want it to (i.e. View Command). |
+
+#### Bagel's Symbols and Syntax
+
+The table below will guide you through the general symbols and specific technical terms used in our guide:
+
+| Syntax |  Bagel's Definition |
+|----------|-------------|
+| <div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a tip. |
+| <div markdown="block" class="alert alert-danger"> :warning: </div> | A warning sign indicates that the following text is important. |
+| Command Word/Command | The specific word that is a command in Bagel which will determines an action that Bagel will perform for you. |
+| Parameter | The words, phrases or values following each prefix given to a command to execute your specified action.|
+| Prefix | The characters after every command word and at the start of a parameter. E.g. "/t" or "/d". |
+
+**Here is an example to help you understand the table better:** <br>
+`add t/TITLE d/DESCRIPTION s/SET [l/LINK] [tag/TAG]…`
+
+* Command Word/Command: `add` <br>
+* Parameters: `TITLE`, `DESCRIPTION`, `SET`, `LINK`, `TAG` <br>
+* Prefixes: `t/`, `d/`, `s/`, `l/`, `t/`  <br>
+
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
@@ -69,6 +116,11 @@ only the last parameter supplied will be considered.
   `title 2`, as only `t/title 2` will be considered.
 </div>
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
+
 ### Adding a flashcard: `add`
 
 Want to make a new flashcard? This command will add a new flashcard to your current list of flashcards, into the set that you have specified.
@@ -89,17 +141,31 @@ Flashcards with different titles but same descriptions can still be added.
 </div>
 
 Examples:
-* `add t/p-value d/If p value < 0.05, xxxx; Else, xxxx s/1` adds a new flashcard with the title `p-value`,
-description `If p value < 0.05, xxxx; Else, xxxx` into set `1`.
-* `add t/Data Analysis d/Definition of data analysis: xxxxxx s/2` adds a new flashcard with the title `Data Analysis`,
-description `Definition of data analysis: xxxxxx` into set `2`.
+* `add t/p-value d/If p value < 0.05, xxxx; Else, xxxx s/1` adds a new flashcard with details:
+  * Title: `p-value`
+  * Description: `If p value < 0.05, xxxx; Else, xxxx`
+  * Set: `1`
+
+* `add t/Data Analysis d/Definition of data analysis: xxxxxx s/2` adds a new flashcard with details:
+  * Title: `Data Analysis`
+  * Description: `Definition of data analysis: xxxxxx`
+  * Set: `2`
+
 * `add t/Odds Ratio(OR) and Risk Ratio(RR) d/R: odds(exp)/odds(unexp), RR: risk(exp)/risk(unexp) s/3 tag/OddsRatio`
-adds a new flashcard with the title `Odds Ratio(OR) and Risk Ratio(RR)`, description `R: odds(exp)/odds(unexp), RR: risk(exp)/risk(unexp)`
-with the tag `OddsRatio` into set `3`.
+adds a new flashcard with the details:
+  * Title: `Odds Ratio(OR) and Risk Ratio(RR)`
+  * Description: `R: odds(exp)/odds(unexp), RR: risk(exp)/risk(unexp)`
+  * Tag(s): `OddsRatio`
+  * Set: `3`
+
 * `add t/Types of Observational Studies d/Prospective, Retrospective, Cross-sectional
 l/https://en.wikipedia.org/wiki/Observational_study tag/Types tag/ObservationalStudies s/2` adds a new flashcard with
-the title `Types of Observational Studies`, description `Prospective, Retrospective, Cross-sectional`,
-link `https://en.wikipedia.org/wiki/Observational_study` with the tags `Types` and `ObservationalStudies` into set `2`.
+the details:
+  * Title: `Types of Observational Studies`
+  * Description: `Prospective, Retrospective, Cross-sectional`
+  * Link: `https://en.wikipedia.org/wiki/Observational_study`
+  * Tag(s): `Types` and `ObservationalStudies` 
+  * Set: `2`
 
 ### Deleting a flashcard: `delete`
 
@@ -112,11 +178,14 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 * If only one flashcard is shown, its `INDEX` is `1`.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-danger">
 **:information_source: Warning:**<br>
 Once you delete a flashcard, there is no way to undo this and retrieve it! Make sure that you have a copy of your file somewhere else, or
 that you would like to delete this specific flashcard!
 </div>
+
+Example:
+* `delete 1` will permanently delete/remove your flashcard that is set at index `1`
 
 <div style="page-break-after: always;"></div>
 
@@ -245,7 +314,7 @@ Examples:
 * `sort r/tag` returns the list of flashcards, sorted according to each flashcard's first tag.
 * `sort r/atitle` returns the list of flashcards, sorted in ascending alphabetical order.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-danger">
 **:information_source: Warning:**<br>
 This sorts all flashcards in Bagel! If you wish to view a set that is differently sorted
 from another set, `sort r/REQUIREMENT` again for that set.
@@ -267,15 +336,25 @@ Want to forget everything? This command clears all flashcard entries from Bagel.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-danger">
+**:information_source: Warning:**<br>
+Once you use this clear command, there is no way to undo this and retrieve all your flashcards! Make sure that you have a copy of your file somewhere else, or
+that you would like to delete all your current flashcards!
+</div>
 
 ### View help: `help`
 
 Need some help? This command shows a message for link to available commands that you can use, with format and examples (i.e. User Guide).
 
+The help window prompt should look something like this:
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Tip:**<br>
+You can also enter "F1" on your keyboard to access this help window!
+</div>
 
 ### Exiting the program: `exit`
 
@@ -292,7 +371,7 @@ Format: `exit`
 **Q**: Where is the data from Bagel stored?<br>
 **A**: By default, a data folder will be created in the same folder as the `bagel.jar` file.
 After running the app for the first time, you can change the file path by editing `preferences.json`
-in the same folder directly.
+in the same folder directly. Since your data is stored locally in your hard disk, you will not have to worry about any data theft.
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install Bagel in the other computer and copy-and-paste the data folder into the same folder
