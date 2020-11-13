@@ -135,7 +135,7 @@ Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s
     specifying any tags after it.
 
 Example:
-* `edit 2 d/easy t/chapter3` edits the 2nd flashcard in the glossary to have the `Difficulty` EASY and the `Tag` "chapter3".
+* `edit 2 d/easy t/chapter3` edits the second flashcard in the glossary to have the `Difficulty` EASY and the `Tag` "chapter3".
 
 After entering this command, your app should look like this:
 
@@ -152,7 +152,7 @@ Format: `delete <INDEX>`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `delete 2` deletes the 2nd flashcard in the glossary.
+* `delete 2` deletes the second flashcard in the glossary.
  
 After entering this command, your app should look like this:
 
