@@ -272,8 +272,6 @@ The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `C
 Clicking on each tab brings up the information list for the corresponding field. For instance, clicking on the
 `Student` tab will bring up the list of `Students` from your class.  
 
-`Todo`, `Event` and `Deadline` are all variants of `Task`.
-
 Upon the execution of each command, the tab is switched automatically for you.
 
 <br>
@@ -369,9 +367,11 @@ This section includes some general notes on Jarvis.
 <div style="page-break-after: always;"></div>
 
 #### 6.1.3 Notes about Tasks
+(Jun Jie)
+
+   * `Todo` is a `Task` without a completion time, `Event` is a `Task` that is required to be completed at a particular point of time and `Deadline is a `Task that is required to be completed by a prticular point of time. Hence, `Todo`, `Event` and `Deadline` are all variants of `Task`.
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
-   that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as
-   <br>eg. D1, E5, T21
+   that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as eg. D1, E5, T21
    * The first alphabet "T", "E" and "D" refers to `Todo`, `Event`, and `Deadline` respectively, and the number followed
    after the alphabet is the index of the `Task` you created with respect to all the `Tasks` you ever created.
 
@@ -391,6 +391,7 @@ This section includes some general notes on Jarvis.
     the count.
 
 ### 6.2 Viewing help : `help`
+(Jun Jie)
 
 Shows a message explaining how to access the help page.
 
@@ -467,8 +468,9 @@ will auto switch to the `Mastery Check` tab, and the new `Mastery Check` will be
 </div>
 
 #### 6.3.3 Adding `Todos` : `-t`
+(Jun Jie)
 
-Adds your personal `Todo` with a `description`.
+Adds your personal [`Todo`](#613-notes-about-tasks) with a `description`.
 
 <br>**Format: `add -t DESCRIPTION`**
 
@@ -484,8 +486,9 @@ Adds your personal `Todo` with a `description`.
 <div style="page-break-after: always;"></div>
 
 #### 6.3.4 Adding `Events` : `-e`
+(Jun Jie)
 
-Adds your personal `Event` with a `description`, to attend at a specific date and time.
+Adds your personal [`Event`](#613-notes-about-tasks) with a `description`, to attend at a specific date and time.
 
 <br>**Format: `add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
@@ -500,8 +503,9 @@ Adds your personal `Event` with a `description`, to attend at a specific date an
 </div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
+(Jun Jie)
 
-Adds your personal `Deadline` with a `description`, to complete by a specific date and time.
+Adds your personal [`Deadline`](#613-notes-about-tasks) with a `description`, to complete by a specific date and time.
 
 <br>**Format: `add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
@@ -626,12 +630,16 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 </div>
 
 #### 6.5.3 Deleting `Tasks` : `-t`
+(Jun Jie)
 
-Deletes a `Task` based on the `TASK_ID` you specify.
+Deletes a [`Task`](#613-notes-about-tasks) based on the `TASK_ID` you specify.
 
 <br>**Format: `delete -t TASK_ID`**
 
-![DeleteTask](images/userguide/deleteTask.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/deleteTask.png" width="115%" /> <br />
+Figure 6.5.3a: <i>Deleting a Task</i>
+</div>
 
 <br>✏️ Examples:
 * `delete -t T3`
@@ -811,29 +819,33 @@ Shows all upcoming `Mastery Check` sessions.
 </div>
 
 #### 6.6.13 Viewing all `Tasks` : `-t`
+(Jun Jie)
 
-Shows the list of all your current `Tasks`.
-This includes `Todo`, `Event` and `Deadline`, which are all considered `Tasks`.
+Shows the list of all your current [`Tasks`](#613-notes-about-tasks).
+This command includes viewing `Todos`, `Events` and `Deadlines`, which are all considered `Tasks`.
 
 <br>**Format: `view -t`**
 
 #### 6.6.14 Viewing all `Todos` : `-tt`
+(Jun Jie)
 
-Shows the list of all your current `Todos`.
+Shows the list of all your current [`Todos`](#613-notes-about-tasks).
 
 <br>**Format: `view -tt`**
 
 <div style="page-break-after: always;"></div>
 
 #### 6.6.15 Viewing all `Events` : `-te`
+(Jun Jie)
 
-Shows the list of all your current `Events`.
+Shows the list of all your current [`Events`](#613-notes-about-tasks).
 
 <br>**Format: `view -te`**
 
 #### 6.6.16 Viewing all `Deadlines` : `-td`
+(Jun Jie)
 
-Shows the list of all your current `Deadlines`.
+Shows the list of all your current [`Deadlines`](#613-notes-about-tasks).
 
 <br>**Format: `view -td`**
 
