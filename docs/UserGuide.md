@@ -13,15 +13,15 @@ can get your German revision done quickly and effectively.
 1. [Quick Start](#qs) (Jiyu)
 1. [Commonly used Commands](#cucmds) (Jiyu)
 1. [Features](#features) (Jiyu)
-    1. [Modify the Glossary](#Modifying)
+    1. [Modify the Glossary](#modifying)
         1. [Add a Flashcard](#add) : `add` (Jiyu)
         1. [Edit a Flashcard](#edit) : `edit` (Kenny)
         1. [Delete a Flashcard](#delete) : `delete` (Kenny)
         1. [Clear All Flashcards](#clear) : `clear` (Kenny)
     1. [Quiz Yourself](#test)
         1. [Normal Quiz](#quiz) : `quiz` (Zhizhi)
-        1. [Try](#try) : `try` (Zhizhi)
-        1. [Next](#next) : `next` (Zhizhi)
+        1. [Try an Answer](#try) : `try` (Zhizhi)
+        1. [Skip to Next](#next) : `next` (Zhizhi)
         1. [End Quiz](#end) : `end` (Zhizhi)
         1. [Random Quiz](#random) : `random` (Kenny)
         1. [View Past Scores](#scores) `scores` (Harshini)
@@ -92,7 +92,7 @@ with additional details.
 * Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
 
-### <a name="Modifying"></a>3.1. Edit the Glossary
+### <a name="modifying"></a>3.1. Modifying the Glossary
 #### <a name="add"></a>3.1.1. Add a Flashcard: `add` (Jiyu)
 
 Adds a flashcard to the glossary. You can use this to expand your glossary.
@@ -180,7 +180,7 @@ After entering this command, your app should look like this:
 
 ![quiz-screenshot](images/quiz-screenshot.png)
 
-#### <a name="try"></a>3.2.2. Try : `try` (Zhizhi)
+#### <a name="try"></a>3.2.2. Try an Answer: `try` (Zhizhi)
 Compares your attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition on a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, you will be prompted to try again or skip this card.
 
 Format: `try <ATTEMPT>`
@@ -191,7 +191,7 @@ After entering this command, your app should look like this:
 
 ![try-screenshot](images/try-screenshot.png)
 
-#### <a name="next"></a>3.2.3. Next : `next` (Zhizhi)
+#### <a name="next"></a>3.2.3. Skip to Next : `next` (Zhizhi)
 Skips the current flashcard and move on to the next card in quiz mode. You can use this command if you cannot get the correct answer but wish to continue with the quiz. The current flashcard will be considered incorrectly answered.
 
 Format: `next`
