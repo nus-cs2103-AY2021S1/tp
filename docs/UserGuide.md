@@ -174,7 +174,7 @@ Format: `listpersons`
 
 ### 2.2.1 Start work on an existing project `startproject`
 
-Initialises the project specified.
+Starts the view of the project specified to work on it specifically.
 
 Valid scopes: `PROJECT_LIST`, `PROJECT`.
 
@@ -187,7 +187,7 @@ Format: `startproject INDEX`
 - The index refers to the index number shown in the displayed project list
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `startproject 2` Initialises the second project in the project list.
+Examples: `startproject 2` starts the second project in the project list displayed in the left panel.
 
 ### 2.2.2 Add a new project to the catalogue `add`
 
@@ -581,7 +581,7 @@ Example: `deleteperson Lucas97` deletes the teammate with Github username Lucas9
 
 ### 2.4.7 Start work on an existing person `startperson`
 
-Initialises the person specified.
+Starts the view of the person specified to work on it specifically.
 
 Valid scopes: `PERSON_LIST`, `PERSON`.
 
@@ -594,7 +594,7 @@ Format: `startperson INDEX`
 - The index refers to the index number shown in the displayed person list
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `startperson 1` Initialises the first person in the person list.
+Examples: `startperson 2` starts the second person in the person list displayed in the left panel.
 
 # 3 FAQ
 
