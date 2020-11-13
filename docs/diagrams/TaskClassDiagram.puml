@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam classAttributeFontColor #FFFFFF
+show members
+
+package "Task, Assignment and Lesson" {
+Class "{abstract}\nTask" as Task {
+    name : Name
+    time : Time
+    moduleCode : ModuleCode
+}
+
+Class "Assignment" as Assignment {
+    remind: Remind
+    schedule: Schedule
+    priority: Priority
+    done: Done
+}
+
+Class "Lesson" as Lesson {
+    endTime: Time
+}
+
+Assignment -up-|> Task
+Lesson -up-|> Task
+}
+@enduml

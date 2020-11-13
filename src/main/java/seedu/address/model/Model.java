@@ -4,20 +4,42 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.task.Task;
+import seedu.address.timetable.TimetableData;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENT = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Assignment> PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS = assignment -> assignment.isReminded();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+
+    void setPreviousModel(Model previousModel);
+
+    /**
+     * return previous model
+     */
+    Model getPreviousModel();
+
+    /**
+     * before update model
+     */
+    void preUpdateModel();
+
+    /**
+     * Goes to previous model
+     */
+    void goToPreviousModel();
 
     /**
      * Returns the user prefs.
@@ -35,53 +57,70 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the filtered assignment list
      */
-    Path getAddressBookFilePath();
+    FilteredList<Assignment> getFilteredAssignments();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user prefs' ProductiveNus file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    Path getProductiveNusFilePath();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user prefs' ProductiveNus file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setProductiveNusFilePath(Path productiveNusFilePath);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Replaces ProductiveNus data with the data in {@code productiveNus}.
      */
-    boolean hasPerson(Person person);
+    void setProductiveNus(ReadOnlyProductiveNus productiveNus);
+
+    /** Returns ProductiveNus */
+    ReadOnlyProductiveNus getProductiveNus();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Adds lessons based on NUSMods Timetable data.
      */
-    void deletePerson(Person target);
+    void importTimetable(TimetableData data);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns true if an assignment with the same identity as {@code assignment} exists in ProductiveNus.
      */
-    void addPerson(Person person);
+    boolean hasAssignment(Assignment assignment);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Deletes the given assignment.
+     * The assignment must exist in ProductiveNus.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void deleteAssignment(Assignment target);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Adds the given assignment.
+     * {@code assignment} must not already exist in ProductiveNus.
+     */
+    void addAssignment(Assignment assignment);
+
+    /**
+     * Replaces the given assignment {@code target} with {@code editedAssignment}.
+     * {@code target} must exist in ProductiveNus.
+     * The assignment identity of {@code editedAssignment} must not be the same as another
+     * existing assignment in ProductiveNus.
+     */
+    void setAssignment(Assignment target, Assignment editedAssignment);
+
+    /** Returns an unmodifiable view of the filtered assignment list */
+    ObservableList<Assignment> getFilteredAssignmentList();
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredAssignmentList(Predicate<Assignment> predicate);
+
+    /** Returns an unmodifiable view of the reminded assignments list */
+    ObservableList<Assignment> getRemindedAssignmentsList();
 }

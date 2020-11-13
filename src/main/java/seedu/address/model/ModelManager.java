@@ -11,42 +11,101 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.task.Task;
+import seedu.address.timetable.TimetableData;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of ProductiveNus data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ProductiveNus productiveNus;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Assignment> filteredAssignments;
+    private final FilteredList<Assignment> remindedAssignments;
+    //private final FilteredList<Lesson> lessons;
+    private final FilteredList<Task> filteredTasks;
+    private Model previousModel;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given productiveNus, userPrefs and previousModel.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyProductiveNus productiveNus, ReadOnlyUserPrefs userPrefs, Model previousModel) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(productiveNus, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ProductiveNus: " + productiveNus + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.productiveNus = new ProductiveNus(productiveNus);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAssignments = new FilteredList<>(this.productiveNus.getAssignmentList());
+        remindedAssignments = new FilteredList<>(
+                this.productiveNus.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
+        //lessons = new FilteredList<>(this.productiveNus.getLessonList());
+        filteredTasks = new FilteredList<>(this.productiveNus.getTaskList());
+        this.previousModel = previousModel;
+    }
+
+    /**
+     * Initializes a ModelManager with the given productiveNus, userPrefs, previousModel
+     * and filterAssignments.
+     */
+    public ModelManager(ReadOnlyProductiveNus productiveNus, ReadOnlyUserPrefs userPrefs, Model previousModel,
+                        FilteredList<Assignment> filteredAssignments) {
+        super();
+        requireAllNonNull(productiveNus, userPrefs);
+
+        logger.fine("Initializing with ProductiveNus: " + productiveNus + " and user prefs " + userPrefs);
+
+        this.productiveNus = new ProductiveNus(productiveNus);
+        this.userPrefs = new UserPrefs(userPrefs);
+
+        this.filteredAssignments = new FilteredList<>(this.productiveNus.getAssignmentList(),
+                filteredAssignments.getPredicate());
+        remindedAssignments = new FilteredList<>(
+                this.productiveNus.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
+        //lessons = new FilteredList<>(this.productiveNus.getLessonList());
+        filteredTasks = new FilteredList<>(this.productiveNus.getTaskList());
+
+        this.previousModel = previousModel;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ProductiveNus(), new UserPrefs(), null);
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
+    public void preUpdateModel() {
+        this.previousModel = new ModelManager(this.productiveNus, this.userPrefs, this.previousModel,
+                this.filteredAssignments);
+    }
+
+    @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
+    }
+
+    @Override
+    public void goToPreviousModel() {
+        setProductiveNus(previousModel.getProductiveNus());
+        setUserPrefs(previousModel.getUserPrefs());
+        filteredAssignments.setPredicate(previousModel.getFilteredAssignments().getPredicate());
+        setPreviousModel(previousModel.getPreviousModel());
+    }
+
+    @Override
+    public FilteredList<Assignment> getFilteredAssignments() {
+        return filteredAssignments;
+    }
+
+    @Override
+    public void setPreviousModel(Model previousModel) {
+        this.previousModel = previousModel;
     }
 
     @Override
@@ -66,67 +125,94 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getProductiveNusFilePath() {
+        return userPrefs.getProductiveNusFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setProductiveNusFilePath(Path productiveNusFilePath) {
+        requireNonNull(productiveNusFilePath);
+        userPrefs.setProductiveNusFilePath(productiveNusFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ProductiveNus ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setProductiveNus(ReadOnlyProductiveNus productiveNus) {
+        this.productiveNus.resetData(productiveNus);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyProductiveNus getProductiveNus() {
+        return productiveNus;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void importTimetable(TimetableData data) {
+        productiveNus.importTimetable(data);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasAssignment(Assignment assignment) {
+        requireNonNull(assignment);
+        return productiveNus.hasAssignment(assignment);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deleteAssignment(Assignment target) {
+        productiveNus.removeAssignment(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addAssignment(Assignment assignment) {
+        productiveNus.addAssignment(assignment);
+        updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
+    }
+
+    @Override
+    public void setAssignment(Assignment target, Assignment editedAssignment) {
+        requireAllNonNull(target, editedAssignment);
+        productiveNus.setAssignment(target, editedAssignment);
+    }
+
+    @Override
+    public Model getPreviousModel() {
+        return this.previousModel;
+    }
+
+    //=========== Filtered Assignment List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Assignment} backed by the internal list of
+     * {@code versionedProductiveNus}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredAssignments.setPredicate(predicate);
+    }
+
+    //=========== Task List Accessors =============================================================
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    //=========== Reminded Assignments List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Assignment} backed by the internal list of
+     * {@code versionedProductiveNus}
+     */
+    @Override
+    public ObservableList<Assignment> getRemindedAssignmentsList() {
+        return remindedAssignments;
     }
 
     @Override
@@ -143,9 +229,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return productiveNus.equals(other.productiveNus)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredAssignments.equals(other.filteredAssignments)
+                && (previousModel == null || previousModel.equals(other.previousModel))
+                && (other.previousModel == null || other.previousModel.equals(previousModel));
     }
 
 }

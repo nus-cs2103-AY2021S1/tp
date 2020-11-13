@@ -9,12 +9,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ProductiveNusParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyProductiveNus;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ProductiveNusParser productiveNusParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        productiveNusParser = new ProductiveNusParser();
     }
 
     @Override
@@ -42,11 +44,23 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        Command command = productiveNusParser.parseCommand(commandText);
+
+        if (!(command instanceof UndoCommand)) {
+            model.preUpdateModel();
+        }
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            commandResult = command.execute(model);
+        } catch (CommandException commandException) {
+            if (!(command instanceof UndoCommand)) {
+                model.goToPreviousModel();
+            }
+            throw commandException;
+        }
+
+        try {
+            storage.saveProductiveNus(model.getProductiveNus());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +69,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyProductiveNus getProductiveNus() {
+        return model.getProductiveNus();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return model.getFilteredAssignmentList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
+    }
+
+    @Override
+    public ObservableList<Assignment> getRemindedAssignmentList() {
+        return model.getRemindedAssignmentsList();
+    }
+
+    @Override
+    public Path getProductiveNusFilePath() {
+        return model.getProductiveNusFilePath();
     }
 
     @Override

@@ -30,8 +30,10 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    //Independent Ui parts residing in this Ui container
+    private AssignmentListPanel assignmentListPanel;
+    private UpcomingTaskListPanel upcomingTaskListPanel;
+    private ReminderListPanel reminderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane assignmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,14 +118,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
+        //System.out.println(logic.getFilteredAssignmentList());
+        //System.out.println(logic.getFilteredTaskList());
+        assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+
+        reminderListPanel = new ReminderListPanel(logic.getRemindedAssignmentList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
+
+        upcomingTaskListPanel = new UpcomingTaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(upcomingTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -163,8 +176,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ReminderListPanel getReminderListPanel() {
+        return reminderListPanel;
+    }
+
+    public UpcomingTaskListPanel getTaskListPanel() {
+        return upcomingTaskListPanel;
     }
 
     /**
