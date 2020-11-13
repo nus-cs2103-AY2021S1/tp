@@ -292,11 +292,10 @@ This is the table of prefixes used:
 
 Here is an example with steps for you to follow:
 
-1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
+1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334` into the [Command Box](#gui-terminologies). 
 
 ![FindCommand1](images/FindCommandDiagram1.png)
 *Figure 10: `find mod/CS2100 ST2334` inputted by user*
-
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the Assignment List.
 
