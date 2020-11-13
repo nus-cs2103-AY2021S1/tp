@@ -372,13 +372,8 @@ Action | Format, Examples
 **Clear All Flashcards** | `clear`
 **Start Normal Quiz** | `quiz`
 **Try an Answer** | `try <ATTEMPT>` <br> e.g. `try Tuesday`
-**Next Phrase** | `next`
+**Skip to Next** | `next`
 **End Quiz** | `end`
-
-<div style="page-break-after: always;"></div>
-
-Action | Format, Examples
---------|------------------
 **Start Random Quiz** | `random <NUMBER>` <br> e.g. `random 5`
 **View Past Scores** | `scores`
 **Reset Scores** | `reset scores`
