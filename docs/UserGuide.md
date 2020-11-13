@@ -30,13 +30,13 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
    ![Ui](images/Ui.png)
    *Figure 1: A view of Taskmania at startup*
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will
  open the help window.<br>
    Some commands you can try:
 
-   * **`startproject 1`** : Opens the first project
+   * `startproject 1` : Opens the first project
 
-   * **`exit`** : Exits the app
+   * `exit` : Exits the app
 
 6. Refer to the Features below for details of each command.
 
@@ -64,7 +64,14 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 **:information_source: Notes about scoping:**<br>
 
 Each command has a restriction on the scope that it can be run. 
-Scopes include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
+Scopes in this app include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
+A command may be valid in some scopes not some others. For example, `startperson` command can only be run under
+`PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
+
+There is a hierarchy of the scopes, and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but this may not always be true.
+The hierarchy only serves as a guideline for you to understand scoping implementations. 
+Given below is the hierarchy list:
+
 The hierarchy of command scoping is as follows:
 * global
     * `PROJECT_LIST` 
@@ -76,12 +83,9 @@ The hierarchy of command scoping is as follows:
 
 <br>
 
-A command may be valid in some scopes or another. For example, `startperson ` command can only be run under
-`PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
-The hierarchy list is above only aims to give you an overview of the meanings of the scopes, 
-and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but may not always be true.
-
-The scope can be told from the user interface as follows: 
+There is also a scoping status at any point in time during execution of the app. 
+A command will be executable only if the current scoping status of the app falls in one of the scopes that is valid for this command.
+The scoping status of an app can be told from the user interface as follows: 
 
 Scope | Left panel | Middle panel | Right panel
 --------|------------------|-------|----------
@@ -122,7 +126,7 @@ Format: `exit`
 
 ### 2.1.3 Leave a current page `leave`
 
-Leave the current page and go back to the parent scope (one level up).
+Leaves the current page and go back to the parent scope (one level up).
 
 Valid scopes: all.
 
@@ -136,11 +140,11 @@ Valid scopes: all.
 
 Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
-- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
+- If the app is already in the `PERSON_LIST` or `PROJECT_LIST` scope, the command takes no effect
 
 ### 2.1.4 List all projects in the catalogue `listprojects`
 
-List all projects currently in the project catalogue.
+Lists all projects currently in the catalogue.
 
 Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
 
@@ -149,13 +153,12 @@ Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
    *Figure 5: List of projects shows up*
 
 Format: `listprojects`
-- Lists all projects if there are projects in the catalogue
-
-Example: `listprojects` lists all projects in the catalogue to the user.
+- Lists all projects without filter
+- If the scope is `PERSON_LIST` when the command is executed, the scope will be changed to `PROJECT_LIST` 
 
 ### 2.1.5 List all persons in the catalogue `listpersons`
 
-List all persons currently in the catalogue.
+Lists all persons currently in the catalogue.
 
 Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
 
@@ -164,15 +167,14 @@ Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
    *Figure 6: List of persons shows up*
 
 Format: `listpersons`
-- Lists all persons if there are persons in the catalogue
-
-Example: `listpersons` lists all persons in the catalogue to the user.
+- Lists all persons without filter
+- If the scope is `PROJECT_LIST` when the command is executed, the scope will be changed to `PERSON_LIST` 
 
 ## 2.2 Projects management
 
 ### 2.2.1 Start work on an existing project `startproject`
 
-Initialises the project specified.
+Starts the view of the project specified to work on it specifically.
 
 Valid scopes: `PROJECT_LIST`, `PROJECT`.
 
@@ -185,9 +187,9 @@ Format: `startproject INDEX`
 - The index refers to the index number shown in the displayed project list
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `startproject 2` initialises the second project in the project list.
+Examples: `startproject 2` starts the second project in the project list displayed in the left panel.
 
-### 2.2.2 Add a new project to the catalogue `add` (Tai Wen Le Lucas)
+### 2.2.2 Add a new project to the catalogue `add`
 
 Adds a project to the project list.
 
@@ -344,7 +346,7 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/T
 
 Example: `edittask 2 tn/Finish project` changes the name of the second task in the list to 'Finish project'.
 
-### 2.3.4 Delete a task from the project `deletetask`
+### 2.3.4 Delete a task from the project `deletetask` (Tian Fang)
 
 Deletes a task and all associated information from the project.
 
@@ -362,9 +364,10 @@ Format: `deletetask INDEX`
 
 Examples: `deletetask 2` deletes the second task shown in the displayed task list.
 
-### 2.3.5 Filter tasks `filter`
+### 2.3.5 Filter tasks `filter` (Tian Fang)
 
-Filter tasks in the task list by various task attributes:
+Filters tasks in the task list by various task attributes:
+
   - by assignee's GitHub username - `ta/ASSIGNEE_GITHUB_USERNAME`
   - by task's name - `tn/KEYWORD [MORE_KEYWORDS]...`
   - by deadline (either specifying a deadline - `td/DEADLINE` or a time range for the deadline - `start/START_DATE end/END_DATE` )
@@ -384,13 +387,13 @@ Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(tn/KEYWORD [MORE_KEYWORDS]...)||
 Specifically:
 
 1. `filter ta/ASSIGNEE_GITHUB_USERNAME` finds all the tasks that are assigned to the person with the given Github username.
-2. `filter tn/KEYWORD [MORE_KEYWORDS]...` finds tasks whose names contain the given keywords
+2. `filter tn/KEYWORD [MORE_KEYWORDS]...` finds tasks whose task names contain the given keywords
    - The search is case-insensitive. e.g `data` will match `Data`
    - The order of the keywords does not matter. e.g. `model refactoring` will match `refactoring model`
    - Only the name of the tasks are searched
    - Must provide at least one keyword
    - There can be multiple keywords
-   - Keywords provided must be **complete words** and will only match **complete words** from the name of the task. e.g. `filter tn/dat` will not return the **Refine data flow** task
+   - Keywords provided must be **complete words** and will only match **complete words** from the name of the task. e.g. `filter tn/dat` will not return the task `Refine data flow`
 3. `filter td/DEADLINE` finds all the tasks whose deadlines match the given `DEADLINE`
    - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
 4. `filter start/START_DATE end/END_DATE` finds all tasks whose deadlines are within the time range specified by the `START_DATE` and `END_DATE`
@@ -403,7 +406,7 @@ Specifically:
 
 Example: `filter tn/CS2103T` finds all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
 
-### 2.3.6 List all tasks `alltasks`
+### 2.3.6 List all tasks `alltasks` (Tian Fang)
 
 Lists all tasks in the task list of the project.
 
@@ -415,11 +418,11 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `alltasks `
 
-Example: `alltasks` displays all tasks in the task list.
+Example: `alltasks` displays all the tasks in the task list.
 
-### 2.3.7 Sort tasks `sort `
+### 2.3.7 Sort tasks `sort ` (Tian Fang)
 
-Sort tasks in the task list by various task's attributes in ascending/descending order:
+Sorts tasks in the task list by various task's attributes in ascending/descending order:
 
   - by deadline - `td/`
   - by progress - `tp/`
@@ -431,16 +434,16 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 Format: `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)||(done/)` 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
-  - User can apply filter and sorter at the same time
+  - User may apply filter and sorter at the same time
 
 
 ![before_sort](images/beforeSort.png)
 
-   *Figure 18: Before `Sort`*
+   *Figure 18: Before `sort`*
 
 ![after_sort](images/afterSort.png)
 
-   *Figure 19: After `Sort` by task name in ascending order*
+   *Figure 19: After `sort` by task name in ascending order*
 
 Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
 
@@ -448,7 +451,7 @@ Example: `sort sa/ td/` sorts the task list by task deadline in ascending order.
 
 ### 2.3.8 View details of a task `viewtask`
 
-View all the details of a task, beyond the little information given in the project view.
+Views all the details of a task, beyond the little information given in the project view.
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -577,7 +580,7 @@ Example: `deleteperson Lucas97` deletes the teammate with Github username Lucas9
 
 ### 2.4.7 Start work on an existing person `startperson`
 
-Initialises the person specified.
+Starts the view of the person specified to work on it specifically.
 
 Valid scopes: `PERSON_LIST`, `PERSON`.
 
@@ -590,7 +593,7 @@ Format: `startperson INDEX`
 - The index refers to the index number shown in the displayed person list
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `startperson 1` Initialises the first person in the person list.
+Examples: `startperson 2` starts the second person in the person list displayed in the left panel.
 
 # 3 FAQ
 
