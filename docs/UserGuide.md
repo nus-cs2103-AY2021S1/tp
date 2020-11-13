@@ -524,6 +524,7 @@ command inputted into the command box to understand how the respective commands 
 Certain commands are similar to one another and hence we have excluded screenshots from those sections.
 
 #### 6.4.1 Editing Login Information : `-l`
+(Peirong)
 
 You can use tags to specify the field to be edited.
 
@@ -549,6 +550,7 @@ as we choose to give you the benefit of doubt of keying in the wrong login detai
 <div style="page-break-after: always;"></div>
 
 #### 6.4.2 Editing `Student` Information : `-s`
+(Peirong)
 
 Edits the fields of a `Student`.
 
@@ -559,7 +561,7 @@ Edits the fields of a `Student`.
 * `edit -s 3 n/Timots`
 
 <div markdown="block" class="alert alert-info">
-You can refer to the screenshot below for how the input will look like.
+You can refer to Figure 6.4.3a below for how the input will look like.
 </div>
 
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
@@ -842,6 +844,7 @@ Exits the program.
 <br>**Format: `exit`**
 
 ### 6.8 Saving the data
+(Wiline)
 
 Jarvis data are saved in the file `jarvis.json` automatically after any command that changes the data. There is no need to save manually.
 
@@ -855,6 +858,7 @@ are likely to change frequently and hence, will not need to be persisted.
 ## 7. Command Summary
 
 ### 7.1 Add Command Summary
+(Zhen Teng)
 
 | Function            | Tag | Format, Examples                        |
 | ------------------- | --- | --------------------------------------- |
@@ -865,6 +869,7 @@ are likely to change frequently and hence, will not need to be persisted.
 | Add `Deadline`      | -d  | add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM |
 
 ### 7.2 Edit Command Summary
+(Jun Jie)
 
 | Function                   | Tag &nbsp; | Format, Examples                                  |
 | -------------------------- | --- | ------------------------------------------------- |
@@ -875,6 +880,7 @@ are likely to change frequently and hence, will not need to be persisted.
 <div style="page-break-after: always;"></div>
 
 ### 7.3 Delete Command Summary
+(Eryn)
 
 | Function               | Tag | Format, Examples                       |
 | ---------------------- | --- | -------------------------------------- |
@@ -883,6 +889,7 @@ are likely to change frequently and hence, will not need to be persisted.
 | Delete `Task`          | -t  | delete -t TASK_ID                      |
 
 ### 7.4 View Command Summary
+(Wiline)
 
 | Function                           | Tag  | Format, Examples |
 | ---------------------------------- | ---- | --------------- |
@@ -907,12 +914,14 @@ are likely to change frequently and hence, will not need to be persisted.
 | View all `Deadlines`               | -td  | view -td        |
 
 ### 7.5 Exit Command Summary
+(Peirong)
 
 | Function      | Format, Examples |
 | ------------- | ---------------- |
 | Exits program | `exit`           |
 
 ### 7.6 Help Command Summary
+(Wiline)
 
 | Function                           | Format, Examples |
 | ---------------------------------- | ---------------- |
@@ -922,10 +931,13 @@ are likely to change frequently and hence, will not need to be persisted.
 
 ## 8. Glossary
 ### 8.1 Difference Between `Consultations` and `Mastery Checks`
+(Eryn)
+
 `Mastery Checks` are a specific type of `Consultations` that is mandatory and graded in CS1101S, unlike normal `Consultations`, and thus are displayed in separate tabs in Jarvis.
 
 
 ## 9. FAQ
+(Wiline)
 
 `Q: How do I transfer my data to another Computer?`
 <br>`A: Install the app in the other computer and overwrite the empty data file (jarvis.json file) it creates with the file (jarvis.json file) that contains the data of your previous Jarvis home folder.`
