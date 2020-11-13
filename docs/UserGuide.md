@@ -376,10 +376,13 @@ This section includes some general notes on Jarvis.
 
 #### 6.1.4 Notes about truncation
 (Eryn)
+
    * If the user input is too long, it is automatically truncated when displayed.
    <br> e.g. if the user enters a `NAME` that is 150 characters long, Jarvis will automatically truncate it to fit the given screen size.
    
 #### 6.1.5 Notes about Summary feature
+(Zhen Teng)
+
    * As mentioned above in [4.1.1](#411-top-bar), the `Summary` feature is updated when Jarvis is
    launched and after a user command is successfully executed. As such, the values in the `Summary` will remain the same, even if
    the current time has passed the date and time of a `Consultation` or `Mastery Check`. Also, if a `Mission` or
@@ -503,8 +506,8 @@ Adds your personal [`Event`](#613-notes-about-tasks) with a `description`, to at
 * `add -e CS2103T team meeting d/2020-09-27 t/10:30`
 
 <div markdown="block" class="alert alert-info">
+    
 * An `Event` requires extra date and time specifications in order to create. 
-
 * The way to input is similar to adding `Mastery Check` above. You can refer to [Figure 6.3.2a](#632-adding-mastery-checks---mc) for clearer depiction.
 </div>
 
