@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -45,6 +46,14 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
+            File contactsSave = new File("./data/addressbook.json");
+            File eventsSave = new File("./data/calendar.json");
+            if (!contactsSave.isFile() && !eventsSave.isFile()) {
+                mainWindow.executeIntroCommand();
+            }
+            if (logic.getReminders().hasRemindersDue()) {
+                mainWindow.executeShowReminderCommand();
+            }
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

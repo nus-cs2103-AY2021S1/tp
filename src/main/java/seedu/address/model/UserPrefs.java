@@ -15,6 +15,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path calendarFilePath = Paths.get("data" , "calendar.json");
+    private Path tagTreeFilePath = Paths.get("data", "tagtree.json");
+    private Path remindersFilePath = Paths.get("data", "reminders.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +39,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setCalendarFilePath(newUserPrefs.getCalendarFilePath());
+        setTagTreeFilePath(newUserPrefs.getTagTreeFilePath());
+        setRemindersFilePath(newUserPrefs.getRemindersFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +62,33 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public Path getCalendarFilePath() {
+        return calendarFilePath;
+    }
+
+    public void setCalendarFilePath(Path calendarFilePath) {
+        requireNonNull(calendarFilePath);
+        this.calendarFilePath = calendarFilePath;
+    }
+
+    public Path getTagTreeFilePath() {
+        return tagTreeFilePath;
+    }
+
+    public void setTagTreeFilePath(Path tagTreeFilePath) {
+        requireNonNull(tagTreeFilePath);
+        this.tagTreeFilePath = tagTreeFilePath;
+    }
+
+    public Path getRemindersFilePath() {
+        return remindersFilePath;
+    }
+
+    public void setRemindersFilePath(Path remindersFilePath) {
+        requireNonNull(remindersFilePath);
+        this.remindersFilePath = remindersFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,19 +101,25 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && calendarFilePath.equals(o.calendarFilePath)
+                && tagTreeFilePath.equals(o.tagTreeFilePath)
+                && remindersFilePath.equals(o.remindersFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, calendarFilePath, tagTreeFilePath, remindersFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location for addressbook: " + addressBookFilePath);
+        sb.append("\nLocal data file location for calendar: " + calendarFilePath);
+        sb.append("\nLocal data file location for tagtree: " + tagTreeFilePath);
+        sb.append("\nLocal data file location for reminders: " + remindersFilePath);
         return sb.toString();
     }
 

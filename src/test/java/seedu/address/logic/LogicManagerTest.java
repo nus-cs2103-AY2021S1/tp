@@ -17,19 +17,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.contacts.AddContactCommand;
+import seedu.address.logic.commands.contacts.ListContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyCalendar;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonCalendarStorage;
+import seedu.address.storage.JsonRemindersStorage;
+import seedu.address.storage.JsonTagTreeStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -38,15 +42,20 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model = new ModelManagerBuilder().build();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonCalendarStorage calendarStorage =
+                new JsonCalendarStorage(temporaryFolder.resolve("calendar.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonTagTreeStorage tagTreeStorage = new JsonTagTreeStorage(temporaryFolder.resolve("tagtree.json"));
+        JsonRemindersStorage reminderStorage = new JsonRemindersStorage(temporaryFolder.resolve("reminders.json"));
+        StorageManager storage = new StorageManager(addressBookStorage,
+                calendarStorage, userPrefsStorage, tagTreeStorage, reminderStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -58,31 +67,39 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "delete -c 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListContactCommand.COMMAND_WORD + " " + ListContactCommand.COMMAND_TYPE;
+        assertCommandSuccess(listCommand, ListContactCommand.MESSAGE_SUCCESS, model);
     }
 
+    // TODO: implement testing for saving of calendar and tagtree
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonCalendarStorage calendarStorage =
+                new JsonCalendarIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCalendar.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonTagTreeStorage tagTreeStorage =
+                new JsonTagTreeStorage(temporaryFolder.resolve("ioExceptionTagTree.json"));
+        JsonRemindersStorage remindersStorage =
+                new JsonRemindersStorage(temporaryFolder.resolve("ioExceptionReminders.json"));
+        StorageManager storage = new StorageManager(addressBookStorage,
+                calendarStorage, userPrefsStorage, tagTreeStorage, remindersStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddContactCommand.COMMAND_WORD + " " + AddContactCommand.COMMAND_TYPE + NAME_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
+        ModelManager expectedModel = new ModelManagerBuilder().build();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
@@ -129,7 +146,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder().withAddressBook(model.getAddressBook()).build();
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -156,6 +173,20 @@ public class LogicManagerTest {
 
         @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonCalendarIoExceptionThrowingStub extends JsonCalendarStorage {
+        private JsonCalendarIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveCalendar(ReadOnlyCalendar calendar, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

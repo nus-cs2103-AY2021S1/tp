@@ -13,4 +13,10 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    Path getCalendarFilePath();
+
+    Path getTagTreeFilePath();
+
+    Path getRemindersFilePath();
+
 }

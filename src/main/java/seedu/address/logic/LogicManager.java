@@ -10,11 +10,16 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.general.IntroCommand;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCalendar;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminders;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
 
 /**
@@ -38,6 +43,15 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult executeIntro() throws CommandException {
+        logger.info("----------------[SYSTEM COMMAND][introduction]");
+
+        Command command = new IntroCommand();
+
+        return command.execute(model);
+    }
+
+    @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
@@ -47,6 +61,9 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveCalendar(model.getCalendar());
+            storage.saveTagTree(model.getTagTree());
+            storage.saveReminders(model.getReminders());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -61,12 +78,42 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return model.getSortedFilteredPersonList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyCalendar getCalendar() {
+        return model.getCalendar();
+    }
+
+    @Override
+    public ReadOnlyReminders getReminders() {
+        return model.getReminders();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getSortedFilteredEventList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return model.getSortedFilteredReminderList();
+    }
+
+    @Override
+    public Path getCalendarFilePath() {
+        return model.getCalendarFilePath();
+    }
+
+    @Override
+    public Path getRemindersFilePath() {
+        return model.getRemindersFilePath();
     }
 
     @Override

@@ -9,8 +9,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric with no spaces.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String ALL_TAGS_IDENTIFIER = "*";
+
+    /**
+     * Unique tag object to identify a tag that equates to all tags a Person has.
+     */
+    public static final Tag ALL_TAGS_TAG = new Tag(ALL_TAGS_IDENTIFIER, true);
 
     public final String tagName;
 
@@ -22,13 +28,36 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = tagName.toLowerCase();
+    }
+
+    /**
+     * Constructs a {@code Tag}.
+     * The tag can be a wildcard {@code Tag} which represents all tags the entity has.
+     *
+     * @param tagName A valid tag name or '*'.
+     * @param canBeWildcard Indicator for whether the wildcard tag is allowed in this field.
+     */
+    public Tag(String tagName, boolean canBeWildcard) {
+        requireNonNull(tagName);
+        checkArgument(isValidTagName(tagName, canBeWildcard), MESSAGE_CONSTRAINTS);
+        this.tagName = tagName.toLowerCase();
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid tag name or an all-tags indicator.
+     */
+    public static boolean isValidTagName(String test, boolean canBeWildcard) {
+        if (test.equals(ALL_TAGS_IDENTIFIER) && canBeWildcard) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

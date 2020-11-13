@@ -32,8 +32,11 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private ResultDisplay resultDisplay;
+    private EventListPanel eventListPanel;
+    private ResultPanel resultPanel;
     private HelpWindow helpWindow;
+    private IntroWindow introWindow;
+    private ReminderWindow reminderWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -45,7 +48,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane eventListPanelPlaceholder;
+
+    @FXML
+    private StackPane resultPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -55,17 +61,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        introWindow = new IntroWindow();
+        reminderWindow = new ReminderWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -90,13 +96,13 @@ public class MainWindow extends UiPart<Stage> {
          *
          * According to the bug report, TextInputControl (TextField, TextArea) will
          * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
+         * ResultPanel contains a TextArea, thus some accelerators (e.g F1) will
          * not work when the focus is in them because the key event is consumed by
          * the TextInputControl(s).
          *
          * For now, we add following event filter to capture such key events and open
          * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
+         * in CommandBox or ResultPanel.
          */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
@@ -113,10 +119,14 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        resultPanel = new ResultPanel();
+        resultPanelPlaceholder.getChildren().add(resultPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(),
+                logic.getCalendarFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -147,6 +157,24 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the introduction window. Note that focusing is not required as the window opens as
+     * the app opens.
+     */
+    @FXML
+    public void handleIntro() {
+        introWindow.show();
+    }
+
+    /**
+     * Opens the reminder window. Note that focusing is not required as the window opens as
+     * the app opens.
+     */
+    @FXML
+    public void handleReminders() {
+        reminderWindow.show();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -167,6 +195,42 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public EventListPanel getEventListPanel() {
+        return eventListPanel;
+    }
+
+    /**
+     * Executes the command to show the introduction. As the introduction command should not be
+     * accessible by the user, a commandText should not exist for it and the entire execution
+     * should be handled in the back-end. Note that as this method cannot throw a CommandException
+     * or a ParseException, handling can be ignored. The lack of an access modifier is intentional
+     * - method is supposed to be package private.
+     */
+
+    CommandResult executeIntroCommand() throws CommandException {
+        CommandResult commandResult = logic.executeIntro();
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
+        handleIntro();
+        return commandResult;
+    }
+
+    /**
+     * Executes the command to show the reminders alert. As the ShowReminderEvent command should not be
+     * accessible by the user, a commandText should not exist for it and the entire execution
+     * should be handled in the back-end. Note that as this method cannot throw a CommandException
+     * or a ParseException, handling can be ignored. The lack of an access modifier is intentional
+     * - method is supposed to be package private.
+     */
+
+    CommandResult executeShowReminderCommand() throws CommandException, ParseException {
+        CommandResult commandResult = logic.execute("show -r");
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
+        handleReminders();
+        return commandResult;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -176,7 +240,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -189,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultPanel.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }
