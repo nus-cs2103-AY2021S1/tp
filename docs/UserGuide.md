@@ -108,7 +108,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
 
-You can add assignments into your Assignment List to manage and keep track of all your academic tasks. 
+You can add assignments into your [Assignment List](#gui-terminologies) to manage and keep track of all your academic tasks. 
 
 For example, to add a lab report assignment that is **due on 23th April 2020 12.30pm** and **associated with the module CS2100**, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignment is added, it will appear in the Assignment List and all its information will be displayed as shown in the figure below.
@@ -142,7 +142,7 @@ More examples:
 
 Format: `delete INDEX [MORE_INDEXES]`
 
-You can delete **one or more** assignments from your Assignment List by specifying the `INDEX` of each assignment you want to delete as shown in your list.
+You can delete **one or more** assignments from your [Assignment List](#gui-terminologies) by specifying the `INDEX` of each assignment you want to delete as shown in your list.
 
 Here is an example with steps for you to follow:
 
@@ -230,7 +230,7 @@ Here is an example with steps for you to follow:
 ![ListCommand1](images/ListCommandDiagram1.png)
 *Figure 8: `list 3` inputted by user*
 
-2) Assignments found are displayed in the Assignment List. 
+2) Assignments found are displayed in the [Assignment List](#gui-terminologies). 
 
 3) A message that indicates the number of assignments listed is displayed in the Message Box.
 
@@ -260,7 +260,7 @@ You can find your assignments based on keywords you enter. The types of keywords
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-If your Assignment List is really long, this command comes in handy as it filters the list based on assignments u want to see!
+If your [Assignment List](#gui-terminologies) is really long, this command comes in handy as it filters the list based on assignments u want to see!
 </div>
 
 This is the table of prefixes used:
@@ -333,7 +333,7 @@ This is the table of prefixes used:
 
 Here is an example with steps for you to follow:
 
-1) To edit the name of the assignment with the first index in the Assignment List to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+1) To edit the name of the assignment with the first index in the [Assignment List](#gui-terminologies) to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
 ![EditCommand1](images/EditCommand1.png)
 *Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
@@ -367,7 +367,7 @@ You can set reminders for specific assignments which will be displayed in `Your 
    ![YourReminders](images/YourReminders.png)
    *Figure 14: `Your reminders` highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your Assignment List to set reminders for that assignment. 
+You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set reminders for that assignment. 
 
 For example, `remind 1` will set reminders for the first assignment in your Assignment List ("Statistics tutorial" as shown in the Figure 15) and adds it to `Your reminders` (Figure 16).
 
@@ -442,7 +442,7 @@ below).
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
    *Figure 21: The priority tags of assignments highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your Assignment List to set priority tag for that assignment.
+You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set priority tag for that assignment.
 
 For example, `prioritise 3 p/MEDIUM` will set a low priority tag for the third assignment in your Assignment List. In
 the figure above, the third assignment, Biology lab report, is marked with a yellow medium priority tag.
@@ -468,7 +468,7 @@ tag for other reasons, you can remove them.
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
 
-For example, `unprioritise 1` will remove the priority tag, if present, of the first assignment in your Assignment List.
+For example, `unprioritise 1` will remove the priority tag, if present, of the first assignment in your [Assignment List](#gui-terminologies).
 The assignment will now be displayed as usual, but without its priority tag.
 
 <div markdown="block" class="alert alert-primary">
@@ -513,7 +513,7 @@ the Command Box. `2 3` refers to the indexes of the assignments as shown in the 
   
  **:clipboard: Pointers to note:**<br>
 * You must include at least one `INDEX`. For example, entering `done` without any `INDEX` is invalid.
-* The `INDEX` that you include **must be found in your Assignment List**.
+* The `INDEX` that you include **must be found in your [Assignment List](#gui-terminologies)**.
 * If you're marking more than one assignment as done, the `INDEXES` **must not be duplicated**. For example, `done 4 4` or `done 1 2 1` is invalid.
 </div>
 
@@ -554,7 +554,7 @@ you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` 
  **:clipboard: Pointers to note:**<br>
 * All your assignments are marked as **not done by default**.
 * You must include at least one `INDEX`. For example, entering `undone` without any `INDEX` is invalid.
-* The `INDEX` that you include **must be found in your Assignment List**.
+* The `INDEX` that you include **must be found in your [Assignment List](#gui-terminologies)**.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -566,7 +566,7 @@ Format: `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DAT
 
 You can request for a possible suggested schedule to work on your assignments so that you will not be required to manually plan a time.
 
-You can schedule an assignment by specifying the assignment `INDEX` as shown in your Assignment List,
+You can schedule an assignment by specifying the assignment `INDEX` as shown in your [Assignment List](#gui-terminologies),
 the expected hours to finish the assignment and the period of time you want to work on the assignment.
 
 The suggested schedule with start time and end time will be displayed in the assignment card (Highlighted
@@ -601,7 +601,7 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* The index **must be found in your Assignment List**.
+* The index **must be found in your [Assignment List](#gui-terminologies)**.
 * The expected number of hours **must be a positive integer between `1` and `5`**.
 * `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in the format `HHmm`.
 
@@ -614,7 +614,7 @@ More examples:
 
 Format: `unschedule INDEX`
 
-You can remove the suggested time slot of your assignments from the Assignment List by specifying the 
+You can remove the suggested time slot of your assignments from the [Assignment List](#gui-terminologies) by specifying the 
 assignment `INDEX` as shown in your Assignment List.
 
 For example, `unschedule 3` will remove the suggested time slot of your third assignment.
@@ -717,7 +717,7 @@ For your assignments and lessons, assignments due in **more than a week's time**
                  
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the Assignment List) will the remarks get updated.
+Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the [Assignment List](#gui-terminologies) will the remarks get updated.
 <br>Do look forward to the next version of ProductiveNUS to have your remarks updated in real time!
 </div>
 
