@@ -13,6 +13,8 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Introduction**
 
 ### Purpose
@@ -30,6 +32,7 @@ commands used in Bagel. In addition to the current document, separate documents 
 have been included under the Documentation section of this document.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -69,6 +72,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -84,6 +89,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -105,6 +112,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -117,6 +126,8 @@ The `Model`,
 * stores Bagel data.
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -133,6 +144,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.bagel.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -157,6 +170,8 @@ It implements the following operations:
 
 AddCommand#execute() - Add the flashcard to the ModelManager and setOfFlashcardSets
 AddCommandParser#parse(String args) - Conduct input validation and parse user’s input
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes the clear command.
 
@@ -183,6 +198,8 @@ ParserUtil#parseSet, (ParserUtil#parseLink, ParserUtil#parseTags if necessary), 
   * Pros: Easy to implement and CLI-optimized.
   * Cons: Could become more complicated in the future as there will be too many prefixes for the `add` command to parse.
   
+<div style="page-break-after: always;"></div>
+
 ### Search feature
 
 #### Implementation
@@ -213,6 +230,8 @@ The following sequence diagrams show how the search operation works.
   * Cons: More code to write.
 
 I chose alternative 1, because only field for search command is `keyword` and amount of responsibilities for `SearchCommand` will not increase a lot.
+
+<div style="page-break-after: always;"></div>
 
 ### View feature
 
@@ -344,6 +363,8 @@ The following sequence diagrams show how the edit operation works.
   * Pros: Easier to implement.
   * Cons: `EditCommand` will have more responsibilities.
 
+<div style="page-break-after: always;"></div>
+
 ### Clear feature
 
 #### Implementation
@@ -388,6 +409,8 @@ The following sequence diagram shows how the Clear mechanism works:
   
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -417,6 +440,7 @@ Bagel is a flashcard application faster than a typical mouse/GUI driven app with
 adding tags, links, or comments. It targets computing students taking GER1000 because it is a module that requires
 memorising many keywords and items, and computing students would prefer typing over other means of input.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -437,6 +461,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | user | add flashcards to sets | memorise relevant flashcards together |
 | `*` | first time user | view all possible commands | navigate the app easily |
 | `*` | user ready to start using the app | clear all flashcards | get rid of sample/experimental flashcards I used for exploring the app |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -584,6 +610,7 @@ Similar to UC04, except user enters relevant details for clear.
 * **Graphical User Interface (GUI)**: User interface that allows users to interact via icons and graphics.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
