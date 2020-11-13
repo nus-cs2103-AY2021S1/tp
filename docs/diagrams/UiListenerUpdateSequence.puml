@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+Actor Client as client USER_COLOR
+Participant ":DynamicState" as state MODEL_COLOR
+Participant ":Listener" as listener LISTENER_COLOR
+Participant ":CallBack" as callback CALLBACK_COLOR
+Participant ":UiComponent" as component UI_COMPONENT_COLOR
+
+skinparam sequence {
+participantBorderColor #000000
+ArrowColor #000000
+ActorBorderColor #000000
+LifeLineBorderColor #000000
+LifeLineBackgroundColor #000000
+}
+
+skinparam sequenceBoxBorderColor #black
+
+client -> state : "updateState(NewState)"
+activate state MODEL_COLOR
+
+state -> state : inform()
+
+state -> listener : update(NewState)
+activate listener LISTENER_COLOR
+
+listener -> callback : call(NewState)
+activate callback CALLBACK_COLOR
+
+callback -> component : {abstract}updateView
+activate component UI_COMPONENT_COLOR
+
+component --> callback
+deactivate component
+
+callback --> listener
+deactivate callback
+
+listener --> state
+deactivate listener
+
+state --> client
+@enduml

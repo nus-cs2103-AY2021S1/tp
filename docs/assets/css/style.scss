@@ -2,11 +2,60 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-@import
-  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
+@import "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
 
 .icon {
-    height: 21px;
-    width: 21px
+  height: 21px;
+  width: 21px;
+}
+
+.welcome-page {
+  background-color: #e6f2ff;
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.section {
+  width: 100%;
+  display: block;
+  height: 250px;
+}
+
+.sub-section {
+  width: 365px;
+}
+
+#toc_container {
+  align-self: center;
+  background: #f9f9f9 none repeat scroll 0 0;
+  border: 1px solid #aaa;
+  display: table;
+  font-size: 95%;
+  margin-bottom: 1em;
+  padding: 20px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toc_title {
+  font-weight: 700;
+  text-align: center;
+}
+
+#toc_container li,
+#toc_container ul,
+#toc_container ul li {
+  list-style: outside none none !important;
+}
+
+.code {
+  font-family: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono",
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9375em;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: #eef;
+  display: inline;
 }

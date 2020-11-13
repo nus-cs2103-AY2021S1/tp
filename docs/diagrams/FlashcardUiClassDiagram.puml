@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #black
+skinparam classBackgroundColor UI_COLOR
+skinparam classBorderColor UI_COLOR_T1
+
+package FlashcardUi <<Rectangle>>{
+Class FlashcardUi
+Class CommandBox
+Class FlashcardSetListPanel
+Class FlashcardsDisplay
+Class FlashcardSetCard
+}
+
+FlashcardUi *-down-> CommandBox
+FlashcardUi *-down-> FlashcardSetListPanel
+FlashcardUi *-down-> FlashcardsDisplay
+
+FlashcardSetListPanel -down-> FlashcardSetCard
+
+
+@enduml

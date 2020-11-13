@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane fx:id="cardPane" minHeight="-Infinity" onMouseClicked="#handleMouseClicked" prefWidth="150.0" style="-fx-focus-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="TOP_CENTER" minHeight="-Infinity" prefWidth="200.0">
+         <children>
+            <Label fx:id="id" minHeight="-Infinity" style="-fx-font-family: Arial;                                        -fx-font-weight: bold;                                        -fx-text-fill: #7886ed;                                        -fx-font-size: 13.0;" text="1." wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="12.0" left="15.0" />
+               </HBox.margin></Label>
+            <Label fx:id="title" minHeight="-Infinity" style="-fx-font-family: Arial;                    -fx-font-weight: bold;                    -fx-text-fill: #7886ed;                    -fx-font-size: 13.0;" text=" very very very very vey long" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="12.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding></Label>
+         </children>
+         <padding>
+            <Insets top="12.0" />
+         </padding>
+      </HBox>
+      <HBox prefWidth="200.0" style="-fx-focus-traversable: false;">
+         <children>
+            <Circle fx:id="circle" fill="#7886ed" radius="4.5" stroke="TRANSPARENT" strokeType="INSIDE">
+               <HBox.margin>
+                  <Insets left="8.0" top="9.5" />
+               </HBox.margin>
+            </Circle>
+            <Region HBox.hgrow="ALWAYS" />
+            <ImageView fx:id="intersect" fitHeight="33.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/blue-intersection.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <Region prefHeight="40.0" prefWidth="150.0" />
+   </children>
+</StackPane>

@@ -5,55 +5,62 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You may reach us through the following email addresses:
+
+* Joe Teddy Yosua Sanjaya: [joe.teddy@u.nus.edu](joe.teddy@u.nus.edu)
+* Yu Bowei: [boweiyu@u.nus.edu](boweiyu@u.nus.edu)
+* Eddy Chu: [e0418218@u.nus.edu](e0418218@u.nus.edu)
+* Ngo Duc Binh: [e0271216@u.nus.edu](e0271216@u.nus.edu)
+* Petrick Jerico Gustendi: [e0425802@u.nus.edu](e0425802@u.nus.edu)
 
 ## Project team
 
-### John Doe
+### Joe Teddy Yosua Sanjaya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cupofjoee.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cupofjoee)]
+[[portfolio](team/joeteddy.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Dev Ops
 
-### Jane Doe
+### Yu Bowei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bowei-yu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bowei-yu)]
+[[portfolio](team/bowei-yu.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Eddy Chu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chuyiting.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/chuyiting)] 
+[[portfolio](team/chuyiting.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ngo Duc Binh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ducbinh2611.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ducbinh2611)]
+[[portfolio](team/ducbinh2611.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Petrick Jerico Gustendi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/petrickjerico.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/petrickjerico)]
+[[portfolio](team/petrickjerico.md)]
 
 * Role: Developer
 * Responsibilities: UI

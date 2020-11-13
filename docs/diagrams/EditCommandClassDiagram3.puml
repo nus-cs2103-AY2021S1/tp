@@ -1,0 +1,36 @@
+@startuml
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #black
+skinparam classBackgroundColor MODEL_COLOR
+skinparam objectBackgroundColor MODEL_COLOR
+
+Title The new task replaces the task to-be-replaced
+
+Class "__:UniqueTaskList__" as UniqueTaskList
+Class "__task1:Task__" as task1
+Class "__task2:Task__" as task2
+Class "__task3:Task__" as task3
+Class "__task4:Task__" as task4
+Class "__editedTask4:Task__" as task5
+Class "__:Title__" as Title
+Class "__initialDesc:Description__" as desc0
+desc0 : description = "test"
+Class "__editedDesc:Description__" as desc1
+desc0 : description = "test"
+
+
+UniqueTaskList --> task1
+UniqueTaskList --> task2
+UniqueTaskList --> task3
+task4 *--> Title
+task4 *--> desc0
+
+task5 *--> Title
+task5 *--> desc1
+UniqueTaskList --> task5
+
+
+
+@enduml

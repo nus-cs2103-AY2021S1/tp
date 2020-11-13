@@ -1,0 +1,14 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #black
+skinparam classBackgroundColor MODEL_COLOR
+
+Class StartCommand LOGIC_COLOR
+Class QuizModelManager
+Class Quiz
+
+QuizModelManager -> "0..1" Quiz
+StartCommand --> Quiz
+StartCommand .> QuizModelManager
+@enduml
