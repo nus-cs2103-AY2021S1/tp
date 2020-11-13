@@ -2,58 +2,47 @@
 layout: page
 title: About Us
 ---
-
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Li Shuo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/li-s.png" width="200px" alt="Li Shuo's profile picture">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/li-s)][[PPP](team/li-s.md)]
 
-* Role: Project Advisor
+* Role: Documentation
+* Responsibility: Logic
 
-### Jane Doe
+### Lu Luoyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/luo-git.png" width="200px" alt="Luoyi's profile picture">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/luo-git)][[PPP](team/luo-git.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Testing
+* Responsibility: Logic
 
-### Johnny Doe
+### Ma Yueran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ma-yueran.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Ma-Yueran)][[PPP](team/ma-yueran.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code quality
+* Responsibility: Ui
 
-### Jean Doe
+### Anthony Lie
+<img src="images/anthony6401.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/Anthony6401)][[PPP](team/anthony6401.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Testing
+* Responsibility: Storage
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+### Heinrich
+<img src="images/hynridge.png" width="200px">
 
-### James Doe
+[[github](https://github.com/HynRidge)][[PPP](team/hynridge.md)]
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Scheduling and tracking
+* Responsibility: Model

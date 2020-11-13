@@ -3,32 +3,40 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTags.CS2101;
+import static seedu.address.testutil.TypicalTags.CS2103;
+import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.explorer.FileList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.testutil.TagBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private AddressBook addressBook = new AddressBook();
+
+    @BeforeEach
+    public void init() {
+        addressBook = new AddressBook();
+    }
+
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getTagList());
     }
 
     @Test
@@ -44,58 +52,110 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateTags_throwsDuplicateTagException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        Tag editedCS2103 = new TagBuilder(CS2103).build();
+        List<Tag> newPersons = Arrays.asList(CS2103, editedCS2103);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTagException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasTag_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasTag(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasTag_tagNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasTag(CS2103));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasTag_tagInAddressBook_returnsTrue() {
+        addressBook.addTag(CS2103);
+        assertTrue(addressBook.hasTag(CS2103));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+    public void hasTag_tagWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addTag(CS2103);
+        Tag editedCS2103 = new TagBuilder(CS2103).build();
+        assertTrue(addressBook.hasTag(editedCS2103));
+    }
+
+
+    @Test
+    public void setTag_tagInAddressBook_success() {
+        AddressBook dummyAddressBook = addressBook;
+        dummyAddressBook.addTag(CS2103);
+        dummyAddressBook.setTag(CS2103, CS2101);
+        Tag expectedTag = new TagBuilder(CS2101).build();
+        assertTrue(dummyAddressBook.hasTag(expectedTag));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void setTag_nullTag_throwsNullPointerException() {
+        AddressBook dummyAddressBook = addressBook;
+        dummyAddressBook.addTag(CS2103);
+        assertThrows(NullPointerException.class, () -> dummyAddressBook.setTag(CS2103, null));
+    }
+
+    @Test
+    public void removeTag_tagInAddressBook_success() {
+        AddressBook dummyAddressBook = addressBook;
+        dummyAddressBook.addTag(CS2103);
+        dummyAddressBook.removeTag(CS2103);
+        Tag expectedTag = new TagBuilder(CS2101).build();
+        assertFalse(dummyAddressBook.hasTag(expectedTag));
+    }
+
+    @Test
+    public void removeTag_nullTag_throwsNullPointerException() {
+        AddressBook dummyAddressBook = addressBook;
+        assertThrows(NullPointerException.class, () -> dummyAddressBook.removeTag(null));
+    }
+
+
+    @Test
+    public void getTagList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagList().remove(0));
+    }
+
+    @Test
+    public void hashcode_equals_success() {
+        AddressBook newAddressBook = new AddressBook();
+
+        // same object -> returns true
+        assertTrue(addressBook.hashCode() == addressBook.hashCode());
+
+        //different object --> returns true
+        assertTrue(addressBook.hashCode() == newAddressBook.hashCode());
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Tag> tags) {
+            this.tags.setAll(tags);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Tag> getTagList() {
+            return tags;
+        }
+
+        @Override
+        public FileList getFileList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<File> getObservableFileList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

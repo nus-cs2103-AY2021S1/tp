@@ -3,15 +3,19 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.explorer.CurrentPath;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,9 +23,11 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Tag> filteredTags;
+    private final FilteredList<File> filteredFiles;
+    private final CurrentPath currentPath;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -32,9 +38,11 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTags = new FilteredList<>(this.versionedAddressBook.getTagList());
+        filteredFiles = new FilteredList<>(this.versionedAddressBook.getObservableFileList());
+        currentPath = new CurrentPath(this.userPrefs.getSavedFilePathValue(), this.versionedAddressBook.getFileList());
     }
 
     public ModelManager() {
@@ -80,53 +88,108 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return versionedAddressBook.hasTag(tag);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteTag(Tag target) {
+        versionedAddressBook.removeTag(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTag(Tag tag) {
+        versionedAddressBook.addTag(tag);
+        updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
 
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setTag(target, editedTag);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Tag List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
+    }
+
+    /**
+     * Returns the current path of HelloFile.
+     *
+     * @return the current path
+     */
+    @Override
+    public CurrentPath getCurrentPath() {
+        return currentPath;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code File} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<File> getFilteredFileList() {
+        return filteredFiles;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTags.setPredicate(predicate);
+    }
+
+    @Override
+    public List<Tag> findFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+
+        return filteredTags.getSource().stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+    }
+
+    //=========== Undo/Redo =================================================================================
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedAddressBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedAddressBook.redo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        versionedAddressBook.commit();
     }
 
     @Override
@@ -143,9 +206,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTags.equals(other.filteredTags);
     }
 
 }

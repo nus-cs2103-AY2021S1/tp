@@ -1,0 +1,179 @@
+/*----------background----------*/
+.root {
+    -fx-background-image: url("../images/background_sky_theme.jpg");
+    -fx-background-size: cover;
+}
+
+/*----------pane----------*/
+.stack-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.split-pane:horizontal .split-pane-divider {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+.split-pane {
+    -fx-background-color: transparent;
+}
+
+.split-pane .pane-with-border {
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-border-top-width: 1px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.corner {
+    -fx-background-color: transparent;
+}
+
+/*----------scroll bar----------*/
+.scroll-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+/*----------menu----------*/
+.menu-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+    -fx-label-padding: 3px;
+}
+
+.menu .label, .menu-item .label {
+    -fx-text-fill: black;
+}
+
+.menu:hover, .menu:focused, .menu:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
+
+.menu-item:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+.context-menu {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*----------command box----------*/
+#commandTextField {
+    -fx-background-color: rgba(0, 0, 0, 0.07);
+    -fx-border-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 14px;
+}
+
+/*----------text area----------*/
+.text-area {
+    -fx-background-color: rgba(0, 0, 0, 0.03);
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 16px;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+/*----------list view----------*/
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-border-width: 0px;
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: rgba(0, 0, 0, 0.08);
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+/*----------footer bar----------*/
+.footer-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
+
+.footer-bar .label {
+    -fx-font-family: "Segoe UI Light";
+}
+
+/*----------theme card----------*/
+.theme-card .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 18px;
+}
+
+/*----------help window----------*/
+.help-message-label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 18px;
+}
+
+.url-label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 16px;
+    -fx-text-fill: grey;
+}
+
+/*----------file explorer----------*/
+.explorer-pane .current-path-box {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+.explorer-pane .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 16px;
+}
+
+.file-card {
+    -fx-background-color: transparent;
+}
+
+.file-card .grid-pane {
+    -fx-background-color: transparent;
+}
+
+/*----------label box----------*/
+.label-box {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-background-color: #A3F4E5;
+    -fx-background-radius: 5;
+    -fx-opacity: 0.9;
+}

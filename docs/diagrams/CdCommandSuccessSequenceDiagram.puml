@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+Participant ":CdCommand" as command LOGIC_COLOR
+Participant "model:Model" as model MODEL_COLOR
+Participant ":CommandResult" as result LOGIC_COLOR
+
+[-> command: execute()
+
+activate command
+
+command -> model: getCurrentPath()
+
+activate model
+model --> command: return currentPath
+deactivate model
+
+command -> command: getAbsolutePathString(currentPath)
+
+command -> command: isPathStringValid(absolutePathString)
+activate command
+command --> command: true
+deactivate command
+
+command -> command: stringToFile(absolutePathString)
+
+command -> command: isDirectory(pathToSet)
+activate command
+command --> command: true
+deactivate command
+
+command -> command: currentPath.setAddress(pathToSet)
+
+create result
+command -> result
+activate result
+result --> command
+deactivate result
+
+[<-- command: result
+
+deactivate command
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+participant ":LabelCommand" as LabelCommand LOGIC_COLOR
+participant "model:Model" as Model LOGIC_COLOR
+participant "oldTag:Tag" as OldTag LOGIC_COLOR
+participant ":Tag" as Tag LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+[-> LabelCommand : execute()
+activate LabelCommand
+
+LabelCommand -> Model : hasTag()
+activate Model
+
+Model --> LabelCommand : true
+deactivate Model
+
+LabelCommand --> Model : getTag()
+activate Model
+
+Model --> LabelCommand : oldTag
+deactivate Model
+
+LabelCommand --> OldTag : getLabels()
+activate OldTag
+
+OldTag --> LabelCommand : labels
+deactivate OldTag
+
+create Tag
+LabelCommand --> Tag : Tag(newLabels)
+activate Tag
+
+Tag --> LabelCommand : newTag
+deactivate Tag
+
+LabelCommand -> Model : setTag(oldTag, newTag)
+activate Model
+
+Model --> LabelCommand :
+deactivate Model
+
+LabelCommand -> Model : commitAddressBook()
+activate Model
+
+Model --> LabelCommand :
+deactivate Model
+
+create CommandResult
+LabelCommand --> CommandResult
+activate CommandResult
+
+CommandResult --> LabelCommand :
+deactivate CommandResult
+
+[<- LabelCommand : result
+deactivate LabelCommand
+destroy LabelCommand
+
+@enduml

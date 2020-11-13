@@ -1,46 +1,32 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+  "_comment": "fileAddressBook save file which contains the same Person values as in TypicalTags#getTypicalfileAddressBook()",
+  "tags" : [ {
+    "tagName" : "cs2103",
+    "fileAddress" : "./src/test/java/seedu/address/testutil/cs2103.bat",
+    "labels": ["testLabel"]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagName" : "cs2101",
+    "fileAddress" : "./src/test/java/seedu/address/testutil/cs2101.bat",
+    "labels": ["testLabel"]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "tagName" : "myfile",
+    "fileAddress" : "c:\\a\\b\\myfile.txt",
+    "labels": ["project", "myfile"]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagName" : "myfile 2",
+    "fileAddress" : "c:\\a\\b\\myfile2.txt",
+    "labels": ["project"]
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "tagName" : "myfile 3",
+    "fileAddress" : "c:\\a\\b\\myfile3.txt",
+    "labels": ["testLabel"]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagName" : "myfile 4",
+    "fileAddress" : "c:\\a\\b\\myfile4.txt",
+    "labels": ["testLabel"]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "tagName" : "myfile 5",
+    "fileAddress" : "c:\\a\\b\\myfile5.txt",
+    "labels": ["testLabel"]
   } ]
 }

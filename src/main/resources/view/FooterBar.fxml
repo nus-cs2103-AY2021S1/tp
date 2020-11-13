@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox spacing="2.0" styleClass="footer-bar" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Version: " HBox.hgrow="NEVER">
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin></Label>
+      <Label fx:id="versionNumber" HBox.hgrow="NEVER">
+         <HBox.margin>
+            <Insets right="100.0" />
+         </HBox.margin>
+      </Label>
+      <Label text="Message: " HBox.hgrow="NEVER" />
+      <Label text="None" HBox.hgrow="NEVER" />
+   </children>
+</HBox>

@@ -1,0 +1,10 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+Tag *--> "1" TagName
+Tag *--> "1" FileAddress
+Tag *--> "*" Label
+@enduml

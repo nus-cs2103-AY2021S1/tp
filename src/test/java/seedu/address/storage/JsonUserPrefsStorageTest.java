@@ -19,6 +19,7 @@ import seedu.address.model.UserPrefs;
 public class JsonUserPrefsStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
+    private static final String USER_DIRECTORY_PATH = System.getProperty("user.dir");
 
     @TempDir
     public Path testFolder;
@@ -70,10 +71,18 @@ public class JsonUserPrefsStorageTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void readUserPrefs_invalidSavedFilePath_defaultValuesUsed() throws DataConversionException {
+        UserPrefs expected = getTypicalUserPrefs();
+        UserPrefs actual = readUserPrefs("InvalidSavedFilePathUserPref.json").get();
+        assertEquals(expected, actual);
+    }
+
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
+        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "Dark Theme"));
         userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setSavedFilePathValue(System.getProperty("user.dir"));
         return userPrefs;
     }
 
@@ -93,7 +102,7 @@ public class JsonUserPrefsStorageTest {
     private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
-                    .saveUserPrefs(userPrefs);
+                    .saveUserPrefs(userPrefs, USER_DIRECTORY_PATH);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
         }
@@ -103,19 +112,19 @@ public class JsonUserPrefsStorageTest {
     public void saveUserPrefs_allInOrder_success() throws DataConversionException, IOException {
 
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
+        original.setGuiSettings(new GuiSettings(1200, 200, 0, 2, "Galaxy Theme"));
 
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
 
         //Try writing when the file doesn't exist
-        jsonUserPrefsStorage.saveUserPrefs(original);
+        jsonUserPrefsStorage.saveUserPrefs(original, USER_DIRECTORY_PATH);
         UserPrefs readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
 
         //Try saving when the file exists
-        original.setGuiSettings(new GuiSettings(5, 5, 5, 5));
-        jsonUserPrefsStorage.saveUserPrefs(original);
+        original.setGuiSettings(new GuiSettings(5, 5, 5, 5, "Dark Theme"));
+        jsonUserPrefsStorage.saveUserPrefs(original, USER_DIRECTORY_PATH);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
     }

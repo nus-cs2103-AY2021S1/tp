@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -41,8 +41,9 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
-        storageManager.saveUserPrefs(original);
+        String userDirectoryPath = System.getProperty("user.dir");
+        original.setGuiSettings(new GuiSettings(300, 600, 4, 6, "DarkTheme"));
+        storageManager.saveUserPrefs(original, userDirectoryPath);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
     }

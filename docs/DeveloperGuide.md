@@ -2,10 +2,13 @@
 layout: page
 title: Developer Guide
 ---
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
@@ -13,21 +16,17 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of HelloFile. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -51,77 +50,93 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `untag t>tag123`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TagListPanel`, `ThemeWindow` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a tag).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("untag t>tag123")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a versioned address book which contains a list of past address books.
+* stores the current path of the inbuilt file explorer.
+* exposes an unmodifiable `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component,
+The `Storage` component converts java objects into json format and store it to the hard drive. 
+It is also used for converting data in json format to java objects when executing the app.
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The storage creates the UserPref and data with default value when the json files are missing/changed. During execution, The storage will update the address book data everytime the user executes a command. However, UserPref is only updated when the app is closed.
+</div>
+
+This diagram shows how the `AddressBook` is saved to json file after executing a command.
+![SaveSuccessSequence](images/SaveStorageSequenceDiagram.png)
+
+This diagram shows how the `AddressBook` is read from json file when executing the app.
+![ReadSuccessSequence](images/ReadStorageSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 
@@ -129,96 +144,218 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how we implement certain features.
 
-### \[Proposed\] Undo/redo feature
+### Data Structure: Tag
+[Tag](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/tag/Tag.java)
+is a class that stores tags. It contains a compulsory `TagName`, a `FileAddress` and an optional `Label`. `TagName` must 
+contain at least 1 alphanumeric word, and must be unique. `FileAddress` must contain a valid file path
+(i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux).`FileAddress` 
+can take in a relative path or absolute path.<br>
+This is the class diagram for Tag <br>
+![TagClassDiagram](images/TagClassDiagram.png)
 
-#### Proposed Implementation
+<div style="page-break-after: always;"></div>
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### Data Structure: Label
+[Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
+stores a `Label`, which is an optional field in `Tag`. `Label` allows the user to label their tagged file. 
+A `Label` must only contain alphanumeric characters, and up to
+one word. The purpose is to keep label short and concise, as it only
+serves as extra information of a tagged file.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+This sequence diagram shows a successful execution of `LabelCommand`.<br>
+![LabelCommandSuccessExecution](images/LabelCommandSequenceDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+<div style="page-break-after: always;"></div>
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+### Adding of Tags: TagCommand
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+[TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
+adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
+is pointing to a valid file. 
+Moreover, TagCommand checks if the file is present before adding the tag to `Model`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+This diagram shows a successful execution of `TagCommand`, resulting in a new tag added to `Model`.
+![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
+In this case, the file was not present.<br>
+![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+`TagCommand` checks if the file address given is absolute or relative file path.
+If the address is relative, it converts the relative path to absolute address by concatenating the relative
+path to the current path stored in `Model`.
+We designed `TagCommand` this way so that the users can use our File Explorer interface to navigate to
+a folder, then tag files using relative file addresses.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+<div style="page-break-after: always;"></div>
 
-![UndoRedoState2](images/UndoRedoState2.png)
+### Opening of Tags: OpenCommand
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+[OpenCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/OpenCommand.java)
+accepts either a `Tag` or a `Label`.
+It filters the list of `Tags` stored in `AddressBook` by the `Tag` or `Label` supplied, and generate a list of `Tag`
+to be opened.
+After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
+`CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
 
-</div>
+This sequence diagram shows a successful execution of `OpenCommand`. <br>
+![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+We implemented OpenCommand using `java.awt.Desktop`,
+which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
+most java-supported platforms, hence fulfilling our product's requirement to be platform independent.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+However, there are some significant drawback of using `java.awt.Desktop`. The platform that HelloFile operates on must
+support `Desktop`. This means that our application will never work on a headless environment. 
+As a developer, you can check whether the environment supports `Desktop`
+using the library method `java.awt.Desktop.isDesktopSupported()`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Another drawback is that `java.awt.Desktop.open()` blocks the JavaFX thread and causes the UI to freeze in non-Windows
+environment. We believe this is due to concurrency issue related to JavaFX.
+Regretfully, we have yet to find an elegant solution for this problem after consulting our professor.
+The current solution is running `Desktop.open()` on a separate thread, which solves the problem.
+We have tested this command under Windows and Ubuntu Linux.
 
-</div>
+<div style="page-break-after: always;"></div>
 
-The following sequence diagram shows how the undo operation works:
+### Deleting Tags: UntagCommand
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+[UntagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java)
+removes the `Tag` specified by the unique tag name from the `AddressBook`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+This command checks the existence of the `Tag` with `model.findFilteredTagList()`, and calls method `model.deleteTag()` to delete it.
 
-</div>
+This sequence diagram shows a successful execution of `UntagCommand`.<br>
+![UntagCommandSuccessExecution](images/UntagSequenceDiagram.png)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+<div style="page-break-after: always;"></div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+### Renaming of Tags: RetagCommand
 
-</div>
+[RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
+rename the `Tag` specified by the unique tag name with a different tag name.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+This command checks the presence of the `TagName` using `model.findFilteredTagList()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+It then sets the tag with the new `TagName`.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+This sequence diagram shows a successful execution of `RetagCommand`.<br>
+![RetagCommandSuccessExecution](images/RetagSequenceDiagram.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+<div style="page-break-after: always;"></div>
 
-![UndoRedoState5](images/UndoRedoState5.png)
+### Changing of Directory: CdCommand
 
-The following activity diagram summarizes what happens when a user executes a new command:
+[CdCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CdCommand.java)
+changes the current directory of the HelloFile internal File Explorer. `CommandException` is thrown if the given directory 
+is invalid, cannot be found, not readable, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+This sequence diagram shows a successful execution of `CdCommand`.<br>
 
-#### Design consideration:
+<img src="images/CdCommandSuccessSequenceDiagram.png" width="450" />
 
-##### Aspect: How undo & redo executes
+CdCommand gets the `CurrentPath` from `Model`, then it gets the new path to set using the current `CurrentPath`. 
+After that, `CdCommand` calls `setAddress` method in `CurrentPath` to set the current directory to the new address.
+Lastly, `CdCommand` returns a `CommandResult` which will be used as the feedback to the user.
+If `CdCommand` fails to get a valid new path, `CommandException` will be thrown to inform the user why the command failed.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The UI components of Internal File Explorer will update themselves after a success execution of `CdCommand`.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+<div style="page-break-after: always;"></div>
 
-_{more aspects and alternatives to be added}_
+### Find a specific tag: FindCommand
 
-### \[Proposed\] Data archiving
+[FindCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java)
+applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. This effectively searches for tags.
+`TagContainsCharPredicate` matches any tag with `TagName` or any `Label` that contains the keyword given.
 
-_{Explain here how the data archiving feature will be implemented}_
+This is the sequence diagram of the FindCommand.<br>  
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
+### Showing a tag's file path: ShowCommand
+
+[ShowCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ShowCommand.java)
+searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
+`CommandException` is thrown if tag is not present.
+
+This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.<br>
+![ShowSuccessSequence](images/ShowCommandSequenceDiagram.png)
+
+ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
+
+<div style="page-break-after: always;"></div>
+
+### Listing out all the tags: ListCommand
+
+[ListCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
+lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
+ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
+
+This diagram shows a successful execution of `ListCommand`.<br>
+![ListSuccessSequence](images/ListCommandSequenceDiagram.png)
+
+ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
+
+<div style="page-break-after: always;"></div>
+
+### Deleting a tag's label: UnlabelCommand
+
+[UnlabelCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UnlabelCommand.java)
+searches the list of Tags stored in `AddressBook` and deletes the specified labels. 
+The user can provide 1 or more labels to be deleted simultaneously. 
+If any of the input is invalid, this command will delete all the valid input from the specified `Tag` and show all the invalid input back to the user.
+
+This diagram shows a successful execution of `UnlabelCommand` using 1 label as the argument.
+![UnlabelSuccessSequence](images/UnlabelCommandSequenceDiagram.png)
+
+UnlabelCommand checks the existence of the specified `Tag` using `model.findFilteredTagList()`. 
+It takes the `Set<Label>` of the `Tag` and deletes all the labels that matches with user's input with the help of `java.util.stream`. 
+Then, a new `Tag` is created using the modified `Set<Label>` and added back to the `AddressBook` using `model.setTag()`.
+
+<div style="page-break-after: always;"></div>
+
+### Internal File Explorer
+
+Internal File Explorer is a simple file explorer that supports viewing of files on your computer. It uses a `CurrentPath` that 
+represents the directory the explorer is viewing, as well as a `FileList` to keep track of the children files under that directory. The 
+user can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
+
+The purpose of implementing Internal File Explorer is to make tagging files easier by supporting tagging files using their 
+relative paths (*e.g. the file name*). This can make tagging files easier especially when the user wants to tag multiple files 
+under the same directory.
+
+Implementation of Internal File Explorer:
+
+*Model*
+
+The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` that contains the children files under 
+that directory.
+
+This is the class diagram for CurrentPath.<br>
+![CurrentPath](images/CurrentPathClassDiagram.png)
+
+*UI*
+
+`FileExplorerPanel` is the UI component for displaying Internal File Explorer. It contains a `javafx.scene.control.Label` 
+to display the current directory and a `javafx.scene.control.ListView` for the list of children files. 
+`FileCard` is a UI component for displaying the information of a file, and it is used to show the children files in the ListView in `FileExplorerPanel`.
+
+*Storage*
+
+We keep the current directory of the File Explorer in `SavedFilePath`. HelloFile saves the directory in json format upon exiting the app,
+and loads the current path saved last time when the app starts. By doing so, the state of the File Explorer will
+persist across every use of our app.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -230,127 +367,414 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech savvy NUS Computer Science Student
+* Has a need to manage a significant number of files
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Reasonably comfortable with CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: CS students can manage/access their files by typing
+                       and using a simple GUI. Help CS students to see file relations easily.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                            |
+| -------- | ---------------------------------------------------------------| ------------------------------------------------------| --------------------------------------------------------------|
+| `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                                 |
+| `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                      |
+| `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                              |
+| `* * *`  | Student who is familiar with command line applications         | tag my files                                          | access the file easily next time                              |
+| `* * *`  | CS student with many categories of files                       | categorise my files and folders                       | easily manage my files and search files based on categories   |
+| `* * *`  | Software engineer                                              | group my files together                               | open all files in the same group at once                      |
+| `* * *`  | Student with lots of files                                     | see a list of my tags                                 | find the tag that I created easily                            |
+| `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
+| `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
+| `* *`    | Command line user                                              | use commands similar to Linux                         | use the similar Linux command without having to relearn       |
+| `* *`    | Careless CS student                                            | be able to undo my mistake                            | fix my mistake                                                |
+| `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
+| `*`      | Intermediate user                                              | delete tagged files                                   | not be distracted by it.                                      |
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HelloFile` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+<br />
+
+
+**Use case ID: UC01**
+
+**Use case: Tag a file**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to tag a file with a tag name, the file path and a label.
+2. HelloFile creates the tag and informs the user.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. HelloFile detects that the tag name entered is invalid.
 
-  Use case ends.
+    * 2a1. HelloFile prompts the user that the tag name entered is invalid.
 
-* 3a. The given index is invalid.
+        Use case resumes from step 1.
 
-    * 3a1. AddressBook shows an error message.
+* 2b. HelloFile detects that the file path entered is invalid.
 
-      Use case resumes at step 2.
+    * 2b1. HelloFile prompts the user that the file path entered is invalid.
 
-*{More to be added}*
+        Use case resumes from step 1.
+        
+* 2c. HelloFile detects that the label entered is invalid.
+
+    * 2c1. HelloFile prompts the user that the label entered is invalid.
+
+        Use case resumes from step 1.
+
+* 2d. HelloFile detects that the tag name already exists in HelloFile.
+
+    * 2d1. HelloFile prompts the user that the tag name already exists.
+
+        Use case resumes from step 1.
+
+<br />
+
+
+**User case ID: UC02**
+
+**Use Case: Open a tagged file**
+
+**MSS**
+
+1. User requests to open a tagged file.
+2. HelloFile opens the file using the default application.
+
+    Use case ends.
+
+**Extension**
+
+* 2a. HelloFile cannot find the tag entered.
+
+	* 2a1. HelloFile prompts the user that the tag cannot be found.
+
+        Use case resumes from step 1.
+
+* 2b. HelloFile detects that the file path is invalid.
+
+	* 2b1. HelloFile prompts the user that the target file does not exist.
+
+        Use case resumes from step 1.
+
+* 2c. HelloFile detects that there is no permission to open the file.
+
+	* 2c1. HelloFile prompts the user that the app does not have the permission to open the file.
+
+	    Use case resumes form step 1.
+
+<br />
+
+
+**UseCase ID: UC03**
+
+**Use Case: Rename a tag**
+
+**MSS**
+
+1. User requests to change the tag name of a tag.
+2. HelloFile overrides the tag name of the tag with the new tag name.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HelloFile cannot find the tag to be renamed.
+
+	* 2a1. HelloFile prompts to the user that the tag cannot be found.
+
+    	Use case resumes from step 1
+
+* 2b. HelloFile detects that the new tag name entered is invalid.
+
+    * 2b1. HelloFile prompts that the new tag name entered is invalid.
+
+        Use case resumes from step 1. 
+
+* 2c. HelloFile detects that the new tag name entered already exists.
+
+	* 2c1. HelloFile prompts the user that the new tag name already exists. 
+
+        Use case resumes from step 1.
+
+<br />
+
+
+**UseCase ID: UC04**
+
+**Use Case: Remove a tag**
+
+**MSS**
+
+1. User requests to remove a tag.
+2. HelloFile removes the tag from the tag list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HelloFile cannot find the tag entered.
+
+	* 2a1. HelloFile prompts the user that the tag cannot be found.
+
+	    Use case resumes from step 1.
+        
+<br />
+
+
+**UseCase ID: UC05**
+
+**Use Case: Show information of a tagged file**
+
+**MSS**
+
+1. User requests the check the information of a tagged file.
+2. HelloFile shows the information of the file to the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HelloFile cannot find the tag entered.
+
+	* 2a1. HelloFile prompts the user that the tag cannot be found.
+
+        Use case resumes from step 1.
+
+<br />
+
+
+**UseCase ID: UC06**
+
+**Use Case: Check help for all commands**
+
+**MSS**
+
+1. User requests to see the user help for all commands.
+2. HelloFile shows the user help of all command to the user.
+
+    Use case ends.
+    
+<br />
+
+
+**UseCase ID: UC07**
+
+**Use Case: Check help for one command**
+
+**MSS**
+
+1. User requests to see the user help for a specific command.
+2. HelloFile shows the user help of the command to the user.
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. HelloFile does not have the command.
+
+	* 2a1. HelloFile prompts the user that the command is not supported.
+
+        Use case resumes from step 1.
+
+<br />
+
+
+**UseCase ID: UC08**
+
+**Use Case: Add a label to a tag**
+
+**MSS**
+
+1. User requests to add a label to a tag.
+2. HelloFile adds the label to the tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HelloFile cannot find the tag entered.
+
+    * 2a1. HelloFile prompts the user that the tag cannot be found.
+    
+        Use case resumes from step 1.
+    
+* 2b. HelloFile detects that the label entered is invalid.
+
+    * 2b1. HelloFile prompts the user that the label entered is invalid.
+    
+        Use case resumes from step 1.
+
+<br />
+
+
+**UseCase ID: UC09**
+
+**Use Case: Remove a label of a tag**
+
+**MSS**
+
+1. User requests to remove a specific label of a tag.
+2. HelloFile removes the label from the tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HelloFile cannot find the tag entered.
+
+    * 2a1. HelloFile prompts the user that the tag cannot be found.
+    
+        Use case resumes from step 1.
+    
+* 2b. HelloFile detects that the tag does not have the label.
+
+    * 2b1. HelloFile prompts the user that the label cannot be found on the tag.
+    
+        Use case resumes from step 1.
+
+<br />
+
+
+**UseCase ID: UC10**
+
+**Use Case: Undo an executed command**
+
+**MSS**
+
+1. User requests to undo the last command executed.
+2. HelloFile resets the state of the app to the state before the execution of the last command.
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. HelloFile detects that there is no past command to be undo.
+
+    * 2a1. HelloFile prompts the user that there is no command to be undo.
+    
+        Use case resumes from step 1.
+
+<br />
+
+
+**UseCase ID: UC11**
+
+**Use Case: Redo an undo command**
+
+**MSS**
+
+1. User requests to redo an undo command executed.
+2. HelloFile resets the state of the app to the state before the execution of the last undo command.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HelloFile detects that there is no undo command to be redo.
+
+    * 2a1. HelloFile prompts the user that there is no undo commands to be redo.
+    
+        Use case resumes from step 1.
+
+<br />
+
+
+**User case ID: UC12**
+
+**Use Case: Open all tagged file with the same label**
+
+**MSS**
+
+1. User requests to open files with the same label.
+2. HelloFile opens the all the files using the default application.
+
+    Use case ends.
+
+**Extension**
+
+* 2a. HelloFile cannot find the label entered.
+
+	* 2a1. HelloFile prompts the user that the label cannot be found.
+
+        Use case resumes from step 1.
+
+* 2b. HelloFile detects that some tags' file paths are invalid.
+
+	* 2b1. HelloFile opens the valid files and prompts the user that some target file does not exist.
+
+        Use case resumes from step 1.
+
+* 2c. HelloFile detects that there is no permission to open some files.
+
+	* 2c1. HelloFile opens the files that can be opened and prompts the user that the app does not have the permission to open some files.
+
+	    Use case resumes form step 1.
+
+<br />
+
+**Common Extensions for All UseCases**
+
+* *a. User enters an invalid command.
+
+	* *a1. HelloFile prompts the user the command entered is invalid.
+
+	    Use case ends.
+
+* *b. The format of the command entered is incorrect.
+
+    * *b1. HelloFile informs the user that the format is incorrect.
+    * *b2. HelloFile displays the user help of the command used wrongly to the user.
+    
+        Use case ends.
+        
+<br />
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The app should work on any mainstream OS as long as it has Java 11 or above installed.
+2. The app should be able to hold up to 1000 tags without sluggishness longer than 5 seconds.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The source code should be open source.
+5. The application should be usable by a tech-savvy NUS CS student who has never used a similar file management system before.
+6. The user interface should be simple and optimized for CLI power users.
+7. The product is offered as a free application.
+8. 99% of the functions are bug free.
+9. The code base should be well documented and populated with ample assertions.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+* **Tag**: A string that will be mapped to a file path
+* **Label**: A string that categorises a tag
+* **UI**: User interface
+* **CLI**: Command line interface
+* **GUI**: Graphical user interface
+* **Relative File Path**: A path that is relative to a current directory, it is combined with another file path to access a file.
+* **Absolute File Path**: The complete details required to locate the file or folder, starting with the root element.

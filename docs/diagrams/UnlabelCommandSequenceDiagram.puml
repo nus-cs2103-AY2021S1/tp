@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "u:UnlabelCommand" as UnlabelCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Tag" as Tag MODEL_COLOR
+end box
+
+[-> UnlabelCommand : execute()
+activate UnlabelCommand
+
+UnlabelCommand -> Model : findFilteredTagList()
+activate Model
+
+Model --> UnlabelCommand : t
+deactivate Model
+
+UnlabelCommand -> UnlabelCommand : modifyTagLabel(t)
+activate UnlabelCommand
+
+create Tag
+UnlabelCommand -> Tag
+activate Tag
+
+Tag --> UnlabelCommand : modTag
+deactivate Tag
+
+UnlabelCommand --> UnlabelCommand : modTag
+deactivate UnlabelCommand
+
+UnlabelCommand -> Model : setTag(t, modTag)
+activate Model
+
+Model --> UnlabelCommand
+deactivate Model
+
+UnlabelCommand -> Model : commitAddressBook()
+activate Model
+
+Model --> UnlabelCommand
+deactivate Model
+
+create CommandResult
+UnlabelCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnlabelCommand
+deactivate CommandResult
+
+[<--UnlabelCommand : result
+deactivate UnlabelCommand
+@enduml

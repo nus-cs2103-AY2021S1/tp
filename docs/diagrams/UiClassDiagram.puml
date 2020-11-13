@@ -9,12 +9,15 @@ Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
+Class ThemeWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
+Class TagListPanel
+Class TagCard
 Class CommandBox
+Class FooterBar
+Class FileExplorerPanel
+Class LastInputDisplay
 }
 
 package Model <<Rectangle>> {
@@ -30,31 +33,36 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
+MainWindow *--> HelpWindow
+MainWindow *--> ThemeWindow
+MainWindow *--> FooterBar
+MainWindow *--> LastInputDisplay
+MainWindow *--> FileExplorerPanel
+MainWindow *--> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
-MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> TagListPanel
 
-PersonListPanel -down-> PersonCard
+TagListPanel -down-> TagCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+TagListPanel --|> UiPart
+TagCard --|> UiPart
 HelpWindow -down-|> UiPart
+ThemeWindow --|> UiPart
+FooterBar --|> UiPart
+FileExplorerPanel --|> UiPart
+LastInputDisplay --|> UiPart
 
-PersonCard ..> Model
+TagCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+TagListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

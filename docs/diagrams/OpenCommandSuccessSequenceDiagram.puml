@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+Participant ":OpenCommand" as command LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":CommandResult" as result LOGIC_COLOR
+
+[-> command: execute()
+
+activate command
+
+alt tagName != null
+    command -> command: getTag()
+    activate command
+
+    command -> model: findFilteredTagList()
+    activate model
+    model --> command
+    deactivate model
+
+    command --> command
+    deactivate command
+else else
+    command -> command: getTagList()
+    activate command
+
+    command -> model: findFilteredTagList()
+    activate model
+    model --> command
+    deactivate model
+
+    command --> command
+    deactivate command
+end
+
+command -> command: openTags()
+activate command
+command --> command
+deactivate command
+
+command -> command: getFormattedResultString()
+activate command
+command --> command
+deactivate command
+
+create result
+command -> result:
+activate result
+result --> command
+deactivate result
+
+[<-- command: result
+deactivate command
+[-[hidden]-> command
+destroy command
+
+@enduml

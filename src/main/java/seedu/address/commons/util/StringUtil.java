@@ -39,6 +39,28 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code toCheck} contains the {@code key}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       containsCharIgnoreCase("ABcdef", "abc") == true
+     *       containsCharIgnoreCase("ABcdef", "DEF") == true
+     *       containsWordIgnoreCase("ABcdef", "dd") == false
+     *       </pre>
+     * @param toCheck cannot be null
+     * @param key cannot be null, cannot be empty
+     */
+    public static boolean containsCharIgnoreCase(String toCheck, String key) {
+        requireNonNull(toCheck);
+        requireNonNull(key);
+
+        String preparedKey = key.trim().toLowerCase();
+        String preparedStr = toCheck.toLowerCase();
+        checkArgument(!preparedKey.isEmpty(), "Key parameter cannot be empty");
+
+        return preparedStr.contains(preparedKey);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
