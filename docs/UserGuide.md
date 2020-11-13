@@ -203,7 +203,7 @@ After entering this command, your app should look like this:
 
 #### <a name="end"></a>3.2.4. End Quiz : `end` (Zhizhi)
 
-Ends the round of vocabulary testing. You can use this anytime during the quiz and the quiz score will be the number of correct attempts to that point.
+Ends the round of vocabulary testing. You can use this anytime during the quiz and the quiz score will be the number of correct attempts up to that point.
 
 Format: `end`
 
