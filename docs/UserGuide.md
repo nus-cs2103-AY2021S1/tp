@@ -126,10 +126,10 @@ This section aims to remind you of the important parts to take note of while rea
 When reading this user guide, various symbols may appear occasionally to draw your attention to important information.
 The meaning for each symbol is as follows:
 
-Symbol | Meaning
--------| ------------
- ⚠️   | This symbol indicates that there is something important for you to take note of.
- ✏️   | This symbol indicates that an example is provided.
+Symbol    | Meaning
+----------| ------------
+:warning: | This symbol indicates that there is something important for you to take note of.
+:pencil2: | This symbol indicates that an example is provided.
 
 <div style="page-break-after: always;"></div>
 
@@ -275,9 +275,9 @@ Clicking on each tab brings up the information list for the corresponding field.
 Upon the execution of each command, the tab is switched automatically for you.
 
 <br>
-⚠️ The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and `Tasks`.
+:warning:  The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and `Tasks`.
  
-⚠️ Each core feature has a tab for the organisation of its information.
+:warning:  Each core feature has a tab for the organisation of its information.
 
 <div markdown="block" class="alert alert-info">
 
@@ -315,7 +315,7 @@ To log in, simply edit your login details with the following command:
 
 <br>**Format: `edit -l u/LUMINUS_USERNAME p/LUMINUS_PASSWORD`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
 ### 5.2 Updated Details Summary
@@ -423,7 +423,7 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 Figure 6.3.1a: <i>Adding a Consultation</i>
 </div>
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
 
@@ -450,7 +450,7 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 Figure 6.3.2a: <i>Adding a Mastery Check</i>
 </div>
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
 
@@ -474,7 +474,7 @@ Adds your personal [`Todo`](#613-notes-about-tasks) with a `description`.
 
 <br>**Format: `add -t DESCRIPTION`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `add -t Clear the bin`
 * `add -t Return calculator to Mary`
 
@@ -492,7 +492,7 @@ Adds your personal [`Event`](#613-notes-about-tasks) with a `description`, to at
 
 <br>**Format: `add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `add -e John’s birthday party d/2020-09-21 t/20:00`
 * `add -e CS2103T team meeting d/2020-09-27 t/10:30`
 
@@ -509,7 +509,7 @@ Adds your personal [`Deadline`](#613-notes-about-tasks) with a `description`, to
 
 <br>**Format: `add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `add -d CS2103T Week 5 ip tasks d/2020-09-08 t/23:59`
 * `add -d Research project report d/2020-10-05 t/10:30`
 
@@ -534,7 +534,7 @@ You can use tags to specify the field to be edited.
 
 <br>**Format: `edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD]`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 * `edit -l p/testpassword`
 
@@ -560,7 +560,7 @@ Edits the fields of a `Student`.
 
 <br>**Format: `edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL]`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `edit -s 1 e/koolguy@gmail.com t/handsome`
 * `edit -s 3 n/Timots`
 
@@ -579,7 +579,7 @@ Edits the score of a `Mastery Check` session with a `Student`.
 
 <div style="page-break-after: always;"></div>
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
@@ -603,7 +603,7 @@ Deletes a `Task` based on the `INDEX` you specify.
 
 ![DeleteConsultation](images/userguide/deleteConsultation.png)
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `delete -c 3`
 
 <div markdown="block" class="alert alert-info">
@@ -621,7 +621,7 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 
 ![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `delete -mc 3`
 
 <div markdown="block" class="alert alert-info">
@@ -641,7 +641,7 @@ Deletes a [`Task`](#613-notes-about-tasks) based on the `TASK_ID` you specify.
 Figure 6.5.3a: <i>Deleting a Task</i>
 </div>
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `delete -t T3`
 * `delete -t D2`
 
@@ -692,7 +692,7 @@ Doe will be displayed.
 Figure 6.6.2a: <i>Viewing Students with a keyword</i>
 </div>
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -s John Doe`
 
 As shown in Figure 6.6.2a, once we key in the command `view -s Alex `, a success message will be displayed and Jarvis
@@ -752,7 +752,7 @@ Shows the `Quests` that you have not yet graded.
 Shows all confirmed `Consultation` sessions, both past and upcoming.
 <br>**Format: `view -c`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -c`
 
 #### 6.6.8 Viewing past `Consultations` : `-cp`
@@ -761,7 +761,7 @@ Shows all past `Consultation` sessions.
 
 <br>**Format: `view -cp`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -cp`
 
 <div markdown="block" class="alert alert-info">
@@ -776,7 +776,7 @@ Shows all upcoming `Consultation` sessions.
 
 <br>**Format: `view -cu`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -cu`
 
 <div markdown="block" class="alert alert-info">
@@ -789,7 +789,7 @@ Shows all confirmed `Mastery Check` sessions, both past and upcoming.
 
 <br>**Format: `view -mc`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -mc`
 
 #### 6.6.11 Viewing past `Mastery Checks` : `-mcp`
@@ -798,7 +798,7 @@ Shows all past `Mastery Check` sessions.
 
 <br>**Format: `view -mcp`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -mcp`
 
 <div markdown="block" class="alert alert-info">
@@ -811,7 +811,7 @@ Shows all upcoming `Mastery Check` sessions.
 
 <br>**Format: `view -mcu`**
 
-<br>✏️ Examples:
+<br>:pencil2: Examples:
 * `view -mcu`
 
 <div markdown="block" class="alert alert-info">
