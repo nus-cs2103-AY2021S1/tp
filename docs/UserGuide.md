@@ -612,7 +612,7 @@ Action | Format
 **Remove input** | `remove tp/in d/DATE i/INDEX` 
 **Remove output** | `remove tp/out d/DATE i/INDEX` 
 **Change input** | `change d/DATE tp/in i/INDEX [Updated Details]`
-**Change output** | `change d/DATE tp/out i/INDEX [Updated Details` 
+**Change output** | `change d/DATE tp/out i/INDEX [Updated Details]` 
 **View calories of a day** | `view INDEX`
 **View statistics** | `stats v/CHART_TO_BE_VIEWED`
 **View overall BMI progress of recruits for commanders** | `stats v/commander`
