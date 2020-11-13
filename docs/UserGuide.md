@@ -564,7 +564,7 @@ Edits the fields of a `Student`.
 * `edit -s 3 n/Timots`
 
 <div markdown="block" class="alert alert-info">
-You can refer to Figure 6.4.3a below for how the input will look like.
+You can refer to Figure 6.4.3a below for how the input will look like as the commands are similar.
 </div>
 
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
@@ -645,8 +645,8 @@ Figure 6.5.3a: <i>Deleting a Task</i>
 * `delete -t D2`
 
 <div markdown="block" class="alert alert-info">
-* Note that TASK_ID, once given, is permanent and no other Tasks can receive that TASK_ID even after the deletion of the original one. 
-* The Index for Consultation and MasteryCheck is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Task`s.
+* Note that TASK_ID, once given, is permanent and no other `Tasks` can receive that TASK_ID even after the deletion of the original one. 
+* The Index for `Consultation` and `Mastery Check` is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Tasks`.
 </div>
 
 ### 6.6 Viewing Information : `view`
