@@ -4,20 +4,73 @@ title: My Fitness Buddy User Guide
 ---
  ![logo](images/logo.png)  
 (Contributed by Hope)  
-  
+
 Welcome to My Fitness Buddy User Guide!  
 
 Just enlisted under PES ‘B’ Pending and worried about the next few months of Basic Military Training (BMT)?  
+
 Worry no more, My Fitness Buddy is here to accompany you through BMT and help you keep track of your weight loss journey!  
-This user guide serves to provide you with the necessary instructions on how to set up and use our application. With that said, let’s get started!    
+
+This user guide serves to provide you with the necessary instructions on how to set up and use our application.   
+
+With that said, let’s get started!    
 
 Choose a topic from the [Table of Contents](#table-of-contents) below.
 
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
-* Table of Contents
-{:toc}  
+- [1. Introduction](#1-introduction)
+  * [1.1 Application Overview](#11-application-overview)
+  * [1.2 Target Audience](#12-target-audience)
+  * [1.3 Rationale](#13-rationale)
+- [2. About](#2-about)
+  * [2.1 Using this User Guide](#21-using-this-user-guide)
+  * [2.2 Symbols and Syntax](#22-symbols-and-syntax)
+  * [2.3 Command Format](#23-command-format)
+- [3. Getting Started](#3-getting-started)
+  * [3.1 Downloading and opening the application](#31-downloading-and-opening-the-application)
+  * [3.2 General Usage](#32-general-usage)
+- [4. Features](#4-features)
+  * [4.1 Profile commands](#41-profile-commands)
+    + [4.1.1 Creating a new Person ](#411-creating-a-new-person----create-)
+    + [4.1.2 Updating an existing profile](#412-updating-an-existing-profile---update-)
+    + [4.1.3 Viewing another profile](#413-viewing-another-profile---login-)
+  * [4.2 Day commands](#42-day-commands)
+    + [4.2.1 Adding a daily weight record](#421-adding-a-daily-weight-record----add-d-date-w-weight-)
+    + [4.2.2 Editing a daily weight record ](#422-editing-a-daily-weight-record----edit-index-w-weight-)
+    + [4.2.3 Deleting a daily record](#423-deleting-a-daily-record---delete-index-)
+  * [4.3 Calorie Level Data Entry Commands](#43-calorie-level-data-entry-commands)
+    + [4.3.1 Adding Calorie](#431-adding-calorie)
+      - [4.3.1.1 Adding a calorie input](#4311-adding-a-calorie-input----calorie-tp-in-)
+      - [4.3.1.2 Adding a calorie output ](#4312-adding-a-calorie-output----calorie-tp-out-)
+    + [4.3.2 Removing Calorie](#432-removing-calorie)
+      - [4.3.2.1 Removing a calorie output](#4321-removing-a-calorie-output----remove-tp-out-)
+      - [4.3.2.2 Removing a calorie input ](#4322-removing-a-calorie-input----remove-tp-in-)
+    + [4.3.3 Change Calorie](#433-change-calorie)
+      - [4.3.3.1 Changing a calorie input](#4331-changing-a-calorie-input----change-tp-in-)
+      - [4.3.3.2 Changing a calorie output](#4332-changing-a-calorie-output----change-tp-out-)
+  * [4.4 Data Visualization](#44-data-visualization)
+    + [4.4.1 View all calorie inputs and outputs of a day](#441-view-all-calorie-inputs-and-outputs-of-a-day---view-)
+    + [4.4.2 View Statistics](#442-view-statistics---stats-)
+    + [4.4.3 Personal related data visualisation:](#443-personal-related-data-visualisation-)
+      - [4.4.3.1 Current BMI](#4431-current-bmi)
+      - [4.4.3.1 Calorie Budget](#4431-calorie-budget)
+      - [4.4.3.1 Progress Bar](#4431-progress-bar)
+  * [4.5 General commands](#45-general-commands)
+    + [4.5.1 Viewing help ](#451-viewing-help----help-)
+    + [4.5.2 Clearing all entries](#452-clearing-all-entries----clear-)
+    + [4.5.3 Exiting the program ](#453-exiting-the-program----exit-)
+  * [4.6 Additional Features for BMT Commanders](#46-additional-features-for-bmt-commanders)
+    + [4.6.1 View overall BMI progress of the recruits](#461-view-overall-bmi-progress-of-the-recruits---stats-v-commander-)
+    + [4.6.2 Find recruits that exceeded certain BMI threshold](#462-find-recruits-that-exceeded-certain-bmi-threshold---find-bmi--)
+  * [4.7 Saving the data](#47-saving-the-data)
+- [5. FAQ](#5-faq)
+  * [5.1 General](#51-general)
+  * [5.2 Transferring Data](#52-transferring-data)
+  * [5.3 Viewing calorie lists](#53-viewing-calorie-lists)
+- [6. Command summary](#6-command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -32,6 +85,7 @@ This application is optimized for use through a *Command Line Interface (CLI)*, 
 My Fitness Buddy is designed for PES ‘B’ Pending (BP) soldiers who have just enlisted and are starting their initial 10 weeks of fitness training in BMT. Our features revolve around providing a visual and convenient way to keep track of factors that affect weight loss.  
 
 We have also implemented a commander's version that would allow commanders to have an overview of all recruits.
+
 ### 1.3 Rationale
  Before this application was developed, PES BP soldiers had weekly weighing and had to record down their weights on a form kept by their commanders. This method was not only time consuming, it was also ineffective in tracking the soldiers' overall fitness levels. For instance, if a soldier's weight did not decrease over the weeks, he would be unable to pinpoint the reason why this is so.   
  My Fitness Buddy was developed so that soldiers would be able to see the fluctuations in their fitness level through factors such as calorie intake from consumption, calorie output from exercise, and daily weight records. Those records would be available by day and can even be viewed as  a graph.  
@@ -45,12 +99,17 @@ We have also implemented a commander's version that would allow commanders to ha
 This User Guide has been structured such that users can easily find and understand what they need.  
 [Section 2](#2-about) contains useful tips and information on reading this document.  
 [Section 3](#3-getting-started) consists of instructions to set up this application  
-[Section 4](#4-features) includes the details of the 4 main features of My Fitness Buddy which are
+[Section 4](#4-features) includes the details of the 4 main features of My Fitness Buddy which are:
+
 * Profile page
 * List of days
 * Calorie input and output
 * Statistics
 * Features for commanders
+
+[Section 5](#5-faq) shows all frequently asked questions (FAQ)
+
+[Section 6](#6-command-summary) provides a command summary table
 
 ### 2.2 Symbols and Syntax
 
@@ -85,10 +144,10 @@ Thank you for using My Fitness Buddy! Here's a quick start guide to get you star
 1. Download the latest *MyFitnessBuddy_`v1.4`*.jar [here](https://github.com/AY2021S1-CS2103T-W11-3/tp/releases)
 
 1. Copy the file to the folder you want to use as the *home folder* for My Fitness Buddy. 
- 
+
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 ![GUI](images/starting_screen.png)          
-         
+   
 1. If the app doesn’t start right away, try opening a command terminal in the folder and enter  
 `java -jar MyFitnessBuddy_v1.4.jar`
 
@@ -98,7 +157,7 @@ Thank you for using My Fitness Buddy! Here's a quick start guide to get you star
 ### 3.2 General Usage
 (Contributed by Hope)  
 When you open our application for the first time, the application starts up with some sample data that allows users to test the features. Here
-are some general usage scenarios of our application that you can try when getting started
+are some general usage scenarios of our application that you can try when getting started.
 * From sample data :
 1. `login 1` : Login to the first profile in the list
 1. `add d/2020-10-26 w/70` : Create a daily record with the specified date and weight.
