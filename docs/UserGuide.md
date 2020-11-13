@@ -322,6 +322,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 This section includes some general notes on Jarvis.
 
 #### 6.1.1 Notes about Command Format
+(Wiline)
 
    * Words in UPPER_CASE are the parameters to be supplied by you.
    <br> e.g. in `add -t DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add -t Mark Missions`.
@@ -845,10 +846,10 @@ are likely to change frequently and hence, will not need to be persisted.
 ### 7.2 Edit Command Summary
 
 | Function | Tag | Format, Examples |
-| -------- | --- | ---------------- |
-| Edit Login information | -l | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
-| Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
-| Edit `Mastery Check` | -mc  | edit -mc INDEX s/SCORE |
+| -------------------------- | --- | ---------------- |
+| Edit Login information     | -l  | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
+| Edit `Student` information | -s  | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
+| Edit `Mastery Check`       | -mc | edit -mc INDEX s/SCORE |
 
 <div style="page-break-after: always;"></div>
 
