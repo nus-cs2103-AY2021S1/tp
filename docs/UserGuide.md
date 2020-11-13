@@ -315,11 +315,11 @@ Format: `sort <PARAMETER>`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about adding a phrase:**<br>
+**:information_source: Notes about adding a flashcard:**<br>
 
-* Upon adding a new phrase, it will automatically be added to the bottom
+* Upon adding a new flashcard, it will automatically be added to the bottom
   of the glossary regardless of the current sorted order. You will have to sort 
-  the glossary again to update the position of the new phrase. 
+  the glossary again to update the position of the new flashcard. 
   
 </div>
 
