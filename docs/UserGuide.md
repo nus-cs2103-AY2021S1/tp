@@ -20,11 +20,15 @@ Interested to know more? Take a look at our [**Getting started**](#3-getting-sta
 
 ## 2. About this document
 
+(Contributed by Eugene)
+
 Welcome to the CliniCal User Guide!
 
 If you are new to CliniCal, this user guide will get you up and running in no time! It equips you with the basic knowledge you need to use CliniCal properly.
 
 ### 2.1 Formatting
+
+(Contributed by Eugene)
 
 The CliniCal User Guide contains different formatting used throughout the document which is used to convey different meanings. 
 This table below illustrates what each formatting means.
@@ -113,6 +117,8 @@ You can follow the steps below to get CliniCal up and running:
 
 ## 4. User Interface
 
+(Contributed by Eugene)
+
 CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view upcoming appointments and also patient records.
 
 <p align="center">
@@ -132,6 +138,8 @@ On the first startup, CliniCal will be loaded with sample data to give you a fee
 If you wish to start afresh, enter the `clear` command to clear all entries from the appointment and patient list.
 
 ### 4.1 Overview Tab
+
+(Contributed by Eugene)
 
 <p align="center">
     <img src="images/overviewLayout.png"/>
@@ -162,6 +170,8 @@ This would be the main screen of CliniCal, where the appointment list would be o
 
 ### 4.2 Patients Tab
 
+(Contributed by Eugene)
+
 <p align="center">
     <img src="images/patientLayout.png"/>
     <br>
@@ -188,6 +198,8 @@ This tab shows you the patient list and the details of each patient, together wi
 * Refer to the section on [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
 
 ### 4.3 Profile Window
+
+(Contributed by Eugene)
 
 <p align="center">
     <img src="images/profileLayout.png"/>
@@ -286,6 +298,8 @@ Format: `clearhistory`
 
 #### 5.1.4 Undoing the previous command: `undo`
 
+(Contributed by Eugene)
+
 Revert your previous command which modified the patient list.
 
 Format: `undo`
@@ -311,6 +325,8 @@ You want to restore Alex Yeoh's patient details right after accidentally using t
 </div>
 
 #### 5.1.5 Redoing a command: `redo`
+
+(Contributed by Eugene)
 
 Redo the most recent command that you have undone.
 
@@ -520,6 +536,8 @@ You want to delete the 6th patient.
 
 #### 5.2.5 Deleting all patients: `clear`
 
+(Contributed by Eugene)
+
 Clear all patient entries from the patient list.
 
 Format: `clear`
@@ -556,6 +574,8 @@ You want to delete all the patients.
 
 #### 5.2.6 Finding patients: `find`
 
+(Contributed by Eugene)
+
 Find patients whose names or NRIC contain any of the given keywords.
 
 Format: `find KEYWORDS`
@@ -588,6 +608,8 @@ You want to find all the patients with `yu` in their names.
 </div>
 
 #### 5.2.7 Listing all patients: `list`
+
+(Contributed by Eugene)
 
 View a list of all your patients in the patient list.
 
