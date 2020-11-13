@@ -178,66 +178,94 @@ please check that you have installed the correct driver in the _`chrome_driver`_
 <div style="page-break-after: always;"></div>
 
 ## 4. Navigating Jarvis
+(Zhen Teng)
 
-Jarvis has a Graphical User Interface centered around a command input box on the top, surrounded by a light green
-line. The green box below the command input box is the user feedback box. Jarvis provides feedback to the user through
-this box.
+Jarvis has a simple Graphical User Interface(GUI), designed for user-friendliness. It is centered around the command
+box on the top, outlined by a light green box. In the following subsections you will be taken through a detailed
+explanation on the  components of the Graphical User Interface.
 
 ### 4.1 UI Layout
+(Zhen Teng)
 
-   ![Jarvis](images/userguide/uiLayout.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/uiLayout.png" width="115%" /> <br />
+Figure 4.1a: <i>Ui Layout</i>
+</div>
 
-   * The user interface is split into five separate segments.
-        1. Top bar - Passive information, such as a summary for the user, greeting message, week number, topic for
-         the week and today's date is presented to the user. An explanation on each information can be found below.
-        1. Command Box - An input box for user's commands to be keyed in.
-        1. Feedback Box - The feedback shown to the user for a given inputted command.
-        1. Information Panel - A detailed list on the information stored within Jarvis.
-        1. Tab Switcher - A tab switcher for browsing through the different types of information stored in Jarvis.
+As seen in figure 4.1a above, the user interface is split into five separate segments marked 1 to 5.
+1. **Top bar** - Displays passive information such as a summary for the user, greeting message, week number
+, academic topic for
+ the week and today's date. A more detailed explanation on each item can be found in the upcoming section
+  [Top Bar](#411-top-bar)  
+1. **Command Box** - An input box for your commands to be keyed in. To execute the inputted command, hit the
+ enter key on your keyboard after keying in your command.
+1. **Feedback Box** - The feedback shown to the you after your command has been executed.
+1. **Information Panel** - A list of cards showing details on the information stored within Jarvis. This
+ includes the `Tasks` keyed in and your `Students` information.
+1. **Tab Switcher** - A convenient tab switcher for browsing through the different lists of information
+ stored in Jarvis.
+
+In the upcoming sections [4.1.1](#411-top-bar) to [4.1.5](#415-tab-switcher), we will provide a deeper explanation on
+the user interface segments 1 to 5 mentioned above.
 
 <div style="page-break-after: always;"></div>
 
 #### 4.1.1 Top Bar
+(Zhen Teng)
     
-   ![Jarvis](images/userguide/topBar.png)
+   <div style="text-align: center; padding-bottom: 2em">
+    <img src="images/userguide/topBar.png" width="115%" /> <br />
+    Figure 4.1.1a: <i>Detailed breakdown of the Top Bar</i>
+    </div>
 
-   * The top bar includes the following components.
-        1. Summary information - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
-           `Consultations` and `Mastery Checks` as well as all `Tasks` in Jarvis. Do note that graded `Missions` and
-           `Quests`, as well as past `Consultations` and `Mastery Checks`, will not be indicated.
-           
-           We refer to this summary as the `Summary` feature. The summary is presented as a sentence containing the
-           count of the fields stated in the previous paragraph, in the image above, it is the sentence "Remaining - Nothing!". The values are updated when Jarvis starts up and after a user command is entered.
-             
-        1. Greeting message - A welcome message for you. If you are not logged in, this message will prompt you to do
-         so.<br><br>
-        1. Weekly topic and today's date - The week count for the semester, together with the topic for the week and
-         today's date.<br><br>
-        1. Shortcut icons - These icons are positioned here for your convenience to quickly navigate to Source Academy
-         with the blue diamond on the left, and Jarvis' user guide with the white book icon on the right.<br><br>
-        1. Jarvis logo.
+   * In figure 4.1.1a, we can see that the top bar includes the following 5 components.
+        1. **Summary information** - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
+           `Consultations` and `Mastery Checks` as well as all `Tasks` in Jarvis. We refer to this summary as the `Summary` feature. 
+           The summary is presented as a sentence. In figure 4.1.1a, the `Summary` feature refers to the sentence
+           "Remaining - Nothing!". These values are updated only when Jarvis starts up and after a user command is
+           entered.
+
+           Do note that graded `Missions` and `Quests`, as well as past `Consultations` and `Mastery Checks`, will not
+           be indicated.
+ 
+        1. **Greeting message** - A warm welcome message for you. If you are not logged in, this message will prompt you
+         to do so.<br><br>
+        1. **Weekly topic and today's date** - The week count in the semester, together with the academic topic for the
+         week and today's date.<br><br>
+        1. **Shortcut icons** - These icons are positioned here for your convenience in quickly navigating to Source
+         Academy via the blue diamond on the left, and Jarvis' user guide via the white book icon on the right.<br><br>
+        1. **Jarvis logo** - This is the application icon of Jarvis.
 
 #### 4.1.2 Command Box
+(Zhen Teng)
 
-   * A text input box for all user commands to be keyed in. You may refer to a detailed guide on the various commands
-    available in Jarvis. Hit the enter key to execute the inputted command.
+A text input box for all user commands to be keyed in. You may refer to the [Features](#6-features) section for
+a detailed guide on the various commands available in Jarvis. Hit the enter key to execute the inputted command.
 
 <div style="page-break-after: always;"></div>
 
 #### 4.1.3 Feedback Box
+(Zhen Teng)
 
-   * A box that shows the corresponding feedback to the user according to the commands keyed in. If the command is
-   successful, a success message will be shown. Otherwise, error messages guiding the user will be displayed.
+A box which shows the corresponding feedback to the user according to the commands keyed in. If the command is
+successful, a success message will be shown. Otherwise, error messages guiding the user will be displayed.
 
 #### 4.1.4 Information Panel
-   * A detailed list of information that corresponds to the tab selected in the Tab Switcher on the left of the
-    Graphical User Interface (GUI).
+(Zhen Teng)
+
+A detailed list of information that corresponds to the tab selected in the [Tab Switcher](#415-tab-switcher) on the
+left of the Graphical User Interface (GUI).
 
 #### 4.1.5 Tab Switcher
+(Zhen Teng)
 
-   * The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check`, `Task`.
-   * `Todo`, `Event` and `Deadline` are all variants of `Task`.
-   * Clicking on each tab will give you the information you require for that field.  
+The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check`, `Task
+`. Clicking on each tab brings up the information list for the corresponding field. For instance, clicking on the
+ `Students` tab will bring up the list of `Students` from your class.  
+
+`Todo`, `Event` and `Deadline` are all variants of `Task`.
+
+Upon the execution of each command, the tab is switched automatically for you.
 
 <br>
 ⚠️ The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and `Tasks`.
@@ -246,10 +274,11 @@ this box.
 
 <div markdown="block" class="alert alert-info">
 
-To navigate the features, there are 2 methods which could be used individually, or mixed. We have designed
+To navigate the features, there are 2 methods which could be used individually, or in a combined manner. We have
+ designed
 this flexibility with you, the user in mind.
- 1. Only inputting commands into the box annotated "Enter command here...". Upon the successful execution of a
-  command, the tab is automatically switched to the corresponding tab for your convenience.
+ 1. Only inputting commands into the [Command Box](#412-command-box) annotated "Enter command here...". Upon the
+  successful execution of a command, the tab is automatically switched to the corresponding tab for your convenience.
  1. Clicking on the tabs.
 </div>
 
@@ -324,11 +353,12 @@ This section includes some general notes on Jarvis.
    <br> e.g. if the user enters a `NAME` parameter that is 150 characters long, Jarvis will automatically truncate it to fit the given screen size.
    
 #### 6.1.5 Notes about Summary feature
-   * As mentioned above under the section explaining the top bar, the `Summary` feature is updated when Jarvis is
+   * As mentioned above in [4.1.1](#411-top-bar), the `Summary` feature is updated when Jarvis is
    launched and after a user command is successfully executed. As such, the values in the `Summary` will remain the same, even if
    the current time has passed the date and time of a `Consultation` or `Mastery Check`. Also, if a `Mission` or
    `Quest` is graded while Jarvis is open, the number of ungraded `Mission` and `Quests` will remain the same.
-   * To get the updated values, simply re-start Jarvis or type in a command and hit the enter key on your keyboard.
+   * To obtain the updated values, simply re-start Jarvis or execute a command by keying in a command and hitting the
+    enter key on your keyboard.
    * The `Summary` feature will display all `Tasks` stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
     time. This is in contrast to `Consultations` and `Mastery Checks` where only the upcoming ones are included in
     the count.
@@ -349,6 +379,10 @@ Upon entering `help` in the command box, a pop up window, as shown in Figure 6.2
 <div style="page-break-after: always;"></div>
 
 ### 6.3 Adding Information : `add`
+In the following subsections, we will explain how the commands for adding information work. Please take note of the
+command inputted into the command box to understand how the respective commands are keyed in.
+
+We have excluded screenshots from some sections as the command works similarly to other add commands in this section.
 
 #### 6.3.1 Adding `Consultations` : `-c`
 
@@ -462,6 +496,10 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 <div style="page-break-after: always;"></div>
 
 ### 6.4 Editing Information : `edit`
+In the following subsections, we will explain how the commands for editing information work. Please take note of the
+command inputted into the command box to understand how the respective commands are keyed in.
+
+Certain commands are similar to one another and hence we have excluded screenshots from those sections.
 
 #### 6.4.1 Editing Login Information : `-l`
 
@@ -526,6 +564,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 <div style="page-break-after: always;"></div>
 
 ### 6.5 Deleting Information : `delete`
+In the following subsections, we will explain how the commands for deleting information work. Please take note of the
+command inputted into the command box to understand how the respective commands are keyed in.
 
 #### 6.5.1 Deleting `Consultations` : `-c`
 
@@ -539,7 +579,8 @@ Deletes a `Task` based on the `INDEX` you specify.
 * `delete -c 3`
 
 <div markdown="block" class="alert alert-info">
-* The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Consultation`.
+* The `INDEX` parameter should be a non-zero number that is a valid index currently displayed along with the target
+ `Consultation`. You may find the index of the `Consultation` on the left of it in the Infomation Panel.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -556,7 +597,8 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 * `delete -mc 3`
 
 <div markdown="block" class="alert alert-info">
-* The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
+* The `INDEX` parameter should be a non-zero number that is a valid index currently displayed along with the target
+ `Mastery Check`. You may find the index of the `Mastery Check` on the left of it in the Infomation Panel.
 </div>
 
 #### 6.5.3 Deleting `Tasks` : `-t`
@@ -577,19 +619,34 @@ Deletes a `Task` based on the `TASK_ID` you specify.
 </div>
 
 ### 6.6 Viewing Information : `view`
+In the following subsections, we will explain how the commands for viewing information work. Please take note of the
+command inputted into the command box to understand how the respective commands are keyed in.
+
+Certain commands are similar to one another and hence we have excluded screenshots from those sections.
 
 #### 6.6.1 Viewing a list of all `Students` : `-s`
+(Zhen Teng)
 
-Shows a list of all `Students` under the tutor in Jarvis.
-Please take note of the command inputted into the command box to understand how the respective commands are inputted.
+Shows a list of all `Students` under you in Jarvis.
+Please take note of the command inputted into the command box(marked 1) to understand how the respective commands are
+ inputted.
 
 <br>**Format: `view -s`**
 
-![ViewAllStudentsCommand](images/userguide/viewAllStudents.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/viewAllStudents.png" width="115%" /> <br />
+Figure 6.6.1a: <i>Viewing all Students</i>
+</div>
+
+As shown in Figure 6.6.1a, once we key in the command `view -s`, a success message will be displayed and Jarvis
+will auto switch to the `Students` tab, showing all `Students` taught by you.
 
 #### 6.6.2 Viewing `Student` with keyword : `-s NAME`
+(Zhen Teng)
 
-Shows all `Students` that match (partial and full) the name entered after the command. The following is an example where the name is case-sensitive
+Shows all `Students` that match (partial and full) the name entered after the command. 
+
+The following is an example where the name is case-sensitive
 and partial name matches will work. If you would like to look for your student Tommy Hilfiger, you can simply type in `view -s Tom` 
 and the student will be displayed. A full match on the other hand would be as such: key in the command `view -s John Doe` and John
 Doe will be displayed.
@@ -598,11 +655,17 @@ Doe will be displayed.
 
 <div style="page-break-after: always;"></div>
 
-![ViewOneStudentCommand](images/userguide/viewOneStudent.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/viewOneStudent.png" width="115%" /> <br />
+Figure 6.6.2a: <i>Viewing Students with a keyword</i>
+</div>
 
 <br>✏️ Examples:
 * `view -s John Doe`
 
+As shown in Figure 6.6.2a, once we key in the command `view -s Alex `, a success message will be displayed and Jarvis
+will auto switch to the `Students` tab, showing all `Students` from your classes which match the keyword "Alex". On the
+ contrary, using the keyword "alex" would not work as the keyword has to be case sensitive.
 
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 (Wiline)
