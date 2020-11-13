@@ -32,10 +32,10 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
         * [6.1.3 Notes about Tasks](#613-notes-about-tasks)
         * [6.1.4 Notes about truncation](#614-notes-about-truncation)
         * [6.1.5 Notes about Summary feature](#615-notes-about-summary-feature)
+        
+        <div style="page-break-after: always;"></div>
+         
     - [6.2 Viewing help : `help`](#62-viewing-help--help)
-    
-    <div style="page-break-after: always;"></div>
-    
     - [6.3 Adding Information : `add`](#63-adding-information--add)
         * [6.3.1 Adding Consultations : `add -c`](#631-adding-consultations---c)
         * [6.3.2 Adding Mastery Checks : `add -mc`](#632-adding-mastery-checks---mc)
@@ -74,11 +74,11 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [7.2 Edit Command Summary](#72-edit-command-summary)
     - [7.3 Delete Command Summary](#73-delete-command-summary)
     - [7.4 View Command Summary](#74-view-command-summary)
-    - [7.5 Exit Command Summary](#75-exit-command-summary)
-    - [7.6 Help Command Summary](#76-help-command-summary)
     
     <div style="page-break-after: always;"></div>
-
+    
+    - [7.5 Exit Command Summary](#75-exit-command-summary)
+    - [7.6 Help Command Summary](#76-help-command-summary)
 8. [Glossary](#8-glossary)
     - [8.1 Difference Between Consultations and Mastery Checks](#81-difference-between-consultations-and-mastery-checks)
 9. [FAQ](#9-faq)
@@ -99,6 +99,8 @@ CS1101S tutors' administrative tasks.
 As an Avenger, not only do you have immense power but you are also burdened with inevitable great responsibility.
 Not to worry, Jarvis is here to empower you to manage your personal tasks while teaching others efficiently and
 effectively.
+
+<div style="page-break-after: always;"></div>
 
 ### 1.3 Design Considerations
 (Peirong)
@@ -172,6 +174,8 @@ please check that you have installed the correct driver in the _`chrome_driver`_
  Do note that after editing your login details, exiting and relaunching the Jarvis User interface will take some time
  as Jarvis is attempting to log you into Source Academy.
 
+<div style="page-break-after: always;"></div>
+
 1. Type the command in the command box and press Enter to execute it. E.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
    * `view -s:  Lists all Students.`
@@ -201,10 +205,12 @@ explanation on the  components of the Graphical User Interface.
 Figure 4.1a: <i>Ui Layout</i>
 </div>
 
+<div style="page-break-after: always;"></div>
+
 As seen in Figure 4.1a above, the user interface is split into five separate segments marked 1 to 5.
 1. **Top bar** - Displays passive information such as a summary for the user, greeting message, week number, academic topic for
  the week and today's date. A more detailed explanation on each item can be found in the upcoming section
-  [Top Bar](#411-top-bar)  
+  [Top Bar](#411-top-bar).
 1. **Command Box** - An input box for your commands to be keyed in. To execute the inputted command, hit the
  Enter key on your keyboard after keying in your command.
 1. **Feedback Box** - The feedback shown to the you after your command has been executed.
@@ -240,6 +246,8 @@ the user interface segments 1 to 5 mentioned above.
          to do so.<br><br>
         1. **Weekly topic and today's date** - The week count in the semester, together with the academic topic for the
          week and today's date.<br><br>
+         <div style="page-break-after: always;"></div>
+         
         1. **Shortcut icons** - These icons are positioned here for your convenience in quickly navigating to Source
          Academy via the blue diamond on the left, and Jarvis' user guide via the white book icon on the right.<br><br>
         1. **Jarvis logo** - This is the application icon of Jarvis.
@@ -278,6 +286,7 @@ Upon the execution of each command, the tab is switched automatically for you.
  
 :warning:  Each core feature has a tab for the organisation of its information.
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
 To navigate the features, there are 2 methods which could be used individually, or in a combined manner. We have
@@ -295,6 +304,7 @@ this flexibility with you, the user in mind.
 
 Figure 5.0a shows the page upon first login, where you are prompted to key in your Source Academy username and password:
 
+<div style="page-break-after: always;"></div>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/loginPrompt.png" width="115%" /> <br />
 Figure 5.0a: <i>Login Page</i>
@@ -317,14 +327,14 @@ To log in, simply edit your login details with the following command:
 <br>:pencil2: Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Updated Details Summary
 (Peirong)
 
 Within the command box marked as 3 in Figure 5.1a above, Jarvis will notify you if the login was successful and the login information entered.
 The username, password and student names are covered with a red rectangle for Figure 5.1a to protect the Avenger's account security.
 You will be able to see the login details you entered.
-
-<div style="page-break-after: always;"></div>
 
 ### 5.3 Updated Student Information
 (Peirong)
@@ -357,13 +367,13 @@ This section includes some general notes on Jarvis.
    * When there are repeated parameters, Jarvis only recognizes the data given by the last repeated parameter.
    <br> e.g. if the command specifies `t/TELEGRAM e/EMAIL` and the user enters `t/TELEGRAM t/TELEGRAM2 e/EMAIL e/EMAIL2 e/EMAIL3`, Jarvis recognizes the input as `t/TELEGRAM2 e/EMAIL3`.
 
+<div style="page-break-after: always;"></div>
+
 #### 6.1.2 Notes about Jarvis' relationship with Source Academy
 (Peirong)
 
    * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
-
-<div style="page-break-after: always;"></div>
 
 #### 6.1.3 Notes about Tasks
 (Jun Jie)
@@ -379,7 +389,9 @@ This section includes some general notes on Jarvis.
 
    * If the user input is too long, it is automatically truncated when displayed.
    <br> e.g. if the user enters a `NAME` that is 150 characters long, Jarvis will automatically truncate it to fit the given screen size.
-   
+
+<div style="page-break-after: always;"></div>
+
 #### 6.1.5 Notes about Summary feature
 (Zhen Teng)
 
@@ -392,6 +404,8 @@ This section includes some general notes on Jarvis.
    * The `Summary` feature will display all `Tasks` stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
     time. This is in contrast to `Consultations` and `Mastery Checks` where only the upcoming ones are included in
     the count.
+
+<div style="page-break-after: always;"></div>
 
 ### 6.2 Viewing help : `help`
 (Jun Jie)
@@ -522,6 +536,7 @@ Adds your personal [`Deadline`](#613-notes-about-tasks) with a `description`, to
 * `add -d CS2103T Week 5 ip tasks d/2020-09-08 t/23:59`
 * `add -d Research project report d/2020-10-05 t/10:30`
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 * Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create.
 
