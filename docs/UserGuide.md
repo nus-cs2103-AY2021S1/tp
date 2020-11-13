@@ -58,6 +58,8 @@ title: User Guide
 
 ## 1. Introduction
 
+###### (written by: Ethan Rozario)
+
 __Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their
 student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User
 Interface (GUI). If you are a TA with a fast typing speed, __Trackr__ is the app for you! You can start by familiarising
@@ -66,9 +68,10 @@ yourself with the information regarding how this document is designed in
 
 ## 2. About this document
 
+###### (written by: Ethan Rozario)
+
 Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can
-provide to make your TA experience less troublesome. This section will provide information regarding the use of this
-document, namely how to navigate through this document, what the technical terms mean and how to interpret the
+provide to make your TA experience less troublesome, by making data management, attendance tracking, and participation tracking a breeze. This section will provide information regarding the use of this document, namely how to navigate through this document, what the technical terms mean and how to interpret the
 formatting used.
 
 ### 2.1 Glossary
@@ -626,6 +629,8 @@ Figure 4.5.4a Expected outcome of performing the `findStudent` command
 
 ### 4.6 Attendance Features
 
+###### (written by: Ethan Rozario)
+
 > You should perform the following features while in the Student view.
 
 #### 4.6.1 Add attendance: `addAttendance`
@@ -638,6 +643,7 @@ Format: `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
 > - `INDEX` must be a positive integer starting from 1.
 > - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
 > - Marking attendance for weeks that have already been marked as 'present' will not make any changes for those weeks.
+
 Example:
 
 - Adds the attendance of the first student on the student list for `WEEK_NUMBER` _2_ and `WEEK_NUMBER` _3_.
@@ -664,7 +670,7 @@ Format: `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
 
 Example:
 
-- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _3_.
+- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _3_. (The student initially was present on week 2 and week 3.)
 
   - `deleteAttendance 1 week/3`
 
