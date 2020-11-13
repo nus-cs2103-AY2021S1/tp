@@ -177,8 +177,10 @@ More examples:
 
 Format: `import url/YOUR_NUSMODS_URL`
 
-You can import your NUSMods timetable data into ProductiveNUS by providing the URL to your NUSMods timetable share
-link. Imported lesson information can be found in the `Upcoming tasks`.
+It is tedious to have to constantly switch between your browser and ProductiveNUS when you want to refer to your
+timetable. But, you can transfer your timetable into ProductiveNUS using import.
+
+You can transfer your timetable into ProductiveNUS by providing the URL to your NUSMods timetable share link.
  
 Follow these steps and try importing your timetable:
 
@@ -187,9 +189,10 @@ Follow these steps and try importing your timetable:
    ![NusModsShareSync](images/NusModsShareSync.PNG)
    *Figure 6: The "Share/Sync" at the NUSMods website highlighted in green*
 
-2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
+2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command. Key in `import url/YOUR_NUSMODS_URL`.
 
-3) Added lesson information can be found in your task list.
+3) This may take a few seconds. After the import process, the added lesson information can be found in your
+`Upcoming tasks` list.
 
    ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
    *Figure 7: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
@@ -200,7 +203,7 @@ Follow these steps and try importing your timetable:
 * Importing a new timetable will override your previous timetable data.
 </div>
 
-Another example:
+An example:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
 
 <div style="page-break-after: always;"></div>
@@ -417,43 +420,52 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
 
 <div style="page-break-after: always;"></div>
 
-### Setting priority for assignments : `prioritize`
+### Setting priority for assignments : `prioritise`
 
-Format: `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT`
+Format: `prioritise INDEX p/PRIORITY_OF_ASSIGNMENT`
 
-You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
-shown with a coloured priority tag (As shown highlighted in red in the figure below).
+You may have certain assignments that are of greater urgency than the others. It would be easier if you could categorise
+your assignments based on their priority.
+
+You can set three different priority levels for assignments based on their urgency. Assignments tagged with a priority
+level will be shown with a coloured priority tag beside your assignment name (As shown highlighted in red in the figure
+below).
 
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
    *Figure 21: The priority tags of assignments highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
 
-For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
+For example, `prioritise 3 p/MEDIUM` will set a low priority tag for the third assignment in your assignment list. In
+the figure above, the third assignment, Biology lab report, is marked with a yellow medium priority tag.
 
 <div markdown="block" class="alert alert-primary"> 
   
 **:clipboard: Pointers to note:**<br>
 * The `INDEX` must be found in your assignment list.
-* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
+* The three priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
 
 <div style="page-break-after: always;"></div>
 
-### Removing priority for assignments : `unprioritize`
+### Removing priority for assignments : `unprioritise`
 
-Format: `unprioritize INDEX`
+Format: `unprioritise INDEX`
+
+Suppose you no longer intend to categorise an assignment based on their urgency, or you would like to remove a priority
+tag for other reasons, you can remove them.
 
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
 
-For example, `unprioritize 1` will remove the priority tag, if present, of the first assignment in your assignment list.
+For example, `unprioritise 1` will remove the priority tag, if present, of the first assignment in your assignment list.
+The assignment will now be displayed as usual, but without its priority tag.
 
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
-* At least one `INDEX` must be present. For example, `unprioritize` is invalid.
+* At least one `INDEX` must be present. For example, `unprioritise` is invalid.
 * The `INDEX` must be found in your assignment list.
 </div>
 
@@ -710,8 +722,8 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 | **edit** | `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]` | `edit 3 mod/CS2100`<br>`edit 1 d/10-10-2020 1200` |
 | **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
-| **prioritize** | `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
-| **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
+| **prioritise** | `prioritise INDEX p/PRIORITY_OF_ASSIGNMENT` | `prioritise 3 p/HIGH`<br>`prioritise 1 p/LOW` |
+| **unprioritise** | `unprioritise INDEX` | `unprioritise 1` |
 | **done** | `done INDEX [MORE_INDEXES]` | `done 4` |
 | **undone** | `undone INDEX` | `undone 2` |
 | **schedule** | `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME` | `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359` |
