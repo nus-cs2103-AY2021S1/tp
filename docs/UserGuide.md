@@ -396,7 +396,7 @@ For example, `remind 1` will set reminders for the first assignment in your assi
 
 You can set reminders for **multiple** assignments at a time as well. Here is an example with steps for you to follow:
 
-1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in the figure below), you can simply enter `remind 2 4` into the Command Box.
+1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in the figure below), you can simply enter `remind 2 4` into the [Command Box](#gui-terminologies).
 
    ![Remind24](images/Remind24.png)
    *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
