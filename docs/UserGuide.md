@@ -15,6 +15,8 @@ TAsker provides 3 main features to help you to manage student administration:
 
 It retains the benefits of a Graphical User Interface (GUI). If you can type fast, TAsker can get your administrative tasks done faster than traditional GUI apps.
 
+This user-guide has been written with equivalent effort by all members of the TAsker development team. For
+
 ---
 <p style="font-size: 2rem; color: #d62865">
 Table of Contents
