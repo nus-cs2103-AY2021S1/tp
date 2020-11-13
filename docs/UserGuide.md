@@ -123,7 +123,7 @@ After entering this command, your app should look like this:
 
 #### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit` (Kenny)
 
-Edits a flashcard in the glossary at the specified `INDEX`. You can use this to modify any of the flashcard's fields. For exmaple, if a certain phrase has gotten easier for you to remember over time, you can change its difficulty. You can also modify the flashcard if you made a typing errpr when adding it.
+Edits a flashcard in the glossary at the specified `INDEX`. You can use this to modify any of the flashcard's fields. For example, if a certain phrase has gotten easier for you to remember over time, you can change its difficulty. You can also correct the typing errors you made when adding the flashcard.
 
 Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...`
 
