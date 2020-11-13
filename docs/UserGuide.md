@@ -830,67 +830,67 @@ are likely to change frequently and hence, will not need to be persisted.
 
 ### 7.1 Add Command Summary
 
-| Function | Tag | Format, Examples |
-| -------- | --- | ---------------- |
-| Add `Consultation` | -c | add -c NAME d/YYYY-MM-DD t/HH:MM |
-| Add `Mastery Check` | -mc | add -mc NAME d/YYYY-MM-DD t/HH:MM |
-| Add `Todo` | -t | add -t DESCRIPTION |
-| Add `Event` | -e | add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM |
-| Add `Deadline` | -d | add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM |
+| Function            | Tag | Format, Examples                        |
+| ------------------- | --- | --------------------------------------- |
+| Add `Consultation`  | -c  | add -c NAME d/YYYY-MM-DD t/HH:MM        |
+| Add `Mastery Check` | -mc | add -mc NAME d/YYYY-MM-DD t/HH:MM       |
+| Add `Todo`          | -t  | add -t DESCRIPTION                      |
+| Add `Event`         | -e  | add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM |
+| Add `Deadline`      | -d  | add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM |
 
 ### 7.2 Edit Command Summary
 
-| Function | Tag | Format, Examples |
-| -------------------------- | --- | ---------------- |
+| Function                   | Tag | Format, Examples                                  |
+| -------------------------- | --- | ------------------------------------------------- |
 | Edit Login information     | -l  | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
-| Edit `Student` information | -s  | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
-| Edit `Mastery Check`       | -mc | edit -mc INDEX s/SCORE |
+| Edit `Student` information | -s  | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL]     |
+| Edit `Mastery Check`       | -mc | edit -mc INDEX s/SCORE                            |
 
 <div style="page-break-after: always;"></div>
 
 ### 7.3 Delete Command Summary
 
-| Function | Tag | Format, Examples |
-| -------- | --- | ---------------- |
-| Delete `Consultation` | -c | delete -c INDEX <br>E.g. delete -c 2 |
+| Function               | Tag | Format, Examples                       |
+| ---------------------- | --- | -------------------------------------- |
+| Delete `Consultation`  | -c  | delete -c INDEX <br>E.g. delete -c 2   |
 | Delete `Mastery Check` | -mc | delete -mc INDEX <br>E.g. delete -mc 2 |
-| Delete `Task` | -t | delete -t TASK_ID |
+| Delete `Task`          | -t  | delete -t TASK_ID                      |
 
 ### 7.4 View Command Summary
 
-| Function | Tag | Format, Examples |
-| -------- | --- | ---------------- |
-| View all `Students` | -s | view -s |
-| View `Student` with keyword | -s | view -s NAME |
-| View deadlines for `Missions` | -m | view -m |
-| View ungraded `Missions` | -um | view -um |
-| View deadlines for `Quests` | -q | view -q |
-| View ungraded `Quests` | -uq | view -uq |
-| View all `Consultations` | -c | view -c |
-| View past `Consultations` | -cp | view -cp |
-| View upcoming `Consultations` | -cu | view -cu |
-| View all `Mastery Checks` | -mc | view -mc |
-| View past `Mastery Checks` | -mcp | view -mcp |
+| Function                           | Tag  | Format, Examples |
+| ---------------------------------- | ---- | --------------- |
+| View all `Students`                | -s   | view -s         |
+| View `Student` with keyword        | -s   | view -s NAME    |
+| View deadlines for `Missions`      | -m   | view -m         |
+| View ungraded `Missions`           | -um  | view -um        |
+| View deadlines for `Quests`        | -q   | view -q         |
+| View ungraded `Quests`             | -uq  | view -uq        |
+| View all `Consultations`           | -c   | view -c         |
+| View past `Consultations`          | -cp  | view -cp        |
+| View upcoming `Consultations`      | -cu  | view -cu        |
+| View all `Mastery Checks`          | -mc  | view -mc        |
+| View past `Mastery Checks`         | -mcp | view -mcp       |
 
 <div style="page-break-after: always;"></div>
 
-| View all upcoming `Mastery Checks` | -mcu | view -mcu  |
-| View all `Tasks` | -t | view -t |
-| View all `Todos` | -tt | view -tt |
-| View all `Events` | -te | view -te |
-| View all `Deadlines` | -td | view -td |
+| View all upcoming `Mastery Checks` | -mcu | view -mcu       |
+| View all `Tasks`                   | -t   | view -t         |
+| View all `Todos`                   | -tt  | view -tt        |
+| View all `Events`                  | -te  | view -te        |
+| View all `Deadlines`               | -td  | view -td        |
 
 ### 7.5 Exit Command Summary
 
-| Function | Format, Examples |
-| -------- | ---------------- |
-| Exits program | `exit` |
+| Function      | Format, Examples |
+| ------------- | ---------------- |
+| Exits program | `exit`           |
 
 ### 7.6 Help Command Summary
 
-| Function | Format, Examples |
-| -------- | ---------------- |
-| Provide help with program commands | `help` |
+| Function                           | Format, Examples |
+| ---------------------------------- | ---------------- |
+| Provide help with program commands | `help`           |
 
 <div style="page-break-after: always;"></div>
 
