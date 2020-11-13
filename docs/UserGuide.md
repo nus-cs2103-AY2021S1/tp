@@ -651,6 +651,9 @@ Deletes a [`Task`](#613-notes-about-tasks) based on the `TASK_ID` you specify.
 Figure 6.5.3a: <i>Deleting a Task</i>
 </div>
 
+As shown in Figure 6.5.3a, once we key in the command `delete -s T1`, a success message will be displayed if a `Task` with a TASK_ID of `T1` exists. Jarvis
+will delete that `Task` away and then auto switch to the `Task` tab, showing all the remaining `Tasks`.
+
 <div markdown="block" class="alert alert-info">
 * Note that TASK_ID, once given, is permanent and no other `Tasks` can receive that TASK_ID even after the deletion of the original one. 
 * The Index for `Consultation` and `Mastery Check` is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Tasks`.
