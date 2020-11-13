@@ -1,0 +1,44 @@
+# importing os module
+import os
+print("testing")
+# for i in range(320):
+#     individual = (i % 20) + 1;
+#     section = ((i//20) % 4) + 1;
+#     platoon = ((i//20) // 4)+1;
+#
+#     if(individual < 10) :
+#         individual = "0{individual}".format(individual=str(individual))
+#
+#     string = "{p}{s}{i}".format(p = platoon, s = section, i = individual);
+#     print(string);
+#         # dst =" + str(count) + ".jpg"
+#         # src ='xyz'+ filename
+#         # dst ='xyz'+ dst
+#         #
+#         # # rename() function will
+#         # # rename all the files
+#         # os.rename(src, dst)
+#         #
+
+pathName = "/Users/chanwawai 1/Desktop/AsianMale"
+
+for i, filename in enumerate(os.listdir(pathName)):
+        individual = (i % 20) + 1;
+        section = ((i//20) % 4) + 1;
+        platoon = ((i//20) // 4)+1;
+
+        if(individual < 10) :
+            individual = "0{individual}".format(individual=str(individual))
+
+        string = "{p}{s}{i}".format(p = platoon, s = section, i = individual);
+
+        name = "am{c}".format(c = i);
+
+        dst = name + ".png";
+        src = pathName + "/" + filename;
+        dst = pathName + "/" + dst;
+
+        os.rename(src, dst);
+
+        # rename() function will
+        # rename all the files

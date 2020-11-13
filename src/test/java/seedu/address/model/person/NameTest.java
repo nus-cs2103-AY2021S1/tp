@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class NameTest {
+class NameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -20,21 +20,20 @@ public class NameTest {
     }
 
     @Test
-    public void isValidName() {
-        // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+    void isValidName() {
+        // null Name
+        assertThrows(AssertionError.class, () -> Name.isValidName(null));
 
-        // invalid name
+        // invalid Name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("jonny@nus")); // contains special character
 
-        // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+
+        // valid Name
+        assertTrue(Name.isValidName("jonny")); // alphabets only
+        assertTrue(Name.isValidName("jonny no 1")); // contains number and space
+        assertTrue(Name.isValidName("jonny the man"));
+
     }
 }

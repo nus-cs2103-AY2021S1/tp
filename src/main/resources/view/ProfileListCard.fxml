@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <HBox alignment="CENTER_LEFT" minHeight="105">
+            <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="index" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+            </HBox>
+            <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
+            <Label fx:id="startingWeight" styleClass="cell_small_label" text="\$startingWeight" />
+            <Label fx:id="height" styleClass="cell_small_label" text="\$height" />
+            <ProgressBar fx:id="progress" />
+            </VBox>
+         <Label fx:id="bmi" styleClass="bmi_label" text="\$BMI" translateX="5.0" translateY="35.0" />
+            <ImageView fx:id="profilePicture" fitHeight="1.0" fitWidth="2.0" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateX="-2.0" translateY="-19.0">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <image>
+               <Image url="@../images/ProfilePicture/1111.png" />
+            </image>
+         </ImageView>
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </padding>
+            <padding>
+                <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+            </padding>
+        </HBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+</HBox>

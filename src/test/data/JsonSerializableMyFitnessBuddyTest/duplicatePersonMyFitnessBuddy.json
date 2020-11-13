@@ -1,0 +1,65 @@
+{
+  "persons" : [ {
+    "profile" : {
+      "name" : "Sample Person",
+      "id" : "2103",
+      "height" : "170",
+      "targetWeight" : "60",
+      "startingDate" : "2020-09-30"
+    },
+    "days" : [ {
+      "date" : "2020-10-11",
+      "weight" : "110",
+      "calorieManager" : {
+        "inputList" : [ {
+          "time" : "1230",
+          "food" : "Laksa",
+          "calorieCount" : "800"
+        } ],
+        "outputList" : [ {
+          "time" : "1800",
+          "exercise" : "Run",
+          "calorieCount" : "200"
+        } ]
+      }
+    }, {
+      "date" : "2020-10-12",
+      "weight" : "120",
+      "calorieManager" : {
+        "inputList" : [ ],
+        "outputList" : [ ]
+      }
+    } ]
+  }, {
+    "profile" : {
+      "name" : "Sample Person",
+      "id" : "2103",
+      "height" : "170",
+      "targetWeight" : "60",
+      "startingDate" : "2020-09-30"
+    },
+    "days" : [ {
+      "date" : "2020-10-11",
+      "weight" : "110",
+      "calorieManager" : {
+        "inputList" : [ {
+          "time" : "1230",
+          "food" : "Laksa",
+          "calorieCount" : "800"
+        } ],
+        "outputList" : [ {
+          "time" : "1800",
+          "exercise" : "Run",
+          "calorieCount" : "200"
+        } ]
+      }
+    }, {
+      "date" : "2020-10-12",
+      "weight" : "120",
+      "calorieManager" : {
+        "inputList" : [ ],
+        "outputList" : [ ]
+      }
+    } ]
+  } ]
+}

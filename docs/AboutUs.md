@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hope Leong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hoperawr.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/hoperawr)]
+[[portfolio](team/hoperawr.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling and Tracking
 
-### Johnny Doe
+### Chan Wa Wai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wayne987.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wayne987)]
+[[portfolio](team/wayne987.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
-### James Doe
+### Phoon Jun Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junhui-phoon.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/junhui-phoon)] 
+[[portfolio](team/junhui-phoon.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
+
+### Ethan So
+
+<img src="images/ethanso56.png" width="200px">
+
+[[github](http://github.com/ethanso56)]
+[[portfolio](team/ethanso56.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
+
+### Ng Jia Xin
+
+<img src="images/jiaax.png" width="200px">
+
+[[github](http://github.com/jiaax)]
+[[portfolio](team/jiaax.md)]
+
+* Role: Developer
+* Responsibilities: Documentation

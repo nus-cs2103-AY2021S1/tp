@@ -1,0 +1,122 @@
+{
+  "persons": [
+    {
+      "profile": {
+        "name": "First",
+        "id": "1111",
+        "height": "171",
+        "targetWeight": "61",
+        "startingDate": "2020-01-01"
+      },
+      "days": [
+        {
+          "date": "2019-12-25",
+          "weight": "73",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-01-13",
+          "weight": "66",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-01-23",
+          "weight": "75",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-03-01",
+          "weight": "51",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-05-12",
+          "weight": "42",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-09-12",
+          "weight": "42",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        }
+      ]
+    },
+    {
+      "profile": {
+        "name": "First",
+        "id": "1111",
+        "height": "171",
+        "targetWeight": "61",
+        "startingDate": "2020-01-01"
+      },
+      "days": [
+        {
+          "date": "2019-12-25",
+          "weight": "73",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-01-13",
+          "weight": "66",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-01-23",
+          "weight": "75",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-03-01",
+          "weight": "51",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "ERROR",
+          "weight": "42",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        },
+        {
+          "date": "2020-09-12",
+          "weight": "ABC",
+          "calorieManager": {
+            "inputList": [],
+            "outputList": []
+          }
+        }
+      ]
+    }
+  ]
+}

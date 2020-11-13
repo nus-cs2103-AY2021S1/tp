@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPerson.getSimpleMyFitnessBuddy;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,44 +17,98 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ModelManager;
+import seedu.address.model.MyFitnessBuddy;
+import seedu.address.model.ReadOnlyMyFitnessBuddy;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.day.Date;
+import seedu.address.model.day.Day;
+import seedu.address.model.day.Weight;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Profile;
+import seedu.address.testutil.DayBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullDay_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void isBefore() {
+        Date toAdd = new Date("2020-10-10");
+        Date baseLine = new Date("2020-09-09");
+        Date toAdd2 = new Date("2020-08-08");
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        AddCommand addCommand = new AddCommand(new Day(toAdd, new Weight("100")));
+        assertFalse(addCommand.isBefore(toAdd, baseLine));
+        assertTrue(addCommand.isBefore(toAdd2, baseLine));
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void isAfter() {
+        Date toAdd = new Date("2021-10-10");
+        Date toAdd2 = new Date("1990-08-08");
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        AddCommand addCommand = new AddCommand(new Day(toAdd, new Weight("100")));
+        assertTrue(addCommand.isAfter(toAdd));
+        assertFalse(addCommand.isAfter(toAdd2));
     }
+
+    @Test
+    public void execute_duplicateDay_throwsCommandException() {
+        Model model = new ModelManager(getSimpleMyFitnessBuddy(), new UserPrefs());
+        model.setCurrentPerson(model.getMyFitnessBuddy().getPersonList().get(0));
+        Date toAdd = new Date("2020-10-10");
+        AddCommand addCommand = new AddCommand(new Day(toAdd, new Weight("100")));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_DAY, () -> addCommand.execute(model));
+    }
+
+    @Test
+    public void execute_noActiveProfile_throwsCommandException() {
+        Model model = new ModelManager(getSimpleMyFitnessBuddy(), new UserPrefs());
+        Date toAdd = new Date("2020-10-10");
+        AddCommand addCommand = new AddCommand(new Day(toAdd, new Weight("100")));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_NO_LOGIN, () -> addCommand.execute(model));
+    }
+
+    @Test
+    public void execute_travelToThePast_throwsCommandException() {
+        Model model = new ModelManager(getSimpleMyFitnessBuddy(), new UserPrefs());
+        model.setCurrentPerson(model.getMyFitnessBuddy().getPersonList().get(0));
+        Date toAdd = new Date("1990-10-10");
+        AddCommand addCommand = new AddCommand(new Day(toAdd, new Weight("100")));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_PAST, () -> addCommand.execute(model));
+    }
+
+    @Test
+    public void execute_travelToTheFuture_throwsCommandException() {
+        Model model = new ModelManager(getSimpleMyFitnessBuddy(), new UserPrefs());
+        model.setCurrentPerson(model.getMyFitnessBuddy().getPersonList().get(0));
+        Date toAdd = new Date("2021-10-10");
+        AddCommand addCommand = new AddCommand(new Day(toAdd, new Weight("100")));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_FUTURE, () -> addCommand.execute(model));
+    }
+
+    @Test
+    public void execute_successful() throws CommandException {
+        Model model = new ModelManager(getSimpleMyFitnessBuddy(), new UserPrefs());
+        model.setCurrentPerson(model.getMyFitnessBuddy().getPersonList().get(0));
+        Date toAdd = new Date("2020-11-09");
+        Day addDay = new Day(toAdd, new Weight("100"));
+        AddCommand addCommand = new AddCommand(addDay);
+        CommandResult commandResult = addCommand.execute(model);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, addDay), commandResult.getFeedbackToUser());;
+    }
+
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Day alice = new DayBuilder().withDate("2020-06-09").build();
+        Day bob = new DayBuilder().withDate("2020-09-06").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -70,7 +125,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different day -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -99,42 +154,57 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getMyFitnessBuddyFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setMyFitnessBuddyFilePath(Path myFitnessBuddyFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addDay(Day day) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setMyFitnessBuddy(ReadOnlyMyFitnessBuddy myFitnessBuddy) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasDay(Day day) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasDay(LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public Day getDay(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDay(Day target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDay(Day target, Day editedDay) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Day> getFilteredDayList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,50 +214,98 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredDayList(Predicate<Day> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+
+        }
+
+        @Override
+        public void setProfile(Profile profile) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Checks if the current data {@code MyFitnessBuddy} has a profile.
+         */
+        @Override
+        public boolean isDefaultProfile() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentPerson(Person toSet) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPerson(Person toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateDay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPerson(Person toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPersons() {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single day.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithDay extends ModelStub {
+        private final Day day;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithDay(Day day) {
+            requireNonNull(day);
+            this.day = day;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasDay(Day day) {
+            requireNonNull(day);
+            return this.day.isSameDay(day);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the day being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingDayAdded extends ModelStub {
+        final ArrayList<Day> daysAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasDay(Day day) {
+            requireNonNull(day);
+            return daysAdded.stream().anyMatch(day::isSameDay);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addDay(Day day) {
+            requireNonNull(day);
+            daysAdded.add(day);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public boolean isDefaultProfile() {
+            return false;
+        }
+
+        @Override
+        public ReadOnlyMyFitnessBuddy getMyFitnessBuddy() {
+            return new MyFitnessBuddy();
         }
     }
 

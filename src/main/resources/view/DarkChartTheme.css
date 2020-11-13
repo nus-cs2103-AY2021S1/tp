@@ -1,0 +1,31 @@
+.chart {
+    -fx-background-color: derive(#3c3e3f, 20%);
+}
+
+.chart-plot-background {
+    -fx-background-color: derive(#3c3e3f, 20%);
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #ffffff;
+}
+
+.axis {
+    -fx-tick-label-fill: #ffffff;
+}
+
+.axis-label {
+    -fx-text-fill: #ffffff;
+}
+
+.chart-title {
+    -fx-text-fill: #ffffff;
+}
+
+.chart-pie-label {
+    -fx-fill: #ffffff;
+}

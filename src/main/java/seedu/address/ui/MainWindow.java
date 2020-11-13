@@ -30,10 +30,21 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    // Zero-based
+    private int indexOfDayCurrentlyShowingCalories;
+
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private DayListPanel dayListPanel;
+    private CalorieInputListPanel calorieInputListPanel;
+    private CalorieOutputListPanel calorieOutputListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WeightStatsWindow weightStatsWindow;
+    private CalorieStatsWindow calorieStatsWindow;
+    private StatusBarDaySelected statusBarDaySelected;
+    private ProfileListPanel profileListPanel;
+    private ProfileCardPanel profileCardPanel;
+    private CommanderBmiStatsWindow commanderBmiStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +53,37 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane statusbarDaySelectedPlaceholder;
+
+    @FXML
+    private StackPane dayListPanelPlaceholder;
+
+    @FXML
+    private StackPane calorieInputListPanelPlaceholder;
+
+    @FXML
+    private StackPane calorieOutputListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
+
+    @FXML
+    private MenuItem weightStatsMenuItem;
+
+    @FXML
+    private MenuItem calorieStatsMenuItem;
+
+    @FXML
+    private MenuItem allStatsMenuItem;
+
+    @FXML
+    private StackPane profileListPlaceholder;
+
+    @FXML
+    private StackPane profileCardPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +101,14 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        weightStatsWindow = new WeightStatsWindow(logic.getFilteredDayList());
+
+        calorieStatsWindow = new CalorieStatsWindow(logic.getFilteredDayList());
+
+        commanderBmiStatsWindow = new CommanderBmiStatsWindow(logic.getFilteredPersonList());
+
+        indexOfDayCurrentlyShowingCalories = -1;
     }
 
     public Stage getPrimaryStage() {
@@ -107,17 +150,127 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the calorie panels with calorie values of the day that is viewed.
+     *
+     * @param indexOfDayViewed the index (zeroBased) of the day that is viewed
+     */
+    void updateCaloriePanelsWhenViewed(int indexOfDayViewed) {
+        indexOfDayCurrentlyShowingCalories = indexOfDayViewed;
+        calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayViewed).getCalorieManager()
+                .getCalorieInputList());
+        calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayViewed).getCalorieManager()
+                .getCalorieOutputList());
+    }
+
+    /**
+     * Updates the calorie panels when a day is deleted.
+     *
+     * @param indexOfDayDeleted the index (zeroBased) of the day that is deleted.
+     */
+    void updateCaloriePanelsWhenDeleted(int indexOfDayDeleted) {
+        boolean isCurrDayShowingDeleted = indexOfDayDeleted == indexOfDayCurrentlyShowingCalories;
+        boolean isDayDeletedAboveCurrDayShowing = indexOfDayDeleted < indexOfDayCurrentlyShowingCalories;
+        if (isCurrDayShowingDeleted) {
+            boolean isLastDayBeingDeleted = indexOfDayDeleted == logic.getFilteredDayList().size();
+            if (isLastDayBeingDeleted) {
+                clearCaloriePanels();
+            } else {
+                calorieInputListPanel.update(logic.getFilteredDayList().get(indexOfDayDeleted).getCalorieManager()
+                        .getCalorieInputList());
+                calorieOutputListPanel.update(logic.getFilteredDayList().get(indexOfDayDeleted).getCalorieManager()
+                        .getCalorieOutputList());
+            }
+        } else if (isDayDeletedAboveCurrDayShowing) {
+            indexOfDayCurrentlyShowingCalories--;
+        }
+    }
+
+    /**
+     * Clears the calorie panels.
+     */
+    void clearCaloriePanels() {
+        indexOfDayCurrentlyShowingCalories = -1;
+        calorieInputListPanel.clear();
+        calorieOutputListPanel.clear();
+    }
+
+    /**
+     * Clear the Profile Panels.
+     */
+    void clearProfilePanels() {
+        profileListPanel.clear();
+        profileCardPanel.clear();
+    }
+
+    /**
+     * Sets the date label in the status bar.
+     *
+     * @param date the date string to be set.
+     */
+    void setDateLabel(String date) {
+        statusBarDaySelected.setDateSelectedLabel(date);
+    }
+
+    /**
+     * Updates the date label when a day is deleted.
+     *
+     * @param indexOfDayDeleted the index (zeroBased) of the day that is deleted.
+     */
+    void updateDateLabelWhenDelete(int indexOfDayDeleted) {
+        boolean isCurrDayShowingDeleted = indexOfDayDeleted == indexOfDayCurrentlyShowingCalories;
+        if (isCurrDayShowingDeleted) {
+            boolean isLastDayBeingDeleted = indexOfDayDeleted == logic.getFilteredDayList().size();
+            if (isLastDayBeingDeleted) {
+                clearDateLabel();
+            } else {
+                String dateStringOfNextDay = logic.getFilteredDayList().get(indexOfDayDeleted)
+                        .getDate().get().toString();
+                setDateLabel(dateStringOfNextDay);
+            }
+        }
+    }
+
+    /**
+     * Clears the date label.
+     */
+    void clearDateLabel() {
+        statusBarDaySelected.clear();
+    }
+
+    /**
+     * Updates the Profile Panels when there is a change in login or profile list.
+     */
+    void updateProfilePanels() {
+        profileCardPanel.update(logic.getMyFitnessBuddy().getPerson());
+        profileListPanel.update(logic.getFilteredPersonList());
+    }
+
+    /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        statusBarDaySelected = new StatusBarDaySelected();
+        statusbarDaySelectedPlaceholder.getChildren().add(statusBarDaySelected.getRoot());
+
+        profileCardPanel = new ProfileCardPanel();
+        profileCardPlaceholder.getChildren().add(profileCardPanel.getRoot());
+
+        profileListPanel = new ProfileListPanel(logic.getFilteredPersonList());
+        profileListPlaceholder.getChildren().add(profileListPanel.getRoot());
+
+        dayListPanel = new DayListPanel(logic.getFilteredDayList(), this);
+        dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
+
+        calorieInputListPanel = new CalorieInputListPanel();
+        calorieInputListPanelPlaceholder.getChildren().add(calorieInputListPanel.getRoot());
+        calorieOutputListPanel = new CalorieOutputListPanel();
+        calorieOutputListPanelPlaceholder.getChildren().add(calorieOutputListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMyFitnessBuddyFilePath());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -147,6 +300,104 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the weight stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleWeightStats() {
+        if (!weightStatsWindow.isShowing()) {
+            weightStatsWindow.show();
+        } else {
+            weightStatsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the calorie stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalorieStats() {
+        if (!calorieStatsWindow.isShowing() && !weightStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+        } else if (!calorieStatsWindow.isShowing() && weightStatsWindow.isShowing()) {
+            calorieStatsWindow.show();
+            //prevent both windows stacking over each other when opened at the same time
+            calorieStatsWindow.getRoot().setY(weightStatsWindow.getRoot().getY() + 100);
+        } else {
+            calorieStatsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the commander stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCommanderStats() {
+        if (!commanderBmiStatsWindow.isShowing()) {
+            commanderBmiStatsWindow.show();
+        } else {
+            commanderBmiStatsWindow.focus();
+        }
+    }
+
+    /**
+     * Opens both stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAllStats() {
+        handleWeightStats();
+        handleCalorieStats();
+    }
+
+    /**
+     * Removes the items shown in the calorie lists if any.
+     */
+    public void handleClear() {
+        clearDateLabel();
+        clearCaloriePanels();
+        clearProfilePanels();
+    }
+
+    /**
+     * Updates the Profile Panels and clear the date selected label and Calorie Panels
+     * when there is a profile change.
+     */
+    public void handleProfileChanged() {
+        updateProfilePanels();
+        clearDateLabel();
+        clearCaloriePanels();
+    }
+
+    /**
+     * Updates the profile panels whenever a command is executed to refresh BMI progress bar.
+     */
+    public void handleUpdateProfilePanel() {
+        updateProfilePanels();
+    }
+
+
+    /**
+     * Removes the items shown in the calorie lists if the day being shown is deleted.
+     *
+     * @param index index of the item that is deleted.
+     */
+    @FXML
+    public void handleDelete(int index) {
+        updateDateLabelWhenDelete(index);
+        updateCaloriePanelsWhenDeleted(index);
+    }
+
+    /**
+     * Updates the calorie lists and status bar when a view command is used.
+     *
+     * @param indexOfDayToView index of the item to be viewed.
+     */
+    @FXML
+    public void handleView(int indexOfDayToView) {
+        updateCaloriePanelsWhenViewed(indexOfDayToView);
+        setDateLabel(logic.getFilteredDayList().get(indexOfDayToView).getDate().get().toString());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,11 +411,14 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        weightStatsWindow.hide();
+        calorieStatsWindow.hide();
+        commanderBmiStatsWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public DayListPanel getDayListPanel() {
+        return dayListPanel;
     }
 
     /**
@@ -184,6 +438,42 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowAllStats()) {
+                handleAllStats();
+            }
+
+            if (commandResult.isShowCalorieStats()) {
+                handleCalorieStats();
+            }
+
+            if (commandResult.isShowWeightStats()) {
+                handleWeightStats();
+            }
+
+            if (commandResult.isClear()) {
+                handleClear();
+            }
+
+            if (commandResult.isDelete()) {
+                handleDelete(commandResult.getIndexDelete() - 1);
+            }
+
+            if (commandResult.isProfileChanged()) {
+                handleProfileChanged();
+            }
+
+            if (commandResult.isView()) {
+                handleView(commandResult.getIndexView() - 1);
+            }
+
+            if (commandResult.isShowCommanderStats()) {
+                handleCommanderStats();
+            }
+
+            if (!commandResult.isClear()) {
+                handleUpdateProfilePanel();
             }
 
             return commandResult;

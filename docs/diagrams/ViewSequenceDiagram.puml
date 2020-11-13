@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MyFitnessBuddyParser" as MyFitnessBuddyParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+activate MainWindow
+
+MainWindow-> LogicManager : execute("view 1")
+activate LogicManager
+
+LogicManager -> MyFitnessBuddyParser : parseCommand("view 1")
+activate MyFitnessBuddyParser
+
+create ViewCommandParser
+MyFitnessBuddyParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> MyFitnessBuddyParser
+deactivate ViewCommandParser
+
+MyFitnessBuddyParser -> ViewCommandParser : parse("1")
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser : v
+deactivate ViewCommand
+
+ViewCommandParser --> MyFitnessBuddyParser : v
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> MyFitnessBuddyParser
+destroy ViewCommandParser
+
+MyFitnessBuddyParser --> LogicManager : v
+deactivate MyFitnessBuddyParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+
+MainWindow<--LogicManager
+deactivate LogicManager
+
+MainWindow -> MainWindow :handleView(0)
+activate MainWindow UI_COLOR
+MainWindow --> MainWindow
+deactivate MainWindow
+
+@enduml

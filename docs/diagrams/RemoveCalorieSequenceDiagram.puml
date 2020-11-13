@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MyFitnessBuddyParser" as MyFitnessBuddyParser LOGIC_COLOR
+participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
+participant "r:RemoveCommand" as RemoveCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":UniqueDayList" as UniqueDayList MODEL_COLOR
+participant "cm:CalorieManager" as CalorieManager MODEL_COLOR
+end box
+[-> LogicManager : execute("remove type date index")
+activate LogicManager
+
+LogicManager -> MyFitnessBuddyParser : parseCommand(remove)
+activate  MyFitnessBuddyParser
+
+create RemoveCommandParser
+MyFitnessBuddyParser -> RemoveCommandParser : parse("type date index")
+activate RemoveCommandParser
+
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand
+activate RemoveCommand
+
+deactivate RemoveCommandParser
+destroy RemoveCommandParser
+
+RemoveCommand -->  MyFitnessBuddyParser
+deactivate RemoveCommand
+
+ MyFitnessBuddyParser --> LogicManager : r
+deactivate MyFitnessBuddyParser
+
+LogicManager -> RemoveCommand : execute()
+activate RemoveCommand
+
+RemoveCommand -> Model : getDay(date)
+activate Model
+
+Model -> UniqueDayList : getDate(date)
+activate UniqueDayList
+
+
+UniqueDayList -> CalorieManager : getCalorieManager()
+activate CalorieManager
+
+
+alt Type == Output
+CalorieManager -> CalorieManager : removeCalorieOutput(Index)
+else Type == Input
+CalorieManager -> CalorieManager : removeCalorieInput(Index)
+end
+
+CalorieManager -> UniqueDayList
+deactivate CalorieManager
+
+UniqueDayList -> Model
+deactivate UniqueDayList
+
+Model -> RemoveCommand
+deactivate Model
+
+RemoveCommand --> LogicManager : result
+deactivate RemoveCommand
+RemoveCommand -[hidden]-> LogicManager : result
+destroy RemoveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

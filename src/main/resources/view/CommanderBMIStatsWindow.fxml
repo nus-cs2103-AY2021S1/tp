@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.stage.Stage?>
+
+<fx:root minHeight="500.0" minWidth="500.0" title="Recruit Overall BMI Statistics" type="Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <icons>
+        <Image url="@/images/stats_icon.png" />
+    </icons>
+    <scene>
+        <Scene stylesheets="@DarkChartTheme.css">
+            <AnchorPane prefHeight="450.0" prefWidth="620.0">
+            <children>
+               <PieChart fx:id="pieChart" layoutX="60.0" layoutY="25.0" prefHeight="450.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children></AnchorPane>
+        </Scene>
+    </scene>
+</fx:root>
