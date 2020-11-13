@@ -89,6 +89,8 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
 ## 1. Overview
 
 ### 1.1 Introduction
+(Peirong)
+
 Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI). Jarvis in general helps to organise and simplify
 CS1101S tutors' administrative tasks.
@@ -99,6 +101,8 @@ Not to worry, Jarvis is here to empower you to manage your personal tasks while 
 effectively.
 
 ### 1.3 Design Considerations
+(Peirong)
+
 Our design philosophy that has guided us through the development of Jarvis is to place the user experience at the core of all considerations.
 As such, you will find throughout the User Guide small features and language that we have deliberately chosen to enhance usability and improve the user-centered experience of our product.
 We have highlighted several features below that we feel are reflective of our design philosophy.
@@ -112,9 +116,13 @@ We have highlighted several features below that we feel are reflective of our de
 <div style="page-break-after: always;"></div>
 
 ## 2. About the User Guide
+(Wiline)
+
 This section aims to remind you of the important parts to take note of while reading the user guide.
 
 ### 2.1 Symbols
+(Peirong)
+
 When reading this user guide, various symbols may appear occasionally to draw your attention to important information.
 The meaning for each symbol is as follows:
 
@@ -126,6 +134,7 @@ Symbol | Meaning
 <div style="page-break-after: always;"></div>
 
 ## 3. Quick start
+(Peirong)
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
@@ -285,15 +294,24 @@ this flexibility with you, the user in mind.
 <div style="page-break-after: always;"></div>
 
 ## 5. Logging into Jarvis
+(Peirong)
 
-The following is the prompt upon first login, you are prompted to key in your Source Academy username and password:
+Figure 5.0a shows the page upon first login, where you are prompted to key in your Source Academy username and password:
 
-![NoLoginDetails](images/userguide/loginPrompt.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/loginPrompt.png" width="115%" /> <br />
+Figure 5.0a: <i>Login Page</i>
+</div>
 
 ### 5.1 Prompt
-The prompt contains the format of the edit command to be keyed in. The format is reinstated below for clarity.
+(Peirong)
 
-![LoginUsernamePasswordInput](images/userguide/editLoginDetails.png)
+The prompt contains the format of the edit command to be keyed in. The format is shown in Figure 5.1a below for clarity.
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/editLoginDetails.png" width="115%" /> <br />
+Figure 5.1a: <i>Login Page</i>
+</div>
 
 To log in, simply edit your login details with the following command:
 
@@ -303,6 +321,8 @@ To log in, simply edit your login details with the following command:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
 ### 5.2 Updated Details Summary
+(Peirong)
+
 Within the red rectangle box, Jarvis will notify you if the login was successful and the login information entered.
 The username, password and student names are covered with a red rectangle for this diagram only to protect the Avenger's account security.
 You will be able to see the login details you entered.
@@ -310,6 +330,8 @@ You will be able to see the login details you entered.
 <div style="page-break-after: always;"></div>
 
 ### 5.3 Updated Student Information
+(Peirong)
+
 Upon success, all information from Source Academy will be visible to you. The student information tab will display you student information.
 The `Telegram` and `E-mail` fields are test values as these information are not available on Source Academy.
 You will have to edit them using the [Editing Student Information](#642-editing-student-information---s) command below.
@@ -319,6 +341,8 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 ## 6. Features
 
 ### 6.1 General Notes
+(Wiline)
+
 This section includes some general notes on Jarvis.
 
 #### 6.1.1 Notes about Command Format
@@ -337,6 +361,8 @@ This section includes some general notes on Jarvis.
    <br> e.g. if the command specifies `t/TELEGRAM e/EMAIL` and the user enters `t/TELEGRAM t/TELEGRAM2 e/EMAIL e/EMAIL2 e/EMAIL3`, Jarvis recognizes the input as `t/TELEGRAM2 e/EMAIL3`.
 
 #### 6.1.2 Notes about Jarvis' relationship with Source Academy
+(Peirong)
+
    * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
 
