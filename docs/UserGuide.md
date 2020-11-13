@@ -758,7 +758,7 @@ Format: `deletevisit INDEX i/VISIT_INDEX`
 <p align="center">
     <img src="images/deleteVisitExample.png"/>
     <br>
-    <em style="color:#CC5500">Figure 22. Example of Delete Visit Command</em>
+    <em style="color:#CC5500">Figure 22. Example of Delete Visit Command (Contributed by Michaelia) </em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
