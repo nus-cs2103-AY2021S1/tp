@@ -53,6 +53,36 @@ Table of Contents
 
 ---
 
+## Navigating the User Interface (UI)
+
+The user interface of TAsker comprises of the few main elements as shown in this diagram:
+
+<div style="margin: 2rem auto;">
+<img src="images/ui-intro.png" alt="UI Intro" />
+</div>
+
+1. **Top Context Menu**
+
+    Allows you to:
+    - easily exit the app by clicking on "File"
+    - easily access the user guide by clicking on "Help"
+<br /><br />
+1. **Command Box**
+
+    Main location to interact with all of TAsker's features. Type all of TAsker's commands into this box.
+<br /><br />
+1. **Result Display**
+
+    The output of all commands run via the Command Box will be displayed here.
+<br /><br />
+1. **Data Display**
+
+    All of TAsker's data will be shown and updated here. Navigate across different types of student data by clicking on the tabs.
+<br /><br />
+1. **Location of Saved Data File**
+
+    This tells you the location of the file where all of TAsker's data is saved in. This helps you to locate the TAsker data file, so that you can copy TAsker's data to make manual backups or shift TAsker's data to another computer.
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
