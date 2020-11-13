@@ -4,11 +4,13 @@ title: User Guide
 ---
 
 ## Introduction
+(Contributed by all members)
+
 Welcome to ProductiveNUS User Guide! :blue_book:
 
 **ProductiveNUS is a desktop application** made for you, **a School of Computing (SoC) student in National University of Singapore (NUS)**, to **manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a [Command Box](#gui-terminologies). If you are fast at typing, you can manage your academic tasks more efficiently.
 
-As a **student from the SoC in NUS**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods, meaning all your **timetable information can be imported easily** into the application so all your academic tasks can be found in just one application.
+As a **student in NUS SoC**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods. This means that your **timetable information can be easily imported** into the application and **all** your academic tasks can be found in just **one application**.
 
 <div style="page-break-after: always;"></div>
 
@@ -20,15 +22,19 @@ As a **student from the SoC in NUS**, you tend to have a **heavy workload**. Pro
 <div style="page-break-after: always;"></div>
 
 ## About
+(Contributed by Jia Xin and Andrea)
+
 This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
 You can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
+
 The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
 ![GUI](images/GUI.png)
 *Figure 1: Labelled GUI sections*
 
 ### Icon usages
+
 Wondering what each icon is used for? You can refer to the table below to find out.
 
 | Icon        | Icon usage                                             | Box color |
@@ -38,7 +44,7 @@ Wondering what each icon is used for? You can refer to the table below to find o
 
 ### Command syntax
 
-All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
+All the commands and their examples are formatted as `markups`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,38 +103,32 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 ## Features
 
 ### Adding an assignment: `add`
+(Contributed by Jerry)
 
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
 
-You can add your assignments into your schedule so that you can manage all your assignments and
- academic tasks conveniently. 
+You can add assignments into your [Assignment List](#gui-terminologies) to manage and keep track of all your academic tasks. 
 
-<div markdown="span" class="alert alert-success">
-**:bulb: Tip:**
-You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
-</div>
-
-For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
-simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
+For example, to add a lab report assignment that is **due on 23th April 2020 12.30pm** and **associated with the module CS2100**, you can 
+simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignment is added, it will appear in the Assignment List and all its information will be displayed as shown in the figure below.
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 3: Information of the assignment added labelled*
 
 <div style="page-break-after: always;"></div>
 
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+If the lab report assignment is very urgent, you can attach a **high priority tag** to it by entering `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`.
+</div> 
+
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
-* `[remind]` has to be the last parameter. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
-* The assignment that you are adding has to be unique and it cannot already exist in your assignment list. 
+* If you intend to set reminders to your assignment, `[remind]` has to be the **last parameter** entered. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
+* You cannot add the same assignment twice. This means that you cannot add an assignment that already exist in your Assignment List.
 </div>
-
-<div markdown="span" class="alert alert-success">
-**:bulb: Tip:**
-If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
-</div> 
 
 More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
@@ -138,22 +138,23 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Deleting assignments : `delete`
+(Contributed by Andrea)
 
 Format: `delete INDEX [MORE_INDEXES]`
 
-You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of assignments you want to delete as shown in your list.
+You can delete **one or more** assignments from your [Assignment List](#gui-terminologies) by specifying the `INDEX` of each assignment you want to delete as shown in your list.
 
 Here is an example with steps for you to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the assignment list.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the Assignment List.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
 *Figure 4: `delete 1 3` inputted by user and location of assignment indexes*
 
 
-2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
+2) You have successfully deleted both assignments from the Assignment List, and they are no longer displayed.
 
-3) A "Deleted assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
+3) A "Deleted Assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
 
 ![DeleteCommand2](images/DeleteCommandDiagram2.png)
 *Figure 5: The displayed message and the updated list*
@@ -167,18 +168,21 @@ More examples:
 
  **:clipboard: Pointers to note:**<br>
 * At least one index must be **present**. For example, `delete` without any index is invalid.
-* The indexes **must be found in your assignment list**.
+* The indexes **must be found in your Assignment List**.
 * The indexes **must not be duplicated**. For example, `delete 3 3` is invalid.
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### Importing your timetable : `import`
+(Contributed by Yong Kang)
 
 Format: `import url/YOUR_NUSMODS_URL`
 
-You can import your NUSMods timetable data into ProductiveNUS by providing the URL to your NUSMods timetable share
-link. Imported lesson information can be found in the `Upcoming tasks`.
+It is tedious to have to constantly switch between your browser and ProductiveNUS when you want to refer to your
+timetable. But, you can transfer your timetable into ProductiveNUS using import.
+
+You can transfer your timetable into ProductiveNUS by providing the URL to your NUSMods timetable share link.
  
 Follow these steps and try importing your timetable:
 
@@ -187,9 +191,10 @@ Follow these steps and try importing your timetable:
    ![NusModsShareSync](images/NusModsShareSync.PNG)
    *Figure 6: The "Share/Sync" at the NUSMods website highlighted in green*
 
-2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
+2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command. Key in `import url/YOUR_NUSMODS_URL`.
 
-3) Added lesson information can be found in your task list.
+3) This may take a few seconds. After the import process, the added lesson information can be found in your
+`Upcoming tasks` list.
 
    ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
    *Figure 7: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
@@ -200,16 +205,17 @@ Follow these steps and try importing your timetable:
 * Importing a new timetable will override your previous timetable data.
 </div>
 
-Another example:
+An example:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
 
 <div style="page-break-after: always;"></div>
 
 ### Listing assignments : `list`
+(Contributed by Andrea)
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. `NUMBER_OF_DAYS` must be an index **from 1 to 50**.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within `NUMBER_OF_DAYS` from the current date. `NUMBER_OF_DAYS` must be an index **from 1 to 50**.
 
 <div markdown="span" class="alert alert-success">
 
@@ -219,12 +225,12 @@ You can use the `NUMBER_OF_DAYS` index to quickly view assignments that you need
 
 Here is an example with steps for you to follow: 
 
-1) You can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days from the current date and time. 
+1) You can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days from the current date. 
 
 ![ListCommand1](images/ListCommandDiagram1.png)
 *Figure 8: `list 3` inputted by user*
 
-2) If the current date and time is 29/10/2020 1800, all assignments due within this date and time to 01/11/2020 1800 will be displayed in the assignment list. 
+2) Assignments found are displayed in the [Assignment List](#gui-terminologies). 
 
 3) A message that indicates the number of assignments listed is displayed in the Message Box.
 
@@ -245,25 +251,26 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Finding assignments : `find`
+(Contributed by Andrea)
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
-You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
+You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of an assignment. 
 
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-If your assignment list is really long, this command comes in handy as it filters the list based on assignments u want to see!
+If your [Assignment List](#gui-terminologies) is really long, this command comes in handy as it filters the list based on assignments u want to see!
 </div>
 
 This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | - `mod/ST2334` |
-| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | - `p/HIGH` |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | -`n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | -`mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | -`d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | -`p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -282,11 +289,11 @@ Here is an example with steps for you to follow:
 *Figure 10: `find mod/CS2100 ST2334` inputted by user*
 
 
-2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
+2) Assignments from the modules CS2100 and ST2334 will appear in the Assignment List.
 
 3) A message that indicates the number of assignments found is displayed in the Message Box.
 
-![FindCommand2](images/FindCommand2.png)
+![FindCommand2](images/FindCommandDiagram2.png)
 *Figure 11: The displayed message and the updated list*
 
 More examples: 
@@ -301,11 +308,12 @@ More examples:
 
 <div style="page-break-after: always;"></div>
 
-### Editing your assignment : `edit`
+### Editing an assignment : `edit`
+(Contributed by Andrea)
 
 Format: `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]`
 
-You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
+You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of an assignment.
 
 <div markdown="span" class="alert alert-success">
 
@@ -317,15 +325,15 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
-| `d/` | d/DEADLINE_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+| `n/` | n/NAME_OF_ASSIGNMENT | -`n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | -`mod/ST2334` |
+| `d/` | d/DEADLINE_OF_ASSIGNMENT | -`d/24-10-2020 1300` |
 
 <div style="page-break-after: always;"></div>
 
 Here is an example with steps for you to follow:
 
-1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+1) To edit the name of the assignment with the first index in the [Assignment List](#gui-terminologies) to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
 ![EditCommand1](images/EditCommand1.png)
 *Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
@@ -334,12 +342,12 @@ Here is an example with steps for you to follow:
 
 3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
-![EditCommand2](images/EditCommandDiagram2.png)
+![EditCommand2](images/EditCommand2.png)
 *Figure 13: The displayed message and the edited assignment*
 
 More examples: 
 - `edit 3 mod/CS2100`
-- `edit 1 d/10-10-2020 1200`
+- `edit 1 d/10-10-2020 1200 mod/CS2106`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -350,6 +358,7 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Setting reminders for assignments : `remind`
+(Contributed by Jia Xin)
 
 Format: `remind INDEX [MORE_INDEXES]`
 
@@ -358,7 +367,8 @@ You can set reminders for specific assignments which will be displayed in `Your 
    ![YourReminders](images/YourReminders.png)
    *Figure 14: `Your reminders` highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
+You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set reminders for that assignment. 
+
 
 For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the figure below) and adds it to `Your reminders`.
 
@@ -385,13 +395,14 @@ You can set reminders for **multiple** assignments at a time as well. Here is an
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `remind` is invalid.
-* The `INDEX` must be found in your assignment list.
+* The `INDEX` must be found in your Assignment List.
 
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### Removing reminders for assignments : `unremind`
+(Contributed by Jia Xin)
 
 Format: `unremind INDEX`
 
@@ -417,131 +428,146 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
 
 <div style="page-break-after: always;"></div>
 
-### Setting priority for assignments : `prioritize`
+### Setting priority for assignments : `prioritise`
+(Contributed by Yong Kang)
 
-Format: `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT`
+Format: `prioritise INDEX p/PRIORITY_OF_ASSIGNMENT`
 
-You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
-shown with a coloured priority tag (As shown highlighted in red in the figure below).
+You may have certain assignments that are of greater urgency than the others. It would be easier if you could categorise
+your assignments based on their priority.
+
+You can set three different priority levels for assignments based on their urgency. Assignments tagged with a priority
+level will be shown with a coloured priority tag beside your assignment name (As shown highlighted in red in the figure
+below).
 
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
    *Figure 21: The priority tags of assignments highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
+You can use the `INDEX` of the assignment as shown in your [Assignment List](#gui-terminologies) to set priority tag for that assignment.
 
-For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
+For example, `prioritise 3 p/MEDIUM` will set a low priority tag for the third assignment in your Assignment List. In
+the figure above, the third assignment, Biology lab report, is marked with a yellow medium priority tag.
 
 <div markdown="block" class="alert alert-primary"> 
   
 **:clipboard: Pointers to note:**<br>
-* The `INDEX` must be found in your assignment list.
-* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
+* The `INDEX` must be found in your Assignment List.
+* The three priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
 
 <div style="page-break-after: always;"></div>
 
-### Removing priority for assignments : `unprioritize`
+### Removing priority for assignments : `unprioritise`
+(Contributed by Yong Kang)
 
-Format: `unprioritize INDEX`
+Format: `unprioritise INDEX`
+
+Suppose you no longer intend to categorise an assignment based on their urgency, or you would like to remove a priority
+tag for other reasons, you can remove them.
 
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
 
-For example, `unprioritize 1` will remove the priority tag, if present, of the first assignment in your assignment list.
+For example, `unprioritise 1` will remove the priority tag, if present, of the first assignment in your [Assignment List](#gui-terminologies).
+The assignment will now be displayed as usual, but without its priority tag.
 
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
-* At least one `INDEX` must be present. For example, `unprioritize` is invalid.
-* The `INDEX` must be found in your assignment list.
+* At least one `INDEX` must be present. For example, `unprioritise` is invalid.
+* The `INDEX` must be found in your Assignment List.
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### Marking assignments as done : `done`
+(Contributed by Jerry)
 
 Format: `done INDEX [MORE_INDEXES]`
 
-You can keep track of your uncompleted assignments by marking assignments that you've completed as done.
+You can keep track of your completed assignments by marking the completed assignments as done.
 
-You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. 
+You can mark **one or multiple** assignments as done by specifiying the assignment(s) `INDEX` shown in your list. 
 
 Here is an example with steps for you to follow:
 
-1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
-the command line based on the indexes labelled in the figure.
+1) To mark the assignments "Essay" and "Biology lab report" as done, you can simply enter `done 2 3` into
+the Command Box. `2 3` refers to the indexes of the assignments as shown in the figure below.
 
    ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
-   *Figure 22: `Indexes` of assignments labelled*
+   *Figure 22: Finding the `INDEX` of the assignments*
    
 <div style="page-break-after: always;"></div>
 
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
    ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicks.PNG)
-   *Figure 23: Added ticks labelled*
+   *Figure 23: Ticks added to the completed assignments*
 
-3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
+3) A message containing the information of the assignments marked as done will also be displayed in the Message Box.
 
    ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
-   *Figure 24: Message shown in Command Box labelled*
+   *Figure 24: Message shown in Message Box*
    
 <div markdown="block" class="alert alert-primary">
   
  **:clipboard: Pointers to note:**<br>
-* At least one index must be present. For example, `done` without any index is invalid.
-* The indexes **must be found in your assignment list**.
-* The indexes **must not be duplicated**. For example, `done 4 4` is invalid.
+* You must include at least one `INDEX`. For example, entering `done` without any `INDEX` is invalid.
+* The `INDEX` that you include **must be found in your [Assignment List](#gui-terminologies)**.
+* If you're marking more than one assignment as done, the `INDEXES` **must not be duplicated**. For example, `done 4 4` or `done 1 2 1` is invalid.
 </div>
 
 
 <div style="page-break-after: always;"></div>
 
 ### Marking assignments as not done : `undone`
+(Contributed by Jerry)
 
 Format: `undone INDEX`
 
-You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
- list.
+If you realised that you've an uncompleted assignment marked as done, you can mark the assignment as not done.
+    
+Similar to done, you can mark an assignment as not done by specifying the assignment's `INDEX` shown in your list.
 
-You can unmark `one` done assignment at a time. Here is an example with steps for you to follow:
+Here is an example with steps for you to follow:
 
-1) If you have **accidentally** marked the assignment with the name "Essay" as done,
-you can simply enter `undone 2` into the command line based on the index labelled in the figure.
+1) If you realised that the "Essay" assignment has been mistakenly marked as done,
+you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` of the assignment as shown in the figure below.
 
    ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
-   *Figure 25: `Index` of assignment labelled*
+   *Figure 25: Finding the `INDEX` of the assignment*
 
 <div style="page-break-after: always;"></div>
 
-2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
+2) The green tick associated to the assignment is no longer displayed as shown in the figure below.
 
    ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
-   *Figure 26: Deleted green tick labelled*
+   *Figure 26: Tick associated to assignment is no longer displayed*
 
-3) A message that includes the information of your assignment marked as not done will be displayed in the Command Box.
+3) A message containing the information of your assignment marked as not done will be displayed in the Message Box.
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
-   *Figure 27: Message shown in Command Box labelled*
+   *Figure 27: Message shown in Message Box*
    
 <div markdown="block" class="alert alert-primary">
   
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as **not done by default**.
-* The index must be present. For example, `undone` without any index is invalid.
-* The index **must be found in your assignment list**.
+* All your assignments are marked as **not done by default**.
+* You must include at least one `INDEX`. For example, entering `undone` without any `INDEX` is invalid.
+* The `INDEX` that you include **must be found in your [Assignment List](#gui-terminologies)**.
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### Scheduling assignments: `schedule`
+(Contributed by Minh)
 
 Format: `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME`
 
 You can request for a possible suggested schedule to work on your assignments so that you will not be required to manually plan a time.
 
-You can schedule an assignment by specifying the assignment `INDEX` as shown in your assignment list,
+You can schedule an assignment by specifying the assignment `INDEX` as shown in your [Assignment List](#gui-terminologies),
 the expected hours to finish the assignment and the period of time you want to work on the assignment.
 
 The suggested schedule with start time and end time will be displayed in the assignment card (Highlighted
@@ -576,7 +602,7 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* The index **must be found in your assignment list**.
+* The index **must be found in your [Assignment List](#gui-terminologies)**.
 * The expected number of hours **must be a positive integer between `1` and `5`**.
 * `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in the format `HHmm`.
 
@@ -585,11 +611,12 @@ More examples:
 <div style="page-break-after: always;"></div>
 
 ### Removing suggested time for assignments: `unschedule`
+(Contributed by Minh)
 
 Format: `unschedule INDEX`
 
-You can remove the suggested time slot of your assignments from the assignment list by specifying the 
-assignment `INDEX` as shown in your assignment list.
+You can remove the suggested time slot of your assignments from the [Assignment List](#gui-terminologies) by specifying the 
+assignment `INDEX` as shown in your Assignment List.
 
 For example, `unschedule 3` will remove the suggested time slot of your third assignment.
     ![UserGuideUnscheduleCommandInput](images/UserGuideUnscheduleCommandInput.PNG)
@@ -604,13 +631,14 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* The index **must be found in your assignment list**.
+* The index **must be found in your Assignment List**.
 
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### Undoing commands: `undo`
+(Contributed by Minh)
 
 Format: `undo`
 
@@ -634,6 +662,7 @@ Here is an example with steps to follow:
 <div style="page-break-after: always;"></div>
 
 ### Clearing all assignments: `clear`
+(Contributed by Jerry)
 
 Format: `clear`
 
@@ -645,6 +674,7 @@ If you cleared all your assignments and lessons by accident, use `undo` to retri
 </div>
 
 ### Accessing help: `help`
+(Contributed by Jerry)
 
 Format: `help`
 
@@ -665,6 +695,8 @@ You can use this command to exit the program.
 <div style="page-break-after: always;"></div>
 
 ### Automated features and enhancements
+(Contributed by Jia Xin)
+
 #### Upcoming tasks
 Your `Upcoming tasks` are updated in real time.
 
@@ -686,7 +718,7 @@ For your assignments and lessons, assignments due in **more than a week's time**
                  
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the assignment list) will the remarks get updated.
+Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the [Assignment List](#gui-terminologies) will the remarks get updated.
 <br>Do look forward to the next version of ProductiveNUS to have your remarks updated in real time!
 </div>
 
@@ -699,6 +731,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 
 ## Command summary
+(Contributed by Jia Xin)
 
 | Action | Format | Examples |
 |-|-|-|
@@ -710,8 +743,8 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 | **edit** | `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]` | `edit 3 mod/CS2100`<br>`edit 1 d/10-10-2020 1200` |
 | **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
-| **prioritize** | `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
-| **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
+| **prioritise** | `prioritise INDEX p/PRIORITY_OF_ASSIGNMENT` | `prioritise 3 p/HIGH`<br>`prioritise 1 p/LOW` |
+| **unprioritise** | `unprioritise INDEX` | `unprioritise 1` |
 | **done** | `done INDEX [MORE_INDEXES]` | `done 4` |
 | **undone** | `undone INDEX` | `undone 2` |
 | **schedule** | `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME` | `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359` |
@@ -726,61 +759,64 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 
 ## FAQ
+(Contributed by Jerry and Minh)
 
 **Q: How do I transfer my data to another Computer?**<br>
-**A:** 
-1. Install the app in your other computer and start the app.
-2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
-3. Close the app in your other computer.
-4. Overwrite the newly created data file with the data file from your previous computer.
-5. All your existing data has been successfully transferred!
+**A:** <br>
+*A* refers to the computer that you are transferring your data **from**, *B* refers to the computer that you are transferring your data **to**.
 
-**Q: I am not free during the time that my assignment has been scheduled. How do I reschedule?**<br>
+1. Install ProductiveNUS in *B* and start the app.
+2. Notice that a data file named `productivenus.json` is created under the `/data` folder in *B*.
+3. Close ProductiveNUS in *B*.
+4. Overwrite the newly created data file in *B* with the `productivenus.json` data file from *A*.
+5. Start ProductiveNUS in *B* and you should see that all your existing data has been transferred!
+
+**Q: I am not free during the time my assignment has been scheduled. How do I reschedule?**<br>
 **A:**
-You can reschedule by using the schedule command on that assignment again.<br>
+You can reschedule by using the schedule command on the assignment again.<br>
 
-1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
+1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the figure below.<br>
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
-   *Figure 38: Index of the assignment to reschedule labelled*
+   *Figure 38: Entering schedule command into Command Box*
    
-<div markdown="span" class="alert alert-success">
-**:bulb: Tip:**
-You can copy the entire command if you intend to reschedule the assignment more than once. 
-You can paste the command into the command box after step 2 and repeat step 1-2 until you have obtained your
- ideal schedule.
-</div>
+    <div markdown="span" class="alert alert-success">
+    **:bulb: Tip:**
+    You can select and copy the entire command if you intend to reschedule the assignment more than once. 
+    You can paste the command into the Command Box after step 2 and repeat step 1-2 until you have obtained your
+     ideal schedule.
+    </div>
 
-2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the diagram below.<br>
+2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the figure below.<br>
    ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
-   *Figure 39: New suggested time for assignment labelled*
+   *Figure 39: Assignment has been rescheduled successfully*
 <br>
 
 <div style="page-break-after: always;"></div>
 
-**Q: I double-clicked the productivenus.jar file but the app is not starting. What should I do?**<br>
+**Q: I double-clicked the `productivenus.jar` file but the app is not starting. What should I do?**<br>
 **A**: This is most likely caused by the *Security and Privacy Settings* of your operating system. You can either
 modify your *Security and Privacy Settings* (depends on your operating system) to accept
 anonymous files or run ProductiveNUS with the `Command Prompt`.
 
 Below are the instructions for using the `Command Prompt` to open ProductiveNUS for Windows Users.
-If your computer runs with Ubuntu or MacOS, the following instructions is applicable but in order to
+If your computer runs Ubuntu or MacOS, the following instructions is also applicable. However, in order to
 open the `Command Prompt`, you need to run the `Terminal` application.
 
 *For Windows Users:*
-1. Open the folder where you have downloaded and saved the productivenus.jar file.
+1. Open the folder where you have downloaded and saved the `productivenus.jar` file.
 2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
    ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
-   *Figure 40: File directory labelled*
+   *Figure 40: Finding your file directory*
    
-3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
-4. Your command prompt will start, and it should look something similar to the diagram below.<br>
+3. Open your `Command Prompt`. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
+4. Your `Command Prompt` will start, and it should look something similar to the diagram below.<br>
    ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
-   *Figure 41: Interface of Command Prompt*
+   *Figure 41: Starting the Command Prompt*
    
-4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
+4. In the `Command Prompt`, type `cd ` and paste the file directory that you have copied in step 2.
 <br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
-5. Press ENTER and the file directory will be shown in the command prompt as shown in the diagram below.<br>
+5. Press ENTER and the file directory will be shown in the `Command Prompt` as shown in the diagram below.<br>
    ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
-   *Figure 42: After changing file directory in Command Prompt*
+   *Figure 42: Changing file directory in Command Prompt*
    
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
