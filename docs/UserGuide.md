@@ -260,7 +260,7 @@ After entering this command, your app should look like this:
 
 #### <a name="reset_scores"></a>3.2.7. Reset Scores : `reset scores` (Harshini)
 
-Permanently deletes the history of saved scores, including all scores saved in past sessions.
+You can use this command if you want to clear the records of previous quiz attempts.
 
 Format: `reset scores`
 
