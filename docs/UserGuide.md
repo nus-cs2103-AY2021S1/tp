@@ -126,7 +126,7 @@ Format: `exit`
 
 ### 2.1.3 Leave a current page `leave`
 
-Leave the current page and go back to the parent scope (one level up).
+Leaves the current page and go back to the parent scope (one level up).
 
 Valid scopes: all.
 
@@ -140,11 +140,11 @@ Valid scopes: all.
 
 Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
-- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
+- If the app is already in the `PERSON_LIST` or `PROJECT_LIST` scope, the command takes no effect
 
 ### 2.1.4 List all projects in the catalogue `listprojects`
 
-List all projects currently in the project catalogue.
+Lists all projects currently in the catalogue.
 
 Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
 
@@ -153,13 +153,12 @@ Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
    *Figure 5: List of projects shows up*
 
 Format: `listprojects`
-- Lists all projects if there are projects in the catalogue
-
-Example: `listprojects` lists all projects in the catalogue to the user.
+- Lists all projects without filter
+- If the scope is `PERSON_LIST` when the command is executed, the scope will be changed to `PROJECT_LIST` 
 
 ### 2.1.5 List all persons in the catalogue `listpersons`
 
-List all persons currently in the catalogue.
+Lists all persons currently in the catalogue.
 
 Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
 
@@ -168,9 +167,8 @@ Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
    *Figure 6: List of persons shows up*
 
 Format: `listpersons`
-- Lists all persons if there are persons in the catalogue
-
-Example: `listpersons` lists all persons in the catalogue to the user.
+- Lists all persons without filter
+- If the scope is `PROJECT_LIST` when the command is executed, the scope will be changed to `PERSON_LIST` 
 
 ## 2.2 Projects management
 
