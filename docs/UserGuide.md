@@ -466,22 +466,22 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 1` displays all information from task number 1 in the list.
 
-## 2.4 Teammate and person management within a project
+## 2.4 Teammate and person management within a project (Niaaz)
 
-### 2.4.1 Create a new person `addperson`
+### 2.4.1 Creates a new person `addperson` (Niaaz)
 
 Creates a new person in the main catalogue with all the relevant fields contained in it.
 If the app is currently working on a project, this person will also be added to this project at the same time.
 
-Valid scopes: all.
+Valid scopes: all
 
 ![add_teammate](images/addPerson.png)
 
    *Figure 21: New teammate `Lucas` is added to the project and shown on the teammate list*
 
 Format: `addperson mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
-  - All fields are necessary to fill in
-  - Teammate name has to be 1 or more words consisting only of letters
+  - It is necessary to fill up all commands
+  - Teammate name has to be 1 or more words consisting only of alphabets
   - The Github username has to be a unique Github registered User Name
   - The phone number has to be a minimum of 3 and maximum of 16 numbers
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
@@ -494,9 +494,9 @@ Example: `addperson mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 
   - email of lucas@gmail.com
   - address of 18 Evelyn road
 
-### 2.4.2 Add a person to a project `addtoproject`
+### 2.4.2 Adds a person to a project `addtoproject` (Niaaz)
 
-Add an existing person to the current project, making them a teammate.
+Adds an existing person to the current project, making them a teammate.
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -508,7 +508,7 @@ Format: `addtoproject GITHUB_USERNAME`
 
 Example: `addtoproject Lucas98` adds Lucas98 to the current project that the user is in.
 
-### 2.4.3 Remove a teammate from a project `deletefromproject`
+### 2.4.3 Removes a teammate from a project `deletefromproject` (Niaaz)
 
 Removes an existing teammate from the current project.
 
@@ -526,9 +526,9 @@ Format: `deletefromproject GITHUB_USERNAME`
 
 Example: `deletefromproject Lucas98` removes Lucas98 from the current project.
 
-### 2.4.4 Edit a teammate’s details `editteammate`
+### 2.4.4 Edits a teammate’s details `editteammate` (Niaaz)
 
-Update the information of a teammate.
+Updates the information of a teammate.
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -546,9 +546,9 @@ Format: `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/E
 
 Example: `editteammate LucasTai98 mn/LucasTai ma/5 Hacker Way` changes the name of the teammate to LucasTai and the address of said teammate to 5 Hacker Way.
 
-### 2.4.5 View a teammate’s details `viewteammate`
+### 2.4.5 Views a teammate’s details `viewteammate` (Niaaz)
 
-View all of a specific teammate's details.
+Views all of a specific teammate's details.
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -560,9 +560,9 @@ Format: `viewteammate GITHUB_USERNAME`
 
 Example: `viewteammate Lucas98` displays all the information about the teammate with the Github User Name Lucas98 to the user.
 
-### 2.4.6 Delete a teammate `deleteperson`
+### 2.4.6 Deletes a teammate `deleteperson` (Niaaz)
 
-Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
+Deletes all of a specific teammate's details, as well as removes teammate from all projects teammate was a part of.
 
 Valid scopes: `PERSON_LIST`.
 
@@ -579,7 +579,7 @@ Format: `deleteperson GITHUB_USERNAME`
 Example: `deleteperson Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
  was in.
 
-### 2.4.7 Start work on an existing person `startperson`
+### 2.4.7 Start work on an existing person `startperson` 
 
 Starts the view of the person specified to work on it specifically.
 
@@ -596,48 +596,48 @@ Format: `startperson INDEX`
 
 Examples: `startperson 2` starts the second person in the person list displayed in the left panel.
 
-# 3 FAQ
+# 3 FAQ (Niaaz)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
 contains the data of your previous Taskmania home folder.
 
-**Q**: Is my data stored in the cloud?<br>
+**Q**: Is my data stored in the cloud? Will I be open to data breaches?<br>
 **A**: No, all your data is stored locally, no need to fear a potential data hack.
 
 **Q**: Do I have to save before exiting the application for my data to to safely backed up on my computer? <br>
 **A**: All your data is saved on your computer as soon as you enter in the command. There is no need to manually save
- your data.
+ your data. In the event of a power outage, all your data will be safe.
 
 # 4 Summary
 
 Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` | `PERSON` | `TASK` | `TEAMMATE`
 --------|------------------|-------|---------------|---------------|-------------|--------|--------|------------
-**Get Help** | `help` |                                                                                                                                                                                                                                                          | √ | √ | √ | √ | √ | √
-**Exit application** | `exit` |                                                                                                                                                                                                                                                  | √ | √ | √ | √ | √ | √
-**Leave a view** | `leave` |                                                                                                                                                                                                                                                     | √ | √ | √ | √ | √ | √
-**Show all projects** | `listprojects` |                                                                                                                                                                                                                                         | √ | √ | √ |   | √ | √
-**Show all persons** | `listpersons` |                                                                                                                                                                                                                                           | √ | √ |   | √ |   |
-**Start a project** | `startproject INDEX`<br> e.g., `startproject 3` |                                                                                                                                                                                                          | √ |   | √ |   |   |
-**Start a person** | `startperson INDEX`<br> e.g., `startperson 3` |                                                                                                                                                                                                             |   | √ |   | √ |   |
-**Add project** | `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging` |                                                        | √ |   | √ |   | √ | √
-**Delete project** | `delete INDEX` <br> e.g. `delete 2` |                                                                                                                                                                                                                       | √ |   | √ |   | √ | √
-**Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` |                                                                                                                                                                                                                        | √ |   | √ |   | √ | √
-**Edit Project** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project d/ new horror`|                                                                                                                   | √ |   | √ |   | √ | √
-**Add Task** | `addtask n/TASK_NAME tp/TASK_PROGRESS td/TASK_DEADLINE ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
-**Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` |                                                                                                                                                                                               |   |   | √ |   | √ | √
-**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` |                                                                                                                                   |   |   | √ |   | √ | √
-**Delete a task** | `deletetask INDEX` <br>e.g. `deletetask 1` |                                                                                                                                                                                                                 |   |   | √ |   | √ | √
-**Filter tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` |   |   |   | √ |   | √ | √
-**Show all the tasks** | `alltasks` |                                                                                                                                                                                                                                            |   |   | √ |   | √ | √
-**Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/) (td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` |                                                                                                                                   |   |   | √ |   | √ | √
-**View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` |                                                                                                                                                                                                           |   |   | √ |   | √ | √
-**Create a new person** | `addperson mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `addperson mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` |                                                                         | √ | √ | √ | √ | √ | √
-**Add a teammate to a project** | `addtoproject GITHUB_USERNAME` e.g. `addtoproject LucasTai98` |                                                                                                                                                                                |   |   | √ |   | √ | √
-**Remove a teammate from a project** | `deletefromproject GITHUB_USERNAME` e.g. `deletefromproject LucasTai98` |                                                                                                                                                                 |   |   | √ |   | √ | √
-**Edit teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` e.g. `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|                                                                                                  |   |   | √ |   | √ | √
-**View a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`|                                                                                                                                                                                      |   |   | √ |   | √ | √
-**Delete a teammate** | `deleteperson GITHUB_USERNAME` e.g. `deleteperson Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
+**Gets Help** | `help` |                                                                                                                                                                                                                                                          | √ | √ | √ | √ | √ | √
+**Exits application** | `exit` |                                                                                                                                                                                                                                                  | √ | √ | √ | √ | √ | √
+**Leaves a view** | `leave` |                                                                                                                                                                                                                                                     | √ | √ | √ | √ | √ | √
+**Shows all projects** | `listprojects` |                                                                                                                                                                                                                                         | √ | √ | √ |   | √ | √
+**Shows all persons** | `listpersons` |                                                                                                                                                                                                                                           | √ | √ |   | √ |   |
+**Starts a project** | `startproject INDEX`<br> e.g., `startproject 3` |                                                                                                                                                                                                          | √ |   | √ |   |   |
+**Starts a person** | `startperson INDEX`<br> e.g., `startperson 3` |                                                                                                                                                                                                             |   | √ |   | √ |   |
+**Adds project** | `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging` |                                                        | √ |   | √ |   | √ | √
+**Deletes project** | `delete INDEX` <br> e.g. `delete 2` |                                                                                                                                                                                                                       | √ |   | √ |   | √ | √
+**Finds KEYWORD** | `find KEYWORD` <br> e.g. `find read` |                                                                                                                                                                                                                        | √ |   | √ |   | √ | √
+**Edits Project** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project d/ new horror`|                                                                                                                   | √ |   | √ |   | √ | √
+**Adds Task** | `addtask n/TASK_NAME tp/TASK_PROGRESS td/TASK_DEADLINE ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
+**Assigns A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` |                                                                                                                                                                                               |   |   | √ |   | √ | √
+**Edits task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` |                                                                                                                                   |   |   | √ |   | √ | √
+**Deletes a task** | `deletetask INDEX` <br>e.g. `deletetask 1` |                                                                                                                                                                                                                 |   |   | √ |   | √ | √
+**Filters tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` |   |   |   | √ |   | √ | √
+**Shows all the tasks** | `alltasks` |                                                                                                                                                                                                                                            |   |   | √ |   | √ | √
+**Sorts tasks** | <code>sort (sa/)&#124;&#124;(sd/) (td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` |                                                                                                                                   |   |   | √ |   | √ | √
+**Views Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` |                                                                                                                                                                                                           |   |   | √ |   | √ | √
+**Creates a new person** | `addperson mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `addperson mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` |                                                                         | √ | √ | √ | √ | √ | √
+**Adds a teammate to a project** | `addtoproject GITHUB_USERNAME` e.g. `addtoproject LucasTai98` |                                                                                                                                                                                |   |   | √ |   | √ | √
+**Removes a teammate from a project** | `deletefromproject GITHUB_USERNAME` e.g. `deletefromproject LucasTai98` |                                                                                                                                                                 |   |   | √ |   | √ | √
+**Edits teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` e.g. `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|                                                                                                  |   |   | √ |   | √ | √
+**Views a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`|                                                                                                                                                                                      |   |   | √ |   | √ | √
+**Deletes a teammate** | `deleteperson GITHUB_USERNAME` e.g. `deleteperson Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
 
 # 5 Glossary
 
