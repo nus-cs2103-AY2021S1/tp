@@ -250,7 +250,7 @@ yourself on the same list again, your previous score will be overwritten.
 **:information_source: Notes about viewing scores:**<br>
 * For easy reference, scores are listed starting from the most recently added score.
   In the case of re-testing yourself on the same list, the score is considered to be overwritten and not
-  added, so the original list position is retained. 
+  added, so the original score list position is retained. 
 </div>
 
 
