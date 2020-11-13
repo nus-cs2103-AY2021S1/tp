@@ -849,6 +849,8 @@ Adding a new appointment: <br>
 1. Type `add_appt cid/1 hid/2 d/2020-12-12 t/17:30` into the *Command Box*.
 1. Press `Enter` to execute.
 
+![create_appointment](images/appointment/add_appt_command.png)
+
 Outcome: <br>
 
 1. The `Result Display` will show a success message.
@@ -878,12 +880,16 @@ Listing all appointments: <br>
 1. Type `list_appt` into the *Command Box*.
 1. Press `Enter` to execute.
 
+![list_appointment](images/appointment/list_appt.png)
+
 Outcome: <br>
 
 1. The `Result Display` will show a success message.
 1. You can now see all appointments in the *Appointments Panel*.
 
 </div>
+
+![list_appointment_outcome](images/appointment/list_appt_outcome.png)
 
 
 #### 4.4.4 Editing an appointment : `edit_appt`
