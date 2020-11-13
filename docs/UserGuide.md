@@ -17,20 +17,20 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 1 Quick start
+# 1 Quick start (Tan Chia Qian)
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
 2. Download the latest `Taskmania.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-3/tp).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TaskMania.
+3. Copy the file to the folder you want to use as the _home folder_ for your Taskmania.
 
 4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
  the app contains some sample information.<br>
    ![Ui](images/Ui.png)
    *Figure 1: A view of Taskmania at startup*
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing `Enter` to
  open the help window.<br>
    Some commands you can try:
 
@@ -38,7 +38,7 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 
    * `exit` : Exits the app
 
-6. Refer to the Features below for details of each command.
+6. Refer to the features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,10 +47,10 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * One and only one item in parenthesis should be supplied by the user
-  e.g. `(ta/ASSIGNEE_GIHUB_USERNAME)||(td/DEADLINE)` can be used as "ta/Alice98" or "td/31-12-2020 10:00:00", but not as "ta/Alice98 td/31-12-2020 10:00:00" or "".
+  e.g. `(ta/ASSIGNEE_GIHUB_USERNAME)||(td/DEADLINE)` can be used as `ta/Alice98` or `td/31-12-2020 10:00:00`, but not as `ta/Alice98 td/31-12-2020 10:00:00` or empty.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [tg/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -59,7 +59,7 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
   e.g. `[tg/TAG]…​` can be used as ` ` (i.e. 0 times), `tg/friend`, `tg/friend tg/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 **:information_source: Notes about scoping:**<br>
 
@@ -237,9 +237,9 @@ Format: `delete INDEX `
 
 Examples: `delete 2` deletes the second project from the catalogue.
 
-### 2.2.4 Locate projects by keyword `find`
+### 2.2.4 Locate projects by keyword `find` (Tan Chia Qian)
 
-Finds projects whose names contain the given keywords.
+Finds all the projects with the names containing the given keywords.
 
 Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -250,16 +250,16 @@ Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 - The search is case-insensitive. e.g `run` will match `Run`
 - The order of the keywords does not matter. e.g. `Project CS2103T` will match `CS2103T Project`
-- Only the name of the projects are searched
-- Must provide at least one keyword
-- There can be multiple keywords
-- Keywords provided must be **complete words** and will only match **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
+- It only allows searching by the project name
+- It must include at least one keyword
+- It can include multiple keywords
+- Keywords provided must be the **complete words** and will only match the **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
-Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
+Example: `find scare` returns the `Scare House` and `Easily Scare Night` projects.
 
 Note: Please use `listprojects` command to return to the complete project list.
 
-### 2.2.5 Edits details of a project `edit`
+### 2.2.5 Edits details of a project `edit` (Tan Chia Qian)
 
 Updates the details of a project.
 
@@ -274,18 +274,19 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - The index refers to the index number shown in the displayed task list
   - Any combination of the fields above can be entered
   - The information entered will replace all the data in each respective field
-  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
-  - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
-  - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
-  - Repo URL must be a valid link
+  - The project name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - The deadline follows the format of *DD-MM-YYYY hh:mm:ss*
+  - The deadline can be set to be in the past (in case the user wants to log the finished projects for the completeness of the project management)
+  - The repository URL must be a valid link
   - Anything can be filled in the description as long as it is not blank
   - Any number of tags can be added, separated by space " "
 
-Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
+Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to `ResidentEvil` and the description to `New Horror`.
+
+Note: Please enter a valid repository URL. Taskmania is an offline application and it can only check the validity of the
  URL, and not whether the repository exists.
-
-Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
-
+ 
+ 
 ## 2.3 Tasks management within a project
 
 ### 2.3.1 Add task to a project `addtask`
@@ -599,7 +600,7 @@ Examples: `startperson 2` starts the second person in the person list displayed 
 # 3 FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
+**A**: Install the app in the other computer and overwrite the empty data file with the file that 
 contains the data of your previous Taskmania home folder.
 
 **Q**: Is my data stored in the cloud?<br>
@@ -608,8 +609,11 @@ contains the data of your previous Taskmania home folder.
 **Q**: Do I have to save before exiting the application for my data to to safely backed up on my computer? <br>
 **A**: All your data is saved on your computer as soon as you enter in the command. There is no need to manually save
  your data.
+ 
+**Q**: Where do I seek help when I have issue with the application? <br>
+**A**: Do feel free to leave your issues [here](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues).
 
-# 4 Summary
+# 4 Summary (Tan Chia Qian)
 
 Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` | `PERSON` | `TASK` | `TEAMMATE`
 --------|------------------|-------|---------------|---------------|-------------|--------|--------|------------
