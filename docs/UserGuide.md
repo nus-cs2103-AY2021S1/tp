@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide 0
+title: User Guide 1
 ---
 
 ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
@@ -208,6 +208,7 @@ After entering this command, your app should look like this:
 
 ![next-screenshot](images/next-screenshot.png)
 
+<div style="page-break-after: always;"></div>
 
 #### <a name="end"></a>3.2.4. End Quiz : `end` (Zhizhi)
 
