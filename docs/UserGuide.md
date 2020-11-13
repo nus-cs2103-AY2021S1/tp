@@ -240,7 +240,7 @@ Format: `scores`
 
 **:information_source: Notes about saving scores:**<br>
 
-* For each unique list of German phrases, only the most recent score is saved. If you decide to test
+* For each unique list of flashcards, only the most recent score is saved. If you decide to test
 yourself on the same list again, your previous score will be overwritten.
 * Scores are automatically saved after a quizzing round ends, and no further action on your part is needed.
 </div>
