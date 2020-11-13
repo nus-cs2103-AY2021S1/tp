@@ -3,10 +3,15 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALGROUPS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalModules.CS2030;
+import static seedu.address.testutil.TypicalModules.CS2103T;
+import static seedu.address.testutil.TypicalStudents.ALEX;
+import static seedu.address.testutil.TypicalTutorialGroups.T05;
+import static seedu.address.testutil.TypicalTutorialGroups.V04;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +20,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.module.ModuleContainsKeywordsPredicate;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
+import seedu.address.testutil.TrackrBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +33,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new Trackr(), new Trackr(modelManager.getModuleList()));
     }
 
     @Test
@@ -37,14 +44,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,47 +68,99 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setTrackrFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTrackrFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTrackrFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setTrackrFilePath(path);
+        assertEquals(path, modelManager.getTrackrFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
+    }
+
+    //    @Test
+    //    public void hasTutorialGroup_nullTutorialGroup_throwsNullPointerException() {
+    //        modelManager.setCurrentModuleInView(CS2103T);
+    //        assertThrows(NullPointerException.class, () -> modelManager.hasTutorialGroup(null));
+    //    }
+
+    @Test
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasModule_moduleNotInTrackr_returnsFalse() {
+        assertFalse(modelManager.hasModule(CS2103T));
+    }
+
+    //    @Test
+    //    public void hasTutorialGroup_tutorialGroupNotInTrackr_returnsFalse() {
+    //        modelManager.setCurrentModuleInView(CS2103T);
+    //        assertFalse(modelManager.hasTutorialGroup(T05));
+    //    }
+    //    @Test
+    //    public void hasStudent_studentNotInTrackr_returnsFalse() {
+    //        modelManager.setCurrentModuleInView(CS2103T);
+    //        modelManager.setCurrentTgInView(T05);
+    //        assertFalse(modelManager.hasStudent(ALEX));
+    //    }
+
+    @Test
+    public void hasModule_moduleInTrackr_returnsTrue() {
+        modelManager.addModule(CS2103T);
+        assertTrue(modelManager.hasModule(CS2103T));
+    }
+
+    //    @Test
+    //    public void hasTutorialGroup_tutorialGroupInTrackr_returnsTrue() {
+    //        modelManager.setCurrentModuleInView(CS2103T);
+    //        modelManager.addTutorialGroup(T05);
+    //        assertTrue(modelManager.hasTutorialGroup(T05));
+    //    }
+    //    @Test
+    //    public void hasStudent_studentInTrackr_returnsTrue() {
+    //        modelManager.setCurrentModuleInView(CS2103T);
+    //        modelManager.setCurrentTgInView(T05);
+    //        modelManager.addStudent(ALEX);
+    //        assertTrue(modelManager.hasStudent(ALEX));
+    //    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void getFilteredTutorialGroupList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getFilteredTutorialGroupList().remove(0)
+        );
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        Trackr trackr = new TrackrBuilder()
+                .withModule(CS2030)
+                .withTutorialGroup(V04, CS2030)
+                .build();
+        Trackr differentTrackr = new Trackr();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(trackr, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(trackr, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,19 +173,35 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentTrackr, userPrefs)));
 
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        // different module filteredList -> returns false
+
+        String[] moduleKeywords = CS2103T.getModuleId().toString().split("\\s+");
+
+        modelManager.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
+
+        // different tutorial group filteredList -> returns false
+        String[] tutorialGroupKeywords = T05.getId().toString().split("\\s+");
+        modelManager.updateFilteredTutorialGroupList(
+                        new TutorialContainsKeywordsPredicate(Arrays.asList(tutorialGroupKeywords))
+        );
+        assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
+
+        // different student filteredList -> returns false
+        String[] studentKeywords = ALEX.getName().toString().split("\\s+");
+        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(studentKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        modelManager.updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setModuleListFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(trackr, differentUserPrefs)));
     }
 }

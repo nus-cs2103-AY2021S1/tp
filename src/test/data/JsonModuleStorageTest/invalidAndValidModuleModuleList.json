@@ -1,0 +1,9 @@
+{
+  "modules" : [ {
+    "moduleId" : "CS21*0",
+    "tutorialGroups" : [ ]
+  }, {
+    "moduleId" : "CS2100",
+    "tutorialGroups" : [ ]
+  } ]
+}

@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters a viewTG
+command in the command box;
+
+:TrackrParser parses the argument
+to determine which command parser
+should further parse it;
+
+:ViewTutorialGroupCommandParser
+parses the user input;
+
+if () then ([valid command input format])
+    :index of module to view is determined;
+    if () then ([Trackr is in Module View])
+        :Trackr displays the list of Tutorial
+        Groups in the specified module;
+    else ([else])
+        :throws CommandException with
+        not in Module View error message;
+    endif
+else ([else])
+    :throws ParseException with
+    invalid format message;
+endif
+:returns feedback to user;
+
+stop
+@enduml

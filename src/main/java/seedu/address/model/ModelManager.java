@@ -7,38 +7,59 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.Module;
+import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the module list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Trackr moduleList;
+
+    private FilteredList<Module> filteredModules;
+    private FilteredList<TutorialGroup> filteredTutorialGroup;
+    private FilteredList<Student> filteredStudents;
+
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private Module currentModuleInView;
+    private TutorialGroup currentTgInView;
+
+    private boolean isInModuleView;
+    private boolean isInTutorialGroupView;
+    private boolean isInStudentView;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given ReadOnlyTrackrs and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTrackr<Module> moduleList,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(moduleList, userPrefs);
+        logger.fine("Initializing with module data: " + moduleList + " and user prefs: " + userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        this.moduleList = new Trackr(moduleList);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.filteredModules = new FilteredList<>(this.moduleList.getList());
+        this.filteredTutorialGroup = new FilteredList<>(FXCollections.observableArrayList());
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
+
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Trackr(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +87,238 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTrackrFilePath() {
+        return userPrefs.getModuleListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTrackrFilePath(Path trackrFilePath) {
+        requireNonNull(trackrFilePath);
+        userPrefs.setModuleListFilePath(trackrFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== moduleList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setModuleList(ReadOnlyTrackr<Module> moduleList) {
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
+        this.moduleList.resetData(moduleList);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyTrackr<Module> getModuleList() {
+        return new Trackr(moduleList);
+    }
+
+    //=========== Module Operations ================================================================================
+
+    @Override
+    public void setViewToModule() {
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void setCurrentViewToModule() {
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return moduleList.hasModule(module);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deleteModule(Module target) {
+        moduleList.removeModule(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addModule(Module module) {
+        moduleList.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+        moduleList.setModule(target, editedModule);
+    }
+
+    @Override
+    public boolean isInModuleView() {
+        return this.isInModuleView;
+    }
+
+    @Override
+    public Module getCurrentModuleInView() {
+        return currentModuleInView;
+    }
+
+    public void setCurrentModuleInView(Module module) {
+        this.currentModuleInView = module;
+    }
+
+    //=========== TutorialGroup Operations ====================================================================
+
+    @Override
+    public void setViewToTutorialGroup(Module target) {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = true;
+        this.isInStudentView = false;
+        currentModuleInView = target;
+        filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(target));
+    }
+
+    @Override
+    public void setCurrentViewToTutorialGroup() {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = true;
+        this.isInStudentView = false;
+    }
+
+    @Override
+    public void addTutorialGroup(TutorialGroup target) {
+        moduleList.addTutorialGroup(target, currentModuleInView);
+        updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
+    }
+
+    @Override
+    public void deleteTutorialGroup(TutorialGroup tutorialGroup) {
+        moduleList.deleteTutorialGroup(tutorialGroup, currentModuleInView);
+    }
+
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup toCheck) {
+        requireNonNull(toCheck);
+        return moduleList.getUniqueTutorialGroupList(currentModuleInView).contains(toCheck);
+    }
+
+    @Override
+    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
+        requireAllNonNull(target, edited);
+        moduleList.setTutorialGroup(target, edited, currentModuleInView);
+    }
+
+    @Override
+    public boolean isInTutorialGroupView() {
+        return this.isInTutorialGroupView;
+    }
+
+    @Override
+    public TutorialGroup getCurrentTgInView() {
+        return currentTgInView;
+    }
+
+    public void setCurrentTgInView(TutorialGroup tutorialGroup) {
+        this.currentTgInView = tutorialGroup;
+    }
+
+    //=========== Student Operations =============================================================================
+
+    @Override
+    public void setViewToStudent(TutorialGroup target) {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = true;
+        currentTgInView = target;
+        filteredStudents =
+                new FilteredList<>(moduleList.getStudentListOfTutorialGroup(currentModuleInView, target));
+    }
+
+    @Override
+    public void setCurrentViewToStudent() {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = true;
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return moduleList
+                .getUniqueStudentList(currentModuleInView, currentTgInView)
+                .contains(student);
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        moduleList
+                .getUniqueStudentList(currentModuleInView, currentTgInView)
+                .removeStudent(target);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        moduleList.addStudent(currentModuleInView, currentTgInView, student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        moduleList
+                .getUniqueStudentList(currentModuleInView, currentTgInView)
+                .setStudent(target, editedStudent);
+    }
+
+    @Override
+    public boolean isInStudentView() {
+        return this.isInStudentView;
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Module}.
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
+    //=========== Filtered TutorialGroup List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Module}.
+     */
+    @Override
+    public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+        return filteredTutorialGroup;
+    }
+
+    @Override
+    public void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate) {
+        requireNonNull(predicate);
+        filteredTutorialGroup.setPredicate(predicate);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student}.
+     */
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +335,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredTutorialGroup.equals(other.filteredTutorialGroup)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

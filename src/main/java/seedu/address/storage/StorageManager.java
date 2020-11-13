@@ -7,25 +7,27 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Trackr data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private ModuleListStorage moduleListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given storages.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ModuleListStorage moduleListStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.moduleListStorage = moduleListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,34 +48,33 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
+    // ================ Module methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getModuleFilePath() {
+        return moduleListStorage.getModuleFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTrackr<Module>> readModuleList() throws DataConversionException, IOException {
+        return readModuleList(moduleListStorage.getModuleFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+    public Optional<ReadOnlyTrackr<Module>> readModuleList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read module data from file: " + filePath);
+        return moduleListStorage.readModuleList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveModuleList(ReadOnlyTrackr<Module> moduleList) throws IOException {
+        saveModuleList(moduleList, moduleListStorage.getModuleFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+    public void saveModuleList(ReadOnlyTrackr<Module> moduleList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to module data file: " + filePath);
+        moduleListStorage.saveModuleList(moduleList, filePath);
     }
 
 }

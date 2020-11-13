@@ -2,18 +2,19 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
 
 public class StorageManagerTest {
 
@@ -24,9 +25,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonModuleListStorage moduleListStorage = new JsonModuleListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(moduleListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +49,30 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void moduleListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        Trackr original = new Trackr();
+        storageManager.saveModuleList(original);
+        ReadOnlyTrackr<Module> retrieved = storageManager.readModuleList().get();
+        assertEquals(original, new Trackr(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getModuleListFilePath() {
+        assertNotNull(storageManager.getModuleFilePath());
+    }
+
+    @Test
+    public void getUserPrefs_correctFilePath() {
+        Path filePath = Paths.get("data/temp.json");
+        UserPrefsStorage userPrefs = new JsonUserPrefsStorage(filePath);
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(filePath);
+        Storage storage = new StorageManager(moduleListStorage, userPrefs);
+        assertEquals(filePath, storage.getUserPrefsFilePath());
     }
 
 }

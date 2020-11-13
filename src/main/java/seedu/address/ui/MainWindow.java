@@ -31,9 +31,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ModuleListPanel moduleListPanel;
+    private TutorialGroupListPanel tutorialGroupListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ViewDisplay viewDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +45,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane viewDisplayPlaceholder;
+
+    @FXML
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,17 +116,47 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        viewDisplay = new ViewDisplay();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTrackrFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void refillInnerPartsWithTutorialGroupList() {
+        tutorialGroupListPanel = new TutorialGroupListPanel(logic.getFilteredTutorialGroupList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(tutorialGroupListPanel.getRoot());
+        viewDisplay.setCurrentView("TUTORIAL GROUPS");
+        viewDisplayPlaceholder.getChildren().clear();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
+    }
+
+    void refillInnerPartsWithModuleList() {
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        viewDisplay.setCurrentView("MODULES");
+        viewDisplayPlaceholder.getChildren().clear();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
+    }
+
+    void refillInnerPartsWithStudentList() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        viewDisplay.setCurrentView("STUDENTS");
+        viewDisplayPlaceholder.getChildren().clear();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
     }
 
     /**
@@ -163,8 +199,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ModuleListPanel getModuleListPanel() {
+        return moduleListPanel;
     }
 
     /**
@@ -184,6 +220,18 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowTutorialGroupList()) {
+                refillInnerPartsWithTutorialGroupList();
+            }
+
+            if (commandResult.isShowModuleList()) {
+                refillInnerPartsWithModuleList();
+            }
+
+            if (commandResult.isShowStudentList()) {
+                refillInnerPartsWithStudentList();
             }
 
             return commandResult;

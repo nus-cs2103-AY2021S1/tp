@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,11 +10,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.module.ModuleId;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorialgroup.DayOfWeek;
+import seedu.address.model.tutorialgroup.TimeOfDay;
+import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -21,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_UPPER_BOUND = "Upper bound must be a positive integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -66,21 +72,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +111,120 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String tutorial group id} into a {@code TutorialGroupId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutorial group id} is invalid.
+     */
+    public static TutorialGroupId parseTutorialGroupId(String tutorialGroupId) throws ParseException {
+        requireNonNull(tutorialGroupId);
+        String trimmedModule = tutorialGroupId.trim();
+        if (!TutorialGroupId.isValidTutorialGroupId(trimmedModule)) {
+            throw new ParseException(TutorialGroupId.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialGroupId(tutorialGroupId);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static DayOfWeek parseDayOfWeek(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!DayOfWeek.isValidDayOfWeek(trimmedDay)) {
+            throw new ParseException(DayOfWeek.MESSAGE_CONSTRAINTS);
+        }
+        return new DayOfWeek(trimmedDay);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     *
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TimeOfDay[] parseTimesOfDay(String startTime, String endTime) throws ParseException {
+        requireAllNonNull(startTime, endTime);
+        String trimmedStartTime = startTime.trim();
+        String trimmedEndTime = endTime.trim();
+        if (!TimeOfDay.isValidTimeOfDay(trimmedStartTime) || !TimeOfDay.isValidTimeOfDay(trimmedEndTime)) {
+            throw new ParseException(TimeOfDay.MESSAGE_CONSTRAINTS);
+        } else if (!TimeOfDay.isValidTimes(trimmedStartTime, trimmedEndTime)) {
+            throw new ParseException(TimeOfDay.TIME_CONSTRAINTS);
+        }
+        TimeOfDay[] timeOfDays = {new TimeOfDay(trimmedStartTime), new TimeOfDay(trimmedEndTime)};
+        return timeOfDays;
+    }
+
+    /**
+     * Parses user input into a single TimeOfDay
+     * @param startTime
+     * @throws ParseException if invalid startTime String provided
+     */
+    public static TimeOfDay parseTimeOfDay(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!TimeOfDay.isValidTimeOfDay(trimmedStartTime)) {
+            throw new ParseException(TimeOfDay.MESSAGE_CONSTRAINTS);
+        }
+        return new TimeOfDay(trimmedStartTime);
+    }
+
+    /**
+     * Parses a {@code String module id} into a {@code ModuleId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module id} is invalid.
+     */
+    public static ModuleId parseModuleId(String moduleId) throws ParseException {
+        requireNonNull(moduleId);
+        String trimmedModule = moduleId.trim();
+        if (!ModuleId.isValidModuleId(trimmedModule)) {
+            throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleId(trimmedModule);
+    }
+
+    /**
+     * Parses a {@code String studentId} into a {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentId} is invalid.
+     */
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedStudentId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        return new StudentId(trimmedStudentId);
+    }
+
+    /**
+     * Parses a {@code String studentId} into a {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentId} is invalid.
+     */
+    public static int parseUpperBound(String upperBoundString) throws ParseException {
+        requireNonNull(upperBoundString);
+        String trimmedUpperBound = upperBoundString.trim();
+        int upperBoundInt;
+        try {
+            upperBoundInt = Integer.parseInt(trimmedUpperBound);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_UPPER_BOUND);
+        }
+        if (upperBoundInt <= 0) {
+            throw new ParseException(MESSAGE_INVALID_UPPER_BOUND);
+        }
+        return upperBoundInt;
     }
 }

@@ -1,59 +1,51 @@
 ---
-layout: page
-title: About Us
+layout: page		
+title: About Us		
 ---
+
+Trackr is designed and developed by the [CS2013T-W12-2](https://github.com/AY2021S1-CS2103T-W12-2) team.
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Juan Davin Lie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/juandavinlie.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/juandavinlie)] [[portfolio](team/juandavinlie.md)]
 
-* Role: Project Advisor
+-   Role: Programmer
+-   Hobby: Swimming and eating
 
-### Jane Doe
+### Sean Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seantaysl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seantaysl)] [[portfolio](team/seantaysl.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+-   Role: Programmer
 
-### Johnny Doe
+### Ethan Noah Rozario
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ethanthegoondu.png"  width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ethanthegoondu)] [[portfolio](team/ethanthegoondu.md)]
 
-* Role: Developer
-* Responsibilities: Data
+-   Role: Programmer
 
-### Jean Doe
+### Tan Eu Zin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/euzintan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/euzintan)] [[portfolio](team/euzintan.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+-   Role: Programmer
 
-### James Doe
+### Jian Fanmin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fanminj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/fanminj)] [[portfolio](team/fanminj.md)]
 
-* Role: Developer
-* Responsibilities: UI
+-   Role: Programmer

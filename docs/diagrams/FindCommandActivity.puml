@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters a findMod
+command in the command box;
+
+:TrackrParser parses the argument
+to determine which command parser
+should further parse it;
+
+:FindModuleCommandParser
+parses the user input;
+
+if () then ([valid command input format])
+    :Keyword to search for is identified;
+    if () then ([Trackr is in Module View])
+        :The module list displayed is updated to only
+        show modules matching the keyword;
+    else ([else])
+        :throws CommandException with
+        not in module view message;
+    endif
+else ([else])
+    :throws ParseException with
+    invalid format message;
+endif
+:returns feedback to user;
+
+stop
+@enduml

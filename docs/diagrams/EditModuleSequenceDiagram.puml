@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackrParser" as TrackrParser LOGIC_COLOR
+participant ":EditModuleCommandParser" as EditModuleCommandParser LOGIC_COLOR
+participant "e:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ReadOnlyTrackr<Module>" as ReadOnlyTrackr MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+participant "internalList:ObservableList<Module>" as internalList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editMod 1 m/CS2100")
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand("editMod 1 m/CS2100")
+activate TrackrParser
+
+create EditModuleCommandParser
+TrackrParser -> EditModuleCommandParser
+activate EditModuleCommandParser
+
+EditModuleCommandParser --> TrackrParser
+deactivate EditModuleCommandParser
+
+TrackrParser -> EditModuleCommandParser : parse("1 m/CS2100")
+activate EditModuleCommandParser
+
+create EditModuleCommand
+EditModuleCommandParser -> EditModuleCommand
+activate EditModuleCommand
+
+EditModuleCommand --> EditModuleCommandParser : e
+deactivate EditModuleCommand
+
+EditModuleCommandParser --> TrackrParser : e
+deactivate EditModuleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditModuleCommandParser -[hidden]-> TrackrParser
+destroy EditModuleCommandParser
+
+TrackrParser --> LogicManager : e
+deactivate TrackrParser
+
+LogicManager -> EditModuleCommand : execute()
+activate EditModuleCommand
+
+EditModuleCommand -> Model : setModule(target, editedModule)
+activate Model
+
+Model -> ReadOnlyTrackr : setModule(target, editedModule)
+activate ReadOnlyTrackr
+
+ReadOnlyTrackr -> UniqueModuleList: setModule(target, editedModule)
+activate UniqueModuleList
+
+UniqueModuleList -> internalList: set(target, editedModule)
+activate internalList
+
+internalList --> UniqueModuleList
+deactivate internalList
+
+UniqueModuleList --> ReadOnlyTrackr
+deactivate UniqueModuleList
+
+ReadOnlyTrackr --> Model
+deactivate ReadOnlyTrackr
+
+Model --> EditModuleCommand
+deactivate Model
+
+create CommandResult
+EditModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditModuleCommand
+deactivate CommandResult
+
+EditModuleCommand --> LogicManager : result
+deactivate EditModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
