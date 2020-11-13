@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CliniCalParser" as CliniCalParser LOGIC_COLOR
+participant ":DeleteAppointmentCommandParser" as DeleteAppointmentCommandParser LOGIC_COLOR
+participant "d:DeleteAppointmentCommand" as DeleteAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":CalendarDisplay" as CalendarDisplay UI_COLOR
+participant "vCalendar:VCalendar" as VCalendar UI_COLOR
+participant ":ICalendarAgenda" as ICalendarAgenda UI_COLOR
+end box
+
+[-> LogicManager : execute("deleteappt 1")
+activate LogicManager
+
+LogicManager -> CliniCalParser : parseCommand("deleteappt 1")
+activate CliniCalParser
+
+create DeleteAppointmentCommandParser
+CliniCalParser -> DeleteAppointmentCommandParser
+activate DeleteAppointmentCommandParser
+
+DeleteAppointmentCommandParser --> CliniCalParser
+deactivate DeleteAppointmentCommandParser
+
+CliniCalParser -> DeleteAppointmentCommandParser : parse("1")
+activate DeleteAppointmentCommandParser
+
+create DeleteAppointmentCommand
+DeleteAppointmentCommandParser -> DeleteAppointmentCommand
+activate DeleteAppointmentCommand
+
+DeleteAppointmentCommand --> DeleteAppointmentCommandParser : d
+deactivate DeleteAppointmentCommand
+
+DeleteAppointmentCommandParser --> CliniCalParser : d
+deactivate DeleteAppointmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteAppointmentCommandParser -[hidden]-> CliniCalParser
+destroy DeleteAppointmentCommandParser
+
+CliniCalParser --> LogicManager : d
+deactivate CliniCalParser
+
+LogicManager -> DeleteAppointmentCommand : execute()
+activate DeleteAppointmentCommand
+
+DeleteAppointmentCommand -> Model : deleteAppointment(1)
+activate Model
+
+Model -> CalendarDisplay : <i><<Event>>\nc
+activate CalendarDisplay
+
+create VCalendar
+CalendarDisplay -> VCalendar
+activate VCalendar
+VCalendar --> CalendarDisplay : vCalendar
+deactivate VCalendar
+
+create ICalendarAgenda
+CalendarDisplay -> ICalendarAgenda : new ICalendarAgenda(vCalendar)
+activate ICalendarAgenda
+ICalendarAgenda --> CalendarDisplay
+deactivate ICalendarAgenda
+
+CalendarDisplay --> Model
+deactivate CalendarDisplay
+
+Model --> DeleteAppointmentCommand
+deactivate Model
+
+create CommandResult
+DeleteAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteAppointmentCommand
+deactivate CommandResult
+
+DeleteAppointmentCommand --> LogicManager : result
+deactivate DeleteAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

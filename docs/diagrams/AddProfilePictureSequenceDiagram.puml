@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+skinparam defaultFontSize 25
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CliniCalParser" as CliniCalParser LOGIC_COLOR
+participant ":AddProfilePictureCommandParser" as AddProfilePictureCommandParser LOGIC_COLOR
+participant "d:AddProfilePictureCommand" as AddProfilePictureCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":StorageManager" as StorageManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addpicture 1 f/data/image.png")
+activate LogicManager
+
+LogicManager -> CliniCalParser : parseCommand("addpicture 1 f/data/image.png")
+activate CliniCalParser
+
+create AddProfilePictureCommandParser
+CliniCalParser -> AddProfilePictureCommandParser
+activate AddProfilePictureCommandParser
+
+AddProfilePictureCommandParser --> CliniCalParser
+deactivate AddProfilePictureCommandParser
+
+CliniCalParser -> AddProfilePictureCommandParser : parse("1 f/data/image.png")
+activate AddProfilePictureCommandParser
+
+create AddProfilePictureCommand
+AddProfilePictureCommandParser -> AddProfilePictureCommand
+activate AddProfilePictureCommand
+
+AddProfilePictureCommand --> AddProfilePictureCommandParser : d
+deactivate AddProfilePictureCommand
+
+AddProfilePictureCommandParser --> CliniCalParser : d
+deactivate AddProfilePictureCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddProfilePictureCommandParser -[hidden]-> CliniCalParser
+destroy AddProfilePictureCommandParser
+
+CliniCalParser --> LogicManager : d
+deactivate CliniCalParser
+
+LogicManager -> AddProfilePictureCommand : execute()
+activate AddProfilePictureCommand
+
+create StorageManager
+AddProfilePictureCommand -> StorageManager : addPicture(name, picture)
+activate StorageManager
+
+StorageManager --> Model : setPatient()
+activate Model
+Model --> StorageManager
+deactivate Model
+StorageManager --> AddProfilePictureCommand
+deactivate StorageManager
+
+create CommandResult
+AddProfilePictureCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddProfilePictureCommand
+deactivate CommandResult
+
+AddProfilePictureCommand --> LogicManager : result
+deactivate AddProfilePictureCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

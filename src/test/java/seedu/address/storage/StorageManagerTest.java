@@ -2,17 +2,21 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPatients.getTypicalCliniCal;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.CliniCal;
+import seedu.address.model.ReadOnlyCliniCal;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +28,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonCliniCalStorage cliniCalStorage = new JsonCliniCalStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(cliniCalStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +52,41 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void cliniCalReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonCliniCalStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonCliniCalStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        CliniCal original = getTypicalCliniCal();
+        storageManager.saveCliniCal(original);
+        ReadOnlyCliniCal retrieved = storageManager.readCliniCal().get();
+        assertEquals(original, new CliniCal(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getCliniCalFilePath() {
+        assertNotNull(storageManager.getCliniCalFilePath());
     }
 
+    @Test
+    public void placePlaceholderPicture() throws Exception {
+        storageManager.initializePlaceholderImage();
+
+        Path path = getTempFilePath("stock_picture.png");
+        assertTrue(Files.exists(path));
+
+        assertTrue(FileUtils.contentEquals(
+                new File(this.getClass().getResource("/images/stock_picture.png").toURI()), path.toFile()));
+    }
+
+    @Test
+    public void doNotOverwriteExistingPlaceholderPicture() throws Exception {
+        Path path = getTempFilePath("stock_picture.png");
+        Files.createFile(path);
+
+        storageManager.initializePlaceholderImage();
+
+        assertEquals(path.toFile().length(), 0);
+    }
 }

@@ -5,52 +5,87 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyCliniCal <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class CliniCal
+Class ReadOnlyCliniCal
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
+Package Patient {
+Class Patient
 Class Name
 Class Phone
-Class UniquePersonList
+Class IcNumber
+Class Address
+Class Email
+Class ProfilePicture
+Class Sex
+Class BloodType
+Class UniquePatientList
 }
 
 Package Tag {
-Class Tag
+Class ColorTag
+}
+
+Package Allergy {
+Class Allergy
+}
+
+Package History {
+Class CommandHistory
+}
+
+Package Appointment {
+Class UniqueAppointmentList
+Class Appointment
+Class AppointmentDateTime
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+CliniCal .up.|> ReadOnlyCliniCal
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" CliniCal
+ModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+CliniCal *--> "1" UniquePatientList
+CliniCal *--> "1" CommandHistory
+UniquePatientList o-down--> "*" Patient
+Patient *--> Name
+Patient *--> Phone
+Patient *--> IcNumber
+Patient *--> Address
+Patient *--> Email
+Patient *--> ProfilePicture
+Patient *--> Sex
+Patient *--> BloodType
+Patient *--> "                      \n*" Allergy
+Patient *--> ColorTag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right> Patient
+IcNumber -[hidden]right> Patient
+Phone -[hidden]left> Patient
+BloodType -[hidden]right> Email
+Email -[hidden]right> ProfilePicture
+ProfilePicture -[hidden]right> Sex
+Sex -[hidden]right> BloodType
 
-ModelManager -->"1" Person : filtered list
+CliniCal *--> "1" UniqueAppointmentList
+UniqueAppointmentList o--> "*" Appointment
+Appointment *--> AppointmentDateTime
+Appointment *--> Name
+Appointment *--> IcNumber
+
+ModelManager -->"*\nfiltered list" Patient
+ModelManager -->"*\nfiltered list" Appointment
 @enduml

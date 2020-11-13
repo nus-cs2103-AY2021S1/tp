@@ -1,0 +1,15 @@
+{
+  "patients": [ {
+    "name": "Patient with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "icNumber": "S1234567A",
+    "visitHistory" : [ ],
+    "address": "4th street",
+    "email": "hans@example.com",
+    "profilePicture" : "data/stock_picture.png",
+    "sex": "M",
+    "bloodType": "A+",
+    "color" : "red"
+  } ],
+  "appointments" : []
+}

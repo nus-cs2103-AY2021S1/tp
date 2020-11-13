@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -13,16 +12,18 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code sentence} is a subsequence of the {@code word}.
+     *   Ignores case, and a full match is not necessary. Partial matching will be done.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "gh") == false
+     *       containsWordIgnoreCase("ABc def", "AB") == true // Partial matching
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
+
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
@@ -34,8 +35,26 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        boolean flagLower;
+        boolean flagUpper;
+        boolean checkFlag = false;
+
+        for (String testString: wordsInPreppedSentence) {
+            // To prepare user input in both lower and upper cases
+            String preppedWordLower = preppedWord.toLowerCase();
+            String preppedWordUpper = preppedWord.toUpperCase();
+            // To prepare clinical data in both lower and upper cases
+            String checkingStringLower = testString.toLowerCase();
+            String checkingStringUpper = testString.toUpperCase();
+
+            // Return true if user input string matches either partially or fully with patient's name or IC
+            flagLower = checkingStringLower.contains(preppedWordLower);
+            flagUpper = checkingStringUpper.contains(preppedWordUpper);
+            if (flagLower || flagUpper) {
+                checkFlag = true;
+            }
+        }
+        return checkFlag;
     }
 
     /**

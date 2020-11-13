@@ -1,5 +1,8 @@
 package seedu.address.logic;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -7,14 +10,18 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.CliniCalParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyCliniCal;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +33,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final CliniCalParser cliniCalParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,19 +41,24 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        cliniCalParser = new CliniCalParser();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+        //Logging, safe to ignore
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        //Parse user input from String to a Command
+        Command command = cliniCalParser.parseCommand(commandText);
+        //Executes the Command and stores the result
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            //We can deduce that the previous line of code modifies model in some way
+            // since it's being stored here.
+            storage.saveCliniCal(model.getCliniCal());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +67,68 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public CommandResult execute(Command command) throws CommandException {
+        String commandString = command.toString();
+        //Logging, safe to ignore
+        logger.info("----------------[USER COMMAND][" + commandString + "]");
+
+        //Executes the Command and stores the result
+        CommandResult commandResult = command.execute(model);
+
+        try {
+            ReadOnlyCliniCal copyOfClinical = model.getCliniCal();
+            storage.saveCliniCal(copyOfClinical);
+        } catch (IOException exception) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + exception, exception);
+        }
+        return commandResult;
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException,
+                                                                                   IllegalValueException {
+        requireNonNull(patient);
+        requireNonNull(profilePic);
+        assert patient != null || profilePic != null : "Patient and profile picture cannot be null";
+        int patientIndex = 1;
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        for (Patient thisPatient: listOfPatients) {
+            Name thisPatientName = thisPatient.getName();
+            Name selectedPatientName = patient.getName();
+            Phone thisPatientPhone = thisPatient.getPhone();
+            Phone selectedPatientPhone = patient.getPhone();
+            if (thisPatientName.equals(selectedPatientName) && thisPatientPhone.equals(selectedPatientPhone)) {
+                break;
+            } else {
+                patientIndex++;
+            }
+        }
+        String filePath = profilePic.getPath();
+        String commandToRun = "addpicture " + patientIndex + " f/" + filePath;
+        logger.info("----------------[USER COMMAND][" + commandToRun + "]");
+
+        CommandResult commandResult = execute(commandToRun);
+        return commandResult;
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ReadOnlyCliniCal getCliniCal() {
+        return model.getCliniCal();
+    }
+
+    @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    @Override
+    public Path getCliniCalFilePath() {
+        return model.getCliniCalFilePath();
     }
 
     @Override

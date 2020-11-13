@@ -5,15 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Patient;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
+    Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -35,53 +36,128 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CliniCal application file path.
      */
-    Path getAddressBookFilePath();
+    Path getCliniCalFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' CliniCal application file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setCliniCalFilePath(Path cliniCalFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces CliniCal application data with the data in {@code cliniCal}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setCliniCal(ReadOnlyCliniCal cliniCal);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the CliniCal */
+    ReadOnlyCliniCal getCliniCal();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the CliniCal application.
      */
-    boolean hasPerson(Person person);
+    boolean hasPatient(Patient patient);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given patient.
+     * The patient must exist in the CliniCal application.
      */
-    void deletePerson(Person target);
+    void deletePatient(Patient target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given patient.
+     * {@code patient} must not already exist in the CliniCal application.
      */
-    void addPerson(Person person);
+    void addPatient(Patient patient);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given patient {@code target} with {@code editedPatient}.
+     * {@code target} must exist in the CliniCal application.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient
+     * in the CliniCal application.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setPatient(Patient target, Patient editedPatient);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns an unmodifiable view of the filtered patient list.
+     */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /**
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the CliniCal application.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the CliniCal application.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the CliniCal application.
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Replaces the given patient {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the CliniCal application.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the CliniCal application.
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    /**
+     * Returns an unmodifable view of the appointment list.
+     */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null/
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Saves the current CliniCal application state in its history.
+     */
+    void commitCliniCal(String command);
+
+
+    /**
+     * Checks if there are any valid commands to undo.
+     */
+    boolean canUndoCliniCal();
+
+    /**
+     * Restores the previous CliniCal application state from its history.
+     */
+    void undoCliniCal();
+
+    /**
+     * Returns the command that was undone successfully.
+     */
+    String getUndoCommand();
+
+    /**
+     * Returns the command that was redone successfully.
+     */
+    String getRedoCommand();
+
+    /**
+     * Checks if there are any valid commands to redo.
+     */
+    boolean canRedoCliniCal();
+
+    /**
+     *  Restores a previously undone CliniCal application state from its history.
+     */
+    void redoCliniCal();
 }

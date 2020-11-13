@@ -1,0 +1,25 @@
+{
+  "patients": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "icNumber": "S1234567A",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "email": "alice@example.com",
+    "profilePicture" : "data/stock_picture.png",
+    "sex": "F",
+    "bloodType": "A+",
+    "tagged": [ "penicillin" ],
+    "color" : "green"
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "icNumber": "S1234567A",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "email": "alice@example.com",
+    "profilePicture" : "data/stock_picture.png",
+    "sex": "F",
+    "bloodType": "A+",
+    "color" : "green"
+  } ],
+  "appointments" : []
+}

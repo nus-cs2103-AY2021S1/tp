@@ -11,34 +11,39 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the CliniCal application data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final CliniCal cliniCal;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Appointment> filteredAppointments;
+    private final VersionedCliniCal versionedCliniCal;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given cliniCal and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyCliniCal cliniCal, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(cliniCal, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with CliniCal application: " + cliniCal + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatients = new FilteredList<>(this.cliniCal.getPatientList());
+        filteredAppointments = new FilteredList<>(this.cliniCal.getAppointmentList());
+        this.versionedCliniCal = new VersionedCliniCal(this.cliniCal);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new CliniCal(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +71,148 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getCliniCalFilePath() {
+        return userPrefs.getCliniCalFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setCliniCalFilePath(Path cliniCalFilePath) {
+        requireNonNull(cliniCalFilePath);
+        userPrefs.setCliniCalFilePath(cliniCalFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== CliniCal ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setCliniCal(ReadOnlyCliniCal cliniCal) {
+        this.cliniCal.resetData(cliniCal);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyCliniCal getCliniCal() {
+        return cliniCal;
+    }
+
+    //=========== Patient ==================================================================================
+
+    @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return cliniCal.hasPatient(patient);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deletePatient(Patient target) {
+        cliniCal.removePatient(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPatient(Patient patient) {
+        cliniCal.addPatient(patient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPatient(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
 
-        addressBook.setPerson(target, editedPerson);
+        cliniCal.setPatient(target, editedPatient);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Appointment ==============================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return cliniCal.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        cliniCal.removeAppointment(target);
+    }
+
+    @Override
+    public void addAppointment(Appointment toAdd) {
+        cliniCal.addAppointment(toAdd);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        cliniCal.setAppointment(target, editedAppointment);
+    }
+
+    //=========== Undo/Redo ===============================================================================
+
+    @Override
+    public void commitCliniCal(String command) {
+        versionedCliniCal.commit(cliniCal, command);
+    }
+
+    @Override
+    public boolean canUndoCliniCal() {
+        return versionedCliniCal.canUndoCliniCal();
+    }
+
+    @Override
+    public void undoCliniCal() {
+        versionedCliniCal.undo();
+    }
+
+    @Override
+    public String getUndoCommand() {
+        return versionedCliniCal.getUndoCommand();
+    }
+
+    @Override
+    public boolean canRedoCliniCal() {
+        return versionedCliniCal.canRedoCliniCal();
+    }
+
+    @Override
+    public void redoCliniCal() {
+        versionedCliniCal.redo();
+    }
+
+    @Override
+    public String getRedoCommand() {
+        return versionedCliniCal.getRedoCommand();
+    }
+
+    //=========== Filtered Patient List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
+     * {@code versionedCliniCal}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Patient> getFilteredPatientList() {
+        return filteredPatients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPatients.setPredicate(predicate);
+    }
+
+    //=========== Filtered Appointment List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedCliniCal}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +229,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return cliniCal.equals(other.cliniCal)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }

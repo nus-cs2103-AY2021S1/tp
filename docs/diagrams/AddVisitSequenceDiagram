@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":VisitFormWindow" as VisitFormWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CliniCalParser" as CliniCalParser LOGIC_COLOR
+participant "e:AddVisitCommand" as AddVisitCommand LOGIC_COLOR
+participant "s:SaveVisitCommand" as SaveVisitCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as model MODEL_COLOR
+end box
+
+MainWindow -> LogicManager : execute("addvisit 1")
+activate LogicManager
+
+LogicManager -> CliniCalParser : parseCommand("addvisit 1")
+activate CliniCalParser
+
+create AddVisitCommand
+CliniCalParser -> AddVisitCommand
+activate AddVisitCommand
+
+AddVisitCommand --> CliniCalParser : a
+deactivate AddVisitCommand
+
+CliniCalParser --> LogicManager : a
+deactivate CliniCalParser
+
+LogicManager -> AddVisitCommand : execute()
+activate AddVisitCommand
+
+AddVisitCommand --> LogicManager : result
+
+deactivate AddVisitCommand
+
+AddVisitCommand -[hidden]-> LogicManager : result
+destroy AddVisitCommand
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+activate MainWindow
+MainWindow -> VisitFormWindow : handleDisplayVisit()
+activate VisitFormWindow
+VisitFormWindow -> SaveVisitCommand ** : saveVisit()
+
+activate SaveVisitCommand
+SaveVisitCommand --> VisitFormWindow : s
+deactivate SaveVisitCommand
+
+VisitFormWindow -> LogicManager
+
+activate LogicManager
+LogicManager -> SaveVisitCommand : execute(s)
+activate SaveVisitCommand
+SaveVisitCommand -> model : update patient's\nvisitHistory\n with new Visit
+activate model
+model --> SaveVisitCommand
+deactivate model
+SaveVisitCommand --> LogicManager : result
+deactivate SaveVisitCommand
+SaveVisitCommand -[hidden]-> LogicManager : result
+destroy SaveVisitCommand
+LogicManager --> VisitFormWindow : result
+deactivate LogicManager
+VisitFormWindow --> MainWindow : result
+deactivate VisitFormWindow
+@enduml
