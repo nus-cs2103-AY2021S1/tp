@@ -40,7 +40,7 @@ can get your German revision done quickly and effectively.
 
 ## <a name="qs"></a>1. Quick Start (Jiyu)
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `ForgetfulNUS.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-2/tp/releases).
 
