@@ -127,7 +127,7 @@ If the lab report assignment is very urgent, you can attach a **high priority ta
 
  **:clipboard: Pointers to note:**<br>
 * If you intend to set reminders to your assignment, `[remind]` has to be the **last parameter** entered. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
-* You cannot add the same assignment twice. This means that you cannot add an assignment that already exist in your assignment list.
+* You cannot add the same assignment twice. This means that you cannot add an assignment that already exist in your Assignment List.
 </div>
 
 More examples:
@@ -333,7 +333,7 @@ This is the table of prefixes used:
 
 Here is an example with steps for you to follow:
 
-1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+1) To edit the name of the assignment with the first index in the Assignment List to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
 ![EditCommand1](images/EditCommand1.png)
 *Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
@@ -367,9 +367,9 @@ You can set reminders for specific assignments which will be displayed in `Your 
    ![YourReminders](images/YourReminders.png)
    *Figure 14: `Your reminders` highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
+You can use the `INDEX` of the assignment as shown in your Assignment List to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure 15) and adds it to `Your reminders` (Figure 16).
+For example, `remind 1` will set reminders for the first assignment in your Assignment List ("Statistics tutorial" as shown in the Figure 15) and adds it to `Your reminders` (Figure 16).
 
    ![Remind1](images/Remind1.png)
    *Figure 15: Before "Statistics tutorial" is added into `Your reminders`*
@@ -379,7 +379,7 @@ For example, `remind 1` will set reminders for the first assignment in your assi
 
 You can set reminders for **multiple** assignments at a time as well. Here is an example with steps for you to follow:
 
-1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure 17), you can simply enter `remind 2 4` into the Command Box.
+1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your Assignment List as shown in Figure 17), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
    *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
@@ -394,7 +394,7 @@ You can set reminders for **multiple** assignments at a time as well. Here is an
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `remind` is invalid.
-* The `INDEX` must be found in your assignment list.
+* The `INDEX` must be found in your Assignment List.
 
 </div>
 
@@ -442,15 +442,15 @@ below).
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
    *Figure 21: The priority tags of assignments highlighted in red*
 
-You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
+You can use the `INDEX` of the assignment as shown in your Assignment List to set priority tag for that assignment.
 
-For example, `prioritise 3 p/MEDIUM` will set a low priority tag for the third assignment in your assignment list. In
+For example, `prioritise 3 p/MEDIUM` will set a low priority tag for the third assignment in your Assignment List. In
 the figure above, the third assignment, Biology lab report, is marked with a yellow medium priority tag.
 
 <div markdown="block" class="alert alert-primary"> 
   
 **:clipboard: Pointers to note:**<br>
-* The `INDEX` must be found in your assignment list.
+* The `INDEX` must be found in your Assignment List.
 * The three priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
@@ -468,14 +468,14 @@ tag for other reasons, you can remove them.
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
 
-For example, `unprioritise 1` will remove the priority tag, if present, of the first assignment in your assignment list.
+For example, `unprioritise 1` will remove the priority tag, if present, of the first assignment in your Assignment List.
 The assignment will now be displayed as usual, but without its priority tag.
 
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unprioritise` is invalid.
-* The `INDEX` must be found in your assignment list.
+* The `INDEX` must be found in your Assignment List.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -513,7 +513,7 @@ the Command Box. `2 3` refers to the indexes of the assignments as shown in the 
   
  **:clipboard: Pointers to note:**<br>
 * You must include at least one `INDEX`. For example, entering `done` without any `INDEX` is invalid.
-* The `INDEX` that you include **must be found in your assignment list**.
+* The `INDEX` that you include **must be found in your Assignment List**.
 * If you're marking more than one assignment as done, the `INDEXES` **must not be duplicated**. For example, `done 4 4` or `done 1 2 1` is invalid.
 </div>
 
@@ -554,7 +554,7 @@ you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` 
  **:clipboard: Pointers to note:**<br>
 * All your assignments are marked as **not done by default**.
 * You must include at least one `INDEX`. For example, entering `undone` without any `INDEX` is invalid.
-* The `INDEX` that you include **must be found in your assignment list**.
+* The `INDEX` that you include **must be found in your Assignment List**.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -566,7 +566,7 @@ Format: `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DAT
 
 You can request for a possible suggested schedule to work on your assignments so that you will not be required to manually plan a time.
 
-You can schedule an assignment by specifying the assignment `INDEX` as shown in your assignment list,
+You can schedule an assignment by specifying the assignment `INDEX` as shown in your Assignment List,
 the expected hours to finish the assignment and the period of time you want to work on the assignment.
 
 The suggested schedule with start time and end time will be displayed in the assignment card (Highlighted
@@ -601,7 +601,7 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* The index **must be found in your assignment list**.
+* The index **must be found in your Assignment List**.
 * The expected number of hours **must be a positive integer between `1` and `5`**.
 * `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in the format `HHmm`.
 
@@ -614,8 +614,8 @@ More examples:
 
 Format: `unschedule INDEX`
 
-You can remove the suggested time slot of your assignments from the assignment list by specifying the 
-assignment `INDEX` as shown in your assignment list.
+You can remove the suggested time slot of your assignments from the Assignment List by specifying the 
+assignment `INDEX` as shown in your Assignment List.
 
 For example, `unschedule 3` will remove the suggested time slot of your third assignment.
     ![UserGuideUnscheduleCommandInput](images/UserGuideUnscheduleCommandInput.PNG)
@@ -630,7 +630,7 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* The index **must be found in your assignment list**.
+* The index **must be found in your Assignment List**.
 
 </div>
 
@@ -717,7 +717,7 @@ For your assignments and lessons, assignments due in **more than a week's time**
                  
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the assignment list) will the remarks get updated.
+Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the Assignment List) will the remarks get updated.
 <br>Do look forward to the next version of ProductiveNUS to have your remarks updated in real time!
 </div>
 
