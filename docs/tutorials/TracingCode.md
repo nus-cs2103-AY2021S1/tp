@@ -56,7 +56,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. To start the debugging session, simply `Run` \> `Debug Main`
 
-1. Enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
+1. Enter `edits 1 n/Alice Yeoh` into the command box and press `Enter`.
 
 1. The Debugger tool window should show up and look something like this:<br>
    ![DebuggerStep1](../images/tracing/DebuggerStep1.png)
@@ -105,7 +105,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. `Step into` the line where user input in parsed from a String to a Command.
 
-    **`AddressBookParser\#parseCommand()`**
+    **`EvaParser\#parseCommand()`**
 
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
@@ -120,7 +120,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
-1. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
+1. Stepping into the `switch`, we obviously stop at **`EvaParser\#parseCommand()`.**
 
     ``` java
     ...
@@ -142,7 +142,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
     The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far matches with the diagram?<br>
-    ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
+    ![Tracing an `edits` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
 
 1. Now let’s see what happens when we call `command#execute()`\!
 
@@ -174,12 +174,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
    ``` java
    /**
-    * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+    * Converts a given {@code ReadOnlyEvaDatabase} into this class for Jackson use.
     *
     * @param source future changes to this will not affect the created
     * {@code JsonSerializableAddressBook}.
     */
-   public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+   public JsonSerializableAddressBook(ReadOnlyEvaDatabase source) {
        persons.addAll(
            source.getPersonList()
                  .stream()
@@ -241,10 +241,10 @@ the given commands to find exactly what happens.
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3.  Save the eva database in the CSV format instead
 
     4.  Add a new command
 
     5.  Add a new field to `Person`
 
-    6.  Add a new entity to the address book
+    6.  Add a new entity to the eva database

@@ -1,0 +1,19 @@
+Name: Royce
+
+Education:
+1.
+School: NUS
+Start: 01/01/2019
+End: 01/01/2023
+2.
+School: SJI
+Start: 01/01/2011
+End: 01/01/2015
+
+Experience:
+1.
+Company: DSO
+Position: Intern
+Description: I did some coding.
+Start: 01/01/2020
+End: 01/02/2020
