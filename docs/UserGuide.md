@@ -671,7 +671,7 @@ Figure 6.6.1a: <i>Viewing all Students</i>
 </div>
 
 As shown in Figure 6.6.1a, once we key in the command `view -s`, a success message will be displayed and Jarvis
-will auto switch to the `Students` tab, showing all `Students` taught by you.
+will auto switch to the `Student` tab, showing all `Students` taught by you.
 
 #### 6.6.2 Viewing `Student` with keyword : `-s NAME`
 (Zhen Teng)
@@ -696,7 +696,7 @@ Figure 6.6.2a: <i>Viewing Students with a keyword</i>
 * `view -s John Doe`
 
 As shown in Figure 6.6.2a, once we key in the command `view -s Alex `, a success message will be displayed and Jarvis
-will auto switch to the `Students` tab, showing all `Students` from your classes which match the keyword "Alex". On the
+will auto switch to the `Student` tab, showing all `Students` from your classes which match the keyword "Alex". On the
  contrary, using the keyword "alex" would not work as the keyword has to be case sensitive.
 
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
@@ -714,7 +714,7 @@ Figure 6.6.3a: <i>Viewing all current Missions</i>
 </div>
 
 As shown in Figure 6.6.3a, once we key in the command `view -m`, a success message will be displayed and Jarvis
-will auto switch to the `Missions` tab, and show all the current `Missions` and their deadlines.
+will auto switch to the `Mission` tab, and show all the current `Missions` and their deadlines.
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 (Wiline)
