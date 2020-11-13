@@ -343,7 +343,7 @@ This is the table of prefixes used:
 
 Here is an example with steps for you to follow:
 
-1) To edit the name of the assignment with the first index in the [Assignment List](#gui-terminologies) to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the [Command Box](#gui-terminologies). 
+1) To edit the name of the assignment with the first index in the [Assignment List](#gui-terminologies) to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` into the [Command Box](#gui-terminologies). 
 
 ![EditCommand1](images/EditCommand1.png)
 *Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
