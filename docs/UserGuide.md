@@ -171,8 +171,9 @@ Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`
 - `add n/Betsy Crowe tg/friend e/betsycrowe@example.com t/betsy_crowe m/A0201234C p/1234567 tg/groupmate`
-
-<img src="images/AddCommand.png" class="diagram" />
+  
+  *For:`add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`*
+  <img src="images/AddCommand.png" class="diagram" />
 
 ### Listing all students : `list`
 
@@ -181,8 +182,9 @@ This is useful when you want to view the information of all students.
 The information is displayed under the **Students Tab**.
 
 Format: `list`
-
-<img src="images/ListCommand.png" class="diagram" />
+  
+  *For:`list`*
+  <img src="images/ListCommand.png" class="diagram" />
 
 ### Editing a student : `edit`
 
