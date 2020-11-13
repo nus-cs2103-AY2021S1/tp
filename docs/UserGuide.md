@@ -7,11 +7,7 @@ title: My Fitness Buddy User Guide
 
 Welcome to My Fitness Buddy User Guide!  
 
-Just enlisted under PES ‘B’ Pending and worried about the next few months of Basic Military Training (BMT)?  
-
-Worry no more, My Fitness Buddy is here to accompany you through BMT and help you keep track of your weight loss journey!  
-
-This user guide serves to provide you with the necessary instructions on how to set up and use our application.   
+Just enlisted under PES ‘B’ Pending and worried about the next few months of Basic Military Training (BMT)? Worry no more, My Fitness Buddy is here to accompany you through BMT and help you keep track of your weight loss journey! This user guide serves to provide you with the necessary instructions on how to set up and use our application.   
 
 With that said, let’s get started!    
 
@@ -43,14 +39,14 @@ Choose a topic from the [Table of Contents](#table-of-contents) below.
     + [4.2.3 Deleting a daily record](#423-deleting-a-daily-record---delete-index-)
   * [4.3 Calorie Level Data Entry Commands](#43-calorie-level-data-entry-commands)
     + [4.3.1 Adding Calorie](#431-adding-calorie)
-      - [Adding a calorie input](#adding-a-calorie-input----calorie-tp-in-)
-      - [Adding a calorie output ](#adding-a-calorie-output----calorie-tp-out-)
+      - [Adding a calorie input](#adding-a-calorie-input--calorie-tpin)
+      - [Adding a calorie output ](#adding-a-calorie-output--calorie-tpout)
     + [4.3.2 Removing Calorie](#432-removing-calorie)
-      - [Removing a calorie output](removing-a-calorie-output----remove-tp-out-)
-      - [Removing a calorie input ](#removing-a-calorie-input----remove-tp-in-)
+      - [Removing a calorie output](#removing-a-calorie-output--remove-tpout)
+      - [Removing a calorie input ](#removing-a-calorie-input--remove-tpin)
     + [4.3.3 Change Calorie](#433-change-calorie)
-      - [Changing a calorie input](#changing-a-calorie-input----change-tp-in-)
-      - [Changing a calorie output](#changing-a-calorie-output----change-tp-out-)
+      - [Changing a calorie input](#changing-a-calorie-input--change-tpin)
+      - [Changing a calorie output](#changing-a-calorie-output--change-tpout)
   * [4.4 Data Visualization](#44-data-visualization)
     + [4.4.1 View all calorie inputs and outputs of a day](#441-view-all-calorie-inputs-and-outputs-of-a-day---view-)
     + [4.4.2 View Statistics](#442-view-statistics---stats-)
@@ -90,7 +86,7 @@ We have also implemented a commander's version that would allow commanders to ha
 
 ### 1.3 Rationale
  Before this application was developed, PES BP soldiers had weekly weighing and had to record down their weights on a form kept by their commanders. This method was not only time consuming, it was also ineffective in tracking the soldiers' overall fitness levels. For instance, if a soldier's weight did not decrease over the weeks, he would be unable to pinpoint the reason why this is so.   
- My Fitness Buddy was developed so that soldiers would be able to see the fluctuations in their fitness level through factors such as calorie intake from consumption, calorie output from exercise, and daily weight records. Those records would be available by day and can even be viewed as  a graph.  
+ My Fitness Buddy was designed so that soldiers would be able to see the fluctuations in their fitness level through factors such as calorie intake from consumption, calorie output from exercise, and daily weight records. Those records would be available by day and can even be viewed as  a graph.  
  We hope that through the use of this application, soldiers can take charge of their own fitness and achieve the results they strive for. 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -373,30 +369,8 @@ exceed 2,147,483,647._
 
 ![Add_input](images/calorieImages/Add_Output.png)
 
-Examples:`remove 3 tp/out i/3` 
+Examples: `remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
-##### Removing a calorie output : `remove tp/out`
-
-Removes a wrong calorie Output entry from the calorie tracker.
-
-Format: `remove tp/out d/DATE i/INDEX`
-
-Examples:`remove tp/in d/2020-10-26 i/3` 
-
-Meaning:`Remove a calorie output from October 26 2020 calorie log, which is the 3rd calorie output in the list of
-Output calories for that day.` 
-
-_:bulb:TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
-can be used instead_
-
-_:warning: The index to indicate both the day and calorie must be a positive integer and it cannot exceed the respective 
-number of records for each category_
-
-`Before removing`
-![remove_output_before](images/calorieImages/remove_output_before.png)
-`After removing`
-![remove_output_after](images/calorieImages/remove_output_after.png)
-
 ##### Removing a calorie input : `remove tp/in`
 
 Removes a wrong calorie input entry from the calorie tracker.
@@ -418,6 +392,28 @@ The process of removing a calorie input is similar to removing calorie output. R
 representation.
 
 Examples:`remove 3 tp/out i/3` 
+
+##### Removing a calorie output : `remove tp/out`
+
+Removes a wrong calorie Output entry from the calorie tracker.
+
+Format: `remove tp/out d/DATE i/INDEX`
+
+Examples:`remove tp/in d/2020-10-26 i/3` 
+
+Meaning:`Remove a calorie output from October 26 2020 calorie log, which is the 3rd calorie output in the list of
+Output calories for that day.` 
+
+_:bulb:TIP: Instead of using d/DATE to specify the date of the log in which the calorie belongs too, the index of the date
+can be used instead_
+
+_:warning: The index to indicate both the day and calorie must be a positive integer and it cannot exceed the respective 
+number of records for each category_
+
+`Before removing`
+![remove_output_before](images/calorieImages/remove_output_before.png)
+`After removing`
+![remove_output_after](images/calorieImages/remove_output_after.png)
 
 #### 4.3.3 Change Calorie
 ##### Changing a calorie input : `change tp/in`
@@ -700,15 +696,24 @@ Action | Format
 **Exit** | `exit`
 
 ## 7. Glossary
-(Contributed by Hope)  
+(Contributed by Hope) 
+
 Below are some common terms used in My Fitness Buddy and the User Guide.  
+
 **Command Line Interface (CLI)**: Text interface to interact with the application by typing in various commands.  
+
 **Graphical User Interface (GUI)**: Visual interface to interact with the application.  
+
 **Physical Employment Standard (PES)**: A measure of a soldier's fitness level.  
+
 **PES B pending (PES BP)**: PES BP is given to recruits who are have a BMI of over 27 and will have to enter 20 weeks of BMT where their main goal is to lose weight.
+
 **Body Mass Index (BMI)**: A measure of body fat based on height and weight.
+
 **Basic Military Training (BMT)**: An initiation to army for new soldiers where they undergo basic fitness training and learn about fundamental soldier skills.  
+
 **Recruits**: New soldiers who have just entered the army and are undergoing Basic Military Training.  
+
 **Commanders**: Soldiers who oversee Basic Military Training and are responsible for the safety, training and welfare of the recruits. 
 
 
