@@ -80,11 +80,11 @@ with additional details.
 * Words in `UPPERCASE` are the parameters to be supplied by the user.<br>
   e.g. in `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE>`, `GERMAN PHRASE` and `ENGLISH PHRASE` are parameters which can be used as `add g/Vergesslichkeit e/Forgetfulness`.
   
-* Items with `...` after them can be used multiple times including zero times.
-  e.g. `g/<GERMAN PHRASE> [t/<TAG>]...` can be used as  (i.e. 0 times), t/objects, t/objects t/nouns etc.
+* Items with `...` after them can be used zero or more times including zero times.
+  e.g. `g/<GERMAN PHRASE> [t/<TAG>]...` can be used as, t/objects, t/objects t/nouns etc.
   
 
-* Items in `[]`, square brackets, are optional.
+* Items in square brackets,`[]`, are optional.
   e.g `g/<GERMAN PHRASE> [t/<TAG>]` can be used as g/Vergesslichkeit t/tutorialOne or as g/Vergesslichkeit.
   
 * For commands using prefixes, only one or zero prefixes are allowed, except for `TAG`.
