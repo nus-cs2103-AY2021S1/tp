@@ -12,7 +12,6 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
 
 ## Table of contents
 
- * Table of Contents
  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -349,7 +348,7 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/T
 
 Example: `edittask 2 tn/Finish project` changes the name of task 2 in the list to Finish project.
 
-### 2.3.4 Delete a task from the project `deletetask`
+### 2.3.4 Delete a task from the project `deletetask` (Tian Fang)
 
 Deletes a task and all associated information from the project.
 
@@ -367,9 +366,10 @@ Format: `deletetask INDEX`
 
 Examples: `deletetask 2` deletes the second task shown in the displayed task list.
 
-### 2.3.5 Filter tasks `filter`
+### 2.3.5 Filter tasks `filter` (Tian Fang)
 
-Filter tasks in the task list by various task attributes:
+Filters tasks in the task list by various task attributes:
+
   - by assignee's GitHub username - `ta/ASSIGNEE_GITHUB_USERNAME`
   - by task's name - `tn/KEYWORD [MORE_KEYWORDS]...`
   - by deadline (either specifying a deadline - `td/DEADLINE` or a time range for the deadline - `start/START_DATE end/END_DATE` )
@@ -389,13 +389,13 @@ Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(tn/KEYWORD [MORE_KEYWORDS]...)||
 Specifically:
 
 1. `filter ta/ASSIGNEE_GITHUB_USERNAME` finds all the tasks that are assigned to the person with the given Github username.
-2. `filter tn/KEYWORD [MORE_KEYWORDS]...` finds tasks whose names contain the given keywords
+2. `filter tn/KEYWORD [MORE_KEYWORDS]...` finds tasks whose task names contain the given keywords
    - The search is case-insensitive. e.g `data` will match `Data`
    - The order of the keywords does not matter. e.g. `model refactoring` will match `refactoring model`
    - Only the name of the tasks are searched
    - Must provide at least one keyword
    - There can be multiple keywords
-   - Keywords provided must be **complete words** and will only match **complete words** from the name of the task. e.g. `filter tn/dat` will not return the **Refine data flow** task
+   - Keywords provided must be **complete words** and will only match **complete words** from the name of the task. e.g. `filter tn/dat` will not return the task `Refine data flow`
 3. `filter td/DEADLINE` finds all the tasks whose deadlines match the given `DEADLINE`
    - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
 4. `filter start/START_DATE end/END_DATE` finds all tasks whose deadlines are within the time range specified by the `START_DATE` and `END_DATE`
@@ -408,7 +408,7 @@ Specifically:
 
 Example: `filter tn/CS2103T` finds all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
 
-### 2.3.6 List all tasks `alltasks`
+### 2.3.6 List all tasks `alltasks` (Tian Fang)
 
 Lists all tasks in the task list of the project.
 
@@ -420,11 +420,11 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `alltasks `
 
-Example: `alltasks` displays all tasks in the task list.
+Example: `alltasks` displays all the tasks in the task list.
 
-### 2.3.7 Sort tasks `sort `
+### 2.3.7 Sort tasks `sort ` (Tian Fang)
 
-Sort tasks in the task list by various task's attributes in ascending/descending order:
+Sorts tasks in the task list by various task's attributes in ascending/descending order:
 
   - by deadline - `td/`
   - by progress - `tp/`
@@ -436,16 +436,16 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 Format: `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)||(done/)` 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
-  - User can apply filter and sorter at the same time
+  - User may apply filter and sorter at the same time
 
 
 ![before_sort](images/beforeSort.png)
 
-   *Figure 18: Before `Sort`*
+   *Figure 18: Before `sort`*
 
 ![after_sort](images/afterSort.png)
 
-   *Figure 19: After `Sort` by task name in ascending order*
+   *Figure 19: After `sort` by task name in ascending order*
 
 Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
 
@@ -453,7 +453,7 @@ Example: `sort sa/ td/` sorts the task list by task deadline in ascending order.
 
 ### 2.3.8 View details of a task `viewtask`
 
-View all the details of a task, beyond the little information given in the project view.
+Views all the details of a task, beyond the little information given in the project view.
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
