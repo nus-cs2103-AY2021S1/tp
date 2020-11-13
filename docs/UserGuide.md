@@ -791,6 +791,8 @@ for MacOS and Linux users.
 
 ### 6.1 General Commands
 
+###### (written by: Sean Tay)
+
 Command | Description | Compatible View
 --------|--------|--------
 `help` | Shows a message explaining how to access the user guide | ANY
@@ -798,6 +800,8 @@ Command | Description | Compatible View
 `exit` | Exits Trackr and automatically saves data | ANY
 
 ### 6.2 Navigation Commands
+
+###### (written by: Sean Tay)
 
 Command | Description | Compatible View
 --------|-------------|------------
@@ -842,6 +846,8 @@ Command | Description | Compatible View
 `findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view | STUDENT
 
 ### 6.6 Attendance Commands
+
+###### (written by: Ethan Rozario)
 
 | Command                                                      | Description                                                  | Compatible View |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------- |
