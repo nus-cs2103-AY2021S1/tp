@@ -231,6 +231,7 @@ the user interface segments 1 to 5 mentioned above.
     <img src="images/userguide/topBar.png" width="115%" /> <br />
     Figure 4.1.1a: <i>Detailed breakdown of the Top Bar</i>
     </div>
+    <div style="page-break-after: always;"></div> 
 
    * In Figure 4.1.1a, we can see that the top bar includes the following 5 components.
         1. **Summary information** - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
@@ -246,10 +247,11 @@ the user interface segments 1 to 5 mentioned above.
          to do so.<br><br>
         1. **Weekly topic and today's date** - The week count in the semester, together with the academic topic for the
          week and today's date.<br><br>
-        <div style="page-break-after: always;"></div> 
         1. **Shortcut icons** - These icons are positioned here for your convenience in quickly navigating to Source
          Academy via the blue diamond on the left, and Jarvis' user guide via the white book icon on the right.<br><br>
         1. **Jarvis logo** - This is the application icon of Jarvis.
+
+<div style="page-break-after: always;"></div> 
 
 #### 4.1.2 Command Box
 (Zhen Teng)
