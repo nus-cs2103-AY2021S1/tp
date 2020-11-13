@@ -87,7 +87,7 @@ with additional details.
 * Items in square brackets,`[]`, are optional.
   e.g `g/<GERMAN PHRASE> [t/<TAG>]` can be used as g/Vergesslichkeit t/tutorialOne or as g/Vergesslichkeit.
   
-* For commands using prefixes, only one or zero prefixes are allowed, except for `TAG`.
+* For add and delete commands, only one of each type of prefixes (e.g. `g/<GERMAN PHRASE>`) are allowed, except for `t/<TAG>`.
 
 * Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
@@ -123,14 +123,14 @@ After entering this command, your app should look like this:
 
 #### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit` (Kenny)
 
-Edits a flashcard in the glossary at the specified `INDEX`. You can use this to edit any of the flashcard's fields. If a certain phrase has gotten easier for you to remember over time, you can change its difficulty.
+Edits a flashcard in the glossary at the specified `INDEX`. You can use this to modify any of the flashcard's fields. For exmaple, if a certain phrase has gotten easier for you to remember over time, you can change its difficulty. You can also modify the flashcard if you had made a typo when adding it.
 
 Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...`
 
 * Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the flashcard will be removed.
 * You can remove all the flashcard’s tags by typing `t/` without
     specifying any tags after it.
 
