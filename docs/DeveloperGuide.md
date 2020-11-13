@@ -6,15 +6,12 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
-
 ## **Introduction**
 
 ### Purpose
@@ -64,6 +61,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -105,6 +104,8 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -115,10 +116,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div style="page-break-after: always;"></div>
 
 ### Model component
-
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+<div style="page-break-after: always;"></div>
 
 The `Model`,
 
@@ -181,6 +183,8 @@ The following sequence diagrams show how the add operation works.
 
 ![Sequence Diagram for Add Command in Logic Component](images/AddSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 Given below is an example usage scenario and how the add feature behaves at each step.
 
 1. The user executes `add t/New Title d/New Desc s/1` to add a flashcard of the title `New Title` and description `New Desc` into set `1`.
@@ -218,6 +222,8 @@ The following sequence diagrams show how the search operation works.
 5. `Model` will update flashcards based on the predicate.
 7. The result of this command is returned.
 
+<div style="page-break-after: always;"></div>
+
 #### Design consideration
 
 ##### Aspect: How to pass fields to be edited
@@ -231,8 +237,6 @@ The following sequence diagrams show how the search operation works.
 
 I chose alternative 1, because only field for search command is `keyword` and amount of responsibilities for `SearchCommand` will not increase a lot.
 
-<div style="page-break-after: always;"></div>
-
 ### View feature
 
 #### Implementation
@@ -240,13 +244,6 @@ I chose alternative 1, because only field for search command is `keyword` and am
 This mechanism makes use of the unmodifiable `ObservableList<Flashcard>` in `Model`. It filters the given list by searching for
 for the flashcard that matches the given index.
 
-### List feature
-
-#### Implementation
-
-This mechanism makes use of the unmodifiable `ObservableList<Flashcard>` in `Model`. It filters the list based on the parameters passed with the command word `list`.
-
-Its implementation is similar to that of the *Search* feature, with the difference being in point 4.
 * `ViewCommand` calls `updateFilteredFlashcardList()` with predicate `predicateViewFlashcard`.
 
 The following sequence diagram shows how the view operation works with parameters.
@@ -267,6 +264,7 @@ The following sequence diagram shows how the view operation works with parameter
 
 I chose alternative 2, as the parsing of parameters should be a separate responsibility from the execution of commands.
 
+<div style="page-break-after: always;"></div>
 
 ### Sort feature
 
@@ -280,6 +278,7 @@ The following sequence diagrams show how the sort operation works.
 ![Sequence Diagram for Sort Command in Logic Component Steps 1 - 4](images/SortSequenceDiagram.png)
 ![Sequence Diagram for Sort Command in Logic Component Steps 5 - 8](images/SortSequenceDiagram2.png)
 
+<div style="page-break-after: always;"></div>
 
 1. The user executes `sort r/tag` to sort flashcards by ascending alphabetical order of their titles.
 2. `BagelParser` creates an `SortCommandParser` and calls its parse method with the arguments passed in by the user.
@@ -331,6 +330,8 @@ The following sequence diagram shows how the list operation works with parameter
 
 I chose alternative 2, because even though the increase in responsibility for `ListCommand` is rather minimal, parsing of parameters should still be separated from execution of commands.
 
+<div style="page-break-after: always;"></div>
+
 ### Edit Feature
 
 #### Implementation
@@ -341,6 +342,8 @@ The following sequence diagrams show how the edit operation works.
 
 ![Sequence Diagram for Edit Command in Logic Component Steps 1 - 5](images/EditSequenceDiagram.png)
 ![Sequence Diagram for Edit Command in Logic Component Steps 6 - 9](images/EditSequenceDiagram2.png)
+
+<div style="page-break-after: always;"></div>
 
 1. The user executes `edit 1 t/New Title` to edit the title of the first flashcard in the list currently shown.
 2. `BagelParser` creates an `EditCommandParser` and calls its parse method with the arguments passed in by the user.
@@ -377,6 +380,8 @@ The Clear mechanism will allow the user to delete all flashcards in their local 
 
 The implementation makes use of the `Model#setBagel` and `Bagel`. A new instance of `Bagel` without any existing flashcards will replace the users current `Bagel` in `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ##### Usage
 
 Given below is an example usage scenario and how the Clear feature behaves at each step.
@@ -394,6 +399,8 @@ Step 3. After execution, `CommandResult` will contain a message indicating that 
 The following sequence diagram shows how the Clear mechanism works:
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations:
 
