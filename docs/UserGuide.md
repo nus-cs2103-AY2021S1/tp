@@ -94,7 +94,7 @@ Format: `help`
 
 ![result for 'help'](images/HelpCommand.png)
 
-### Adding a student: `add`
+### Adding a student : `add`
 
 Adds a student to the address book.
 
@@ -146,7 +146,7 @@ Examples:
   *After editing*
   ![result for 'edit 2 n/Betsy Crower tg/'](images/edit2after.png)
   
-### Locating students by name: `find`
+### Locating students by name : `find`
 
 Finds students whose names contain any of the given keywords.
 
@@ -238,7 +238,7 @@ Examples:
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
 
-### Adding a consultation: `add-consult`
+### Adding a consultation : `add-consult`
 
 Adds a consultation to the address book.
 
@@ -255,7 +255,7 @@ Examples:
 
 ![result for add consult command](images/addConsultResult.png)
 
-### Deleting a consultation: `del-consult`
+### Deleting a consultation : `del-consult`
 
 Deletes a consultation from the address book.
 
@@ -269,7 +269,7 @@ Examples:
 
 ![result for delete consult command](images/delConsultResult.png)
 
-### Listing all consultations: `list-consult`
+### Listing all consultations : `list-consult`
 
 Shows a list of all consultations that has been arranged with your students.
 
