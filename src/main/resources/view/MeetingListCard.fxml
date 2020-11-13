@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="CENTER" HBox.hgrow="ALWAYS" minHeight="40">
+    <children>
+        <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" />
+        <Label fx:id="title" text="\$title" styleClass="cell_small_label" GridPane.columnIndex="1" />
+        <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" GridPane.columnIndex="2" />
+    </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" minWidth="10" prefWidth="5"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" minWidth="10" prefWidth="55"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" minWidth="10" prefWidth="40"/>
+    </columnConstraints>
+</GridPane>
+</HBox>

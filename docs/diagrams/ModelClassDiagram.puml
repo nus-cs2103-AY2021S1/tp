@@ -5,52 +5,110 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface Model <<Interface>>
+Interface ReadOnlyXYZBook <<Interface>>
+Interface ModelXYZ <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
+Class XYZBook
+Class ReadOnlyXYZBook
+Class ModelXYZ
+Class ModelXYZManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Interface ReadOnlyUserPrefs <<Interface>>
+
+Package Util {
+Class DateTime
+Class Title
+Class Time
+Class Description
+Class Contacts
+}
 
 Package Person {
 Class Person
-Class Address
+Class Role
 Class Email
 Class Name
 Class Phone
 Class UniquePersonList
 }
 
-Package Tag {
-Class Tag
+Package Meeting {
+Class From
+Class To
+Class Location
+Class Meeting
+Class UniqueMeetingList
 }
+
+Package Deliverable {
+Class Deadline
+Class Milestone
+Class Deliverable
+Class UniqueDeliverableList
+}
+
+Package Event {
+interface TimeEvent <<Interface>>
+}
+
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelXYZ
 
-AddressBook .up.|> ReadOnlyAddressBook
+XYZBook .up.|> ReadOnlyXYZBook
 
-ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelXYZManager .up.|> ModelXYZ
+ModelXYZ .right.> ObservableList
+ModelXYZManager o--> "1" XYZBook
+ModelXYZManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+note right of ModelXYZManager: XYZ = Deliverable, Meeting or Person
 
-AddressBook *--> "1" UniquePersonList
+XYZBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> Role
+Person *--> Description
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Role -[hidden]right-> Name
+Name -[hidden]right-> Email
+Email -[hidden]right-> Phone
+Phone -[hidden]right-> Description
 
-ModelManager -->"1" Person : filtered list
+XYZBook *--> "1" UniqueMeetingList
+UniqueMeetingList o--> "*" Meeting
+Meeting .up.|> TimeEvent
+Meeting *--> From
+Meeting *--> To
+Meeting *--> Location
+Meeting *--> Title
+Meeting *--> Description
+Meeting *--> Contacts
+
+Location -[hidden]right-> To
+To -[hidden]right-> From
+
+From -down-|> DateTime
+To -down-|> Time
+
+XYZBook *--> "1" UniqueDeliverableList
+UniqueDeliverableList o--> "*" Deliverable
+Deliverable .up.|> TimeEvent
+Deliverable *--> Deadline
+Deliverable *--> Milestone
+Deliverable *--> Title
+Deliverable *--> Description
+Deliverable *--> Contacts
+
+Deadline -down-|> DateTime
+
+ModelXYZManager -->"1" Person : filtered list
+ModelXYZManager -->"1" Person : in view
+ModelXYZManager -->"1" Meeting : in view
+ModelXYZManager -->"1" Meeting : filtered list
+ModelXYZManager -->"1" Deliverable : filtered list
+ModelXYZManager -->"1" Deliverable : in view
 @enduml

@@ -1,5 +1,8 @@
 @startuml
 !include style.puml
+
+'scale 1.5
+
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
@@ -8,8 +11,8 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
-Class XYZCommandParser
+Class XYZBookParser
+Class ABCCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -18,45 +21,55 @@ Class Prefix
 }
 
 package Command {
-Class XYZCommand
+Class ABCCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
 
-Interface Logic <<Interface>>
-Class LogicManager
+Interface LogicXYZ <<Interface>>
+Class LogicXYZManager
+
+Interface LogicDispatcher <<Interface>>
+Class LogicDispatcherManager
+
+note top of ABCCommandParser: ABC = Add, Find,\nDelete, etc
+note top of XYZBookParser: XYZ = Deliverable, \nMeeting or Person
+
 }
 
 package Model{
-Class HiddenModel #FFFFFF
+class HiddenModel #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> LogicDispatcher
 
-LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicDispatcherManager .up.|> LogicDispatcher
+XYZBookParser .left.> ABCCommandParser: creates >
 
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
+ABCCommandParser ..> ABCCommand : creates >
+ABCCommandParser ..|> Parser
+ABCCommandParser ..> ArgumentMultimap
+ABCCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
+ABCCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
+ABCCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+ABCCommand -up-|> Command
+LogicDispatcherManager .left.> Command : executes >
+LogicDispatcherManager -> "0..1      " Model
+LogicDispatcherManager ---> "0..1    " ABCCommandParser
 
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+Command .> "0..1  " Model
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
+LogicDispatcher ..> CommandResult
+LogicDispatcherManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+
+LogicXYZ ..> LogicXYZManager
+LogicDispatcherManager -left-> LogicXYZManager
+LogicXYZManager -> XYZBookParser
 @enduml

@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+
+Class DateTime {
+    <color white> + value: LocalDateTime
+    <color white> + getLocalDateTime(): LocalDateTime
+}
+
+Class Meeting {
+    <color white> + getIndicatorTime(): LocalDateTime
+}
+
+Class Deadline {
+
+}
+
+class From {}
+Class Deliverable {
+
+    <color white> + getIndicatorTime(): LocalDateTime
+}
+
+interface TimeEvent <<Interface>> {
+    <color white> getIndicatorTime(): LocalDateTime
+}
+}
+
+Meeting .up.|> TimeEvent
+Meeting *--> From
+
+From --|> DateTime
+
+Deliverable .up.|> TimeEvent
+Deliverable *--> Deadline
+
+Deadline --|> DateTime
+
+show DateTime methods
+show DateTime fields
+show Meeting methods
+show TimeEvent methods
+show Deliverable methods
+
+
+@enduml

@@ -31,7 +31,11 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define CALENDAR_COLOR #7e009e
+
 !define USER_COLOR #000000
+
+!define RANDOM_COLOR #FFA400
 
 skinparam BackgroundColor #FFFFFFF
 
@@ -69,6 +73,7 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
+skinparam classAttributeIconSize 0
 
 hide footbox
 hide members

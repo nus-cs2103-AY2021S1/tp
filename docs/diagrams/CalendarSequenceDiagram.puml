@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T2
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":Calendar" as Calendar UI_COLOR
+participant "calendarList:ObservableList" as TimeEvents UI_COLOR
+end box
+
+participant "<<class>>\n:Collections" as Collections RANDOM_COLOR
+
+[-> MainWindow : executeCommand("delete 1")
+activate MainWindow
+
+MainWindow -> Calendar : updateCalendarList()
+activate Calendar
+
+Calendar -> TimeEvents : clear()
+activate TimeEvents
+
+return
+
+Calendar -> TimeEvents : addAll(meetings)
+activate TimeEvents
+
+return
+
+Calendar -> TimeEvents : addAll(deliverables)
+activate TimeEvents
+
+return
+
+Calendar -> Collections : sort(calendarList, timeEventComparator)
+activate Collections
+
+return
+
+Calendar --> MainWindow :
+deactivate
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

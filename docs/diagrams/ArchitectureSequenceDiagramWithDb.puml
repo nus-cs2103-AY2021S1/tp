@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+box "UI" #LightGreen
+Participant ":UI" as ui UI_COLOR_T2
+Participant ":Calendar" as calendar UI_COLOR_T3
+Participant ":ProjectCompletionStatusPanel" as ocp UI_COLOR_T4
+end box
+
+box "Logic" #LightBlue
+Participant ":LogicXYZ" as logic LOGIC_COLOR
+end box
+
+box "Model" #Pink
+Participant ":ModelXYZ" as modelPerson MODEL_COLOR
+end box
+
+box "Storage" #Orange
+Participant ":StorageXYZ" as storageMeeting STORAGE_COLOR
+end box
+
+user -[USER_COLOR]> ui : "delete 1"
+activate ui UI_COLOR_T2
+
+ui -[UI_COLOR_T2]> logic : execute("delete 1")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> modelPerson : deleteXYZ(xyz)
+activate modelPerson MODEL_COLOR
+note left of modelPerson: XYZ = Deliverable, Meeting, or Person \n Similarly, xyz = deliverable, meeting, or person
+
+modelPerson -[MODEL_COLOR]-> logic
+deactivate modelPerson
+
+logic -[LOGIC_COLOR]> storageMeeting : saveXYZBook(xyzBook)
+activate storageMeeting STORAGE_COLOR
+
+storageMeeting -[STORAGE_COLOR]> storageMeeting : Save to file
+activate storageMeeting STORAGE_COLOR_T1
+storageMeeting --[STORAGE_COLOR]> storageMeeting
+deactivate storageMeeting
+
+storageMeeting --[STORAGE_COLOR]> logic
+deactivate storageMeeting
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+opt in deliverable or meeting mode
+    ui--[UI_COLOR_T2]> calendar : updateCalendarList()
+    activate calendar UI_COLOR_T3
+
+    calendar --[UI_COLOR_T3]> ui
+    deactivate calendar
+
+    ui--[UI_COLOR_T2]> ocp : updateOcp()
+    activate ocp UI_COLOR_T4
+
+    ocp --[UI_COLOR_T4]> ui
+    deactivate ocp
+
+end
+ui--[UI_COLOR_T2]> user
+deactivate ui
+@enduml

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
+
+<ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="300" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <children>
+            <Label fx:id="title" styleClass="details_title" prefWidth="400" wrapText="true" VBox.vgrow="ALWAYS" />
+            <HBox spacing="5">
+                <FlowPane fx:id="tags">
+                    <Label fx:id="deadline" styleClass="cell_small_label" VBox.vgrow="ALWAYS" />
+                    <Label fx:id="milestone" styleClass="tag_label" />
+                    <Label fx:id="isCompleted" styleClass="tag_label" VBox.vgrow="ALWAYS" />
+                </FlowPane>
+                <padding>
+                    <Insets bottom="40" />
+                </padding>
+            </HBox>
+            <Label text="Contacts" styleClass="details_subheading" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="contactList" styleClass="cell_large_label" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20" />
+                </padding>
+            </VBox>
+            <Label text="Description" styleClass="details_subheading" VBox.vgrow="ALWAYS" />
+            <Label fx:id="description" styleClass="cell_large_label" prefWidth="400" wrapText="true" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20" />
+                </padding>
+            </Label>
+        </children>
+    </VBox>
+</ListView>

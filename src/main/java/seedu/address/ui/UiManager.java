@@ -10,7 +10,10 @@ import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
+import seedu.address.logic.LogicDeliverable;
+import seedu.address.logic.LogicDispatcher;
+import seedu.address.logic.LogicMeeting;
+import seedu.address.logic.LogicPerson;
 
 /**
  * The manager of the UI component.
@@ -20,17 +23,24 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/productiv_32.png";
 
-    private Logic logic;
+    private LogicDispatcher logicDispatcher;
+    private LogicPerson logicPerson;
+    private LogicDeliverable logicDeliverable;
+    private LogicMeeting logicMeeting;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(LogicDispatcher logicDispatcher, LogicPerson logicPerson,
+                     LogicDeliverable logicDeliverable, LogicMeeting logicMeeting) {
         super();
-        this.logic = logic;
+        this.logicDispatcher = logicDispatcher;
+        this.logicPerson = logicPerson;
+        this.logicDeliverable = logicDeliverable;
+        this.logicMeeting = logicMeeting;
     }
 
     @Override
@@ -41,7 +51,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logicDispatcher, logicPerson, logicDeliverable, logicMeeting);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
@@ -66,7 +76,7 @@ public class UiManager implements Ui {
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        alert.getDialogPane().getStylesheets().add("view/LightTheme.css");
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);

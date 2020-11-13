@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+Scale 1.5
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicXYZ" as LogicXYZ LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageXYZ" as StorageXYZ STORAGE_COLOR
+participant ":XYZBookStorage" as XYZBookStorage STORAGE_COLOR
+participant "json:JsonSerializableXYZBookStorage" as JsonSerializableXYZBookStorage STORAGE_COLOR
+participant "jsonItem:JsonAdaptedXYZ" as JsonAdaptedXYZ STORAGE_COLOR
+
+end box
+
+[-> LogicXYZ : execute(command)
+activate LogicXYZ
+
+LogicXYZ -> StorageXYZ : saveXYZ(XYZBook)
+activate StorageXYZ
+
+StorageXYZ -> XYZBookStorage : saveXYZ(XYZBook)
+activate XYZBookStorage
+
+
+create JsonSerializableXYZBookStorage
+XYZBookStorage -> JsonSerializableXYZBookStorage
+activate JsonSerializableXYZBookStorage
+
+Note right
+XYZ = Deliverable,
+Meeting or Person
+end Note
+
+loop book has items
+    create JsonAdaptedXYZ
+    JsonSerializableXYZBookStorage -> JsonAdaptedXYZ
+    activate JsonAdaptedXYZ
+
+    JsonAdaptedXYZ --> JsonSerializableXYZBookStorage : jsonItem
+    deactivate JsonAdaptedXYZ
+
+end
+
+JsonSerializableXYZBookStorage --> XYZBookStorage : json
+deactivate JsonSerializableXYZBookStorage
+
+XYZBookStorage --> StorageXYZ
+deactivate XYZBookStorage
+
+StorageXYZ --> LogicXYZ
+deactivate StorageXYZ
+
+deactivate LogicXYZ
+[<--LogicXYZ
+
+@enduml

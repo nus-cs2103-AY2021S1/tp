@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.ModeEnum;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,13 +19,17 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final ModeEnum mode;
+
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, ModeEnum mode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.mode = mode;
     }
 
     /**
@@ -31,7 +37,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -45,6 +51,11 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
+
+    public ModeEnum getMode() {
+        return mode;
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -60,12 +71,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && mode == otherCommandResult.mode;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, mode);
     }
 
 }

@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":XYZLogicManager" as XYZLogicManager LOGIC_COLOR_T2
+participant ":XYZBookParser" as XYZBookParser LOGIC_COLOR_T2
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR_T2
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR_T2
+end box
+
+note left of XYZLogicManager : XYZ = Deliverable, Meeting or Person
+
+box Model MODEL_COLOR_T1
+participant ":ModelXYZ" as ModelXYZ MODEL_COLOR_T2
+end box
+
+[-> XYZLogicManager : execute("view 2")
+activate XYZLogicManager
+
+XYZLogicManager -> XYZBookParser : parseCommand("view 2")
+activate XYZBookParser
+
+create ViewCommandParser
+XYZBookParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> XYZBookParser
+deactivate ViewCommandParser
+
+XYZBookParser -> ViewCommandParser : parse("2")
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser : v
+deactivate ViewCommand
+
+ViewCommandParser --> XYZBookParser : v
+deactivate ViewCommandParser
+destroy ViewCommandParser
+
+XYZBookParser --> XYZLogicManager : v
+deactivate XYZBookParser
+
+XYZLogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand -> ModelXYZ : setXYZInView(XYZ)
+activate ModelXYZ
+
+ModelXYZ --> ViewCommand
+deactivate ModelXYZ
+
+ViewCommand --> XYZLogicManager : result
+deactivate ViewCommand
+destroy ViewCommand
+
+[<-- XYZLogicManager : result
+deactivate XYZLogicManager
+
+[-> XYZLogicManager : getXYZInView()
+activate XYZLogicManager
+
+XYZLogicManager -> ModelXYZ : getXYZInView()
+activate ModelXYZ
+
+ModelXYZ --> XYZLogicManager : XYZ in view
+deactivate ModelXYZ
+
+[<-- XYZLogicManager : XYZ in view
+deactivate XYZLogicManager
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicDispatcherManager" as LogicDispatcherManager LOGIC_COLOR
+participant ":GeneralParser" as GeneralParser LOGIC_COLOR
+participant ":SwitchCommandParser" as SwitchCommandParser LOGIC_COLOR
+participant ":SwitchCommand" as SwitchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("switch dv")
+activate MainWindow
+
+MainWindow -> LogicDispatcherManager : execute("switch dv", currMode)
+activate LogicDispatcherManager
+
+LogicDispatcherManager -> GeneralParser : parseCommand("switch dv")
+activate GeneralParser
+
+create SwitchCommandParser
+GeneralParser -> SwitchCommandParser: SwitchCommandParser()
+activate SwitchCommandParser
+SwitchCommandParser --> GeneralParser
+deactivate SwitchCommandParser
+
+GeneralParser -> SwitchCommandParser: parse("dv")
+activate SwitchCommandParser
+
+create SwitchCommand
+SwitchCommandParser -> SwitchCommand: SwitchCommand(DELIVERABLE)
+activate SwitchCommand
+SwitchCommand --> SwitchCommandParser
+deactivate SwitchCommand
+
+SwitchCommandParser --> GeneralParser
+deactivate SwitchCommandParser
+destroy SwitchCommandParser
+
+GeneralParser --> LogicDispatcherManager : command
+deactivate GeneralParser
+
+LogicDispatcherManager -> SwitchCommand : execute()
+activate SwitchCommand
+
+create CommandResult
+SwitchCommand -> CommandResult : CommandResult(..., DELIVERABLE)
+activate CommandResult
+CommandResult --> SwitchCommand
+deactivate CommandResult
+
+SwitchCommand --> LogicDispatcherManager : commandResult
+deactivate SwitchCommand
+destroy SwitchCommand
+SwitchCommand -[hidden]-> LogicDispatcherManager : commandResult
+
+LogicDispatcherManager --> MainWindow : commandResult
+deactivate LogicDispatcherManager
+
+MainWindow -> CommandResult : getMode()
+activate CommandResult
+CommandResult --> MainWindow : DELIVERABLE
+deactivate CommandResult
+destroy CommandResult
+
+MainWindow -> MainWindow: switchMode(DELIVERABLE)
+activate MainWindow
+MainWindow --> MainWindow
+
+deactivate MainWindow
+[<--MainWindow
+deactivate MainWindow
+
+@enduml

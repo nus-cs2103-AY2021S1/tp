@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":LogicMode" as logic LOGIC_COLOR
+
+user -[USER_COLOR]> ui : "switch m"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("switch m")
+activate logic LOGIC_COLOR
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml

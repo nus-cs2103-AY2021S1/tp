@@ -11,10 +11,19 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+package XYZ <<Rectangle>>{
+Class XYZDetailsPanel
+Class XYZListPanel
+Class XYZCard
+}
+package DashBoard <<Rectangle>>{
+Class CalendarDeliverableCard
+Class CalendarListPanel
+Class CalendarMeetingCard
+Class ProjectCompletionStatusPanel
+}
 }
 
 package Model <<Rectangle>> {
@@ -33,25 +42,34 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> XYZListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> XYZDetailsPanel
+MainWindow *-down-> CalendarListPanel
+MainWindow *-down-> ProjectCompletionStatusPanel
 
-PersonListPanel -down-> PersonCard
+XYZListPanel -down-> XYZCard
+CalendarListPanel -down-> CalendarDeliverableCard
+CalendarListPanel -down-> CalendarMeetingCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+XYZListPanel --|> UiPart
+XYZCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+XYZDetailsPanel --|> UiPart
+CalendarListPanel --|> UiPart
+ProjectCompletionStatusPanel --|> UiPart
 
-PersonCard ..> Model
+XYZCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+note top of XYZ: XYZ = Deliverable, Meeting or Person
 
-PersonListPanel -[hidden]left- HelpWindow
+XYZListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

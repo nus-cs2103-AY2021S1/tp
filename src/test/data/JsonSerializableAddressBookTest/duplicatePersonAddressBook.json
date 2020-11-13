@@ -1,14 +1,23 @@
 {
-  "persons": [ {
+  "contacts": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "phone": {
+      "value": "81234567"
+    },
+    "email": "pauline@example.com",
+    "role": "dev",
+    "description": {
+      "value" : "End user"
+    }
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "phone": {
+      "value": "94351253"
+    },
     "email": "pauline@example.com",
-    "address": "4th street"
+    "role": "stk",
+    "description": {
+      "value" : null
+    }
   } ]
 }

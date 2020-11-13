@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
+
+<ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="300" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <children>
+            <Label fx:id="name" styleClass="details_title" prefWidth="400" wrapText="true" VBox.vgrow="ALWAYS" />
+            <HBox spacing="5">
+                <FlowPane fx:id="tags">
+                    <Label fx:id="role" styleClass="tag_label" VBox.vgrow="ALWAYS" />
+                </FlowPane>
+                <padding>
+                    <Insets bottom="40" />
+                </padding>
+            </HBox>
+            <Label text="Email Address" styleClass="details_subheading" VBox.vgrow="ALWAYS" />
+            <Label fx:id="email" styleClass="cell_large_label" prefWidth="400" wrapText="true" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20" />
+                </padding>
+            </Label>
+            <Label text="Phone Number" styleClass="details_subheading" VBox.vgrow="ALWAYS" />
+            <Label fx:id="phone" styleClass="cell_large_label" prefWidth="400" wrapText="true" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20" />
+                </padding>
+            </Label>
+            <Label text="Description" styleClass="details_subheading" VBox.vgrow="ALWAYS" />
+            <Label fx:id="description" styleClass="cell_large_label" prefWidth="400" wrapText="true" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20" />
+                </padding>
+            </Label>
+        </children>
+    </VBox>
+</ListView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane alignment="CENTER" HBox.hgrow="ALWAYS" minHeight="40">
+        <children>
+            <Label fx:id="id" styleClass="cell_small_label" GridPane.columnIndex="0" />
+            <Label fx:id="title" text="\$first" styleClass="cell_small_label" GridPane.columnIndex="1" />
+            <Label fx:id="deadline" text="\$deadline" styleClass="cell_small_label"
+                   GridPane.columnIndex="2"/>
+            <Label fx:id="milestone" text="\$milestone" styleClass="cell_small_label" GridPane.halignment="CENTER" GridPane.columnIndex="3"/>
+            <Label fx:id="isCompleted" text="\$isCompleted" GridPane.halignment="CENTER" GridPane.columnIndex="4"/>
+        </children>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" minWidth="5" prefWidth="5"/>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" minWidth="10" prefWidth="30"/>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" minWidth="10" prefWidth="30"/>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="20" minWidth="10" prefWidth="20"/>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="15" minWidth="10" prefWidth="15"/>
+        </columnConstraints>
+    </GridPane>
+</HBox>

@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":UniqueMeetingList" as UniqueMeetingList MODEL_COLOR
+participant ":ObservableList" as ObservableList MODEL_COLOR
+
+end box
+
+participant "<<class>>\n:Collections" as Collections RANDOM_COLOR
+
+[-> UniqueMeetingList : add(meeting)
+activate UniqueMeetingList
+
+UniqueMeetingList -> ObservableList : add(meeting)
+activate ObservableList
+
+ObservableList --> UniqueMeetingList :
+deactivate
+
+UniqueMeetingList -> UniqueMeetingList : sortList()
+activate UniqueMeetingList #DarkSalmon
+
+UniqueMeetingList -> Collections : sort(list, timeEventComparator)
+activate Collections
+
+Collections --> UniqueMeetingList :
+deactivate Collections
+
+return
+
+[<--UniqueMeetingList
+deactivate UniqueMeetingList
+@enduml

@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Helper functions for handling strings.
@@ -64,5 +66,15 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Returns a String with elements in stream joined by separator.
+     * Use for validation regex, options, etc.
+     * @param stream Stream with elements of type String
+     * @return String with elements in stream joined by separator
+     */
+    public static final String getStringJoinedBySeparator(Stream<String> stream, String separator) {
+        return stream.collect(Collectors.joining(separator));
     }
 }

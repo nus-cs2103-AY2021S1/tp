@@ -1,0 +1,15 @@
+/* @@author gabztcr-reused */
+/* Reused from https://github.com/torakiki/fx-progress-circle with minor modifications. */
+
+.circleindicator-container {
+	circleindicator-color: #00C853;
+	-fx-padding: 40.0;
+	-fx-background-color: -fx-background;
+}
+.circleindicator-container > .circleindicator-label {
+	-fx-font-weight: bold;
+ 	-fx-font-size: 3em;
+	-fx-text-fill: circleindicator-color;
+	-fx-padding: 5.0;
+}
+/* @@ author */

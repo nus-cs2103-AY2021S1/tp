@@ -3,57 +3,57 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+Our Productiv team is based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can contact us at `productiv@comp.nus.edu.sg` for any enquiries.
 
 ## Project team
 
-### John Doe
+### Cao Wenjie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shadowezz.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/shadowezz)]
+[[portfolio](team/shadowezz.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of `Deliverable` features and Quality Assurance (Testing)
 
-### Jean Doe
+### Chrystal Quek Wan Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chrystalquek.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chrystalquek)] [[portfolio](team/chrystalquek.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of "Contact" and "Mode" features, as well as Quality Assurance (Testing)
+
+### Clara Adora
+
+<img src="images/claraadora.png" width="200px">
+
+[[github](https://github.com/claraadora)]
+[[portfolio](team/claraadora.md)]
+
+* Role: Developer
+* Responsibilities: In charge of "Meeting" features and Product Management
+
+### Merlin Lim
+
+<img src="images/merlinlim.png" width="200px">
+
+[[github](https://github.com/MerlinLim)]
+[[portfolio](team/merlinlim.md)]
+
+* Role: Developer
+* Responsibilities: In charge of "Meeting" features and Documentation
+
+### Tan Chang Ri, Gabriel
+
+<img src="images/gabztcr.png" width="200px">
+
+[[github](http://github.com/gabztcr)]
+[[portfolio](team/gabztcr.md)]
+
+* Role: Developer
+* Responsibilities: In charge of "Deliverable" features and Documentation
