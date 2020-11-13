@@ -215,7 +215,7 @@ An example:
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within `NUMBER_OF_DAYS` from the current date. `NUMBER_OF_DAYS` must be an index **from 1 to 50**.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS`, which must be an index **from 1 to 50**. `list NUMBER_OF_DAYS` will list your assignments with deadlines that fall within this number of days from the current date.
 
 <div markdown="span" class="alert alert-success">
 
