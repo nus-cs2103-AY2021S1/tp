@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="buttonBar" alignment="TOP_CENTER" prefWidth="85.0" spacing="10">
+    <padding>
+        <Insets top="10" />
+    </padding>
+</VBox>

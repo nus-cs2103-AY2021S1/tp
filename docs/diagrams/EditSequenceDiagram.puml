@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":BagelParser" as BagelParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "efd:EditFlashcardDescriptor" as EditFlashcardDescriptor LOGIC_COLOR
+participant "ec:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 t/New Title")
+activate LogicManager
+
+LogicManager -> BagelParser : parseCommand("edit 1 t/New Title")
+activate BagelParser
+
+create EditCommandParser
+BagelParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> BagelParser
+deactivate EditCommandParser
+
+BagelParser -> EditCommandParser : parse("1 t/New Title")
+activate EditCommandParser
+
+create EditFlashcardDescriptor
+EditCommandParser -> EditFlashcardDescriptor
+activate EditFlashcardDescriptor
+
+EditFlashcardDescriptor --> EditCommandParser : efd
+deactivate EditFlashcardDescriptor
+
+EditCommandParser --> EditFlashcardDescriptor : setTitle("New Title")
+activate EditFlashcardDescriptor
+deactivate EditFlashcardDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : new EditCommand(1, efd)
+activate EditCommand
+
+EditCommand --> EditCommandParser : ec
+deactivate EditCommand
+
+EditCommandParser --> BagelParser : ec
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> BagelParser
+destroy EditCommandParser
+
+BagelParser --> LogicManager : ec
+deactivate BagelParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

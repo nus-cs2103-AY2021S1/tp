@@ -1,0 +1,14 @@
+{
+  "flashcards": [ {
+    "title": "Alice Pauline",
+    "description": "123, Jurong West Ave 6, #08-111",
+    "link": "",
+    "flashcardSet" : "1",
+    "tagged": [ "friends" ]
+  }, {
+    "title": "Alice Pauline",
+    "description": "123, Jurong West Ave 6, #08-111",
+    "link": "",
+    "flashcardSet" : "1"
+  } ]
+}

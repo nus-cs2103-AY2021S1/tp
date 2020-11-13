@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "ec:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 t/New Title")
+activate LogicManager
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : getFilteredFlashcardList.get(1)
+activate Model
+
+Model --> EditCommand : flashcardToEdit
+deactivate Model
+
+EditCommand -> EditCommand : createEditedFlashcard(flashcardToEdit, efd)
+activate EditCommand
+
+EditCommand --> EditCommand : editedFlashcard
+deactivate EditCommand
+
+EditCommand -> Model : setFlashcard(flashcardToEdit, editedFlashcard)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

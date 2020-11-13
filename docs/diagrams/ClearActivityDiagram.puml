@@ -1,0 +1,9 @@
+@startuml
+start
+:User executes clear command;
+:Empty instance of Bagel is created;
+:Existing Bagel in model is replaced with the new empty instance of Bagel;
+:Command result is passed to UI;
+:UI displays successful clear message to User;
+stop
+@enduml

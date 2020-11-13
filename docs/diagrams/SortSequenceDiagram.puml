@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":BagelParser" as BagelParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "sr:SortRequirement" as SortRequirement LOGIC_COLOR
+participant "sc:SortCommand" as SortCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("sort r/tag")
+activate LogicManager
+
+LogicManager -> BagelParser : parseCommand("sort r/tag")
+activate BagelParser
+
+create SortCommandParser
+BagelParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> BagelParser
+deactivate SortCommandParser
+
+BagelParser -> SortCommandParser : parse("r/tag")
+activate SortCommandParser
+
+create SortRequirement
+SortCommandParser --> SortRequirement
+activate SortRequirement
+
+SortRequirement --> SortCommandParser : sr
+deactivate SortRequirement
+
+create SortCommand
+SortCommandParser --> SortCommand : execute()
+activate SortCommand
+
+SortCommand --> SortCommandParser : sc
+deactivate SortCommand
+
+SortCommandParser --> BagelParser : sc
+deactivate SortCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortCommandParser -[hidden]-> BagelParser
+destroy SortCommandParser
+
+BagelParser --> LogicManager : sc
+deactivate BagelParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

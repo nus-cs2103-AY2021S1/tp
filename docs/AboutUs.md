@@ -5,55 +5,49 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Liu Yuxi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/liuyxxy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/liuyxxy)]
+[[portfolio](team/liuyxxy.md)]
 
-* Role: Project Advisor
+* Role: Code Quality
 
-### Jane Doe
+### Rachel Gina Abelarde
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rgabelarde.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rgabelarde)]
+[[portfolio](team/rgabelarde.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and Deadlines, Graphical User Interface
 
-### Johnny Doe
+### Jace Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jacetjy.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jacetjy)]
+[[portfolio](team/jacetjy.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Integration
 
-### Jean Doe
+### Yong Shan Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ysr25.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ysr25)]
+[[portfolio](team/ysr25.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation, Scheduling and Tracking
 
-### James Doe
+### Yuki Akizuki
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuki-cell.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yuki-cell)]
+[[portfolio](team/yuki-cell.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Testing, Code Quality
