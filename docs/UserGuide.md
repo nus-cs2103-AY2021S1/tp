@@ -86,7 +86,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Welcome to Productiv
+## 1. Welcome to Productiv  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Are you a product manager looking for a simple way to organise your many product development tasks?
 Or ever found yourself in dire need to conveniently reference your various product-related information? 
@@ -103,23 +103,23 @@ Read on, if you are keen to know more, and we'll take you through this journey t
 
 <div style="page-break-after: always;"></div>
 
-## 2. Reading the user guide
+## 2. Reading the user guide  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 In this user guide, you will see several icons and text styles that will aid you in your Productiv journey.
 View the table below to understand their meaning and usage.
 
 Icon/Text Style | Description                    
-----------------|-------------------------------------------------
+:--------------:|-------------------------------------------------
 [hyperlink]()   | Clicking it takes you to the relevant section in this guide (except [here]() hyperlinks, which takes you to other sites).
 `Markdown`      | Represents a command/part of a command.
-(some icon)     | Clicking it takes you back to the Table of Contents.
+[<img src="images/productivDuck.png" style="width:30px;height:30px;" alt="duck">](#table-of-contents)     | Clicking it takes you back to the Table of Contents.
 <div markdown="block" class="alert alert-success">:information_source:</div> | Represents a note for your information.
 <div markdown="block" class="alert alert-warning">:warning:</div> | Represents a warning for your caution.
 <div markdown="span" class="alert alert-primary">:bulb:</div> | Represents a tip for your benefit.
 
 Other than reading, you may also watch the demo video of Productiv [here](https://tiny.cc/Productiv-Demo-Video) to supplement this user guide.
 
-## 3. Getting started
+## 3. Getting started  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Ready to be productive? Follow the steps here to _get quacking with Productiv_:
 
@@ -131,7 +131,7 @@ Ready to be productive? Follow the steps here to _get quacking with Productiv_:
 
 1. Double-click the file to launch Productiv. 
 
-## 4. Features
+## 4. Features  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Now that you have Productiv up and running, let's get familiarised with the features of Productiv.
 
@@ -174,7 +174,7 @@ Here is a sequence of example commands that you can try:
 
 And it's as simple as that! But of course, there's more to just these three commands.
 
-## 5. Commands
+## 5. Commands  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 This section provides a list of all the available commands you can use to improve your productivity.
 Do take your time to explore each one of them so that you can fully utilize the app.
@@ -199,7 +199,7 @@ For example, here's the breakdown of the command `add t/TITLE by/DEADLINE m/MILE
 
 </div>
 
-### 3.1 General
+### 3.1 General   [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 #### 3.1.1 Switching modes: `switch`
 
@@ -246,7 +246,7 @@ Productiv automatically saves any changes that you made, to your computer's hard
 Hence, you can focus on managing your product without fearing any unsaved changes.
 
 
-### 3.2 Dashboard
+### 3.2 Dashboard  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 The dashboard gives you an overview of information related to your product.
 The dashboard is the default landing page of Productiv.
@@ -264,7 +264,7 @@ You can only use commands found under [General](#31-general).
   
 </div>
 
-### 3.3 Deliverable
+### 3.3 Deliverable  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
    
 <p align="center">
   
@@ -383,6 +383,7 @@ Parameter      | Description                   | Example
 
 </div>
 
+
 Example:
 * `undone 1` marks the 1st deliverable in your displayed deliverable list as on-going.
 
@@ -463,7 +464,7 @@ Format: `clear`
 
 </div>
 
-### 3.4 Meeting
+### 3.4 Meeting  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 <p align="center">
  
@@ -633,7 +634,7 @@ Format: `clear`
 
 </div>
 
-### 3.5 Contact
+### 3.5 Contact  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 <p align="center">
  
@@ -780,13 +781,13 @@ Clears all contacts from your contact list, if any.
 
 Format: `clear`
 
-## 6. Final remarks
+## 6. Final remarks  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 (...)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. FAQ
+## 7. FAQ  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 **Q**: Is Productiv available on both Windows and Mac?<br>
 **A**: Absolutely! Just ensure that you have Java `11` installed on your computer and it is your default Java version.
@@ -802,7 +803,7 @@ Format: `clear`
 
 ---------------------------------------------------------------------------------------------------------------------
 
-## 8.Command summary
+## 8.Command summary  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 ### 8.1 General 
 
@@ -852,7 +853,7 @@ Clear          | `clear`  | `clear`
 
 ---------------------------------------------------------------------------------------------------------------------
 
-## 9. Glossary
+## 9. Glossary  [<img src="images/productivDuck.png" style="float:right;width:30px;height:30px;" alt="duck">](#table-of-contents)
 
 Term                | Description
 --------------------------------|------------------------------------------------------------------------------------------------|
