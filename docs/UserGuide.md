@@ -585,7 +585,11 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 3 s/1`
 
 ![EditMasteryCheck](images/userguide/editMasteryCheck.png)
+Figure 6.4.3a: <i>Editing a Mastery Check</i>
+</div>
 
+As shown in Figure 6.4.3a, once we key in the command `edit -mc 1 s/1`, a success message will be displayed and Jarvis
+will auto switch to the `Mastery Check` tab, and the `Mastery Check` with index 1 (first Mastery Check in the list) will be marked as PASS rather than FAIL.
 <div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
@@ -593,8 +597,6 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed on the left side of the target `Mastery Check`.
 * `Jarvis` allows the user to edit to the same value; thus, even if no values are actually updated by the edit command, it will display a success message.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 ### 6.5 Deleting Information : `delete`
 In the following subsections, we will explain how the commands for deleting information work. Please take note of the
@@ -611,6 +613,11 @@ Deletes a `Task` based on the `INDEX` you specify.
 * `delete -c 3`
 
 ![DeleteConsultation](images/userguide/deleteConsultation.png)
+Figure 6.5.1a: <i>Deleting a Consultation</i>
+</div>
+
+As shown in Figure 6.5.1a, once we key in the command `delete -c 1`, a success message will be displayed and Jarvis
+will auto switch to the `Consultation` tab, and the `Consultation` with index 1 (first Consultation in the list) will be removed from the list.
 
 <div markdown="block" class="alert alert-info">
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
@@ -628,7 +635,9 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 <br>:pencil2: Examples:
 * `delete -mc 3`
 
-![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
+<div markdown="block" class="alert alert-info">
+You can refer to Figure 6.5.1a above for how the input will look like.
+</div>
 
 <div markdown="block" class="alert alert-info">
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
