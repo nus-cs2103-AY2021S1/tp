@@ -192,7 +192,7 @@ explanation on the  components of the Graphical User Interface.
 Figure 4.1a: <i>Ui Layout</i>
 </div>
 
-As seen in figure 4.1a above, the user interface is split into five separate segments marked 1 to 5.
+As seen in Figure 4.1a above, the user interface is split into five separate segments marked 1 to 5.
 1. **Top bar** - Displays passive information such as a summary for the user, greeting message, week number
 , academic topic for
  the week and today's date. A more detailed explanation on each item can be found in the upcoming section
@@ -218,10 +218,10 @@ the user interface segments 1 to 5 mentioned above.
     Figure 4.1.1a: <i>Detailed breakdown of the Top Bar</i>
     </div>
 
-   * In figure 4.1.1a, we can see that the top bar includes the following 5 components.
+   * In Figure 4.1.1a, we can see that the top bar includes the following 5 components.
         1. **Summary information** - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
            `Consultations` and `Mastery Checks` as well as all `Tasks` in Jarvis. We refer to this summary as the `Summary` feature. 
-           The summary is presented as a sentence. In figure 4.1.1a, the `Summary` feature refers to the sentence
+           The summary is presented as a sentence. In Figure 4.1.1a, the `Summary` feature refers to the sentence
            "Remaining - Nothing!". These values are updated only when Jarvis starts up and after a user command is
            entered.
 
