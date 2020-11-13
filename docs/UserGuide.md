@@ -841,6 +841,8 @@ Command | Description | Compatible View
 
 ### 6.6 Attendance Commands
 
+###### (written by: Ethan Rozario)
+
 | Command                                                      | Description                                                  | Compatible View |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------- |
 | `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...` | Adds the attendance of a student for specific week(s)        | STUDENT         |
