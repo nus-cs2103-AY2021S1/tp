@@ -42,7 +42,7 @@ Table of Contents
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all student that are stored in TAsker.
+   - **`list`** : Lists all students that you manage in TAsker.
 
    - **`add`**`n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` to TAsker.
 
@@ -52,10 +52,12 @@ Table of Contents
 
    - **`exit`** : Exits the app.
 
+1. Refer to [Navigating the User Inteface](#ui-intro) for details on how to navigate TAsker's interface.
+
 1. Refer to the [Features](#features) below for details of each command.
 
 ---
-
+<a name="ui-intro"></a>
 ## Navigating the User Interface (UI)
 
 The user interface of TAsker comprises of the few main elements as shown in this diagram:
@@ -87,6 +89,19 @@ The user interface of TAsker comprises of the few main elements as shown in this
     This tells you the location of the file where all of TAsker's data is saved in. This helps you to locate the TAsker data file, so that you can copy TAsker's data to make manual backups or shift TAsker's data to another computer.
 
 ## Features
+
+TAsker primarily uses text-based commands that are entered via the Command Box to interact with its features. The commands typically follow the format shown below:
+
+`[Verb] [index of Item or Student (for certain commands)]  [Parameters (for certain commands)]`
+
+For example, a command like `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B` will add a student (`add` is the verb), with parameters:
+
+- "98765432" as phone number
+- "johnd@example.com" as email
+- "johndoe" as Telegram username
+- "A0123456B" as matriculation number
+
+In this case, the index is not needed as the `add` command does not manipulate existing students' data. The sections for each feature below will document the command needed, as well as it's associated mandatory and optional parameters.
 
 <div markdown="block" class="alert alert-info">
 
