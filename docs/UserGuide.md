@@ -146,6 +146,8 @@ when reading this user guide.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    
    ![Ui](images/Ui.png)
+<div align="center">Figure 2: The view when starting StudyBananas for the first time</div>    
+<br>
 
 <div style="page-break-after: always;"></div>
 
@@ -767,7 +769,7 @@ Take note that the score panel is scrollable when it gets too long!
 
 ![ViewScore](images/ViewScore.png)
 
-<div align="center">Figure 4.2.2: Result of <code>quiz score flset:CS2103T</code> command</div>
+<div align="center">Figure 4.3.2: Result of <code>quiz score flset:CS2103T</code> command</div>
 
 <p>&nbsp;</p>
 <p style="page-break-before: always"></p>
