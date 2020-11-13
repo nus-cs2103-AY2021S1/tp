@@ -212,6 +212,12 @@ public class AddCommandTest {
         public ReadOnlyBagel getBagel() {
             return new Bagel();
         }
+
+        @Override
+        public boolean hasFlashcardSet(FlashcardSet flashcardSet) {
+            requireNonNull(flashcardSet);
+            return true;
+        }
     }
 
 }

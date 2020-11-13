@@ -18,6 +18,7 @@ import seedu.bagel.logic.commands.FlipCommand;
 import seedu.bagel.logic.commands.HelpCommand;
 import seedu.bagel.logic.commands.ListCommand;
 import seedu.bagel.logic.commands.ViewCommand;
+import seedu.bagel.logic.commands.sort.SortCommand;
 import seedu.bagel.logic.parser.exceptions.ParseException;
 import seedu.bagel.model.flashcard.Flashcard;
 import seedu.bagel.testutil.EditFlashcardDescriptorBuilder;
@@ -87,6 +88,14 @@ public class BagelParserTest {
         ViewCommand command = (ViewCommand) parser.parseCommand(
                 ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
         assertEquals(new ViewCommand(INDEX_FIRST_FLASHCARD), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " r/atitle") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " r/dtitle") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " r/tag") instanceof SortCommand);
+
     }
 
     //@Test

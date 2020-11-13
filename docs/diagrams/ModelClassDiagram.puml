@@ -20,9 +20,10 @@ Class Flashcard
 Class Title
 Class Description
 Class Tag
-Class Set
+Class FlashcardSet
 Class Link
 Class UniqueFlashcardList
+class SetOfFlashcardSets
 }
 
 Package Tag {
@@ -42,16 +43,19 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Bagel *--> "1" UniqueFlashcardList
+Bagel *--> "1" SetOfFlashcardSets
 UniqueFlashcardList o--> "*" Flashcard
+SetOfFlashcardSets o--> "*" FlashcardSet
 Flashcard *--> Title
 Flashcard *--> Description
-Flashcard *--> Set
+Flashcard *--> FlashcardSet
 Flashcard *--> Link
 Flashcard *--> "*" Tag
 
 Title -[hidden]right-> Description
-Description -[hidden]right-> Set
-Set -[hidden]right-> Link
+Description -[hidden]right-> FlashcardSet
+FlashcardSet -[hidden]right-> Link
+SetOfFlashcardSets -[hidden]right-> UniqueFlashcardList
 
 ModelManager -->"1" Flashcard : filtered list
 @enduml

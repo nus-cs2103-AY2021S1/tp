@@ -2,12 +2,12 @@ package seedu.bagel.testutil;
 
 import static seedu.bagel.logic.commands.CommandTestUtil.VALID_DESC_AMY;
 import static seedu.bagel.logic.commands.CommandTestUtil.VALID_DESC_BOB;
+import static seedu.bagel.logic.commands.CommandTestUtil.VALID_SET_AMY;
+import static seedu.bagel.logic.commands.CommandTestUtil.VALID_SET_BOB;
 import static seedu.bagel.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.bagel.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.bagel.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.bagel.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
-import static seedu.bagel.logic.commands.CommandTestUtil.VALID_SET_AMY;
-import static seedu.bagel.logic.commands.CommandTestUtil.VALID_SET_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,16 +40,16 @@ public class TypicalFlashcards {
 
     // Manually added
     public static final Flashcard HOON = new FlashcardBuilder().withTitle("Hoon Meier")
-            .withDescription("little india").withSets("8").build();
+            .withDescription("little india").withSet("8").build();
     public static final Flashcard IDA = new FlashcardBuilder().withTitle("Ida Mueller")
-            .withDescription("chicago ave").withSets("4").build();
+            .withDescription("chicago ave").withSet("4").build();
 
     // Manually added - Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard AMY = new FlashcardBuilder().withTitle(VALID_TITLE_AMY)
-            .withDescription(VALID_DESC_AMY).withSets(VALID_SET_AMY)
+            .withDescription(VALID_DESC_AMY).withSet(VALID_SET_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Flashcard BOB = new FlashcardBuilder().withTitle(VALID_TITLE_BOB)
-            .withDescription(VALID_DESC_BOB).withSets(VALID_SET_BOB)
+            .withDescription(VALID_DESC_BOB).withSet(VALID_SET_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

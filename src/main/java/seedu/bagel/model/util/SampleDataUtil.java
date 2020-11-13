@@ -25,7 +25,7 @@ public class SampleDataUtil {
                     new FlashcardSet("1"),
                     getTagSet("Types", "ObservationalStudies")),
             new Flashcard(new Title("Types of Sampling Plan"),
-                new Description("Probability Sampling: simple random, systematic, stratified, cluster\n"
+                new Description("Probability Sampling: simple random, systematic, stratified, cluster | "
                         + "Non-probability sampling: volunteer/self-selected, convenience, judgemental, quota"),
                     new Link("file:///c:/GER1000/Tutorial%203%20Slides.pdf"), new FlashcardSet("1"),
                     getTagSet("Types", "SamplingPlan")),
@@ -45,15 +45,15 @@ public class SampleDataUtil {
                     new FlashcardSet("1"),
                     getTagSet("Definition", "AtomisticFallacy")),
             new Flashcard(new Title("Types of association"),
-                new Description("r = 0: no linear association\n"
-                        + "r > 0: positive association\n"
-                        + "r < 0: negative association\n"
-                        + "r = 1: perfect positive association\n"
+                new Description("r = 0: no linear association, "
+                        + "r > 0: positive association, "
+                        + "r < 0: negative association, "
+                        + "r = 1: perfect positive association, "
                         + "r = -1: perfect negative association"),
                     new Link(""), new FlashcardSet("2"),
                     getTagSet("Identification", "Types", "Association")),
             new Flashcard(new Title("Odds Ratio(OR) and Risk Ratio(RR)"),
-                new Description("OR: odds(exp)/odds(unexp)\n"
+                new Description("OR: odds(exp)/odds(unexp), "
                         + "RR: risk(exp)/risk(unexp)"),
                     new Link("file:///c:/GER1000/Tutorial%204%20Slides.pdf"),
                     new FlashcardSet("3"),

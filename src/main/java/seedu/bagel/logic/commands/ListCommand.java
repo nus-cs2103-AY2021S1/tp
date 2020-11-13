@@ -29,6 +29,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_EMPTY_LIST = "No flashcards in Bagel yet";
 
+    public static final String MESSAGE_EMPTY_SET = "No flashcards in set";
+
     private final FlashcardSet flashcardSet;
 
     public ListCommand() {
@@ -43,18 +45,23 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        if (model.getFilteredFlashcardList().size() == 0) {
-            return new CommandResult(MESSAGE_EMPTY_LIST);
-        }
-
         if (flashcardSet == null) {
             model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
+            if (model.getFilteredFlashcardList().size() == 0) {
+                return new CommandResult(MESSAGE_EMPTY_LIST);
+            }
+
             return new CommandResult(MESSAGE_SUCCESS);
         }
 
         Predicate<Flashcard> predicateShowFlashcardsInSet = flashcard ->
                 flashcard.getFlashcardSet().equals(flashcardSet);
         model.updateFilteredFlashcardList(predicateShowFlashcardsInSet);
+
+        if (model.getFilteredFlashcardList().size() == 0) {
+            return new CommandResult(MESSAGE_EMPTY_SET + " " + flashcardSet.value);
+        }
 
         return new CommandResult(MESSAGE_SUCCESS_SET + " " + flashcardSet.value);
     }

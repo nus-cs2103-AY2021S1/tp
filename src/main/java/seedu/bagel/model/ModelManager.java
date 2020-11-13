@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final Bagel bagel;
     private final UserPrefs userPrefs;
-    private FilteredList<Flashcard> filteredFlashcards;
+    private final FilteredList<Flashcard> filteredFlashcards;
     // private final FilteredList<FlashcardSet> filteredSetList;
 
     /**

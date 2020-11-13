@@ -56,14 +56,6 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Set} of the {@code EditFlashcardDescriptor} that we are building.
-     */
-    public EditFlashcardDescriptorBuilder withSet(String set) {
-        descriptor.setFlashcardSet(new FlashcardSet(set));
-        return this;
-    }
-
-    /**
      * Sets the {@code Link} of the {@code EditFlashcardDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withLink(String link) {

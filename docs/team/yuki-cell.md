@@ -13,17 +13,17 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to flip flashcards.
   * What it does: allows the user to flip through the list of flashcards in sequence order.
-  
+
 * **New Feature**: Added the ability to search flashcards.
   * What it does: allows the user to search flashcards by keyword. Search flashcard that has matching title, description, or tag to keyword.
-  
+
 * **Update UI**: Changed how the flashcard list is displayed.
-  * What it does: Description of flashcard to not appear when there is multiple flashcard is displayed on Bagel. User can view more flashcards in screen as a result.  
-  
+  * What it does: Description of flashcard to not appear when there is multiple flashcard is displayed on Bagel. User can view more flashcards in screen as a result.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true)
 
 * **Enhancements to existing features**:
-  * Replaced the half of the file related to storage in AB3 to work with Flashcard models. (Pull request [\#44]())
+  * Replaced the half of the file related to storage in AB3 to work with Flashcard models. (Pull request [\#42](https://github.com/AY2021S1-CS2103T-W13-2/tp/pull/42))
 
 * **Documentation**:
   * User Guide:

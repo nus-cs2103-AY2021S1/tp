@@ -42,7 +42,6 @@ public class DeleteCommand extends Command {
 
         Flashcard toDelete = lastShownList.get(targetIndex.getZeroBased());
         FlashcardSet toDeleteSet = toDelete.getFlashcardSet();
-        String toDeleteSetVal = toDeleteSet.value;
 
         model.deleteFlashcard(toDelete);
 
@@ -51,8 +50,7 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, toDelete));
         }
         // System.out.println("No more flashcards left in current set");
-        return new CommandResult(toDeleteSetVal, false, false,
-                false, true, false);
+        return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, toDelete), false, false, true);
     }
 
     @Override

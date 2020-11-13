@@ -20,7 +20,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -35,34 +35,32 @@
           </Menu>
         </MenuBar>
 
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                   minHeight="100" prefHeight="100" maxHeight="100">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
         <HBox VBox.vgrow="ALWAYS">
-          <ScrollPane HBox.hgrow="NEVER" fx:id="sidebarPlaceholder" fitToWidth="true" hbarPolicy="NEVER" minWidth="100"/>
+          <ScrollPane HBox.hgrow="NEVER" fx:id="sidebarPlaceholder" fitToWidth="true" fitToHeight="true"
+                      hbarPolicy="NEVER" minWidth="110"/>
 
-          <VBox HBox.hgrow="ALWAYS">
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-              <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
-              </padding>
-            </StackPane>
-
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                       minHeight="100" prefHeight="100" maxHeight="100">
-              <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
-              </padding>
-            </StackPane>
-
-            <VBox fx:id="flashcardList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <StackPane fx:id="flashcardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-
-            <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+          <VBox fx:id="flashcardList" styleClass="pane-with-border" minWidth="340" prefWidth="340" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="flashcardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-
         </HBox>
+
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

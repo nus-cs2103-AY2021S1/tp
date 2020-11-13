@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":BagelParser" as BagelParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Bagel" as Bagel MODEL_COLOR
+end box
+[-> LogicManager : execute("add t/New Title d/New Desc s/1")
+activate LogicManager
+
+LogicManager -> BagelParser : parseCommand("add t/New Title d/New Desc s/1")
+activate BagelParser
+
+create AddCommand
+BagelParser -> AddCommand
+activate AddCommand
+
+AddCommand --> BagelParser
+deactivate AddCommand
+
+BagelParser --> LogicManager : a
+deactivate BagelParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addFlashcard(flashcard)
+activate Model
+
+Model -> Bagel : addFlashcard(flashcard)
+activate Bagel
+
+Bagel --> Model :
+deactivate Bagel
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+AddCommand -[hidden]-> LogicManager : result
+destroy AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

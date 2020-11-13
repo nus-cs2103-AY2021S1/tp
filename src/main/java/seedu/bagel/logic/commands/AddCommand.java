@@ -22,8 +22,8 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESC + "DESCRIPTION "
+            + PREFIX_SET + "SET "
             + "[" + PREFIX_LINK + "LINK] "
-            + "[" + PREFIX_SET + "SET] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Definition of p-value "
@@ -56,7 +56,7 @@ public class AddCommand extends Command {
         }
         if (!model.hasFlashcardSet(toAdd.getFlashcardSet())) {
             model.addFlashcard(toAdd);
-            return new CommandResult(String.format(toAdd.getFlashcardSet().value), false, false, true, false, false);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, true);
         }
         model.addFlashcard(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

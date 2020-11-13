@@ -41,6 +41,8 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Hyperlink link;
+    @FXML
     private FlowPane sets;
     @FXML
     private FlowPane tags;
@@ -56,17 +58,17 @@ public class FlashcardCard extends UiPart<Region> {
         this.hostServices = hostServices;
         id.setText(displayedIndex + ". ");
         title.setText(flashcard.getTitle().fullTitle);
+        description.setText(flashcard.getDescription().value);
+        setupLink(flashcard.getLink().value);
+
         if (isSingle) {
             id.setVisible(false);
             id.setManaged(false);
-            description.setText(flashcard.getDescription().value);
         } else {
-            description.setText("");
-        }
-
-        String link = flashcard.getLink().value;
-        if (isSingle && !link.isEmpty()) {
-            addLink(link);
+            description.setVisible(false);
+            description.setManaged(false);
+            link.setVisible(false);
+            link.setManaged(false);
         }
 
         sets.getChildren().add(new Label(flashcard.getFlashcardSet().value));
@@ -79,17 +81,18 @@ public class FlashcardCard extends UiPart<Region> {
     /**
      * Adds a {@code Hyperlink} with value {@code link} to display.
      */
-    public void addLink(String link) {
-        Hyperlink hyperlink = new Hyperlink();
-        hyperlink.setText(link);
-        hyperlink.getStyleClass().add("cell_small_hyperlink");
-        hyperlink.setOnMouseClicked(t -> {
-            String linkText = hyperlink.getText();
+    private void setupLink(String linkText) {
+        link.setText(linkText);
+        link.setOnMouseClicked(t -> {
             assert !linkText.isEmpty();
             logger.info("Link clicked: " + linkText);
             hostServices.showDocument(linkText);
         });
-        vBox.getChildren().add(hyperlink);
+
+        if (linkText.isEmpty()) {
+            link.setVisible(false);
+            link.setManaged(false);
+        }
     }
 
     @Override

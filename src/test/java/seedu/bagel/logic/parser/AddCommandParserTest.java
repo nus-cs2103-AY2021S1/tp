@@ -29,7 +29,11 @@ import static seedu.bagel.testutil.TypicalFlashcards.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.bagel.logic.commands.AddCommand;
-import seedu.bagel.model.flashcard.*;
+import seedu.bagel.model.flashcard.Description;
+import seedu.bagel.model.flashcard.Flashcard;
+import seedu.bagel.model.flashcard.FlashcardSet;
+import seedu.bagel.model.flashcard.Link;
+import seedu.bagel.model.flashcard.Title;
 import seedu.bagel.model.tag.Tag;
 import seedu.bagel.testutil.FlashcardBuilder;
 
@@ -47,7 +51,6 @@ public class AddCommandParserTest {
         // multiple word titles accepted
         assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + DESC_DESC_BOB + SET_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedFlashcard));
-                        + TAG_DESC_FRIEND, new AddCommand(expectedFlashcard));
 
         // multiple word desc accepted
         assertParseSuccess(parser, TITLE_DESC_BOB + DESC_DESC_AMY + DESC_DESC_BOB + SET_DESC_BOB

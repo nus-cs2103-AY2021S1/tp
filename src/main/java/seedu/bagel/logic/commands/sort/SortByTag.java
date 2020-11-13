@@ -18,8 +18,14 @@ public class SortByTag implements Comparator<Flashcard> {
             if (two.getTags().isEmpty()) {
                 return 1;
             } else {
-                return one.getTags().iterator().next().toString()
-                        .compareTo(two.getTags().iterator().next().toString());
+                return one.getTags().stream()
+                            .sorted(Comparator.comparing(tag -> tag.tagName))
+                            .findFirst()
+                            .toString()
+                        .compareToIgnoreCase(two.getTags().stream()
+                                .sorted(Comparator.comparing(tag -> tag.tagName))
+                                .findFirst()
+                                .toString());
             }
         }
     }

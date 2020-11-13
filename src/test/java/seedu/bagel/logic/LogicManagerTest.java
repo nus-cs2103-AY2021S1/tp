@@ -3,7 +3,9 @@ package seedu.bagel.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.bagel.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.bagel.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.bagel.logic.commands.CommandTestUtil.*;
+import static seedu.bagel.logic.commands.CommandTestUtil.DESC_DESC_AMY;
+import static seedu.bagel.logic.commands.CommandTestUtil.SET_DESC_AMY;
+import static seedu.bagel.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.bagel.testutil.Assert.assertThrows;
 import static seedu.bagel.testutil.TypicalFlashcards.AMY;
 

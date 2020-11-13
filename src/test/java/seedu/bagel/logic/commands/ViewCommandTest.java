@@ -18,10 +18,6 @@ import seedu.bagel.model.ModelManager;
 import seedu.bagel.model.UserPrefs;
 import seedu.bagel.model.flashcard.Flashcard;
 
-/**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code ViewCommand}.
- */
 public class ViewCommandTest {
 
     private Model model = new ModelManager(getTypicalBagel(), new UserPrefs());
@@ -78,7 +74,7 @@ public class ViewCommandTest {
         // null -> returns false
         assertFalse(viewFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different flashcard -> returns false
         assertFalse(viewFirstCommand.equals(viewSecondCommand));
     }
 

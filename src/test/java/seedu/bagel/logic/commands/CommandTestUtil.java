@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.bagel.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.bagel.logic.parser.CliSyntax.PREFIX_LINK;
+import static seedu.bagel.logic.parser.CliSyntax.PREFIX_REQ;
 import static seedu.bagel.logic.parser.CliSyntax.PREFIX_SET;
 import static seedu.bagel.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.bagel.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -35,12 +36,14 @@ public class CommandTestUtil {
     public static final String VALID_LINK_BOB = "https://www.google.com/";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_REQUIREMENT_ASCENDING_TITLE = "atitle";
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
     public static final String DESC_DESC_AMY = " " + PREFIX_DESC + VALID_DESC_AMY;
     public static final String DESC_DESC_BOB = " " + PREFIX_DESC + VALID_DESC_BOB;
     public static final String LINK_DESC_BOB = " " + PREFIX_LINK + VALID_LINK_BOB;
+    public static final String REQUIREMENT = " " + PREFIX_REQ + VALID_REQUIREMENT_ASCENDING_TITLE;
 
     public static final String SET_DESC_AMY = " " + PREFIX_SET + VALID_SET_AMY;
     public static final String SET_DESC_BOB = " " + PREFIX_SET + VALID_SET_BOB;
@@ -63,7 +66,8 @@ public class CommandTestUtil {
         DESC_AMY = new EditFlashcardDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withDescription(VALID_DESC_AMY).withSet(VALID_SET_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditFlashcardDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withDescription(VALID_DESC_BOB).withSet(VALID_SET_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESC_BOB).withSet(VALID_SET_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .build();
     }
 
     /**

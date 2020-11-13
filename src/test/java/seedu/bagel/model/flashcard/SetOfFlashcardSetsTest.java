@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.bagel.testutil.Assert.assertThrows;
 import static seedu.bagel.testutil.TypicalFlashcards.ALICE;
+import static seedu.bagel.testutil.TypicalFlashcards.AMY;
 import static seedu.bagel.testutil.TypicalFlashcards.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -26,10 +27,10 @@ public class SetOfFlashcardSetsTest {
 
     @Test
     public void edit_correctFlashcards_returnsTrue() {
-        setOfFlashcardSets.add(ALICE);
-        setOfFlashcardSets.edit(ALICE, BOB);
+        setOfFlashcardSets.add(AMY);
+        setOfFlashcardSets.edit(AMY, BOB);
         assertTrue(setOfFlashcardSets.get().contains(BOB.getFlashcardSet()));
-        assertFalse(setOfFlashcardSets.get().contains(ALICE.getFlashcardSet()));
+        assertFalse(setOfFlashcardSets.get().contains(AMY.getFlashcardSet()));
     }
 
     @Test
@@ -52,9 +53,9 @@ public class SetOfFlashcardSetsTest {
 
     @Test
     public void numberOfSetsIsCorrect() {
-        setOfFlashcardSets.add(ALICE);
+        setOfFlashcardSets.add(AMY);
         setOfFlashcardSets.add(BOB);
-        //ALICE belongs to set 1, BOB belongs to set 2
+        // AMY belongs to set 2, BOB belongs to set 1
         assertEquals(setOfFlashcardSets.get().size(), 2);
     }
 }

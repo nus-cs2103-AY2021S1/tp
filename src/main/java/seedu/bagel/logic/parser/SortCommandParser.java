@@ -24,8 +24,13 @@ public class SortCommandParser implements Parser<SortCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        SortRequirement req = ParserUtil.parseRequirement(argMultimap.getValue(PREFIX_REQ).get());
-        return new SortCommand(req);
+        try {
+            SortRequirement req = ParserUtil.parseRequirement(argMultimap.getValue(PREFIX_REQ).get());
+            return new SortCommand(req);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
     }
 
     /**

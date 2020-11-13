@@ -45,8 +45,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Bagel(model.getBagel()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -66,8 +67,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Bagel(model.getBagel()), new UserPrefs());
         expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -78,8 +80,9 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new Bagel(model.getBagel()), new UserPrefs());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -95,8 +98,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Bagel(model.getBagel()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

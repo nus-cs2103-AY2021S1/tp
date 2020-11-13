@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -147,6 +146,7 @@ public class MainWindow extends UiPart<Stage> {
      * Adds set buttons for existing sets.
      */
     void loadSetButtons() {
+        handleAddSet("All");
         if (logic.hasSet()) {
             for (FlashcardSet set : logic.getSets()) {
                 handleAddSet(set.value);
@@ -161,22 +161,6 @@ public class MainWindow extends UiPart<Stage> {
     private void handleAddSet(String setValue) {
         Button setButton = new Button(setValue);
         setUpSetButton(setButton);
-    }
-
-    /**
-     * Deletes an existing set button.
-     */
-    @FXML
-    private void handleDelSet(String setValue) {
-        for (Node setButton : this.sideBar.getButtons()) {
-            // System.out.println("handle del set");
-            if (setButton.getId().equals(setValue)) {
-                // System.out.println(setButton.getId());
-                // System.out.println(setValue);
-                sideBar.deleteButton(setButton);
-                break;
-            }
-        }
     }
 
     /**
@@ -232,12 +216,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public void setUpButton(Button button, String imgUrl, EventHandler<ActionEvent> event) {
-        //button.setLayoutX(20);
-        //button.setLayoutY(65);
         button.setMnemonicParsing(false);
-        button.setPrefWidth(70);
+        button.setMinWidth(80);
         button.setId(button.getText());
-        //System.out.println(button.getText());
+        button.getStyleClass().add("sidebar-button");
 
         Image image = new Image(imgUrl);
         ImageView imageView = new ImageView(image);
@@ -259,7 +241,12 @@ public class MainWindow extends UiPart<Stage> {
     public void setUpSetButton(Button setButton) {
         String setImgUrl = "images/set.png";
         EventHandler<ActionEvent> setEvent = event -> {
-            String commandText = "list s/" + setButton.getText();
+            String commandText;
+            if (setButton.getText().equals("All")) {
+                commandText = "list";
+            } else {
+                commandText = "list s/" + setButton.getText();
+            }
             try {
                 executeCommand(commandText);
             } catch (CommandException | ParseException e) {
@@ -267,10 +254,6 @@ public class MainWindow extends UiPart<Stage> {
             }
         };
         setUpButton(setButton, setImgUrl, setEvent);
-    }
-
-    private String getSetValue(String commandText) {
-        return commandText.split(" ")[3].split("/")[1].toUpperCase();
     }
 
     /**
@@ -294,18 +277,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isAddSet()) {
-                setValue = getSetValue(commandText);
-                handleAddSet(setValue);
-            }
-
-            if (commandResult.isDelSet()) {
-                // System.out.println(commandResult.getFeedbackToUser());
-                handleDelSet(commandResult.getFeedbackToUser());
-            }
-
-            if (commandResult.isClear()) {
+            if (commandResult.isChangeSet()) {
                 handleClear();
+                loadSetButtons();
             }
 
             return commandResult;

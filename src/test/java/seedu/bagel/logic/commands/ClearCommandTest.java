@@ -16,8 +16,9 @@ public class ClearCommandTest {
     public void execute_emptyBagel_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, true);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -25,7 +26,8 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalBagel(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalBagel(), new UserPrefs());
         expectedModel.setBagel(new Bagel());
+        CommandResult expectedCommandResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, true);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, expectedCommandResult, expectedModel);
     }
 }

@@ -29,10 +29,6 @@
     -fx-font-size: 12pt;
 }
 
-.buttonBar {
-    -fx-background-color : #383838;
-}
-
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -312,6 +308,25 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.sidebar-button {
+    -fx-background-color: #3e7b91;
+    -fx-background-radius: 5;
+    -fx-border-width: 0;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: derive(#3e7b91, 20%)
+}
+
+.sidebar-button:focused {
+    -fx-border-radius: 5;
+    -fx-text-fill: white;
+}
+
+#buttonBar, #sidebarPlaceholder {
+    -fx-background-color: #383838;
 }
 
 #cardPane {
