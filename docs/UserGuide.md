@@ -119,6 +119,7 @@ Commands you provide in the command line follow specific rules. These are the ru
 
 
 ## 3. Getting Started
+###### (written by: Sean Tay)
 
 ### 3.1 Setting Up
 Get started by installing __Trackr__ with the following steps:
@@ -162,6 +163,7 @@ Figure 3.3c Student view
 ## 4. Features
 
 ### 4.1 General Features
+###### (written by: Sean Tay)
 
 #### 4.1.1 View help: `help`
 Shows a message explaining how to access the user guide.
@@ -211,6 +213,7 @@ Format: `exit`
 Example: `exit`
 
 ### 4.2 Navigation Features
+###### (written by: Sean Tay)
 
 #### 4.2.1 List all modules in Trackr: `listMod`
 
