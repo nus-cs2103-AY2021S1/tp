@@ -406,6 +406,7 @@ You can set reminders for **multiple** assignments at a time as well. Here is an
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
    *Figure 18: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
 
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-primary">
   
@@ -569,6 +570,8 @@ you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` 
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
    *Figure 27: Message shown in Message Box*
+   
+<div style="page-break-after: always;"></div>
    
 <div markdown="block" class="alert alert-primary">
   
