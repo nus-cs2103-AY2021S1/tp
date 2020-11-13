@@ -92,7 +92,7 @@ with additional details.
 * Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
 
-### <a name="modifying"></a>3.1. Modifying the Glossary
+### <a name="modifying"></a>3.1. Modify the Glossary
 #### <a name="add"></a>3.1.1. Add a Flashcard: `add` (Jiyu)
 
 Adds a flashcard to the glossary. You can use this to expand your glossary.
