@@ -12,6 +12,7 @@ This document is created by CS2101 G05 Team 1. <br>
 * Tin Kah Ong Isaac
 * Udayagiri Nikhila Sai <br>
 
+-------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
 {:toc}
