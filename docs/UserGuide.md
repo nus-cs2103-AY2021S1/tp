@@ -113,7 +113,7 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignmen
 
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
-If the lab report assignment is very urgent, you can attach a **high priority tag** to it and enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`.
+If the lab report assignment is very urgent, you can attach a **high priority tag** to it by entering `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`.
 </div> 
 
 <div markdown="block" class="alert alert-primary">
@@ -501,7 +501,7 @@ Similar to done, you can mark an assignment as not done by specifying the assign
 
 Here is an example with steps for you to follow:
 
-1) If you realised that the "Essay" assignment has been marked as done accidentally,
+1) If you realised that the "Essay" assignment has been mistakenly marked as done,
 you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` of the assignment as shown in the figure below.
 
    ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
