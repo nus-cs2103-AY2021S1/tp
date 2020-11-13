@@ -142,6 +142,10 @@ Shows a message explaining how to access the User Guide (this page).
 
 Format: `help`
 
+**Expected Output**
+
+*Running `help`*
+
 <img src="images/HelpCommand.png" class="diagram" />
 
 ### Adding a student : `add`
@@ -171,9 +175,12 @@ Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`
 - `add n/Betsy Crowe tg/friend e/betsycrowe@example.com t/betsy_crowe m/A0201234C p/1234567 tg/groupmate`
-  
-  *For:`add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`*
-  <img src="images/AddCommand.png" class="diagram" />
+
+**Expected Output**
+
+*Running `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`*
+
+<img src="images/AddCommand.png" class="diagram" />
 
 ### Listing all students : `list`
 
@@ -182,9 +189,12 @@ This is useful when you want to view the information of all students.
 The information is displayed under the **Students Tab**.
 
 Format: `list`
-  
-  *For:`list`*
-  <img src="images/ListCommand.png" class="diagram" />
+
+**Expected Output**
+
+*Running `list`*
+
+<img src="images/ListCommand.png" class="diagram" />
 
 ### Editing a student : `edit`
 
@@ -209,11 +219,13 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower tg/` Edits the name of the 2nd students to be `Betsy Crower` and clears all existing tags.
 
-  *Before editing*
-  <img src="images/edit2before.png" class="diagram" />
+**Before Editing**
+
+<img src="images/edit2before.png" class="diagram" />
   
-  *After editing*
-  <img src="images/edit2after.png" class="diagram" />
+**After Editing**
+
+<img src="images/edit2after.png" class="diagram" />
   
 ### Locating students by name : `find`
 
@@ -236,8 +248,12 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  
-  <img src="images/findAlexDavidResult.png" class="diagram" />
+
+**Expected Output**
+
+*Running `find alex david`*
+
+<img src="images/findAlexDavidResult.png" class="diagram" />
 
 ### Deleting a student : `delete`
 
@@ -295,6 +311,11 @@ Marks the student as present for tutorial on a specified date.
 
 Format: `attend INDEX d/DATE`
 
+**Expected Output**
+
+*Running `attend 1 d/12/12/2000`*
+
+<img src="images/AddAttendance.png" class="diagram" />
 
 Examples:
 
@@ -314,8 +335,11 @@ Examples:
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
 
-  *For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)*
-  <img src="images/RemoveAttendance.png" class="diagram"/>
+**Expected Output**
+
+*Running `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)*
+
+<img src="images/RemoveAttendance.png" class="diagram"/>
 
 ### Adding a consultation : `add-consult`
 
@@ -330,10 +354,13 @@ There are only **2 types** of consultations, Personal or Group. They can inputte
 Examples:
 
 - `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`
-- `add-consult n/Ann Lim d/30/05/2020 tm/11:00 a/Tembusu College ty/group `
-  
-  *For `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`*
-  <img src="images/addConsultResult.png" class="diagram" />
+- `add-consult n/Ann Lim d/30/05/2020 tm/11:00 a/Tembusu College ty/group `  
+
+**Expected Output**
+
+*Running `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`*
+
+<img src="images/addConsultResult.png" class="diagram" />
 
 ### Deleting a consultation : `del-consult`
 
@@ -346,9 +373,12 @@ Format: `del-consult INDEX`
 Examples:
 
 - `del-consult 1`
-  
-  *For `del-consult 1`*
-  <img src="images/delConsultResult.png" class="diagram" />
+
+**Expected Output**
+
+*For `del-consult 1`*
+
+<img src="images/delConsultResult.png" class="diagram" />
 
 ### Listing all consultations : `list-consult`
 
@@ -358,8 +388,11 @@ You may click on the Consultations tab to view the full list of consultations.
 
 Format: `list-consult`
 
-  *Running `list-consult`*
-  <img src="images/consultListResult.png" class="diagram" />
+**Expected Output**
+
+*Running `list-consult`*
+  
+<img src="images/consultListResult.png" class="diagram" />
 
 ### Archiving data files : `archive`
 
@@ -372,9 +405,12 @@ Format: `archive`
 Example:
 
 - `archive` creates a json file called `tasker_2020-11-09_2113.json` as shown below.
-  
-  *Running `archive`*
-  <img src="images/archiveResult.png" class="diagram" />
+
+**Expected Output**
+
+*Running `archive`*
+
+<img src="images/archiveResult.png" class="diagram" />
 
 ### Exporting attendance : `exportatt`
 
@@ -387,9 +423,12 @@ Format: `exportatt`
 Example:
 
 - `exportatt` creates a csv file called `attendance_2020-11-09_2055.csv` as shown below.
-  
-  *Running `exportatt`*
-  <img src="images/exportattResult.png" class="diagram" />
+
+**Expected Output**
+
+*Running `exportatt`*
+
+<img src="images/exportattResult.png" class="diagram" />
 
 ### Exiting the program : `exit`
 
