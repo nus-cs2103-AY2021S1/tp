@@ -417,14 +417,14 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 
 <br>**Format: `add -c NAME d/YYYY-MM-DD t/HH:MM`**
 
+<br>:pencil2: Examples:
+* `add -c John Doe d/2020-09-20 t/13:30`
+* `add -c Mary Jane d/2021-01-02 t/09:15`
+
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/addConsultation.png" width="115%" /> <br />
 Figure 6.3.1a: <i>Adding a Consultation</i>
 </div>
-
-<br>:pencil2: Examples:
-* `add -c John Doe d/2020-09-20 t/13:30`
-* `add -c Mary Jane d/2021-01-02 t/09:15`
 
 As shown in Figure 6.3.1a, once we key in the command `add -c NAME d/YYYY-MM-DD t/HH:MM`, a success message will be displayed and Jarvis
 will auto switch to the `Consultation` tab, and the new `Consultation` will be added to the list.
@@ -444,14 +444,14 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 
 <br>**Format: `add -mc NAME d/YYYY-MM-DD t/HH:MM`**
 
+<br>:pencil2: Examples:
+* `add -mc John Doe d/2020-09-20 t/13:30`
+* `add -mc Mary Jane d/2021-01-02 t/09:15`
+
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/addMasteryCheck.png" width="115%" /> <br />
 Figure 6.3.2a: <i>Adding a Mastery Check</i>
 </div>
-
-<br>:pencil2: Examples:
-* `add -mc John Doe d/2020-09-20 t/13:30`
-* `add -mc Mary Jane d/2021-01-02 t/09:15`
 
 <div style="page-break-after: always;"></div>
 
@@ -574,13 +574,13 @@ Edits the score of a `Mastery Check` session with a `Student`.
 
 <br>**Format: `edit -mc INDEX s/SCORE`**
 
-![EditMasteryCheck](images/userguide/editMasteryCheck.png)
-
-<div style="page-break-after: always;"></div>
-
 <br>:pencil2: Examples:
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
+
+![EditMasteryCheck](images/userguide/editMasteryCheck.png)
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 * Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
@@ -600,10 +600,10 @@ Deletes a `Task` based on the `INDEX` you specify.
 
 <br>**Format: `delete -c INDEX`**
 
-![DeleteConsultation](images/userguide/deleteConsultation.png)
-
 <br>:pencil2: Examples:
 * `delete -c 3`
+
+![DeleteConsultation](images/userguide/deleteConsultation.png)
 
 <div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero number that is a valid index currently displayed along with the target
@@ -618,10 +618,10 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 
 <br>**Format: `delete -mc INDEX`**
 
-![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
-
 <br>:pencil2: Examples:
 * `delete -mc 3`
+
+![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
 
 <div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero number that is a valid index currently displayed along with the target
@@ -635,14 +635,14 @@ Deletes a [`Task`](#613-notes-about-tasks) based on the `TASK_ID` you specify.
 
 <br>**Format: `delete -t TASK_ID`**
 
+<br>:pencil2: Examples:
+* `delete -t T3`
+* `delete -t D2`
+
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/deleteTask.png" width="115%" /> <br />
 Figure 6.5.3a: <i>Deleting a Task</i>
 </div>
-
-<br>:pencil2: Examples:
-* `delete -t T3`
-* `delete -t D2`
 
 <div markdown="block" class="alert alert-info">
 * Note that TASK_ID, once given, is permanent and no other `Tasks` can receive that TASK_ID even after the deletion of the original one. 
@@ -687,15 +687,15 @@ Doe will be displayed.
 
 <br>**Format: `view -s NAME`**
 
+<br>:pencil2: Examples:
+* `view -s John Doe`
+
 <div style="page-break-after: always;"></div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/viewOneStudent.png" width="115%" /> <br />
 Figure 6.6.2a: <i>Viewing Students with a keyword</i>
 </div>
-
-<br>:pencil2: Examples:
-* `view -s John Doe`
 
 As shown in Figure 6.6.2a, once we key in the command `view -s Alex`, a success message will be displayed and Jarvis
 will auto switch to the `Student` tab, showing all `Students` from your classes which match the keyword "Alex". On the
