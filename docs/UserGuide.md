@@ -77,7 +77,7 @@ Note how the app contains some sample data. <br><br>
 ![Ui](images/Ui.png)
 <br> _Figure 1 - GUI of TrackIt@NUS_
 
-Before you start using the TrackIt@NUS, you can first get familiarised with the app's [Format and Usage](#about), as well as it's [Application Layout](#layout).
+Before you start using the TrackIt@NUS, you can first get familiarised with the app's [Format and Usage](#about), as well as its [Application Layout](#layout).
 Once you are ready to type your first command, you can type in the Command Box at the bottom of the screen and press `Enter` on your keyboard to execute it.
 Try typing `help` and pressing `Enter` to navigate to the Help Tab!<br>
  
@@ -165,13 +165,13 @@ The `Side panel` on the left section allows you to **easily navigate** between t
 The `Current Display` will show the display of the new `tab`.
 
 ### 4.1 Upcoming Tab <a name="upcomingtab"></a>
-Built with a **clean UI**, the `Upcoming tab` is what you will see when you first run TrackIt@NUS! You get to see an **overview** of all your **upcoming lessons** for the week, as well as the **list of tasks that are due soon**. With the `Upcoming tab`, you don't have to worry about missing any lessons or deadlines anymore!
+Built with a **clean UI**, the `Upcoming tab` is what you will see when you first run TrackIt@NUS! You will see an **overview** of all your **upcoming lessons** for the week, as well as the **list of tasks that are due soon**. With the `Upcoming tab`, you don't have to worry about missing any lessons or deadlines anymore!
 
 ![UpcomingPanelUi](images/UG/UpcomingPanel.png)
 _Figure 3 - Layout of Upcoming Tab_
 
 In the `Upcoming tab`, there are **three** main `sections` arranged in **chronological order**:
-1. The `Overdue section` is colored &#x1F534; to **warn** you about the **incomplete tasks** that are **past their deadline**. These tasks will remain there until you delete them, so remember to complete them as soon as possible!
+1. The `Overdue section` is colored red; to **warn** you about the **incomplete tasks** that are **past their deadline**. These tasks will remain there until you delete them, so remember to complete them as soon as possible!
 
 2. The next 7 `Daily sections` shows your daily **Lessons** and **Tasks** for the **next 7 days**. This is where you can start planning your schedule for the day.
 
@@ -179,7 +179,7 @@ In the `Upcoming tab`, there are **three** main `sections` arranged in **chronol
 
 
 ### 4.2 Module Tabs <a name="moduletabs"></a>
-Besides, the `Upcoming tab`, the `Module tab` is another **highlight** that you can look forward to! This is an **all-in-one page** with all the details that you will need when **studying for a specific module**. With this, you don't have to waste precious time toggling between your calendar, to-do list and contacts app anymore!
+Besides the `Upcoming tab`, the `Module tab` is another **highlight** that you can look forward to! This is an **all-in-one page** with all the details that you will need **for a specific module**. With this, you don't have to waste precious time toggling between your calendar, to-do list and contacts app anymore!
  
  ![ModuleTab](images/UG/ModulePanel.png)
  _Figure 4 - Layout of Module Tab_
