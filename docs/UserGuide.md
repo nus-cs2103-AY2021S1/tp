@@ -321,10 +321,10 @@ Marks the student as present for tutorial on a specified date.
 
 Format: `attend INDEX d/DATE`
 
-<div style="page-break-before: always"></div>
 **Expected Output**
 <img src="images/AddAttendance.png" class="diagram" />
 
+<div style="page-break-before: always"></div>
 *Running `attend 1 d/12/12/2000`*
 
 <img src="images/AddAttendance.png" class="diagram" />
@@ -333,9 +333,6 @@ Examples:
 
 - `attend 1 d/12/12/2000` Marks the student at index 1 as present on 12 December 2000.
 - `attend 2 d/12/01/2002` Marks the student at index 2 as present on 12 January 2002.
-  
-  *For: `attend 1 d/12/12/2000`*
-  <img src="images/AddAttendance.png" class="diagram" />
 
 ### Unmarking student's attendance : `unattend`
 
