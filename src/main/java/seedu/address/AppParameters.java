@@ -28,6 +28,8 @@ public class AppParameters {
 
     /**
      * Parses the application command-line parameters.
+     *
+     * @return App parameters wrapper after parsing given parameters
      */
     public static AppParameters parse(Application.Parameters parameters) {
         AppParameters appParameters = new AppParameters();

@@ -5,12 +5,12 @@ title: "Tutorial: Tracing code"
 
 > Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. …​\[Therefore,\] making it easy to read makes it easier to write.
 >
-> —  Robert C. Martin Clean Code: A Handbook of Agile Software Craftsmanship
+> — Robert C. Martin Clean Code: A Handbook of Agile Software Craftsmanship
 
 When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution path through the code base. One easy way to trace an execution path is to use a debugger to step through the code. In this tutorial, you will be using the IntelliJ IDEA’s debugger to trace the execution path of a specific user command.
 
-* Table of Contents
-{:toc}
+- Table of Contents
+  {:toc}
 
 ## Before we start
 
@@ -23,27 +23,28 @@ It also has a sequence diagram (reproduced below) that tells us how a command pr
 ![Architecture sequence diagram from the developer
 guide](../images/ArchitectureSequenceDiagram.png)
 
-Note how the diagram shows only how the execution flows *between* the main components. That is, it does not show details of the execution path *inside* each component. By hiding those details, the diagram succeeds in informing the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
+Note how the diagram shows only how the execution flows _between_ the main components. That is, it does not show details of the execution path _inside_ each component. By hiding those details, the diagram succeeds in informing the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
 
 Before we proceed, ensure that you have done the following:
-1. Read the [*Architecture* section of the DG](../DeveloperGuide.md#architecture)
+
+1. Read the [_Architecture_ section of the DG](../DeveloperGuide.md#architecture)
 1. Set up the project in Intellij IDEA
 1. Learn basic debugging features of Intellij IDEA
 
 ## Setting a break point
 
-As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in `seedu.address.ui.CommandBox.CommandExecutor`.
+As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various _event-driven mechanisms_ used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in `seedu.address.ui.CommandBox.CommandExecutor`.
 
-![Using the `Search for target by name` feature. `Navigate` \> `Symbol`.](../images/tracing/Execute.png)
+![Using the `Search for target by name` feature. `Navigate` > `Symbol`.](../images/tracing/Execute.png)
 
 A quick look at the class confirms that this is indeed close to what we’re looking for. However, it is just an `Interface`. Let’s delve further and find the implementation of the interface by using the `Find Usages` feature in IntelliJ IDEA.
 
-![`Find Usages` tool window. `Edit` \> `Find` \> `Find Usages`.](../images/tracing/FindUsages.png)
+![`Find Usages` tool window. `Edit` > `Find` > `Find Usages`.](../images/tracing/FindUsages.png)
 
 Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
 
 Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
- ![LeftGutter](../images/tracing/LeftGutter.png)
+![LeftGutter](../images/tracing/LeftGutter.png)
 
 ## Tracing the execution path
 
@@ -52,6 +53,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Over the course of the debugging session, you will encounter every major component in the application. Try to jot down what happens inside the component and where the execution transfers to another component.
+
 </div>
 
 1. To start the debugging session, simply `Run` \> `Debug Main`
@@ -67,13 +69,13 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. `CommandResult commandResult = logic.execute(commandText);` is the line that you end up at.
 
 1. We are interested in the `logic.execute(commandText)` portion of that line so let’s `Step in` into that method call:<br>
-    ![StepInto](../images/tracing/StepInto.png)
+   ![StepInto](../images/tracing/StepInto.png)
 
 1. We end up in `LogicManager#execute()`. Let’s take a look at the body of the method and annotate what we can deduce.
 
    **LogicManager\#execute().**
 
-   ``` java
+   ```java
    @Override
    public CommandResult execute(String commandText)
            throws CommandException, ParseException {
@@ -105,9 +107,9 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. `Step into` the line where user input in parsed from a String to a Command.
 
-    **`AddressBookParser\#parseCommand()`**
+   **`AddressBookParser\#parseCommand()`**
 
-   ``` java
+   ```java
    public Command parseCommand(String userInput) throws ParseException {
        ...
        final String commandWord = matcher.group("commandWord");
@@ -116,18 +118,18 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ```
 
 1. `Step over` until you reach the `switch` statement. The `Variables` window now shows the value of both `commandWord` and `arguments`:<br>
-    ![Variables](../images/tracing/Variables.png)
+   ![Variables](../images/tracing/Variables.png)
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
 1. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
 
-    ``` java
-    ...
-    case EditCommand.COMMAND_WORD:
-        return new EditCommandParser().parse(arguments);
-    ...
-    ```
+   ```java
+   ...
+   case EditCommand.COMMAND_WORD:
+       return new EditCommandParser().parse(arguments);
+   ...
+   ```
 
 1. Let’s see what `EditCommandParser#parse()` does by stepping into it.
 
@@ -141,14 +143,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
-    The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far matches with the diagram?<br>
-    ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
+   The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far matches with the diagram?<br>
+   ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
 
 1. Now let’s see what happens when we call `command#execute()`\!
 
    **`EditCommand\#execute()`:**
 
-   ``` java
+   ```java
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
@@ -166,13 +168,13 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. As suspected, `command#execute()` does indeed make changes to `model`.
 
 1. We can a closer look at how storage works by repeatedly stepping into the code until we arrive at
-    `JsonAddressBook#saveAddressBook()`.
+   `JsonAddressBook#saveAddressBook()`.
 
 1. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableAddressBook`'s constructor.
 
-    **`JsonSerializableAddressBook\#JsonSerializableAddressBook()`:**
+   **`JsonSerializableAddressBook\#JsonSerializableAddressBook()`:**
 
-   ``` java
+   ```java
    /**
     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
     *
@@ -194,23 +196,23 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping into `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`, we end up in:
 
-    **`ResultDisplay\#setFeedbackToUser()`**
+   **`ResultDisplay\#setFeedbackToUser()`**
 
-    ``` java
-    public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        resultDisplay.setText(feedbackToUser);
-    }
-    ```
+   ```java
+   public void setFeedbackToUser(String feedbackToUser) {
+       requireNonNull(feedbackToUser);
+       resultDisplay.setText(feedbackToUser);
+   }
+   ```
 
 1. Finally, we step through until we reach the end of
-    `MainWindow#executeCommand()`.
+   `MainWindow#executeCommand()`.
 
 ## Conclusion
 
 In this tutorial, we traced a valid edit command from raw user input to
 the result being displayed to the user. From this tutorial, you learned
-more about the inner workings of AddressBook and how the various
+more about the inner workings of TAsker and how the various
 components mesh together to form one cohesive product.
 
 Here are some quick questions you can try to answer based on your

@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
     id 'jacoco'
+    id "com.star-zero.gradle.githook" version "1.2.1"
 }
 
 mainClassName = 'seedu.address.Main'
@@ -18,6 +19,10 @@ repositories {
 
 checkstyle {
     toolVersion = '8.29'
+}
+
+run {
+    enableAssertions = true
 }
 
 test {
@@ -44,6 +49,8 @@ dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
+    compile 'org.apache.commons:commons-csv:1.8'
+
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
@@ -66,7 +73,17 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'tasker.jar'
+}
+
+githook {
+    failOnMissingHooksDir = true
+    createHooksDirIfNotExist = true
+    hooks {
+        "pre-push" {
+            task = "test clean checkstyleMain checkStyleTest"
+        }
+    }
 }
 
 defaultTasks 'clean', 'test'

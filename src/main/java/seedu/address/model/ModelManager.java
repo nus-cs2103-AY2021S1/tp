@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,26 +20,28 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Tasker tasker;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Consultation> filteredConsults;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given tasker and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook tasker, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(tasker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + tasker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.tasker = new Tasker(tasker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.tasker.getPersonList());
+        filteredConsults = new FilteredList<>(this.tasker.getConsultationList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Tasker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,32 +79,32 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TAsker ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyAddressBook tasker) {
+        this.tasker.resetData(tasker);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return tasker;
     }
-
+    //---------- Student-related operations -------------------------------------------------------------
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return tasker.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        tasker.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        tasker.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,9 +112,39 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        tasker.setPerson(target, editedPerson);
+    }
+    //---------- Consultation-related operations -------------------------------------------------------------
+
+    @Override
+    public boolean hasConsult(Consultation consultation) {
+        requireNonNull(consultation);
+        return tasker.hasConsultation(consultation);
     }
 
+    @Override
+    public boolean hasConflictingPersonalConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return tasker.hasConflictingPersonalConsultation(consultation);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        tasker.addConsultation(consultation);
+        updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);
+    }
+
+    @Override
+    public void deleteConsultation(Consultation target) {
+        tasker.removeConsultation(target);
+    }
+
+    @Override
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+
+        tasker.setConsult(target, editedConsultation);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -128,7 +161,22 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    //=========== Filtered Consult List Accessors =============================================================
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Consultation} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Consultation> getFilteredConsultList() {
+        return filteredConsults;
+    }
+
+    @Override
+    public void updateFilteredConsultList(Predicate<Consultation> predicate) {
+        requireNonNull(predicate);
+        filteredConsults.setPredicate(predicate);
+    }
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -143,9 +191,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return tasker.equals(other.tasker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredConsults.equals(other.filteredConsults);
     }
 
 }

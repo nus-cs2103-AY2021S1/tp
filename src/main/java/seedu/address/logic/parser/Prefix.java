@@ -7,7 +7,12 @@ package seedu.address.logic.parser;
 public class Prefix {
     private final String prefix;
 
+    /**
+     * Class constructor.
+     * @param prefix A short letter/phrase
+     */
     public Prefix(String prefix) {
+        assert prefix != null;
         this.prefix = prefix;
     }
 

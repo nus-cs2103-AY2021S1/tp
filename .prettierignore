@@ -1,0 +1,11 @@
+# Ignore all HTML/CSS files
+*.html
+*.css
+*.scss
+
+# Other stuff that doesn't need to be formatted by prettier
+build/
+data/
+config.json
+preferences.json
+package.json

@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "command: ShowAttendanceCommand" as ShowAttendanceCommand LOGIC_COLOR
+participant "l:ShowAttendanceCommand" as ShowAttendanceCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("showatt ")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("showatt")
+activate AddressBookParser
+
+create ShowAttendanceCommand
+AddressBookParser -> ShowAttendanceCommand
+activate ShowAttendanceCommand
+
+ShowAttendanceCommand --> AddressBookParser
+deactivate ShowAttendanceCommand
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> ShowAttendanceCommand : execute(model)
+activate ShowAttendanceCommand
+
+ShowAttendanceCommand -> Model
+activate Model
+Model -> Model : getFilteredPersonList(predicate)
+Model --> ShowAttendanceCommand
+deactivate Model
+
+create CommandResult
+ShowAttendanceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ShowAttendanceCommand
+deactivate CommandResult
+
+ShowAttendanceCommand --> LogicManager
+deactivate ShowAttendanceCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ShowAttendanceCommand -[hidden]-> LogicManager
+destroy ShowAttendanceCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml

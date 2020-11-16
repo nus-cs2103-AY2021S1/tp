@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+start
+
+:User presses UP or DOWN arrow key in command box;
+
+if () then ([UP arrow key])
+    if () then ([previous command exists])
+        :Set pointer to point
+        at previous command;
+        :Set command
+        box text to the
+        previous command;
+    else ([else])
+    endif
+else ([DOWN arrow key])
+    if () then ([next command exists])
+        :Set pointer to point
+        at next command;
+        :Set command
+        box text to the
+        previous command;
+    else ([else])
+    endif
+endif
+
+stop
+
+@enduml

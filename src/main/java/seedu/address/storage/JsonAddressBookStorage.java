@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TAsker data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
@@ -23,7 +23,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private Path filePath;
 
+    /**
+     * Class constructor
+     * @param filePath Path of file intialised
+     */
     public JsonAddressBookStorage(Path filePath) {
+        assert filePath != null;
         this.filePath = filePath;
     }
 
@@ -60,8 +65,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyAddressBook tasker) throws IOException {
+        saveAddressBook(tasker, filePath);
     }
 
     /**
@@ -69,12 +74,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveAddressBook(ReadOnlyAddressBook tasker, Path filePath) throws IOException {
+        requireNonNull(tasker);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(tasker), filePath);
     }
 
 }

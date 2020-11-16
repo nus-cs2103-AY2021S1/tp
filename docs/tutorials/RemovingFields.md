@@ -5,18 +5,18 @@ title: "Tutorial: Removing Fields"
 
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
 >
-> —  Antoine de Saint-Exupery
+> — Antoine de Saint-Exupery
 
-When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
+When working on TAsker, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
 
 In this tutorial, we’ll do exactly just that and remove the `address` field from `Person`.
 
-* Table of Contents
-{:toc}
+- Table of Contents
+  {:toc}
 
 ## Safely deleting `Address`
 
-Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify *most* usages. Let’s try to use it as much as we can.
+Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify _most_ usages. Let’s try to use it as much as we can.
 
 ### Assisted refactoring
 
@@ -62,7 +62,7 @@ A quick look at the `PersonCard` class and its `fxml` file quickly reveals why i
 
 **`PersonCard.java`**
 
-``` java
+```java
 ...
 @FXML
 private Label address;
@@ -71,7 +71,7 @@ private Label address;
 
 **`PersonCard.fxml`**
 
-``` xml
+```xml
 ...
 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
@@ -91,12 +91,14 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "address": "4th street"
+    }
+  ]
 }
 ```
 

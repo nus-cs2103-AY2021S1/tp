@@ -1,9 +1,25 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -23,9 +39,11 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to tokenize the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) throws ParseException {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
-        return extractArguments(argsString, positions);
+        ArgumentMultimap argumentMultimap = extractArguments(argsString, positions);
+        checkDuplicatePrefixes(argumentMultimap);
+        return argumentMultimap;
     }
 
     /**
@@ -145,4 +163,22 @@ public class ArgumentTokenizer {
         }
     }
 
+    /**
+     * Returns true if there are duplicate prefixes(except for tag) in the given {@code ArgumentMultimap}.
+     * We only check for duplicates in parameters that can only have a single value mapping
+     */
+    private static void checkDuplicatePrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
+        Stream<Prefix> prefixes = Stream.of(
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM,
+                PREFIX_MATRIC_NUMBER, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_TIME, PREFIX_TYPE
+        );
+
+        Optional<Prefix> duplicatePrefix = prefixes
+                .filter(prefix -> argumentMultimap.getAllValues(prefix).size() > 1)
+                .findFirst();
+
+        if (duplicatePrefix.isPresent()) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIXES, duplicatePrefix.get()));
+        }
+    }
 }

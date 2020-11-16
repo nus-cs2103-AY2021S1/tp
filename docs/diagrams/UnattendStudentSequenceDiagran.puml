@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UnattendCommandParser" as UnattendCommandParser LOGIC_COLOR
+participant ":UnattendCommand" as UnattendCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unattend 3 d/10/10/2020")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unattend")
+activate AddressBookParser
+
+create UnattendCommandParser
+AddressBookParser -> UnattendCommandParser
+activate UnattendCommandParser
+AddressBookParser <-- UnattendCommandParser
+deactivate UnattendCommandParser
+
+AddressBookParser --> UnattendCommandParser : parse(" 3 d/10/10/2020")
+activate UnattendCommandParser
+
+create UnattendCommand
+UnattendCommandParser -> UnattendCommand
+activate UnattendCommand
+UnattendCommandParser <-- UnattendCommand
+deactivate UnattendCommand
+
+AddressBookParser <-- UnattendCommandParser
+deactivate UnattendCommandParser
+LogicManager <-- AddressBookParser
+deactivate AddressBookParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnattendCommandParser -[hidden]-> LogicManager
+destroy UnattendCommandParser
+
+LogicManager -> UnattendCommand : execute(model)
+activate UnattendCommand
+
+UnattendCommand -> Model : getFilteredPersonList()
+activate Model
+UnattendCommand <-- Model
+deactivate Model
+
+UnattendCommand -> UnattendCommand : updateAttendanceForPerson(personToAttend, attendance)
+activate UnattendCommand
+UnattendCommand <-- UnattendCommand
+deactivate UnattendCommand
+
+UnattendCommand -> Model : setPerson(personToAttend, unattendedPerson)
+activate Model
+UnattendCommand <-- Model
+deactivate Model
+
+UnattendCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+UnattendCommand <-- Model
+deactivate Model
+
+create CommandResult
+UnattendCommand -> CommandResult
+activate CommandResult
+
+UnattendCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- UnattendCommand
+deactivate UnattendCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnattendCommand -[hidden]-> LogicManager
+destroy UnattendCommand
+@enduml

@@ -8,7 +8,7 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
+Class Tasker
 Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
@@ -32,15 +32,15 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Tasker .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Tasker
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+Tasker *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone

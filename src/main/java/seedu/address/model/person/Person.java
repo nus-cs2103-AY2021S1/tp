@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,23 +22,32 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Telegram telegram;
+    private final MatricNumber matricNumber;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final SortedSet<Attendance> attendances = new TreeSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name,
+                  Phone phone,
+                  Email email,
+                  Telegram telegram,
+                  MatricNumber matricNumber,
+                  Set<Tag> tags,
+                  SortedSet<Attendance> attendances) {
+        requireAllNonNull(name, phone, email, tags, attendances);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.telegram = telegram;
+        this.matricNumber = matricNumber;
         this.tags.addAll(tags);
+        this.attendances.addAll(attendances);
     }
-
     public Name getName() {
         return name;
     }
@@ -48,8 +60,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Telegram getTelegram() {
+        return telegram;
+    }
+
+    public MatricNumber getMatricNumber() {
+        return matricNumber;
     }
 
     /**
@@ -58,6 +74,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable attendance sorted set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public SortedSet<Attendance> getAttendances() {
+        return Collections.unmodifiableSortedSet(attendances);
     }
 
     /**
@@ -71,7 +95,10 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail())
+                || otherPerson.getMatricNumber().equals(getMatricNumber())
+                || otherPerson.getTelegram().equals(getTelegram()));
     }
 
     /**
@@ -92,14 +119,16 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTelegram().equals(getTelegram())
+                && otherPerson.getMatricNumber().equals(getMatricNumber())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getAttendances().equals(getAttendances());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, telegram, matricNumber, tags, attendances);
     }
 
     @Override
@@ -110,8 +139,10 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Telegram: ")
+                .append(getTelegram())
+                .append(" Matric Number: ")
+                .append(getMatricNumber())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

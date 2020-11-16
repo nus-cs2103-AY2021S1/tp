@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "command: ArchiveCommand" as ArchiveCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "addressBookStorage: AddressBookStorage" as AddressBookStorage STORAGE_COLOR_T2
+end box
+
+[-> LogicManager : execute("archive ")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("archive")
+activate AddressBookParser
+
+create ArchiveCommand
+AddressBookParser -> ArchiveCommand
+activate ArchiveCommand
+
+ArchiveCommand --> AddressBookParser
+deactivate ArchiveCommand
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> ArchiveCommand : execute(model)
+activate ArchiveCommand
+
+ArchiveCommand -> AddressBookStorage : new JsonAddressBookStorage(filePath)
+activate AddressBookStorage
+AddressBookStorage --> ArchiveCommand
+deactivate AddressBookStorage
+
+ArchiveCommand -> Model : getAddressBook()
+activate Model
+Model --> ArchiveCommand
+deactivate Model
+
+ArchiveCommand -> AddressBookStorage : saveAddressBook(addressBookToArchive, filePath)
+activate AddressBookStorage
+AddressBookStorage --> ArchiveCommand
+deactivate AddressBookStorage
+
+create CommandResult
+ArchiveCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> ArchiveCommand
+deactivate CommandResult
+
+ArchiveCommand --> LogicManager
+deactivate ArchiveCommand
+AddressBookStorage -[hidden]-> LogicManager
+destroy AddressBookStorage
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+ArchiveCommand -[hidden]-> LogicManager
+destroy ArchiveCommand
+@enduml
+

@@ -25,6 +25,7 @@ class JsonAdaptedTag {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTag(Tag source) {
+        assert source != null;
         tagName = source.tagName;
     }
 
