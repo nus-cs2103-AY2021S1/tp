@@ -69,11 +69,7 @@ public class StatisticTable extends UiPart<Stage> {
         this(new Stage());
         this.logic = logic;
         hasStats = true;
-        category.setCellValueFactory(new PropertyValueFactory<>("category"));
-        numberOfExpense.setCellValueFactory(new PropertyValueFactory<>("numberOfExpense"));
-        percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
-        totalSpending.setCellValueFactory(new PropertyValueFactory<>("totalSpending"));
-        constructTable();
+        //constructTable();
     }
 
     /**
@@ -87,6 +83,11 @@ public class StatisticTable extends UiPart<Stage> {
      * Constructs the exchange rate table.
      */
     public void constructTable() {
+        category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        numberOfExpense.setCellValueFactory(new PropertyValueFactory<>("numberOfExpense"));
+        percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
+        totalSpending.setCellValueFactory(new PropertyValueFactory<>("totalSpending"));
+
         if (hasStats) {
             ObservableList<StatisticSummary> list = FXCollections.observableArrayList();
             List<StatisticSummary> statisticSummaryList = logic.getExpenseBook().getStatisticTable();
