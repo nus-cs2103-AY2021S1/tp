@@ -39,6 +39,8 @@ public class ArgumentMultimap {
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
+    //@@author Avalionnet-reused
+    //Reused from https://github.com/AY2021S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/parser/ArgumentMultimap.java with minor modifications
     /**
      * Checks if there is only one prefix in values {@code prefix}.
      */
