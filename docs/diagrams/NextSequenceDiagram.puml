@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR
+participant ":NextCommand" as NextCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+
+end box
+activate ModelManager
+
+[-> LogicManager : execute("next")
+activate LogicManager
+
+LogicManager -> GlossaryParser : parseCommand("next")
+activate GlossaryParser
+
+GlossaryParser -> GlossaryParser : parseCommand("next")
+
+create NextCommand
+GlossaryParser -> NextCommand
+activate NextCommand
+
+GlossaryParser --> LogicManager
+deactivate GlossaryParser
+
+NextCommand -> ModelManager : getFilteredFlashCardList()
+ModelManager --> NextCommand
+NextCommand -> ModelManager : execute()
+
+
+RandomQuizCommand -> Model : setRandomQuizMode(true)
+activate Model
+
+Model --> RandomQuizCommand
+deactivate Model
+
+create Glossary
+RandomQuizCommand -> Glossary
+activate Glossary
+
+Glossary --> RandomQuizCommand
+deactivate Glossary
+
+RandomQuizCommand -> Model : replaceGlossary()
+activate Model
+
+Model --> RandomQuizCommand
+deactivate Model
+
+RandomQuizCommand -> Model : setQuizMode(true)
+activate Model
+
+Model --> RandomQuizCommand
+deactivate Model
+
+RandomQuizCommand -> Model : updateFilteredPhraseList()
+activate Model
+
+Model --> RandomQuizCommand
+deactivate Model
+
+create CommandResult
+RandomQuizCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RandomQuizCommand
+deactivate CommandResult
+
+RandomQuizCommand --> LogicManager : result
+deactivate RandomQuizCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

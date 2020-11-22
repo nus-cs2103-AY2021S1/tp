@@ -1,0 +1,13 @@
+{
+  "flashcards": [ {
+    "germanPhrase": "Valid Person",
+    "englishPhrase": "englishphrase",
+    "difficultyTag" : "MEDIUM",
+    "order" : "1"
+  }, {
+    "germanPhrase": "Person With Invalid English phrase Field",
+    "englishPhrase": "948@@@@2424",
+    "difficultyTag" : "MEDIUM",
+    "order" : "2"
+  } ]
+}

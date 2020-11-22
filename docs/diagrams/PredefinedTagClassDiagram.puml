@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowColor MODEL_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR_T2
+
+class Comparable <<interface>>
+
+class "{abstract}\nPredefinedTag" as PredefinedTag
+
+class GenderTag {
+    {static} +MESSAGE_CONSTRAINTS
+    {static} +MASCULINE_GENDER_TAG
+    {static} +FEMININE_GENDER_TAG
+    {static} +NEUTRAL_GENDER_TAG
+    {static} +NONE_GENDER_TAG
+
+    +isValidGenderTag(String) : boolean
+}
+
+class DifficultyTag {
+    {static} +MESSAGE_CONSTRAINTS
+    {static} +EASY_TAG
+    {static} +MEDIUM_TAG
+    {static} +HARD_TAG
+    +isValidDifficultyTag(String) : boolean
+}
+
+class FlashCard
+
+FlashCard *--> "1" DifficultyTag : > contains
+FlashCard *--> "1" GenderTag : > contains
+Comparable <|.. DifficultyTag
+DifficultyTag --|> PredefinedTag
+GenderTag --|> PredefinedTag
+
+
+
+
+@enduml

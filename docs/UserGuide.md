@@ -1,178 +1,395 @@
 ---
 layout: page
-title: User Guide
+title: User Guide 
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
+and German 2 (LAG2201) in NUS to practise and test their vocabulary. This app is optimised
+for use via a Command Line Interface (CLI). If you can type fast, ForgetfulNUS 
+can get your German revision done quickly and effectively.
 
-* Table of Contents
-{:toc}
+## Table of Contents
+
+1. [Quick Start](#qs) (Jiyu)
+1. [Commonly used Commands](#cucmds) (Jiyu)
+1. [Features](#features) (Jiyu)
+    1. [Modify the Glossary](#modifying)
+        1. [Add a Flashcard](#add) : `add` (Jiyu)
+        1. [Edit a Flashcard](#edit) : `edit` (Kenny)
+        1. [Delete a Flashcard](#delete) : `delete` (Kenny)
+        1. [Clear All Flashcards](#clear) : `clear` (Kenny)
+    1. [Quiz Yourself](#test)
+        1. [Normal Quiz](#quiz) : `quiz` (Zhizhi)
+        1. [Try an Answer](#try) : `try` (Zhizhi)
+        1. [Skip to Next](#next) : `next` (Zhizhi)
+        1. [End Quiz](#end) : `end` (Zhizhi)
+        1. [Random Quiz](#random) : `random` (Kenny)
+        1. [View Past Scores](#scores) `scores` (Harshini)
+        1. [Reset Scores](#reset_scores) `reset scores` (Harshini)
+    1. [Navigate the Glossary](#navigating)
+        1. [Find a Flashcard](#find) `find` (Harshini)
+        1. [List All Flashcards](#list) `list` (Harshini)
+        1. [Sort All Flashcards](#sort) `sort` (Joe)
+    1. [Miscellaneous Commands](#misc)
+        1. [Help](#help) `help` (Joe)
+        1. [Exit](#exit) `exit` (Joe)
+1. [FAQ](#faq) (Joe)
+1. [Command Summary](#cmdsum) (Everyone)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## <a name="qs"></a>1. Quick Start (Jiyu)
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `ForgetfulNUS.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ForgetfulNUS.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. When it first starts up, ForgetfulNUS should look similar to the figure below. ForgetfulNUS contains some pre-loaded
+ sample data for you to get started.<br><br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+<div style="page-break-after: always;"></div>
+  
+## <a name="cucmds"></a>2. Commonly Used Commands (Jiyu)
+  
+   Here are some example commands you can try:
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German phrase `Vergesslichkeit` with English phrase `Forgetfulness` to the glossary.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`quiz`** : Starts a round of vocabulary testing with all existing flashcards in the glossary.
+   
+   * **`try`**`start` : Attempt "start" as the the answer to a German Phrase while quizzing. 
 
-   * **`clear`** : Deletes all contacts.
+   * **`end`** : Ends a round of vocabulary testing.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for a full list of commands 
+with additional details.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+<div style="page-break-after: always;"></div>
+
+## <a name="features"></a>3. Features (Jiyu)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPERCASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE>`, `GERMAN PHRASE` and `ENGLISH PHRASE` are parameters which can be used as `add g/Vergesslichkeit e/Forgetfulness`.
+  
+* Items with `...` after them can be used zero or more times including zero times.
+  e.g. `g/<GERMAN PHRASE> [t/<TAG>]...` can be used as, t/objects, t/objects t/nouns etc.
+  
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Items in square brackets,`[]`, are optional.
+  e.g `g/<GERMAN PHRASE> [t/<TAG>]` can be used as g/Vergesslichkeit t/tutorialOne or as g/Vergesslichkeit.
+  
+* For add and delete commands, only one of each type of prefixes (e.g. `g/<GERMAN PHRASE>`) are allowed, except for `t/<TAG>`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+* Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
 
-### Viewing help : `help`
+<div style="page-break-after: always;"></div>
 
-Shows a message explaning how to access the help page.
+### <a name="modifying"></a>3.1. Modify the Glossary
+#### <a name="add"></a>3.1.1. Add a Flashcard: `add` (Jiyu)
 
-![help message](images/helpMessage.png)
+Adds a flashcard to the glossary. You can use this to expand your glossary.
 
-Format: `help`
+Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...}`
 
+<div markdown="block" class="alert alert-info">
 
-### Adding a person: `add`
+**:information_source: Notes about add command:**<br>
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+* Difficulty has only three states, EASY, MEDIUM and HARD.
+  If left blank, by default it will be MEDIUM.
+  
+* Gender has only four states, M (Masculine), F (Feminine), NEUTRAL or NONE.
+  If left blank, by default it will be NONE.
+  
+* Tags that are **not** predefined should be alphanumeric and not contain spaces.
+  
 </div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example:
+* `add g/Vergesslichkeit e/forgetfulness d/hard s/f t/extra` adds a new flashcard with German phrase "Vergesslichkeit", 
+English phrase "forgetfulness", difficulty "HARD", gender "F" and tag "extra".
 
-### Listing all persons : `list`
+After entering this command, your app should look like this:
 
-Shows a list of all persons in the address book.
+![add-screenshot](images/add-screenshot.png)
 
-Format: `list`
+#### <a name="edit"></a>3.1.2. Edit a Flashcard: `edit` (Kenny)
 
-### Editing a person : `edit`
+Edits a flashcard in the glossary at the specified `INDEX`. You can use this to modify any of the flashcard's fields. For example, if a certain phrase has gotten easier for you to remember over time, you can change its difficulty. You can also correct the typing errors you made when adding the flashcard.
 
-Edits an existing person in the address book.
+Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the flashcard will be removed.
+* You can remove all the flashcard’s tags by typing `t/` without
     specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Example:
+* `edit 2 d/easy t/chapter3` edits the second flashcard in the glossary to have the `Difficulty` EASY and the `Tag` "chapter3".
 
-### Locating persons by name: `find`
+After entering this command, your app should look like this:
 
-Finds persons whose names contain any of the given keywords.
+![edit-screenshot](images/edit-screenshot.png)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+<div style="page-break-after: always;"></div>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+#### <a name="delete"></a>3.1.3. Delete a Flashcard : `delete` (Kenny)
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Deletes the specified flashcard from the glossary permanently. You can use this command to delete flashcards you consider outdated or not relevant to your learning. 
 
-### Deleting a person : `delete`
+Format: `delete <INDEX>`
 
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed glossary.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example:
+* `delete 2` deletes the second flashcard in the glossary.
+ 
+After entering this command, your app should look like this:
 
-### Clearing all entries : `clear`
+![delete-screenshot](images/delete-screenshot.png)
 
-Clears all entries from the address book.
+#### <a name="clear"></a>3.1.4. Clear all Flashcards : `clear` (Kenny)
+
+Deletes all flashcards from the glossary permanently. This can be useful if you want to remove all default flashcards and start from scratch.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+After entering this command, your app should look like this:
 
-Exits the program.
+![clear-screenshot](images/clear-screenshot.png)
+
+### <a name="test"></a>3.2. Quiz Yourself
+#### <a name="quiz"></a>3.2.1. Normal Quiz : `quiz` (Zhizhi)
+
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. The English translations for every flashcard will be hidden. You can use this command to test if you remember the English translation corresponding to the German phrase on the flashcards. You can start a quiz on any list that is displayed in the app i.e. lists that are the results of `find` or `sort`
+commands.
+
+Format: `quiz`
+
+After entering this command, your app should look like this:
+
+![quiz-screenshot](images/quiz-screenshot.png)
+
+#### <a name="try"></a>3.2.2. Try an Answer: `try` (Zhizhi)
+Compares your attempt with the English translation of the current flashcard. You can use this command when the app asks you to enter the English translation of a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, you will be prompted to try again or skip this card.
+
+Format: `try <ATTEMPT>`
+
+Example: `try start` will compare "start" with the English translation of the current phrase you are being tested on.
+
+After entering this command, your app should look like this:
+
+![try-screenshot](images/try-screenshot.png)
+
+#### <a name="next"></a>3.2.3. Skip to Next : `next` (Zhizhi)
+Skips the current flashcard and move on to the next card in quiz mode. You can use this command if you cannot get the correct answer but wish to continue with the quiz. The current flashcard will be considered incorrectly answered.
+
+Format: `next`
+
+After entering this command, your app should look like this:
+
+![next-screenshot](images/next-screenshot.png)
+
+<div style="page-break-after: always;"></div>
+
+#### <a name="end"></a>3.2.4. End Quiz : `end` (Zhizhi)
+
+Ends the round of vocabulary testing. You can use this anytime during the quiz and the quiz score will be the number of correct attempts up to that point.
+
+Format: `end`
+
+After entering this command, your app should look like this:
+
+![end-screenshot](images/end-screenshot.png)
+
+#### <a name="random"></a>3.2.5. Random Quiz : `random` (Kenny)
+
+Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want a quick, randomised quiz where you can decide the number of questions.
+
+Format: `random <NUMBER>`
+
+* `<NUMBER>` must be a positive integer and not more than the number of flashcards currently in the glossary.
+
+Example: 
+* `random 4` starts a randomised quiz with 4 randomly selected flashcards.
+    
+After entering this command, your app should look like this:
+    
+![random-screenshot](images/random-screenshot.png)
+
+Note that the screenshot might not look exactly the same on your end as flashcards are randomised.
+
+#### <a name="scores"></a>3.2.6. View Past Scores : `scores` (Harshini)
+
+Displays a history of scores from past quizzes. Along with each score, the 
+German phrases tested in the corresponding round are also listed. This way, you can
+identify groups of German phrases you struggle with, and track your progress.
+
+Format: `scores`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about saving scores:**<br>
+
+* For each unique list of flashcards, only the most recent score is saved. If you decide to test
+yourself on the same list again, your previous score will be overwritten.
+* Scores are automatically saved after a quizzing round ends, and no further action on your part is needed.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about viewing scores:**<br>
+* For easy reference, scores are listed starting from the most recently added score.
+  In the case of re-testing yourself on the same list, the score is considered to be overwritten and not
+  added, so the original score list position is retained. 
+</div>
+
+
+After entering this command, your app should look like this:
+
+![scores-screenshot](images/scores-screenshot.png)
+
+#### <a name="reset_scores"></a>3.2.7. Reset Scores : `reset scores` (Harshini)
+
+You can use this command if you want to clear the records of previous quiz attempts.
+
+Format: `reset scores`
+
+After entering this command, your app should look like this:
+
+![reset-screenshot](images/reset-screenshot.png)
+
+<div style="page-break-after: always;"></div>
+
+### <a name="navigating"></a>3.3. Navigate the Glossary
+
+These commands allow you to manipulate the glossary so you can find certain phrases more easily.
+
+#### <a name="find"></a>3.3.1. Find a Flashcard : `find` (Harshini)
+
+Finds certain flashcard(s) according to the **German phrase** entered. You can enter more German phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**. To view the full Glossary again, see [List all Flashcards](#list) below.
+
+Format: `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...`
+
+Examples:
+* `find lernen buchstabieren` finds the flashcards with the German Phrases 'lernen' and 'buchstabieren'.
+    
+After entering this command, your app should look like this:
+
+![find-screenshot](images/find-screenshot.png)
+
+#### <a name="list"></a>3.3.2. List All Flashcards : `list` (Harshini)
+
+Displays all flashcards in the glossary. You can use this command to return to the full glossary after a find operation.
+
+Format: `list`
+
+After entering this command, your app should look like this:
+
+![list-screenshot](images/list-screenshot.png)
+
+#### <a name="sort"></a>3.3.3. Sort All Flashcards : `sort` (Joe)
+
+Sorts the all flashcards according to the way you choose. You may find this helpful for browsing the flashcards or 
+changing the order for quizzing.
+
+Format: `sort <PARAMETER>`
+
+* `<PARAMETER>` refers to how you want to sort the flashcards by.
+* Possible parameters:
+    1. `german`: sorts by the alphabetical order of German phrases.
+    1. `english`: sorts by the alphabetical order of English phrases.
+    1. `reversegerman`: sorts by the reverse alphabetical order of German phrases.
+    1. `reverseenglish`: sorts by the reverse alphabetical order of English phrases.
+    1. `easytohard`: sorts by difficulty of flashcards, from easy to hard.
+    1. `hardtoeasy`: sorts by difficulty of flashcards, from hard to easy.
+    1. `earliest`: sorts by chronological order, from the earliest flashcard added to the latest. This is also the initial sort order.
+    1. `latest`: sorts by chronological order, from the latest flashcard added to the earliest.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about adding a flashcard:**<br>
+
+* Upon adding a new flashcard, it will automatically be added to the bottom
+  of the glossary regardless of the current sorted order. You will have to sort 
+  the glossary again to update the position of the new flashcard. 
+  
+</div>
+
+Examples:
+* `sort hardtoeasy` sorts the flashcards by their respective difficulty tags from HARD to EASY.
+
+After entering this command, your app should look like this:
+
+![sort-screenshot](images/sort-screenshot.png)
+
+### <a name="misc"></a>3.4. Miscellaneous Commands
+#### <a name="help"></a>3.4.1. Help : `help` (Joe)
+
+Opens a small window containing a link to this User Guide. You can use this command to quickly access the User Guide, such as when you need to refer to the command formats or how to run the app. **This requires an Internet connection.**
+
+Format: `help`
+
+#### <a name="exit"></a>3.4.2 Exit the program : `exit` (Joe)
+
+Saves and exits the program. If this command is used during a quizzing round, the score
+up to that point will be saved.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## <a name="faq"></a>4. FAQ (Joe)
+
+**Q**: Do I need to save my data manually?<br>
+**A**: ForgetfulNUS glossary and scores data is automatically saved in the hard disk upon exiting. There is no need to save manually.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**:
+1. Install the app in your other computer.
+1. Locate the `data` folder in your previous ForgetfulNUS home folder, and find the `glossary.JSON` and `scores.JSON` files inside.
+1. Transfer the `glossary.JSON` and `scores.JSON` files to your new computer
+1. Place the `glossary.JSON` and `scores.JSON` files in the `data` folder of the ForgetfulNUS home folder 
+in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
-## Command summary
+## <a name="cmdsum"></a>5. Command Summary (Everyone)
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add a Flashcard** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAGS>...]` <br> e.g. `add g/Vergesslichkeit e/forgetfulness d/hard`
+**Edit a Flashcard** | `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...` <br> e.g. `edit 2 d/easy t/chapter3`
+**Delete a Flashcard** | `delete INDEX` <br> e.g. `delete 3`
+**Clear All Flashcards** | `clear`
+**Start Normal Quiz** | `quiz`
+**Try an Answer** | `try <ATTEMPT>` <br> e.g. `try Tuesday`
+**Skip to Next** | `next`
+**End Quiz** | `end`
+**Start Random Quiz** | `random <NUMBER>` <br> e.g. `random 5`
+**View Past Scores** | `scores`
+**Reset Scores** | `reset scores`
+**Find a Flashcard** | `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...` <br> e.g. `find Vergesslichkeit`
+**List All Flashcards** | `list`
+**Sort All Flashcards** | `sort <PARAMETER>` <br> e.g. `sort english`
 **Help** | `help`
+**Exit** | `exit`

@@ -1,0 +1,158 @@
+{
+  "_comment": "Glossary save file which contains the same FlashCard values as in TypicalFlashCards#getTypicalGlossary()",
+  "flashcards" : [ {
+    "germanPhrase" : "Start",
+    "englishPhrase" : "start",
+    "difficultyTag" : "EASY",
+    "genderTag" : "M",
+    "tagged" : [ "chapter1" ],
+    "order" : "1"
+  }, {
+    "germanPhrase" : "auf",
+    "englishPhrase" : "in",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "2"
+  }, {
+    "germanPhrase" : "Deutsch",
+    "englishPhrase" : "German",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NEUTRAL",
+    "tagged" : [ "chapter1" ],
+    "order" : "3"
+  }, {
+    "germanPhrase" : "hier",
+    "englishPhrase" : "here",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "4"
+  }, {
+    "germanPhrase" : "lernen",
+    "englishPhrase" : "learn",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "5"
+  }, {
+    "germanPhrase" : "Sie",
+    "englishPhrase" : "you",
+    "difficultyTag" : "HARD",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "6"
+  }, {
+    "germanPhrase" : "international",
+    "englishPhrase" : "international",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "7"
+  }, {
+    "germanPhrase" : "Wort",
+    "englishPhrase" : "word",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NEUTRAL",
+    "tagged" : [ "chapter1" ],
+    "order" : "8"
+  }, {
+    "germanPhrase" : "verstehen",
+    "englishPhrase" : "understand",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "9"
+  }, {
+    "germanPhrase" : "jemand",
+    "englishPhrase" : "somebody",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "10"
+  }, {
+    "germanPhrase" : "begrüßen",
+    "englishPhrase" : "greet",
+    "difficultyTag" : "HARD",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "11"
+  }, {
+    "germanPhrase" : "sich",
+    "englishPhrase" : "oneself",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "12"
+  }, {
+    "germanPhrase" : "und",
+    "englishPhrase" : "and",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "13"
+  }, {
+    "germanPhrase" : "andere",
+    "englishPhrase" : "another",
+    "difficultyTag" : "HARD",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "14"
+  }, {
+    "germanPhrase" : "vorstellen",
+    "englishPhrase" : "introduce",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "15"
+  }, {
+    "germanPhrase" : "nach",
+    "englishPhrase" : "about",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "16"
+  }, {
+    "germanPhrase" : "Name",
+    "englishPhrase" : "name",
+    "difficultyTag" : "EASY",
+    "genderTag" : "M",
+    "tagged" : [ "chapter1" ],
+    "order" : "17"
+  }, {
+    "germanPhrase" : "Herkunft",
+    "englishPhrase" : "origin",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "F",
+    "tagged" : [ "chapter1" ],
+    "order" : "18"
+  }, {
+    "germanPhrase" : "fragen",
+    "englishPhrase" : "ask",
+    "difficultyTag" : "EASY",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "19"
+  }, {
+    "germanPhrase" : "Vorname",
+    "englishPhrase" : "firstname",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "M",
+    "tagged" : [ "chapter1" ],
+    "order" : "20"
+  }, {
+    "germanPhrase" : "Nachname",
+    "englishPhrase" : "lastname",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "M",
+    "tagged" : [ "chapter1" ],
+    "order" : "21"
+  }, {
+    "germanPhrase" : "buchstabieren",
+    "englishPhrase" : "spell",
+    "difficultyTag" : "HARD",
+    "genderTag" : "NONE",
+    "tagged" : [ "chapter1" ],
+    "order" : "22"
+  } ]
+}

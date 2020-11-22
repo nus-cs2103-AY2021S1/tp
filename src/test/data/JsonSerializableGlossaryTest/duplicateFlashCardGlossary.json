@@ -1,0 +1,17 @@
+{
+  "flashcards": [ {
+    "germanPhrase": "Montag",
+    "englishPhrase": "Monday",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "M",
+    "tagged": [ "friends" ],
+    "order" : "1"
+  }, {
+    "germanPhrase": "Montag",
+    "englishPhrase": "Monday",
+    "difficultyTag" : "MEDIUM",
+    "genderTag" : "M",
+    "tagged": [ "friends" ],
+    "order" : "2"
+  } ]
+}

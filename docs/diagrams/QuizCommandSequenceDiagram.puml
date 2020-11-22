@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR
+participant "QuizCommand" as QuizCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("quiz")
+activate LogicManager
+
+LogicManager -> GlossaryParser : parseCommand("quiz")
+activate GlossaryParser
+
+GlossaryParser -> GlossaryParser : parseCommand("quiz")
+
+create QuizCommand
+GlossaryParser -> QuizCommand
+activate QuizCommand
+
+QuizCommand --> GlossaryParser
+deactivate QuizCommand
+
+GlossaryParser --> LogicManager
+deactivate GlossaryParser
+
+LogicManager -> QuizCommand : executeWithChecks()
+activate QuizCommand
+
+QuizCommand -> Model : resetQuiz()
+activate Model
+
+Model --> QuizCommand
+deactivate Model
+
+QuizCommand -> Model : setQuizMode(true)
+activate Model
+
+Model --> QuizCommand
+deactivate Model
+
+QuizCommand -> Model : updateFilteredPhraseList()
+activate Model
+
+Model --> QuizCommand
+deactivate Model
+
+create CommandResult
+
+QuizCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> QuizCommand
+deactivate CommandResult
+
+QuizCommand --> LogicManager
+deactivate QuizCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

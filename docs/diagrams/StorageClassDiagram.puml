@@ -6,19 +6,29 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface "ObjectStorage<ReadOnlyGlossary>" <<Interface>>
+Interface "ObjectStorage<ReadOnlyScoreList>" <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonGlossaryStorage
+Class JsonScoreStorage
+Class JsonScoreList
+Class JsonAdaptedScore
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o-down-> "ObjectStorage<ReadOnlyGlossary>"
+StorageManager o-up-> "ObjectStorage<ReadOnlyScoreList>"
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonGlossaryStorage .left.|> "ObjectStorage<ReadOnlyGlossary>"
+JsonGlossaryStorage .down.> JsonSerializableGlossaryStorage
+JsonSerializableGlossaryStorage .right.> JsonAdaptedFlashcard
+JsonAdaptedFlashcard .right.> JsonAdaptedTag
+
+JsonScoreStorage .left.|> "ObjectStorage<ReadOnlyScoreList>"
+JsonScoreStorage .right.> JsonScoreList
+JsonScoreList .down.> JsonAdaptedScore
+JsonAdaptedScore .down.> JsonAdaptedFlashcard
 @enduml

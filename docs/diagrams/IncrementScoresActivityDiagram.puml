@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+start
+:Quiz mode starts;
+repeat
+    :Get flashcard from model;
+    repeat
+        :User attempts an answer;
+    repeat while () is ([answer is wrong])
+    -> [answer is correct or user skips];
+    :Increment score;
+    :Add flashcard to score;
+repeat while ()
+-> [Quiz is ended by system or user];
+:Save score to score list;
+stop
+@enduml

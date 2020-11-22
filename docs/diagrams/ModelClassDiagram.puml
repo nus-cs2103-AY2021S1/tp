@@ -5,23 +5,30 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyGlossary <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Glossary
+Class ScoreList
+Class ReadOnlyGlossary
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package FlashCard {
+Class FlashCard
+Class Order
+Class Difficulty
+Class Gender
+Class GermanPhrase
+Class EnglishPhrase
+Class UniqueFlashCardList
+}
+
+Package Score {
+Class Score
+Class UniqueScoreList
 }
 
 Package Tag {
@@ -32,25 +39,31 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Glossary .up.|> ReadOnlyGlossary
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Glossary
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Glossary *--> "1" UniqueFlashCardList
+UniqueFlashCardList o--> "*" FlashCard
+FlashCard *--> GermanPhrase
+FlashCard *--> EnglishPhrase
+FlashCard *--> Difficulty
+FlashCard *--> Gender
+FlashCard *--> Order
+FlashCard *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModelManager o--> "1" ScoreList
+ScoreList *-up-> "*" UniqueScoreList
+UniqueScoreList o-left-> "*" Score
+Score *--> "1..*" FlashCard
 
-ModelManager -->"1" Person : filtered list
+GermanPhrase -[hidden]right-> EnglishPhrase
+EnglishPhrase -[hidden]right-> Difficulty
+Difficulty -[hidden]right-> Gender
+
+ModelManager -->"1" FlashCard : filtered list
 @enduml

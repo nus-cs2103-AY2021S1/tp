@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "scmd:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort english")
+activate LogicManager
+
+LogicManager -> GlossaryParser : parseCommand("sort english")
+activate GlossaryParser
+
+create SortCommandParser
+GlossaryParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> GlossaryParser
+deactivate SortCommandParser
+
+GlossaryParser -> SortCommandParser : parse("english")
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser : scmd
+deactivate SortCommand
+
+SortCommandParser --> GlossaryParser : scmd
+deactivate SortCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortCommandParser -[hidden]-> GlossaryParser
+destroy SortCommandParser
+
+GlossaryParser --> LogicManager : scmd
+deactivate GlossaryParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> SortCommand : getSortedGlossary()
+activate SortCommand
+
+SortCommand --> SortCommand : sortedGlossary
+deactivate SortCommand
+
+SortCommand -> Model : setGlossary(sortedGlossary)
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+SortCommand --> LogicManager : result
+deactivate SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

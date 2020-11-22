@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+start
+:User inputs "quiz";
+:Start a new quiz with flashcards;
+if () then ([at least 1 flashcard])
+'    :Get flashcard from model with flashcard index;
+    'Since the beta syntax does not support placing the condition outside the
+    'diamond we place it as the true branch instead.
+    repeat
+        repeat
+        : Test flashcard;
+        repeat while () is ([incorrect answer])
+        -> [correct answer];
+        : Move on to next flashcard;
+    repeat while () is ([flashcard is not null])
+else ([else])
+endif
+stop
+@enduml
