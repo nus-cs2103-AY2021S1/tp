@@ -5,52 +5,50 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyExpenseBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ExpenseBook
+Class ReadOnlyExpenseBook
 Class Model
-Class ModelManager
+Class ExpenseModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
-}
-
-Package Tag {
-Class Tag
-}
+Package Expense {
+Class Expense
+Class Amount
+Class Category
+Class Date
+Class Description
+Class ExpenseList
+Class Budget
+Class Currency
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ExpenseBook .up.|> ReadOnlyExpenseBook
 
-ModelManager .up.|> Model
+ExpenseModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ExpenseModelManager o--> "1" ExpenseBook
+ExpenseModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ExpenseBook *--> "1" ExpenseList
+ExpenseBook *--> "1" Budget
+ExpenseBook *--> "1" Currency
+ExpenseList o--> "*" Expense
+Expense *--> Amount
+Expense *--> Date
+Expense *--> Category
+Expense *--> Description
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Amount -[hidden]right-> Category
+Category -[hidden]right-> Date
+Date -[hidden]right-> Description
 
-ModelManager -->"1" Person : filtered list
+ExpenseModelManager -->"1" Expense : manage
 @enduml

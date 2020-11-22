@@ -1,0 +1,23 @@
+{
+  "expenses" : [ {
+    "amount" : "60.00",
+    "currency" : "SGD",
+    "date" : "2020-10-28",
+    "category" : "clothes",
+    "description" : "bought a jacket at Zara"
+  }, {
+    "amount" : "9.00",
+    "currency" : "SGD",
+    "date" : "2020-10-29",
+    "category" : "snacks",
+    "description" : "bought chocolate"
+  }, {
+    "amount" : "80.00",
+    "currency" : "SGD",
+    "date" : "2020-10-29",
+    "category" : "digital devices",
+    "description" : "bought logitech keyboard"
+  } ],
+  "budget" : 0.0,
+  "dollarSign" : "SGD"
+}

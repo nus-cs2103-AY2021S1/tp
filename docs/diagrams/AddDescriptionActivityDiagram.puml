@@ -1,0 +1,28 @@
+@startuml
+start
+:User executes an AddDescription command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Instantiate an AddDescriptionCommand;
+    :Execute AddDescriptionCommand;
+    if () then ([the given description is valid])
+        if () then ([the given index is valid])
+            :Create a new Description and add it to the expense at the given index;
+            :Update UI with the current expense and corresponding expense list;
+        else ([else])
+            :throw an exception;
+            :update UI to notify user;
+        endif
+    else ([else])
+        :throw an exception;
+        :update UI to notify user;
+    endif
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

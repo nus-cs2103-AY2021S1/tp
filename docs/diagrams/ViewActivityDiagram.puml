@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes a View Command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command word is a valid ViewCommand command word])
+    :Instantiate an ViewCommand;
+    :Execute ViewCommand;
+    if () then ([the input index is valid])
+        :Create a new Index;
+        :Get the expense at the position of the input index;
+        :Update UI with the selected expense;
+    else ([else])
+        :throw an exception;
+        :update UI to notify user;
+    endif
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

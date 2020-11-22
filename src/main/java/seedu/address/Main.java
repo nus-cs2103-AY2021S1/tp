@@ -8,7 +8,7 @@ import javafx.application.Application;
  * This is a workaround for the following error when MainApp is made the
  * entry point of the application:
  *
- *     Error: JavaFX runtime components are missing, and are required to run this application
+ * Error: JavaFX runtime components are missing, and are required to run this application
  *
  * The reason is that MainApp extends Application. In that case, the
  * LauncherHelper will check for the javafx.graphics module to be present
@@ -20,6 +20,6 @@ import javafx.application.Application;
  */
 public class Main {
     public static void main(String[] args) {
-        Application.launch(MainApp.class, args);
+        Application.launch(ExpenseMainApp.class, args);
     }
 }

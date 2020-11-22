@@ -31,9 +31,15 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ExpenseListPanel expenseListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PieChartWindow pieChartWindow;
+    private CurrencyExchangeTable currencyExchangeTable;
+    private SupportedCurrencyTable supportedCurrencyTable;
+    private StatisticTable statisticTable;
+    private HelpCommandWindow helpCommandWindow;
+    private BudgetPanel budgetPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +48,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane expenseListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane budgetPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -60,21 +69,22 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        primaryStage.setMinWidth(600);
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        setAccelerators();
-
         helpWindow = new HelpWindow();
+        pieChartWindow = new PieChartWindow(logic);
+        currencyExchangeTable = new CurrencyExchangeTable();
+        supportedCurrencyTable = new SupportedCurrencyTable();
+        statisticTable = new StatisticTable(logic);
+        helpCommandWindow = new HelpCommandWindow();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
 
     /**
      * Sets the accelerator of a MenuItem.
@@ -110,17 +120,25 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+
+        expenseListPanelPlaceholder
+                .getChildren()
+                .add(
+                        expenseListPanel
+                                .getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getExpenseBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        budgetPanel = new BudgetPanel(logic);
+        budgetPlaceholder.getChildren().add(budgetPanel.getRoot());
     }
 
     /**
@@ -147,6 +165,76 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleHelpCommandWindow() {
+        if (!helpCommandWindow.isShowing()) {
+            helpCommandWindow = new HelpCommandWindow();
+            helpCommandWindow.show();
+        } else {
+            helpCommandWindow = new HelpCommandWindow();
+            helpCommandWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showCurrencyExchangeRateTable() {
+        if (!currencyExchangeTable.isShowing()) {
+            currencyExchangeTable = new CurrencyExchangeTable();
+            currencyExchangeTable.show();
+        } else {
+            currencyExchangeTable = new CurrencyExchangeTable();
+            currencyExchangeTable.focus();
+        }
+    }
+
+    /**
+     * Opens the Supported Currency Table or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showSupportedCurrencyTable() {
+        if (!supportedCurrencyTable.isShowing()) {
+            supportedCurrencyTable = new SupportedCurrencyTable();
+            supportedCurrencyTable.show();
+        } else {
+            supportedCurrencyTable = new SupportedCurrencyTable();
+            supportedCurrencyTable.focus();
+        }
+    }
+
+    /**
+     * Opens the Pie chart window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStatistics() {
+        if (!pieChartWindow.isShowing()) {
+            pieChartWindow.show();
+
+        } else {
+            pieChartWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the Statistic Table or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStatisticTable() {
+        if (!statisticTable.isShowing()) {
+            statisticTable = new StatisticTable(logic);
+            statisticTable.show();
+
+        } else {
+            statisticTable = new StatisticTable(logic);
+            statisticTable.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -161,10 +249,19 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        pieChartWindow.hide();
+        statisticTable.hide();
+        currencyExchangeTable.hide();
+        supportedCurrencyTable.hide();
+        helpCommandWindow.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ExpenseListPanel getExpenseListPanel() {
+        return expenseListPanel;
+    }
+
+    public BudgetPanel getBudgetPanel() {
+        return budgetPanel;
     }
 
     /**
@@ -177,9 +274,29 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            budgetPanel.update();
+            pieChartWindow.setStats();
 
             if (commandResult.isShowHelp()) {
+                handleHelpCommandWindow();
                 handleHelp();
+            }
+
+            if (commandResult.isShowStatistics()) {
+                handleStatistics();
+            }
+
+            if (commandResult.isShowStatisticTable()) {
+                System.out.println("show");
+                handleStatisticTable();
+            }
+
+            if (commandResult.isShowCurrencies()) {
+                showSupportedCurrencyTable();
+            }
+
+            if (commandResult.isShowRates()) {
+                showCurrencyExchangeRateTable();
             }
 
             if (commandResult.isExit()) {

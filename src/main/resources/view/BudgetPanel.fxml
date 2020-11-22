@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" styleClass="pane-with-border"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="125" GridPane.columnIndex="0">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="15" />
+            </padding>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="budgetAmount" styleClass="cell_big_label" text="\$budgetAmount" />
+            </HBox>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="totalSpending" styleClass="cell_big_label" text="\$totalSpending" />
+            </HBox>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="budgetRemaining" styleClass="cell_big_label" text="\$budgetRemaining" />
+            </HBox>
+        </VBox>
+    </GridPane>
+</HBox>

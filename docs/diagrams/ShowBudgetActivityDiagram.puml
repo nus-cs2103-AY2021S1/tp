@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes an showBudget command;
+:Instantiate an ShowBudgetCommand;
+:Execute ShowBudgetCommand;
+if () then ([current budget greater than zero])
+    :shows message of current budget and remaining budget;
+else ([else])
+    :Notify user to set a new budget;
+endif
+stop
+@enduml

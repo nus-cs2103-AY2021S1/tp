@@ -1,0 +1,6 @@
+@startuml
+(*)  --> "User execute list command"
+--> "Ui shows the expense list"
+--> "Ui shows command result"
+-->(*)
+@enduml

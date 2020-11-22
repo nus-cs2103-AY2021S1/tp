@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":ViewCategoryCommandParser" as ViewCategoryCommandParser LOGIC_COLOR
+participant "v:ViewCategoryCommand" as ViewCategoryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view-c")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("view-c")
+activate ExpenseBookParser
+
+create ViewCategoryCommandParser
+ExpenseBookParser -> ViewCategoryCommandParser
+activate ViewCommandParser
+
+ViewCategoryCommandParser --> ExpenseBookParser
+deactivate ViewCategoryCommandParser
+
+ExpenseBookParser -> ViewCategoryCommandParser : parse()
+activate ViewCategoryCommandParser
+
+create ViewCategoryCommand
+ViewCategoryCommandParser -> ViewCategoryCommand
+activate ViewCategoryCommand
+
+ViewCategoryCommand --> ViewCategoryCommandParser : v
+deactivate ViewCategoryCommand
+
+ViewCategoryCommandParser --> ExpenseBookParser : v
+deactivate ViewCategoryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCategoryCommandParser -[hidden]-> ExpenseBookParser
+destroy ViewCategoryCommandParser
+
+ExpenseBookParser --> LogicManager : v
+deactivate ExpenseBookParser
+
+LogicManager -> ViewCategoryCommand : execute()
+activate ViewCategoryCommand
+
+ViewCategoryCommand -> Model : getCategoryLabels()
+activate Model
+
+Model -> ExpenseBook : getCategoryLabels()
+activate ExpenseBook
+
+ExpenseBook --> ExpenseList: getCategoryLabels()
+activate ExpenseList
+
+ExpenseList --> ExpenseBook
+deactivate ExpenseList
+
+ExpenseBook --> Model
+deactivate ExpenseBook
+
+Model --> ViewCategoryCommand
+deactivate Model
+
+create CommandResult
+ViewCategoryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCategoryCommand
+deactivate CommandResult
+
+ViewCategoryCommand --> LogicManager : result
+deactivate ViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

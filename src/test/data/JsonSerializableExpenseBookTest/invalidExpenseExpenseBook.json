@@ -1,0 +1,10 @@
+{
+  "expenses" : [ {
+    "currency" : "SGD",
+    "date" : "2020-10-27",
+    "category" : "haha",
+    "description" : "hahaha"
+  } ],
+  "budget" : 0.0,
+  "dollarSign" : "SGD"
+}

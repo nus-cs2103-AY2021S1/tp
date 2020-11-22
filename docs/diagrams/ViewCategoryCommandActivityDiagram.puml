@@ -1,0 +1,15 @@
+@startuml
+(*)  --> "check user input command"
+If "command word is valid" then
+--> [Yes] "Create a ViewCategoryCommandParser"
+--> "Create a ViewCategoryCommand"
+--> "ViewCategoryCommand executes"
+--> "Create a CommandResult to update user
+with all existing categories"
+-->(*)
+else
+--> "throws an exception"
+--> "update user"
+Endif
+-->(*)
+@enduml

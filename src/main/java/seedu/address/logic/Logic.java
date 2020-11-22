@@ -7,13 +7,18 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyExpenseBook;
+import seedu.address.model.expense.Expense;
 
 /**
- * API of the Logic component
+ * API of the Logic components
  */
 public interface Logic {
+
+    /** Returns an unmodifiable view of the filtered list of expenses */
+    ObservableList<Expense> getFilteredExpenseList();
+
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
@@ -24,19 +29,16 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ExpenseBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getExpenseBook()
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ReadOnlyExpenseBook getExpenseBook();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' expense book file path.
      */
-    Path getAddressBookFilePath();
+    Path getExpenseBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
