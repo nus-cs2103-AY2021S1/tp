@@ -22,5 +22,5 @@ GreenTea is designed for use with a **CLI** (Command Line Interface).
 , [JFoeniX](http://www.jfoenix.com/), [Open Test Alliance](https://github.com/ota4j-team/opentest4j), [API Guardian](https://github.com/apiguardian-team/apiguardian).
 * The following code bases were referenced: [Calgo](https://github.com/AY1920S2-CS2103T-F11-1/main), [TrackPad](https://github.com/AY2021S1-CS2103T-T09-3/tp)
 , [Notably](https://github.com/AY1920S2-CS2103T-W17-2/main), [BB Productive](https://github.com/AY1920S2-CS2103T-W16-1/main)
-, [MODdy](https://github.com/AY1920S2-CS2103T-W13-3/main)
-* The Leitner system was referenced [here](https://jessewhelan.medium.com/using-the-leitner-system-to-improve-your-study-d5edafae7f0)
+, [MODdy](https://github.com/AY1920S2-CS2103T-W13-3/main).
+* The Leitner system was referenced [here](https://jessewhelan.medium.com/using-the-leitner-system-to-improve-your-study-d5edafae7f0).
