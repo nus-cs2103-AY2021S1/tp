@@ -5,10 +5,16 @@ title: User Guide
 
 { start of `table_of_contents` written by: Masagca Eris Jacey }
 
+[//]: # (@@author erisjacey-reused)
+[//]: # (Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/docs/UserGuide.md)
+[//]: # (with minor modifications)
+
 <div class="toc-no-list-style">
   * Table of contents
   {:toc}
 </div>
+
+[//]: # (@@author)
 
 { end of `table_of_contents` written by: Masagca Eris Jacey }
 
