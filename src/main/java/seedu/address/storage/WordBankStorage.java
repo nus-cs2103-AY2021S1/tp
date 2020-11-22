@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.storage;
 
 import java.io.IOException;
@@ -47,3 +49,4 @@ public interface WordBankStorage {
     void saveAddressBook(ReadOnlyWordBank addressBook, Path filePath) throws IOException;
 
 }
+//@@author

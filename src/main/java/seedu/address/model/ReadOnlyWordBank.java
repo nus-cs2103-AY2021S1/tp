@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
@@ -23,3 +25,4 @@ public interface ReadOnlyWordBank {
     ObservableList<Deck> getDeckList();
 
 }
+//@@author

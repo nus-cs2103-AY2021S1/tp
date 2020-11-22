@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.storage;
 
 import java.util.ArrayList;
@@ -59,3 +61,4 @@ class JsonSerializableWordBank {
         return wordBank;
     }
 }
+//@@author

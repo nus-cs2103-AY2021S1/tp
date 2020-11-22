@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.storage;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,3 +47,4 @@ public class JsonSerializableWordBankTest {
     }
 
 }
+//@@author

@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
@@ -79,3 +81,4 @@ public class JsonWordBankStorage implements WordBankStorage {
     }
 
 }
+//@@author
