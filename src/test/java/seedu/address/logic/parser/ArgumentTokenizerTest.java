@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TestUtil.basicEqualsTests;
 
 import org.junit.jupiter.api.Test;
 
@@ -137,13 +138,16 @@ public class ArgumentTokenizerTest {
     }
 
     @Test
-    public void equalsMethod() {
+    public void equals() {
         Prefix aaa = new Prefix("aaa");
 
-        assertEquals(aaa, aaa);
+        // basic equals test
+        basicEqualsTests(aaa);
+
+        // same values -> returns true
         assertEquals(aaa, new Prefix("aaa"));
 
-        assertNotEquals(aaa, "aaa");
+        // different values -> returns false
         assertNotEquals(aaa, new Prefix("aab"));
     }
 

@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * The UI for the command result that provides textual feedback to the user.
  */
 public class ResultDisplay extends UiPart<Region> {
 
@@ -16,10 +16,16 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Creates a {@code ResultDisplay} that handles the display of the result of the executed command.
+     */
     public ResultDisplay() {
         super(FXML);
     }
 
+    /**
+     * Displays the string {@code feedbackToUser} in the result display to the user.
+     */
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);

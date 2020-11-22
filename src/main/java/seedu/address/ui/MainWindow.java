@@ -9,7 +9,9 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -31,29 +33,28 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
+    private WidgetViewBox widgetViewBox;
+    private CountryNoteListPanel countryNoteListPanel;
+    @FXML
+    private StackPane widgetPlaceholder;
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
-    private StackPane personListPanelPlaceholder;
-
+    private StackPane clientListPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, MainApp mainApp) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -65,9 +66,12 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(mainApp);
     }
 
+    /**
+     * Obtains the stage.
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -78,7 +82,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     *
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -110,29 +115,61 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        widgetViewBox = new WidgetViewBox(logic.getFilteredClientList());
+        countryNoteListPanel = new CountryNoteListPanel(logic.getSortedFilteredCountryNoteList());
+        widgetPlaceholder.getChildren().add(widgetViewBox.getRoot());
+
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTbmManagerFilePath());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
-     * Sets the default size based on {@code guiSettings}.
+     * Sets the default size based on {@code guiSettings}, truncating the width, height, and position of the window
+     * to some bounded values to ensure that the display of our application does not get messed up.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
-        primaryStage.setHeight(guiSettings.getWindowHeight());
-        primaryStage.setWidth(guiSettings.getWindowWidth());
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+        double minY = 0;
+        double maxY = screenHeight / 2;
+        double minX = 0;
+        double maxX = screenWidth / 2;
+        double truncatedHeight = Math.min(guiSettings.getWindowHeight(), screenHeight);
+        double truncatedWidth = Math.min(guiSettings.getWindowWidth(), screenWidth);
+        primaryStage.setHeight(truncatedHeight);
+        primaryStage.setWidth(truncatedWidth);
+        logger.info(String.format("Window width set to: %.2f", truncatedWidth));
+        logger.info(String.format("Window height set to: %.2f", truncatedHeight));
         if (guiSettings.getWindowCoordinates() != null) {
-            primaryStage.setX(guiSettings.getWindowCoordinates().getX());
-            primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+            double truncatedX = truncateDouble(guiSettings.getWindowCoordinates().getX(), minX, maxX);
+            double truncatedY = truncateDouble(guiSettings.getWindowCoordinates().getY(), minY, maxY);
+            primaryStage.setX(truncatedX);
+            primaryStage.setY(truncatedY);
+            logger.info(String.format("Window x-position set to: %.2f", truncatedX));
+            logger.info(String.format("Window y-position set to: %.2f", truncatedY));
         }
+    }
+
+    /**
+     * Truncates the given double value to be at least the lower bound and at most the upper bound.
+     */
+    private double truncateDouble(double value, double lowerBound, double upperBound) {
+        double truncatedValue = value;
+        if (value < lowerBound) {
+            truncatedValue = lowerBound;
+        } else if (value > upperBound) {
+            truncatedValue = upperBound;
+        }
+        return truncatedValue;
     }
 
     /**
@@ -163,8 +200,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
     }
 
     /**
@@ -178,6 +215,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            logger.info("Widget View Option: " + commandResult.getWidgetViewOptionAsString());
+
+            if (commandResult.shouldDisplayClientView()) {
+                logger.info("Toggling client view");
+                widgetPlaceholder.getChildren().clear();
+                widgetPlaceholder.getChildren().add(widgetViewBox.getRoot());
+                logger.info(logic.getWidgetClient().getName().fullName);
+                widgetViewBox.updateClientDisplay(logic.getWidgetClient());
+            } else if (commandResult.shouldDisplayCountryNoteView()) {
+                logger.info("Toggling country notes view");
+                widgetPlaceholder.getChildren().clear();
+                countryNoteListPanel.setHeader(commandResult.getCountry());
+                widgetPlaceholder.getChildren().add(countryNoteListPanel.getRoot());
+            }
+
+            if (commandResult.shouldResetWidget()) {
+                widgetPlaceholder.getChildren().clear();
+                widgetPlaceholder.getChildren().add(widgetViewBox.getRoot());
+                widgetViewBox.setToDefaultView();
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -185,6 +243,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            logic.setCountryNotesListPanelIsVisible(widgetPlaceholder.getChildren()
+                    .contains(countryNoteListPanel.getRoot()));
 
             return commandResult;
         } catch (CommandException | ParseException e) {

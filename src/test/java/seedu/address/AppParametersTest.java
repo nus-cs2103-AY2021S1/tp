@@ -1,6 +1,9 @@
 package seedu.address;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TestUtil.basicEqualsTests;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -16,6 +19,12 @@ public class AppParametersTest {
 
     private final ParametersStub parametersStub = new ParametersStub();
     private final AppParameters expected = new AppParameters();
+
+    @Test
+    public void getConfigPath_returnsSetConfigPath() {
+        expected.setConfigPath(Paths.get("config.json"));
+        assertEquals(expected.getConfigPath(), Paths.get("config.json"));
+    }
 
     @Test
     public void parse_validConfigPath_success() {
@@ -37,8 +46,30 @@ public class AppParametersTest {
         assertEquals(expected, AppParameters.parse(parametersStub));
     }
 
+    @Test
+    public void equals_basicTests() {
+        // basic equals tests
+        basicEqualsTests(expected);
+    }
+
+    @Test
+    public void equals_sameConfigPath_returnsTrue() {
+        expected.setConfigPath(Paths.get("config.json"));
+        AppParameters other = new AppParameters();
+        other.setConfigPath(Paths.get("config.json"));
+        assertTrue(expected.equals(other));
+    }
+
+    @Test
+    public void equals_differentConfigPath_returnsFalse() {
+        expected.setConfigPath(Paths.get("config.json"));
+        AppParameters other = new AppParameters();
+        other.setConfigPath(Paths.get("config2.json"));
+        assertFalse(expected.equals(other));
+    }
+
     private static class ParametersStub extends Application.Parameters {
-        private Map<String, String> namedParameters = new HashMap<>();
+        private final Map<String, String> namedParameters = new HashMap<>();
 
         @Override
         public List<String> getRaw() {
@@ -55,4 +86,5 @@ public class AppParametersTest {
             return Collections.unmodifiableMap(namedParameters);
         }
     }
+
 }

@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package Model {
+Class Country
+Class CountryNotesManager
+Class CountryCodeVerifier
+Class Note
+Class CountryNote
+Class TbmManager
+Interface Model <<Interface>>
+Class ModelManager
+}
+
+
+ModelManager .up.|> Model
+ModelManager -down-> "1" TbmManager
+TbmManager --> "1" CountryNotesManager
+CountryNotesManager "1" -right-> "*" CountryNote
+CountryNote -up-|> Note
+CountryNote --> "1" Country
+Country ..> CountryCodeVerifier
+
+@enduml

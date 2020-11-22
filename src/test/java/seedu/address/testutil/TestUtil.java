@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +10,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 /**
  * A utility class for test cases.
@@ -33,23 +36,39 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Conducts all basic equals tests.
+     */
+    public static <T> void basicEqualsTests(T object) {
+        // same object -> returns true
+        assertTrue(object.equals(object));
+        // null -> returns false
+        assertFalse(object.equals(null));
+        // different class -> returns false
+        assertFalse(object.equals(2.0f));
+        // random object -> returns false
+        Object randomObject = new Object();
+        assertFalse(object.equals(randomObject));
+    }
+
+    /**
+     * Returns the middle index of the client in the {@code model}'s client list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getSortedFilteredClientList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the client in the {@code model}'s client list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getSortedFilteredClientList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the client in the {@code model}'s client list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Client getClient(Model model, Index index) {
+        return model.getSortedFilteredClientList().get(index.getZeroBased());
     }
+
 }

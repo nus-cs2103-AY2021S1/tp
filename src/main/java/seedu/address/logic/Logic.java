@@ -7,8 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyTbmManager;
+import seedu.address.model.client.Client;
+import seedu.address.model.note.CountryNote;
 
 /**
  * API of the Logic component
@@ -24,19 +25,34 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
+     * Sets the boolean that corresponds to whether the country notes list panel is currently visible.
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    void setCountryNotesListPanelIsVisible(boolean isVisible);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the TbmManager.
+     *
+     * @see seedu.address.model.Model#getTbmManager()
      */
-    Path getAddressBookFilePath();
+    ReadOnlyTbmManager getTbmManager();
+
+    /**
+     * Returns the client of the widget view box.
+     *
+     * @return Client.
+     */
+    Client getWidgetClient();
+
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
+
+    /** Returns an unmodifiable view of the filtered list of country notes */
+    ObservableList<CountryNote> getSortedFilteredCountryNoteList();
+
+    /**
+     * Returns the user prefs' TbmManager file path.
+     */
+    Path getTbmManagerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

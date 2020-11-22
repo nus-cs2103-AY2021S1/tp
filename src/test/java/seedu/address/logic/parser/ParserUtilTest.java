@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,18 +14,28 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.ClientSuggestionType;
+import seedu.address.model.client.ContractExpiryDate;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
+import seedu.address.model.client.Timezone;
+import seedu.address.model.country.Country;
+import seedu.address.model.note.Note;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "99";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_COUNTRY_CODE = "ZZ";
+    private static final String INVALID_TIMEZONE = "GT+8";
+    private static final String INVALID_NOTE_STRING = " ";
+    private static final String INVALID_CLIENT_SUGGESTION_TYPE = "name";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +43,12 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_COUNTRY_CODE = "SG";
+    private static final String VALID_TIMEZONE = "UTC+08:00";
+    private static final String VALID_NOTE_STRING = "likes cats";
+    private static final String VALID_CLIENT_SUGGESTION_TYPE_1 = "available";
+    private static final String VALID_CLIENT_SUGGESTION_TYPE_2 = "frequency";
+    private static final String VALID_CLIENT_SUGGESTION_TYPE_3 = "contract";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -43,22 +59,22 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_CLIENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_CLIENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -81,7 +97,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     @Test
@@ -104,7 +120,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -127,7 +143,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test
@@ -189,8 +205,163 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseCountry_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCountry(null));
+    }
+
+    @Test
+    public void parseCountry_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCountry(INVALID_COUNTRY_CODE));
+    }
+
+    @Test
+    public void parseCountry_validValueWithoutWhitespace_returnsCountry() throws Exception {
+        Country expectedCountry = new Country(VALID_COUNTRY_CODE);
+        assertEquals(expectedCountry, ParserUtil.parseCountry(VALID_COUNTRY_CODE));
+    }
+
+    @Test
+    public void parseCountry_validValueWithWhitespace_returnsTrimmedCountry() throws Exception {
+        String countryWithWhitespace = WHITESPACE + VALID_COUNTRY_CODE + WHITESPACE;
+        Country expectedCountry = new Country(VALID_COUNTRY_CODE);
+        assertEquals(expectedCountry, ParserUtil.parseCountry(countryWithWhitespace));
+    }
+
+    @Test
+    public void parseTimezone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimezone(null));
+    }
+
+    @Test
+    public void parseTimezone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimezone(INVALID_TIMEZONE));
+    }
+
+    @Test
+    public void parseTimezone_validValueWithoutWhitespace_returnsTimezone() throws Exception {
+        Timezone expectedTimezone = new Timezone(VALID_TIMEZONE);
+        assertEquals(expectedTimezone, ParserUtil.parseTimezone(VALID_TIMEZONE));
+    }
+
+    @Test
+    public void parseTimezone_validValueWithWhitespace_returnsTrimmedTimezone() throws Exception {
+        String timezoneWithWhitespace = WHITESPACE + VALID_TIMEZONE + WHITESPACE;
+        Timezone expectedTimezone = new Timezone(VALID_TIMEZONE);
+        assertEquals(expectedTimezone, ParserUtil.parseTimezone(timezoneWithWhitespace));
+    }
+
+    @Test
+    public void parseNote_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNote(null));
+    }
+
+    @Test
+    public void parseNote_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNote(INVALID_NOTE_STRING));
+    }
+
+    @Test
+    public void parseNote_validValueWithoutWhitespace_returnsNote() throws Exception {
+        Note expectedNote = new Note(VALID_NOTE_STRING);
+        assertEquals(expectedNote, ParserUtil.parseNote(VALID_NOTE_STRING));
+    }
+
+    @Test
+    public void parseNote_validValueWithWhitespace_returnsTrimmedNote() throws Exception {
+        String noteWithWhitespace = WHITESPACE + VALID_NOTE_STRING + WHITESPACE;
+        Note expectedNote = new Note(VALID_NOTE_STRING);
+        assertEquals(expectedNote, ParserUtil.parseNote(noteWithWhitespace));
+    }
+
+    @Test
+    public void parseSuggestionType_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseClientSuggestionType(null));
+    }
+
+    @Test
+    public void parseSuggestionType_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClientSuggestionType(INVALID_CLIENT_SUGGESTION_TYPE));
+    }
+
+    @Test
+    public void parseSuggestionType_validValueWithoutWhitespace_returnsSuggestionType() throws Exception {
+        ClientSuggestionType expectedClientSuggestionType = new ClientSuggestionType(VALID_CLIENT_SUGGESTION_TYPE_1);
+        assertEquals(expectedClientSuggestionType,
+                ParserUtil.parseClientSuggestionType(VALID_CLIENT_SUGGESTION_TYPE_1));
+    }
+
+    @Test
+    public void parseSuggestionType_validValueWithWhitespace_returnsTrimmedSuggestionType() throws Exception {
+        String suggestionTypeWithWhitespace = WHITESPACE + VALID_CLIENT_SUGGESTION_TYPE_1 + WHITESPACE;
+        ClientSuggestionType expectedClientSuggestionType = new ClientSuggestionType(VALID_CLIENT_SUGGESTION_TYPE_1);
+        assertEquals(expectedClientSuggestionType, ParserUtil.parseClientSuggestionType(suggestionTypeWithWhitespace));
+    }
+
+    @Test
+    public void parseSuggestionTypes_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseClientSuggestionTypes(null));
+    }
+
+    @Test
+    public void parseSuggestionTypes_collectionWithInvalidSuggestionTypes_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseClientSuggestionTypes(Arrays.asList(VALID_CLIENT_SUGGESTION_TYPE_1,
+                INVALID_CLIENT_SUGGESTION_TYPE)));
+    }
+
+    @Test
+    public void parseSuggestionTypes_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseClientSuggestionTypes(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseSuggestionTypes_collectionWithValidSuggestionTypes_returnsSuggestionTypeSet() throws Exception {
+        Set<ClientSuggestionType> actualClientSuggestionTypeSet = ParserUtil.parseClientSuggestionTypes(Arrays.asList(
+                VALID_CLIENT_SUGGESTION_TYPE_1, VALID_CLIENT_SUGGESTION_TYPE_2, VALID_CLIENT_SUGGESTION_TYPE_3));
+        Set<ClientSuggestionType> expectedClientSuggestionTypeSet = new HashSet<>(Arrays.asList(
+                new ClientSuggestionType(VALID_CLIENT_SUGGESTION_TYPE_1),
+                new ClientSuggestionType(VALID_CLIENT_SUGGESTION_TYPE_2),
+                new ClientSuggestionType((VALID_CLIENT_SUGGESTION_TYPE_3))));
+
+        assertEquals(expectedClientSuggestionTypeSet, actualClientSuggestionTypeSet);
+    }
+
+    @Test
+    public void parseContractExpiryDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseContractExpiryDate(null));
+    }
+
+    @Test
+    public void parseContractExpiryDate_blankString_returnsNullDate() throws ParseException {
+        assertEquals(ParserUtil.parseContractExpiryDate(""), ContractExpiryDate.NULL_DATE);
+        assertEquals(ParserUtil.parseContractExpiryDate("  "), ContractExpiryDate.NULL_DATE);
+    }
+
+    @Test
+    public void parseContractExpiryDate_invalidDateString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseContractExpiryDate("2-2-100"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseContractExpiryDate("3/2/2020"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseContractExpiryDate("29/2/2021"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseContractExpiryDate("20/13/2022"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseContractExpiryDate("31/1/2025"));
+    }
+
+    @Test
+    public void parseContractExpiryDate_validDateString_returns() throws ParseException {
+        String validDate1 = "2-3-2020";
+        String validDate2 = "30-10-20";
+        String minDate = "1-1-0000";
+        String maxDate = "31-12-9999";
+        assertEquals(ParserUtil.parseContractExpiryDate(validDate1), new ContractExpiryDate(validDate1));
+        assertEquals(ParserUtil.parseContractExpiryDate(validDate2), new ContractExpiryDate(validDate2));
+        assertEquals(ParserUtil.parseContractExpiryDate(minDate), new ContractExpiryDate(minDate));
+        assertEquals(ParserUtil.parseContractExpiryDate(maxDate), new ContractExpiryDate(maxDate));
+    }
+
 }

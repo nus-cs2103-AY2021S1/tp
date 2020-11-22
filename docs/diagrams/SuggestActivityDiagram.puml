@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes command;
+
+:Start with empty list of predicates and comparators;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+while () is ([arguments present])
+    :Parse argument into SuggestionType;
+    :Add related predicate into list;
+    :Add related comparator into list;
+endwhile ([else])
+
+:Apply predicates to Model#updateClientFilteredList;
+:Apply comparators to Model#updateSortedFilteredClientList;
+:Changes to SortedList are propagated to user via UI;
+stop
+@enduml

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+
+<VBox fx:id="countryNoteListContainer" prefWidth="337.0" styleClass="widget-pane" alignment="TOP_CENTER"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
+   <Label fx:id="header" alignment="TOP_CENTER" prefHeight="46.0" styleClass="widget_header"/>
+   <ScrollPane fx:id="countryNoteScrollPane" VBox.vgrow="SOMETIMES" prefWidth="337.0" hbarPolicy="NEVER"
+               fitToWidth="true" styleClass="widget-pane">
+      <VBox fx:id="countryNoteListView" VBox.vgrow="ALWAYS" spacing="20.0" styleClass="widget-pane"/>
+   </ScrollPane>
+</VBox>

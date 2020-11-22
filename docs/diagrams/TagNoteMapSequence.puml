@@ -1,0 +1,6 @@
+@startuml
+!include style.puml
+
+title Getting Tags for a Note
+
+@enduml

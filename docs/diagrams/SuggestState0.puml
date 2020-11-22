@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+show members
+
+title Initial state
+
+package filteredClients {
+    object "__:Client__" as alice  {
+        name = "alice"
+        contract_expiry = "20-01-2024"
+    }
+
+    object "__:Client__" as bob {
+        name = "bob"
+    }
+
+    object "__:Client__" as cindy {
+        name = "cindy"
+        contract_expiry = "20-12-2020"
+    }
+
+}
+
+alice -[hidden]right-> bob
+bob -[hidden]right-> cindy
+
+@end

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<VBox fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" prefHeight="0">
+    <HBox spacing="1" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+        <FlowPane fx:id="tags" HBox.hgrow="ALWAYS"/>
+        <Label fx:id="id" alignment="TOP_CENTER" styleClass="cell_big_label" HBox.hgrow="ALWAYS">
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE"/>
+            </minWidth>
+        </Label>
+    </HBox>
+    <TextFlow VBox.vgrow="ALWAYS">
+        <Text fx:id="noteContent" styleClass="cell_small_text" />
+    </TextFlow>
+</VBox>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<ScrollPane fx:id="widgetScrollPane" fitToWidth="true" prefHeight="340.0" minWidth="340.0" prefWidth="340.0"
+            styleClass="widget-pane" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets left="10" right="10"/>
+    </padding>
+    <VBox fx:id="viewBox" maxHeight="Infinity">
+        <VBox fx:id="tbmLogoContainer" alignment="CENTER">
+            <ImageView fx:id="tbmLogo" fitWidth="150.0" fitHeight="150.0">
+                <Image url="@../images/TBM_transparent.png"/>
+            </ImageView>
+        </VBox>
+        <TextFlow textAlignment="CENTER">
+            <Text fx:id="name" styleClass="widget_header"/>
+        </TextFlow>
+        <TextFlow textAlignment="CENTER">
+            <Text fx:id="timer" styleClass="widget_header"/>
+        </TextFlow>
+        <TextFlow textAlignment="CENTER">
+            <Text fx:id="country" styleClass="widget_div"/>
+        </TextFlow>
+        <TextFlow>
+            <Text fx:id="phone" styleClass="widget_text"/>
+        </TextFlow>
+        <TextFlow>
+            <Text fx:id="address" styleClass="widget_text"/>
+        </TextFlow>
+        <TextFlow>
+            <Text fx:id="email" styleClass="widget_text"/>
+        </TextFlow>
+        <TextFlow>
+            <Text fx:id="contractExpiryDate" styleClass="widget_text"/>
+        </TextFlow>
+        <StackPane>
+            <TextFlow textAlignment="CENTER" prefHeight="30.0">
+                <padding>
+                    <Insets topRightBottomLeft="5"/>
+                </padding>
+                <Text fx:id="noteTitle" styleClass="widget_header"/>
+            </TextFlow>
+        </StackPane>
+        <VBox fx:id="clientNoteListView" minHeight="50.0" spacing="15.0" VBox.vgrow="ALWAYS"/>
+    </VBox>
+</ScrollPane>

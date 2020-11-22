@@ -1,9 +1,19 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id 'java'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
     id 'jacoco'
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked"
+        }
+    }
 }
 
 mainClassName = 'seedu.address.Main'
@@ -20,10 +30,46 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
+
+test {
+    systemProperty 'testfx.setup.timeout', '60000'
+
+    testLogging {
+        events TestLogEvent.FAILED, TestLogEvent.SKIPPED
+        if (System.env.'CI') {
+            events << TestLogEvent.STARTED
+        }
+    }
+}
+
+task headless {
+    doFirst {
+        println 'Setting headless mode properties.'
+        test {
+            systemProperties = [
+                'java.awt.headless': 'true',
+                'testfx.headless': 'true',
+                'testfx.robot': 'glass',
+                'glass.platform': 'monocle',
+                'monocle.platform': 'headless',
+                'prism.order': 'sw',
+                'prism.text': 't2k',
+                'prism.verbose': 'true'
+            ]
+        }
+    }
+}
+
+// Makes sure that headless properties are set before running tests
+test.mustRunAfter headless
 
 task coverage(type: JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
@@ -41,6 +87,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    String testFxVersion = '4.0.16-alpha'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
@@ -60,13 +107,18 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    implementation 'com.jfoenix:jfoenix:9.0.10'
 
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: testFxVersion
+    testImplementation group: 'org.testfx', name: 'testfx-junit5', version: testFxVersion
+    testRuntimeOnly group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26'
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveFileName = 'TBM.jar'
 }
 
-defaultTasks 'clean', 'test'
+defaultTasks 'clean', 'headless', 'check'

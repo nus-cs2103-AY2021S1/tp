@@ -1,0 +1,63 @@
+
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Client {
+Class Client
+Class Name
+Class Address
+Class Email
+Class Phone
+Class UniqueClientList
+Class ContractExpiryDate
+Class Timezone
+Class LastModifiedInstant
+}
+
+Package Country {
+Class Country
+Class CountryCodeVerifier
+}
+
+Package Note as NotePackage {
+Class Note
+Class CountryNotesManager
+Class CountryNote
+Class TagNoteMap
+}
+
+Package Tag as TagPackage {
+Class Tag
+Class UniqueTagSet
+}
+
+TbmManager *-->"1" UniqueClientList
+TbmManager *-->"1" TagNoteMap
+TbmManager *-->"1" CountryNotesManager
+
+UniqueClientList *--> "*" Client
+
+Client *-->"1" Name
+Client *-->"1" Phone
+Client *-->"1" Email
+Client *-->"1" Address
+Client *-->"0..1" ContractExpiryDate
+Client *-->"1" Timezone
+Client *-->"*" Note
+Client *-->"1" LastModifiedInstant
+Client -->"1" Country
+
+Country ..> CountryCodeVerifier
+
+CountryNotesManager *-left->"*" CountryNote : contains >
+CountryNote -->"1" Country
+CountryNote --|> Note
+UniqueTagSet *->"*" Tag
+TagNoteMap ->"*" Note
+TagNoteMap *-->"1" UniqueTagSet
+
+UniqueClientList -[hidden]up- TbmManager
+@enduml

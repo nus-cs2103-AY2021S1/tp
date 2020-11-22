@@ -1,6 +1,6 @@
 name: Java CI
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
@@ -33,13 +33,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-          java-package: jdk+fx
+          java-package: jdk
 
       - name: Build and check with Gradle
-        run: ./gradlew check coverage
+        run: ./gradlew headless check coverage
 
       - uses: codecov/codecov-action@v1
         if: runner.os == 'Linux'
         with:
           file: ${{ github.workspace }}/build/reports/jacoco/coverage/coverage.xml
-          fail_ci_if_error: true
+          fail_ci_if_error: false

@@ -339,7 +339,10 @@
     </module>
 
     <module name="Indentation">
+      <!-- Checks that indentation for case blocks matches switch line. -->
       <property name="caseIndent" value="0" />
+      <!-- Checks that indentation for wrapped lines is 8 spaces more than the parent line. -->
+      <property name="lineWrappingIndentation" value="8"/>
     </module>
 
     <module name="NoWhitespaceBefore">
@@ -398,6 +401,12 @@
       <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="ignoreMethodNamesRegex" value="(set.*|get.*)"/>
     </module>
+
+    <!-- Checks for missing Javadoc comments for public class, enum, interface, and annotation interface. -->
+    <module name="MissingJavadocType"/>
+
+    <!-- Checks if every overriden method has the @Override annotation. -->
+    <module name="MissingOverride"/>
 
   </module>
 </module>
