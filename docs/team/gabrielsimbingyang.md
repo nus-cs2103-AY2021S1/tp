@@ -84,7 +84,8 @@ Given below are my contributions to the project.
   * Others:
     * Added the Leitner System psuedo code for team reference
     (Pull requests [\#65](https://github.com/AY2021S1-CS2103T-T09-4/tp/pull/65))
-
+  * Credit:
+    * Developer Guides and User Guides that were referenced can be found in our [README](https://github.com/AY2021S1-CS2103T-T09-4/tp/blob/master/README.md)
 
 * **Community**:
   * Contributed to forum discussions (Examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/291) [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/137) [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/384))
