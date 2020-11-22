@@ -31,7 +31,7 @@ public class ShowStatisticCommand extends Command {
         return String.format("%1$" + length + "s", string);
     }
 
-    //Reused from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/ with minor modifications
+    //Adapted from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
     /**
      * Sort the statistics by the total number of expenses in a certain category.
      * @param hashmap The data structure that store the statistic.
@@ -56,7 +56,7 @@ public class ShowStatisticCommand extends Command {
         return tempMap;
     }
 
-    //Reused from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/ with minor modifications
+    //Adapted from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
     /**
      * Sort the statistics by the total expenses in a certain category.
      * @param hashmap The data structure that store the statistic.
