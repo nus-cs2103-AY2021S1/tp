@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
@@ -171,3 +173,4 @@ public class WordBank implements ReadOnlyWordBank {
         observedEntries.setEntry(target, editedEntry);
     }
 }
+//@@author

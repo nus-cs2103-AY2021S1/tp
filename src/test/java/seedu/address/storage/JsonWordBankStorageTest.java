@@ -1,3 +1,5 @@
+//@@author AB3
+//Renamed from corresponding AddressBook file with minor modifications.
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -98,3 +100,4 @@ public class JsonWordBankStorageTest {
         assertThrows(NullPointerException.class, () -> saveAddressBook(new WordBank(), null));
     }
 }
+//@@author

@@ -21,6 +21,7 @@ Given below are my contributions to the project.
   feasible in this product. Since this is a core feature, this implementation also affected what code can be added to the future and what existing code can be removed. Modifying the implementation to
   allow the program to switch between play mode and command mode also required deep analysis of design alternatives.
   * Credits: I wrote this by myself but I utilized the existing commands created by my teammate, Melanie.
+  Additionally, code with the title `WordBank` mostly originated from the same `AddressBook` classes from AB3.
 
 * **New Feature**: Split the UI to hold both deck list and entry list. (Pull requests [\#67](https://github.com/AY2021S1-CS2103T-T09-4/tp/pull/67))
   * What it does: Allows the user to observe both the deck list and the entry list which is essential for Green Tea to be an intuitive application.
@@ -29,6 +30,7 @@ Given below are my contributions to the project.
   * Highlights: This implementation was difficult to implement because it required knowledge it utilised portions of logic, model and UI. Specifically, understanding how
   obervablelist was used and modifying it was a challenging task.
   * Credits: I wrote this by myself but I utilized the existing commands created by my teammate, Melanie.
+  Additionally, code with the title `WordBank` mostly originated from the same `AddressBook` classes from AB3.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=gabrielsimbingyang&tabRepo=AY2021S1-CS2103T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
@@ -82,7 +84,8 @@ Given below are my contributions to the project.
   * Others:
     * Added the Leitner System psuedo code for team reference
     (Pull requests [\#65](https://github.com/AY2021S1-CS2103T-T09-4/tp/pull/65))
-
+  * Credit:
+    * Developer Guides and User Guides that were referenced can be found in our [README](https://github.com/AY2021S1-CS2103T-T09-4/tp/blob/master/README.md)
 
 * **Community**:
   * Contributed to forum discussions (Examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/291) [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/137) [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/384))
