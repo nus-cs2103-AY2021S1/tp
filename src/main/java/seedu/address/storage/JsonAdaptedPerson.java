@@ -11,24 +11,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Block;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Room;
+import seedu.address.model.studentgroup.StudentGroup;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Resident's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String gender;
+    private final List<JsonAdaptedStudentGroup> studentGroups = new ArrayList<>();
+    private final String block;
+    private final String room;
+    private final String matriculationNumber;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,14 +44,21 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("gender") String gender,
+                             @JsonProperty("studentGroups") List<JsonAdaptedStudentGroup> studentGroups,
+            @JsonProperty("block") String block, @JsonProperty("room") String room,
+            @JsonProperty("matriculationNumber") String matriculationNumber) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.gender = gender;
+        if (studentGroups != null) {
+            this.studentGroups.addAll(studentGroups);
         }
+        this.block = block;
+        this.room = room;
+        this.matriculationNumber = matriculationNumber;
     }
 
     /**
@@ -54,9 +69,13 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        gender = source.getGender().type.getOption();
+        studentGroups.addAll(source.getStudentGroups().stream()
+                .map(JsonAdaptedStudentGroup::new)
                 .collect(Collectors.toList()));
+        block = source.getBlock().value;
+        room = source.getRoom().value;
+        matriculationNumber = source.getMatriculationNumber().value;
     }
 
     /**
@@ -65,9 +84,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<StudentGroup> personStudentGroups = new ArrayList<>();
+        for (JsonAdaptedStudentGroup studentGroup : studentGroups) {
+            personStudentGroups.add(studentGroup.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +121,42 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
+        final Set<StudentGroup> modelStudentGroups = new HashSet<>(personStudentGroups);
+
+        if (matriculationNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MatriculationNumber.class.getSimpleName()));
+        }
+        if (!MatriculationNumber.isValidMatriculationNumber(matriculationNumber)) {
+            throw new IllegalValueException(MatriculationNumber.MESSAGE_CONSTRAINTS);
+        }
+        if (block == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Block.class.getSimpleName()));
+        }
+        if (!Block.isValidBlock(block)) {
+            throw new IllegalValueException(Block.getMessageConstraints());
+        }
+        if (room == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Room.class.getSimpleName()));
+        }
+        if (!Room.isValidRoom(room)) {
+            throw new IllegalValueException(Room.getMessageConstraints());
+        }
+        final Block modelBlock = new Block(block);
+        final Room modelRoom = new Room(room);
+        final MatriculationNumber modelMatriculationNumber = new MatriculationNumber(matriculationNumber);
+        return new Person(modelName, modelPhone, modelEmail,
+                modelAddress, modelGender, modelStudentGroups, modelBlock, modelRoom, modelMatriculationNumber);
     }
 
 }

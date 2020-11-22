@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.requireUniquePerson;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCKROOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -19,12 +23,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Block;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Room;
+import seedu.address.model.studentgroup.StudentGroup;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -33,22 +42,24 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the resident identified "
+            + "by the index number used in the displayed residents list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer from 1 to 2147483647) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_GENDER + "GENDER] "
+            + '[' + PREFIX_BLOCKROOM + "BLOCKROOM] "
+            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION_NUMBER] "
+            + "[" + PREFIX_STUDENT_GROUP + "STUDENT_GROUP]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -65,6 +76,7 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -77,8 +89,24 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!personToEdit.isSamePerson(editedPerson)) {
+            requireUniquePerson(model, editedPerson);
+        }
+
+        // check for occurrence of resident in events list and also edit them
+        List<Event> eventList = model.getEventList();
+        for (Event event : eventList) {
+            Set<Person> attendeesList = event.getAttendeesList();
+            if (attendeesList.contains(personToEdit)) {
+                attendeesList.remove(personToEdit);
+                attendeesList.add(editedPerson);
+
+                Event editedEvent = new Event(event.getName(), event.getEventDate(), event.getLocation(),
+                        event.getDescription(), attendeesList);
+
+                // update model
+                model.setEvent(event, editedEvent);
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -97,9 +125,15 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        Set<StudentGroup> updatedStudentGroups = editPersonDescriptor.getStudentGroups()
+                .orElse(personToEdit.getStudentGroups());
+        Block updatedBlock = editPersonDescriptor.getBlock().orElse(personToEdit.getBlock());
+        Room updatedRoom = editPersonDescriptor.getRoom().orElse(personToEdit.getRoom());
+        MatriculationNumber updatedMatriculationNumber = editPersonDescriptor.getMatriculationNumber()
+                .orElse(personToEdit.getMatriculationNumber());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender, updatedStudentGroups,
+                updatedBlock, updatedRoom, updatedMatriculationNumber);
     }
 
     @Override
@@ -129,27 +163,36 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Gender gender;
+        private Set<StudentGroup> studentGroups;
+        private Block block;
+        private Room room;
+        private MatriculationNumber matriculationNumber;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code studentGroups} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setGender(toCopy.gender);
+            setStudentGroups(toCopy.studentGroups);
+            setBlock(toCopy.block);
+            setRoom(toCopy.room);
+            setMatriculationNumber(toCopy.matriculationNumber);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address,
+                    gender, studentGroups, block, room, matriculationNumber);
         }
 
         public void setName(Name name) {
@@ -184,21 +227,37 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Sets {@code studentGroups} to this object's {@code studentGroups}.
+         * A defensive copy of {@code studentGroups} is used internally.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public void setStudentGroups(Set<StudentGroup> studentGroups) {
+            this.studentGroups = (studentGroups != null) ? new HashSet<>(studentGroups) : null;
+        }
+
+        /**
+         * Returns an unmodifiable student group set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code studentGroups} is null.
+         */
+        public Optional<Set<StudentGroup>> getStudentGroups() {
+            return (studentGroups != null) ? Optional.of(Collections.unmodifiableSet(studentGroups)) : Optional.empty();
+        }
+
+        public void setMatriculationNumber(MatriculationNumber matriculationNumber) {
+            this.matriculationNumber = matriculationNumber;
+        }
+
+        public Optional<MatriculationNumber> getMatriculationNumber() {
+            return Optional.ofNullable(matriculationNumber);
         }
 
         @Override
@@ -220,7 +279,25 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getGender().equals(e.getGender())
+                    && getStudentGroups().equals(e.getStudentGroups())
+                    && getMatriculationNumber().equals(e.getMatriculationNumber());
+        }
+
+        public Optional<Block> getBlock() {
+            return Optional.ofNullable(block);
+        }
+
+        public void setBlock(Block block) {
+            this.block = block;
+        }
+
+        public Optional<Room> getRoom() {
+            return Optional.ofNullable(room);
+        }
+
+        public void setRoom(Room room) {
+            this.room = room;
         }
     }
 }

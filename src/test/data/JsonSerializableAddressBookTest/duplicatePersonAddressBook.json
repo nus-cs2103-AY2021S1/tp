@@ -4,11 +4,21 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "block" : "A",
+    "room" : "405",
+    "gender": "F",
+    "studentGroups": [ "badminton" ],
+    "matriculationNumber": "A0123456B"
+
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "block" : "A",
+    "room" : "405",
+    "gender": "F",
+    "address": "4th street",
+    "matriculationNumber": "A0123456B"
+  } ],
+  "events": []
 }

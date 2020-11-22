@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.studentgroup.StudentGroup;
 
 /**
  * Represents a Person in the address book.
@@ -19,21 +19,31 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Gender gender;
+    private final MatriculationNumber matriculationNumber;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<StudentGroup> studentGroups = new HashSet<>();
+    private final Block block;
+    private final Room room;
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Set<StudentGroup> studentGroups,
+                  Block block, Room room, MatriculationNumber matriculationNumber) {
+        requireAllNonNull(name, phone, email, address, gender, studentGroups, block, room, matriculationNumber);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.studentGroups.addAll(studentGroups);
+        this.block = block;
+        this.room = room;
+        this.gender = gender;
+        this.matriculationNumber = matriculationNumber;
     }
 
     public Name getName() {
@@ -52,16 +62,32 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Block getBlock() {
+        return block;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns an immutable student group set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<StudentGroup> getStudentGroups() {
+        return Collections.unmodifiableSet(studentGroups);
+    }
+
+    public MatriculationNumber getMatriculationNumber() {
+        return matriculationNumber;
+    }
+
+    /**
+     * Returns true if both persons have either the same email, phone number, matriculation number or room.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -69,9 +95,14 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return otherPerson.getEmail().equals(getEmail())
+                || otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getMatriculationNumber().equals(getMatriculationNumber())
+                || (otherPerson.getBlock().equals(getBlock()) && otherPerson.getRoom().equals(getRoom()));
     }
 
     /**
@@ -93,13 +124,17 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getStudentGroups().equals(getStudentGroups())
+                && otherPerson.getMatriculationNumber().equals(getMatriculationNumber())
+                && otherPerson.getRoom().equals(getRoom())
+                && otherPerson.getBlock().equals(getBlock());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, gender, studentGroups, matriculationNumber);
     }
 
     @Override
@@ -112,8 +147,16 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Gender: ")
+                .append(getGender())
+                .append(" Block: ")
+                .append(getBlock())
+                .append(" Room: ")
+                .append(getRoom())
+                .append(" Matriculation Number: ")
+                .append(getMatriculationNumber())
+                .append(" Student Groups: ");
+        getStudentGroups().forEach(builder::append);
         return builder.toString();
     }
 

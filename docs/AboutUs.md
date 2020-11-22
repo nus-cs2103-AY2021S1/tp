@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Pang Biao Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/schoolex.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/schoolex)]
+[[portfolio](team/schoolex.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation
 
-### Jean Doe
+### Tee Kok Siang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teekoksiang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/teekoksiang)]
+[[portfolio](team/teekoksiang.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines
+
+### Lee Yan Cheng
+
+<img src="images/yanchenglee98.png" width="200px">
+
+[[github](http://github.com/yanchenglee98)]
+[[portfolio](team/yanchenglee98.md)]
+
+* Role: Developer
+* Responsibilities: Scheduling, Tracking and Code quality
+
+### Aung Thuya Oo
+
+<img src="images/athuyaoo.png" width="200px">
+
+[[github](http://github.com/athuyaoo)]
+[[portfolio](team/athuyaoo.md)]
+
+* Role: Developer
+* Responsibilities: Git expert and Integration
+
+### Low Jie Feng
+
+<img src="images/lowjiefeng1998.png" width="200px">
+
+[[github](http://github.com/lowjiefeng1998)]
+[[portfolio](team/lowjiefeng1998.md)]
+
+* Role: Developer
+* Responsibilities: Testing

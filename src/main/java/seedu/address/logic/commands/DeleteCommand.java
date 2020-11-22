@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,11 +21,11 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the resident identified by the index number used in the displayed person list.\n"
+            + "Parameters: RESIDENT_INDEX (must be a positive integer from 1 to 2147483647)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted resident: %1$s";
 
     private final Index targetIndex;
 
@@ -40,6 +43,18 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // check event list for any occurrences of the person to be deleted and remove them
+        model.getEventList().forEach(event -> {
+            if (event.getAttendeesList().contains(personToDelete)) {
+                Set<Person> attendeesList = new HashSet<>(event.getAttendeesList());
+                attendeesList.remove(personToDelete);
+                Event editedEvent = new Event(event.getName(), event.getEventDate(), event.getLocation(),
+                        event.getDescription(), attendeesList);
+                model.setEvent(event, editedEvent);
+            }
+        });
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

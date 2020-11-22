@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+<VBox xmlns="http://javafx.com/javafx/11.0" xmlns:fx="http://javafx.com/fxml/1">
+   <HBox alignment="CENTER" prefHeight="68.0" prefWidth="248.0" styleClass="label-section-header">
+      <children>
+         <Text fill="WHITE" strokeType="OUTSIDE" text="Residents" textAlignment="CENTER" wrappingWidth="248.0">
+            <HBox.margin>
+               <Insets bottom="5.0" />
+            </HBox.margin>
+         </Text>
+      </children>
+      <opaqueInsets>
+         <Insets bottom="10.0" />
+      </opaqueInsets>
+   </HBox>
+  <ListView fx:id="personListView" prefWidth="248.0" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets top="10.0" />
+      </VBox.margin></ListView>
 </VBox>

@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "EditFloorCommandParser" as EditFloorCommandParser LOGIC_COLOR
+participant "e:EditFloorCommand" as EditFloorCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "u:UserPrefs" as UserPrefs MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit-floor-range 1 5")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit-floor-range 1 5")
+activate AddressBookParser
+
+create EditFloorCommandParser
+AddressBookParser -> EditFloorCommandParser : parse()
+activate EditFloorCommandParser
+
+create EditFloorCommand
+EditFloorCommandParser -> EditFloorCommand
+activate EditFloorCommand
+EditFloorCommand --> EditFloorCommandParser : e
+deactivate EditFloorCommand
+
+EditFloorCommandParser --> AddressBookParser : e
+deactivate EditFloorCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> EditFloorCommand : execute()
+activate EditFloorCommand
+
+EditFloorCommand -> Model : getModifiableUserPrefs()
+activate Model
+
+create UserPrefs
+Model -> UserPrefs
+activate UserPrefs
+UserPrefs --> Model : u
+deactivate UserPrefs
+
+Model --> EditFloorCommand : u
+deactivate Model
+
+
+EditFloorCommand -> UserPrefs : setMinFloorSettings()
+EditFloorCommand -> UserPrefs : setMaxFloorSettings()
+
+EditFloorCommand --> LogicManager : result
+
+deactivate EditFloorCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

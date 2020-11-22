@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <padding>
+    <Insets top="5" right="5" bottom="5" left="5" />
+  </padding>
+
+  <Label fx:id="blockName" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.rowSpan="2" styleClass="blockName">
+    <padding>
+      <Insets right="10" left="5" />
+    </padding>
+  </Label>
+
+  <Label fx:id="floors" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+  <Label fx:id="rooms" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+</GridPane>

@@ -24,6 +24,28 @@
     -fx-opacity: 1;
 }
 
+.label-section-header {
+    -fx-font-size: 24pt;
+    -fx-font-style: normal;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+    -fx-background-color: #1e5f74;
+}
+
+.reference-list .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.reference-list .blockName {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: red;
+    -fx-opacity: 0.9;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -344,9 +366,23 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #4f3b78;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 12;
+}
+
+#studentGroups {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#studentGroups .label {
+    -fx-text-fill: white;
+    -fx-background-color: #008891;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 12;
 }

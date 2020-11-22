@@ -11,7 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
+import seedu.address.model.person.Block;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Room;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -51,6 +57,11 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
+
+    @Override
+    public UserPrefs getModifiableUserPrefs() {
         return userPrefs;
     }
 
@@ -95,6 +106,42 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasMatriculationNumber(MatriculationNumber matriculationNumber) {
+        requireNonNull(matriculationNumber);
+        return addressBook
+                .getPersonList()
+                .stream()
+                .anyMatch(person -> person.getMatriculationNumber().equals(matriculationNumber));
+    }
+
+    @Override
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook
+                .getPersonList()
+                .stream()
+                .anyMatch(person -> person.getPhone().equals(phone));
+    }
+
+    @Override
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return addressBook
+                .getPersonList()
+                .stream()
+                .anyMatch(person -> person.getEmail().equals(email));
+    }
+
+    @Override
+    public boolean hasBlockRoom(Block block, Room room) {
+        requireAllNonNull(block, room);
+        return addressBook
+                .getPersonList()
+                .stream()
+                .anyMatch(person -> person.getBlock().equals(block) && person.getRoom().equals(room));
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -112,6 +159,35 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        addressBook.addEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event event) {
+        requireNonNull(event);
+        addressBook.removeEvent(event);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return addressBook.getPersonList();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +203,13 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Event List Accessors =============================================================
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return addressBook.getEventList();
     }
 
     @Override

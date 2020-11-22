@@ -13,44 +13,67 @@ Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Class ReadOnlyUserPrefs <<Interface>>
 
 Package Person {
 Class Person
-Class Address
-Class Email
 Class Name
 Class Phone
+Class Email
+Class Gender
+Class Address
+Class Block
+Class Room
+Class MatriculationNumber
 Class UniquePersonList
 }
 
-Package Tag {
-Class Tag
+Package Event {
+Class UniqueEventList
+Class Event
+Class EventName
+Class EventDate
+Class Location
+Class Description
+}
+
+Package StudentGroup {
+Class StudentGroup
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
 ModelManager .up.|> Model
 Model .right.> ObservableList
+
 ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" UserPrefs
+
+AddressBook .up.|> ReadOnlyAddressBook
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+AddressBook *--> "1" UniqueEventList
 AddressBook *--> "1" UniquePersonList
+
 UniquePersonList o--> "*" Person
+Person *---> Block
+Person *---> Room
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> Gender
+Person *---> MatriculationNumber
+Person *---> Address
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueEventList o--> " * " Event
+Event *--> EventName
+Event *---> EventDate
+Event *---> Location
+Event *---> Description
+Event -> "*" Person : "attendees"
 
-ModelManager -->"1" Person : filtered list
+Person *--->"  *  " StudentGroup
+ModelManager ----->"1" Person : " filtered list"
 @enduml
