@@ -70,7 +70,10 @@ public class StringUtil {
         assert isNumber(trimmedIndex);
 
         // remove leading zeroes
+        // @@author PhongTran98-reused
+        // Reused from https://stackoverflow.com/questions/2800739/how-to-remove-leading-zeros-from-alphanumeric-text
         trimmedIndex = trimmedIndex.replaceFirst("^0+(?!$)", "");
+        // @@author
 
         return trimmedIndex.length() >= Integer.toString(Integer.MAX_VALUE).length();
     }
