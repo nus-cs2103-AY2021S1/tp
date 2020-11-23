@@ -2,6 +2,7 @@ package seedu.stock.commons.util;
 
 public class SuggestionUtil {
 
+    // The two methods given below are adapted from https://www.geeksforgeeks.org/edit-distance-dp-5/
     /**
      * Computes the minimum of three integers.
      *
