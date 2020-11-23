@@ -5,52 +5,77 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyHairStyleX <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class HairStyleX
+Class ReadOnlyHairStyleX
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
+Package Entity {
+Interface Entity <<Interface>>
+
+
+Package EntityList {
+Abstract Class "{abstract} \nUniqueEntityList" as UniqueEntityList
+Class UniqueClientList
+Class UniqueHairdresserList
+Class UniqueAppointmentList
+}
+
 Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Abstract Class "{abstract} \nPerson" as Person
+
+
+Class Client
+
+Class Hairdresser
+
+
 }
 
-Package Tag {
-Class Tag
-}
-}
+Class Appointment
 
+
+}
+}
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+
+
+HairStyleX .up.|> ReadOnlyHairStyleX
+
+Person .down.|> Entity
+Appointment .down.|> Entity
+Hairdresser --|> Person
+Client --|> Person
+UniqueAppointmentList -up-|> UniqueEntityList
+UniqueClientList -up-|> UniqueEntityList
+UniqueHairdresserList -up-|> UniqueEntityList
+
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o-left-> "1" HairStyleX
+ModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+HairStyleX *-down-> "1" UniqueAppointmentList
+HairStyleX *-down-> "1" UniqueClientList
+HairStyleX *-down-> "1" UniqueHairdresserList
+UniqueAppointmentList o-down-> "*" Appointment
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueClientList o-down-> "*" Client
+UniqueHairdresserList o-down-> "*" Hairdresser
 
-ModelManager -->"1" Person : filtered list
+
+
+ModelManager -[hidden]down-> EntityList
+
+
+
 @enduml

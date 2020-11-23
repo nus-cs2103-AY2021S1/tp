@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HairStyleXParser" as HairStyleXParser LOGIC_COLOR
+participant ":FilterClientCommandParser" as FilterClientCommandParser LOGIC_COLOR
+participant "a:FilterClientCommand" as FilterClientCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute(filter_client Anna)
+activate LogicManager
+
+LogicManager -> HairStyleXParser : parseCommand(filter_client Anna)
+activate HairStyleXParser
+
+create FilterClientCommandParser
+HairStyleXParser -> FilterClientCommandParser
+activate FilterClientCommandParser
+
+FilterClientCommandParser --> HairStyleXParser
+deactivate FilterClientCommandParser
+
+HairStyleXParser -> FilterClientCommandParser
+activate FilterClientCommandParser
+create FilterClientCommand
+FilterClientCommandParser -> FilterClientCommand
+activate FilterClientCommand
+
+FilterClientCommand --> FilterClientCommandParser
+deactivate FilterClientCommand
+
+FilterClientCommandParser -> FilterClientCommand : parse(predicate)
+activate FilterClientCommand
+
+FilterClientCommand -> FilterClientCommandParser : a
+deactivate FilterClientCommand
+
+FilterClientCommandParser -> HairStyleXParser : a
+deactivate FilterClientCommandParser
+
+HairStyleXParser -> LogicManager : a
+deactivate HairStyleXParser
+
+LogicManager -> FilterClientCommand : execute()
+activate FilterClientCommand
+
+FilterClientCommand -> Model : updateFilteredClientList(predicate)
+activate Model
+
+Model --> FilterClientCommand
+deactivate Model
+
+FilterClientCommand --> LogicManager : result
+deactivate FilterClientCommand
+FilterClientCommand -[hidden]-> LogicManager : result
+
+LogicManager -> Storage : saveHairStyleX(hairStyleX)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+
+destroy FilterClientCommand
+
+deactivate LogicManager
+@enduml

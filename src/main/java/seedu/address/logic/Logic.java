@@ -7,8 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyHairStyleX;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.client.Client;
+import seedu.address.model.person.hairdresser.Hairdresser;
 
 /**
  * API of the Logic component
@@ -24,19 +26,25 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the HairStyleX.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getHairStyleX()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyHairStyleX getHairStyleX();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of hairdressers */
+    ObservableList<Hairdresser> getFilteredHairdresserList();
+
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
+
+    /** Returns an unmodifiable view of the filtered list of appointments */
+    ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' hairStyleX file path.
      */
-    Path getAddressBookFilePath();
+    Path getHairStyleXFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

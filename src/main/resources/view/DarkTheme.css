@@ -344,9 +344,51 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #a96dad;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#specialisations {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#specialisations .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3498db;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+.status_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-background-color: #049372;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+}
+
+.client_card {
+    -fx-background-color: rgb(148, 124, 176, 0.3);
+}
+
+.client_title {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #be90d4;
+    -fx-opacity: 1;
+}
+
+.hairdresser_card {
+    -fx-background-color: rgb(103, 128, 159, 0.4);
+}
+
+.appt_card {
+    -fx-background-color: rgba(144, 198, 149, 0.2);
 }

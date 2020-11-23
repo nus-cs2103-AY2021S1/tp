@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.Region?>
+<BorderPane VBox.vgrow="ALWAYS" id="borderPane" fx:id="borderPane" maxWidth="Infinity" maxHeight="800" minWidth="300" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="hairdresser_card">
+    <minHeight>
+        <Region fx:constant="USE_COMPUTED_SIZE"></Region>
+    </minHeight>
+    <prefHeight>
+        <Region fx:constant="USE_COMPUTED_SIZE"></Region>
+    </prefHeight>
+    <maxHeight>
+        <Region fx:constant="USE_COMPUTED_SIZE"></Region>
+    </maxHeight>
+    <padding>
+        <Insets bottom="5" left="5" right="5" top="5" />
+    </padding>
+    <left>
+        <ImageView fitHeight="64" fitWidth="64" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <image>
+                <Image url="@../images/hairdresser.png" />
+            </image>
+        </ImageView>
+    </left>
+    <center>
+        <VBox VBox.vgrow="ALWAYS" alignment="CENTER_LEFT">
+            <prefHeight>
+                <Region fx:constant="USE_COMPUTED_SIZE"></Region>
+            </prefHeight>
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="15" />
+            </padding>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="id" styleClass="cell_big_label" text="\$id" />
+
+            </HBox>
+            <Label fx:id="name" text="\$name" styleClass="cell_big_label" wrapText="true" VBox.vgrow="ALWAYS">
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
+            </Label>
+            <FlowPane fx:id="specialisations" />
+            <Label fx:id="title" styleClass="cell_small_label" text="\$title" />
+            <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" VBox.vgrow="ALWAYS">
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
+            </Label>
+        </VBox>
+    </center>
+</BorderPane>

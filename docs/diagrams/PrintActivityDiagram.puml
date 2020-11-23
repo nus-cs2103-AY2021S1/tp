@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters an print command in
+the command box;
+
+:LogicManager calls the execute method of PrintCommand;
+
+:hairdresser, client and appointment lists are read from the model;
+
+fork
+:calls writeToCsv with
+ExportType Hairdresser;
+:opens writer to hairdresser.csv;
+:calls appendToWriter to write
+create time, header and
+hairdresser information into the
+csv file;
+:closes writer;
+fork again
+:calls writeToCsv with
+ExportType Client;
+:opens writer to client.csv;
+:calls appendToWriter to write
+create time, header and
+client information into the
+csv file;
+:closes writer;
+fork again
+:calls writeToCsv with
+ExportType appointment;
+:opens writer to appointment.csv;
+:calls appendToWriter to write
+create time, header and
+appointment information into the
+csv file;
+:closes writer;
+end fork
+
+:return command result;
+
+stop
+
+@enduml

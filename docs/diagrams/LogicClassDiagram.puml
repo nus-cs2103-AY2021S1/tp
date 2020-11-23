@@ -9,7 +9,10 @@ package Logic {
 package Parser {
 Interface Parser <<Interface>>
 Class AddressBookParser
-Class XYZCommandParser
+package "ABC" as DEF {
+Class XYZ_ABC_CommandParser
+}
+Class "{abstract}\nXYZ_CommandParser" as XYZ_CommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -18,7 +21,10 @@ Class Prefix
 }
 
 package Command {
-Class XYZCommand
+package ABC {
+Class XYZ_ABC_Command
+}
+Class "{abstract}\nXYZ_Command" as XYZ_Command
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -34,26 +40,33 @@ Class HiddenModel #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
+note "XYZ represents types of commands such as\nAdd, Edit, Delete, Find, etc\n\nABC represents \nentities such as Client, Hairdresser and Appointment" as N1
+
 LogicManager .up.|> Logic
 LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+AddressBookParser ..> XYZ_ABC_CommandParser: creates >
+XYZ_ABC_CommandParser --|> XYZ_CommandParser
+AddressBookParser -right[hidden]- CommandResult
 
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
+XYZ_CommandParser ..> XYZ_ABC_Command : creates >
+XYZ_CommandParser .|> Parser
+XYZ_CommandParser ..> ArgumentMultimap
+XYZ_CommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
+XYZ_CommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
+XYZ_CommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
+XYZ_Command -up-|> Command
+XYZ_ABC_Command -up-|> XYZ_Command
 LogicManager .left.> Command : executes >
+note left of XYZ_ABC_CommandParser: Eg, AddClientCommandParser
 
 LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+Command .up.> Model
+note left of XYZ_Command: XYZ_Command = AddCommand, \nFindCommand, etc
+note right of XYZ_ABC_Command: Assuming XYZ = Add, \nXYZ_ABC_Command = AddClientCommand, \nAddHairdresserCommand, \nAddAppointmentCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

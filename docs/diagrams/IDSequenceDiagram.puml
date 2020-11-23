@@ -1,0 +1,47 @@
+@startuml
+
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":HairStyleXParser" as logic LOGIC_COLOR
+Participant ":AddClientCommandParser" as parser LOGIC_COLOR
+Participant "c:Client" as client LOGIC_COLOR
+Participant ":IdCounter" as idCounter LOGIC_COLOR
+Participant ":ClientId" as Id LOGIC_COLOR
+Participant ":AddClientCommand" as command LOGIC_COLOR
+end box
+
+activate logic
+logic -[USER_COLOR]> parser : parse("add_client n/John Doe p/98765432 ...")
+activate parser
+
+create client
+
+parser -> client
+activate client
+
+client -> idCounter : generateNewClientId()
+activate idCounter
+create Id
+idCounter -> Id
+activate Id
+Id --> idCounter
+deactivate Id
+
+idCounter --> client
+deactivate idCounter
+
+client --> parser
+deactivate client
+
+create command
+parser -> command : AddClientCommand(c)
+
+activate command
+command --> parser
+deactivate command
+
+parser --> logic
+deactivate parser
+deactivate logic
+@enduml
