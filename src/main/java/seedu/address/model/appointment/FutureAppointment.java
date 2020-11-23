@@ -8,7 +8,8 @@ import seedu.address.model.person.hairdresser.Hairdresser;
  * Represents an Appointment that must be created in the future compared to system time.
  */
 public class FutureAppointment extends Appointment {
-    //Solution below adapted from https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
+    // Solution below adapted from
+    // https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
 
     public static final String MESSAGE_CONSTRAINT_FUTURE = "Appointments can only be made in the future";
 

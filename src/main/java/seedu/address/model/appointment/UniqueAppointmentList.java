@@ -21,7 +21,8 @@ import seedu.address.model.person.hairdresser.HairdresserId;
  * @see Appointment#isSameAppointment(Appointment)
  */
 public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
-    //Solution below adapted from https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
+    // Solution below adapted from
+    // https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
 
     /**
      * Replaces the appointment {@code target} in the list with {@code changedAppointment}.
