@@ -86,6 +86,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
+
+        // Solution below adapted from ceklock's answer on
+        // https://stackoverflow.com/questions/14357515/javafx-close-window-on-pressing-esc
         primaryStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (KeyCode.ESCAPE == event.getCode()) {
                 handleExit();
