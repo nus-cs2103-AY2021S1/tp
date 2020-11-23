@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class KanBugTrackerParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -21,6 +21,7 @@ package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Class ModifyTagUtility
 }
 
 Interface Logic <<Interface>>
@@ -35,8 +36,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" KanBugTrackerParser
+KanBugTrackerParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
@@ -49,6 +50,8 @@ XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+XYZCommand .down.> ModifyTagUtility : creates >
+note right of ModifyTagUtility: Only EditTagCommand, EditTagByStateCommand, AddTagCommand and AddTagByStateCommand creates ModifyTagUtility
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model

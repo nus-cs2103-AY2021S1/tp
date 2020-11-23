@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLUMN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BUGS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,87 +21,116 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.bug.Bug;
+import seedu.address.model.bug.Description;
+import seedu.address.model.bug.Name;
+import seedu.address.model.bug.Note;
+import seedu.address.model.bug.Priority;
+import seedu.address.model.bug.State;
 import seedu.address.model.tag.Tag;
 
+
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing bug in the bug tracker.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the bug identified "
+            + "by the index number used in the displayed bug list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_COLUMN + "STATE]"
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_STATE + "STATE] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
+            + "[" + PREFIX_NOTE + "NOTE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_STATE + "backlog"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_STATE + "todo";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_EDIT_BUG_SUCCESS = "Edited Bug: %1$s";
+    public static final String MESSAGE_NOT_EDITED =
+            "At least one field to edit must be provided and different from the original one.";
+    public static final String MESSAGE_DUPLICATE_BUG = "This bug already exists in the KanBug Tracker.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    protected final Index index;
+    protected final EditBugDescriptor editBugDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the bug in the filtered bug list to edit
+     * @param editBugDescriptor details to edit the bug with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditBugDescriptor editBugDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editBugDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editBugDescriptor = new EditBugDescriptor(editBugDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Bug> lastShownList = model.getFilteredBugList();
 
+        return updateList(lastShownList, model);
+    }
+
+    protected CommandResult updateList(List<Bug> lastShownList, Model model) throws CommandException {
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BUG_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Bug bugToEdit = lastShownList.get(index.getZeroBased());
+        Bug editedBug = createEditedBug(bugToEdit, editBugDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (bugToEdit.equals(editedBug)) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        if (!bugToEdit.isSameBug(editedBug) && model.hasBug(editedBug)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BUG);
+        }
+
+        model.setBug(bugToEdit, editedBug);
+        model.updateFilteredBugList(PREDICATE_SHOW_ALL_BUGS);
+        return new CommandResult(String.format(MESSAGE_EDIT_BUG_SUCCESS, editedBug));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Bug} with the details of {@code bugToEdit}
+     * edited with {@code editBugDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    protected static Bug createEditedBug(Bug bugToEdit, EditBugDescriptor editBugDescriptor) {
+        assert bugToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editBugDescriptor.getName().orElse(bugToEdit.getName());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        State updatedState = editBugDescriptor.getState().orElse(bugToEdit.getState());
+
+        Description updatedDescription = editBugDescriptor.getDescription().orElse(bugToEdit.getDescription());
+
+        Set<Tag> updatedTags = editBugDescriptor.getTags().orElse(bugToEdit.getTags());
+
+        Priority updatedPriority = editBugDescriptor.getPriority().orElse(bugToEdit.getPriority());
+
+        Optional<Note> updatedOptionalNote = null;
+        if (editBugDescriptor.getOptionalNote() == null) {
+            updatedOptionalNote = bugToEdit.getOptionalNote();
+        } else if (editBugDescriptor.getOptionalNote().isEmpty()) {
+            updatedOptionalNote = Optional.empty();
+        } else {
+            updatedOptionalNote = editBugDescriptor.getOptionalNote();
+        }
+
+
+        return new Bug(updatedName, updatedState, updatedDescription, updatedOptionalNote, updatedTags ,
+                updatedPriority);
     }
 
     @Override
@@ -117,39 +148,41 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editBugDescriptor.equals(e.editBugDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the bug with. Each non-empty field value will replace the
+     * corresponding field value of the bug.
      */
-    public static class EditPersonDescriptor {
+    public static class EditBugDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private State state;
+        private Description description;
+        private Optional<Note> optionalNote;
         private Set<Tag> tags;
+        private Priority priority;
 
-        public EditPersonDescriptor() {}
+        public EditBugDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditBugDescriptor(EditBugDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setState(toCopy.state);
+            setDescription(toCopy.description);
+            setOptionalNote(toCopy.optionalNote);
             setTags(toCopy.tags);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, state, description, optionalNote, tags, priority);
         }
 
         public void setName(Name name) {
@@ -160,28 +193,36 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setState(State state) {
+            this.state = state;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<State> getState() {
+            return Optional.ofNullable(state);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setPriority(Priority priority) {
+            this.priority = priority;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
+        public void setOptionalNote(Optional<Note> optionalNote) {
+            this.optionalNote = optionalNote;
+        }
+
+        public Optional<Note> getOptionalNote() {
+            return this.optionalNote;
         }
 
         /**
@@ -209,17 +250,26 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditBugDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditBugDescriptor e = (EditBugDescriptor) other;
+            boolean thisOptionalNoteIsNull = getOptionalNote() == null;
+            boolean noteEqual;
+            if (thisOptionalNoteIsNull) {
+                boolean otherOptionalNoteisNull = e.getOptionalNote() == null;
+                noteEqual = otherOptionalNoteisNull;
+            } else {
+                noteEqual = getOptionalNote().equals(e.getOptionalNote());
+            }
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getState().equals(e.getState())
+                    && getDescription().equals(e.getDescription())
+                    && getPriority().equals(e.getPriority())
+                    && noteEqual
                     && getTags().equals(e.getTags());
         }
     }

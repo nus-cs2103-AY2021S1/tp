@@ -2,10 +2,15 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLUMN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWTAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OLDTAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUERYSTRING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -15,58 +20,126 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.KanBugTracker;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.bug.Bug;
+import seedu.address.model.bug.NameContainsKeywordsPredicate;
+import seedu.address.model.bug.State;
+import seedu.address.testutil.EditBugDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NAME_PARSER = "Program cannot start up";
+    public static final String VALID_NAME_HOMEPAGE = "Duplicate items in list";
+    public static final String VALID_NAME_UI = "ArrayOutOfBounds Error";
+    public static final String VALID_STATE_PARSER = "backlog";
+    public static final String VALID_STATE_HOMEPAGE = "done";
+    public static final String VALID_DESCRIPTION_PARSER = "Blank screen on launching application";
+    public static final String VALID_DESCRIPTION_HOMEPAGE = "Duplicates in list when searching for a specific bug";
+    public static final String VALID_DESCRIPTION_UI = "No input validation for invalid index";
+    public static final String VALID_NOTE_PARSER = "this bug has been encountered on numerous occasions in the parser";
+    public static final String VALID_NOTE_HOMEPAGE = "this is a very rare problem that has not been encountered before";
+    public static final String VALID_NOTE_BLANK = "";
+    public static final String VALID_PRIORITY_PARSER = "medium";
+    public static final String VALID_PRIORITY_HOMEPAGE = "high";
+    public static final String VALID_TAG_COMPONENT = "UI";
+    public static final String VALID_TAG_LOGIC = "Logic";
+    public static final String VALID_COLUMN_TODO = "todo";
+    public static final String VALID_COLUMN_BACKLOG = "backlog";
+    public static final String VALID_STATE_VALUE_TODO = "todo";
+    public static final String VALID_STATE_VALUE_BACKLOG = "backlog";
+    public static final String VALID_STATE_VALUE_ONGOING = "ongoing";
+    public static final String VALID_STATE_VALUE_DONE = "done";
+    public static final String VALID_PRIORITY_LOW = "low";
+    public static final String VALID_PRIORITY_MEDIUM = "medium";
+    public static final String VALID_PRIORITY_HIGH = "high";
+    public static final String VALID_QUERY_STRING_ONE = "first";
+    public static final String VALID_QUERY_STRING_TWO = "second";
+    public static final String VALID_QUERY_STRING_THREE = "No data";
+    public static final String VALID_QUERY_STRING_FOUR = "jar";
+    public static final String VALID_QUERY_STRING_FIVE = "eXiT";
+    public static final String VALID_QUERY_STRING_SIX = "Note rendering";
+    public static final String VALID_QUERY_STRING_SEVEN = "command";
+    public static final String VALID_QUERY_STRING_EIGHT = "cOmMaND";
+    public static final String VALID_QUERY_STRING_NINE = "mAiN wINDow";
+    public static final String VALID_QUERY_STRING_TEN = "MAC";
+    public static final String VALID_QUERY_STRING_ELEVEN = "all equivalence partition";
+    public static final String VALID_QUERY_STRING_TWELVE = "JAVAfx";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String NAME_DESC_PARSER = " " + PREFIX_NAME + VALID_NAME_PARSER;
+    public static final String NAME_DESC_HOMEPAGE = " " + PREFIX_NAME + VALID_NAME_HOMEPAGE;
+    public static final String NAME_DESC_UI = " " + PREFIX_NAME + VALID_NAME_UI;
+    public static final String STATE_DESC_PARSER = " " + PREFIX_STATE + VALID_STATE_PARSER;
+    public static final String STATE_DESC_HOMEPAGE = " " + PREFIX_STATE + VALID_STATE_HOMEPAGE;
+    public static final String DESCRIPTION_DESC_PARSER = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PARSER;
+    public static final String DESCRIPTION_DESC_HOMEPAGE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_HOMEPAGE;
+    public static final String DESCRIPTION_DESC_UI = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_UI;
+    public static final String NOTE_DESC_PARSER = " " + PREFIX_NOTE + VALID_NOTE_PARSER;
+    public static final String NOTE_DESC_HOMEPAGE = " " + PREFIX_NOTE + VALID_NOTE_HOMEPAGE;
+    public static final String TAG_DESC_FRONTEND = " " + PREFIX_TAG + VALID_TAG_LOGIC;
+    public static final String TAG_DESC_BACKEND = " " + PREFIX_TAG + VALID_TAG_COMPONENT;
+    public static final String TAG_DESC_OLD = " " + PREFIX_OLDTAG + VALID_TAG_LOGIC;
+    public static final String TAG_DESC_NEW = " " + PREFIX_NEWTAG + VALID_TAG_COMPONENT;
+    public static final String TAG_DESC_NEW_ALTERNATIVE = " " + PREFIX_NEWTAG + VALID_TAG_LOGIC;
+    public static final String PRIORITY_DESC_PARSER = " " + PREFIX_PRIORITY + VALID_PRIORITY_PARSER;
+    public static final String PRIORITY_DESC_HOMEPAGE = " " + PREFIX_PRIORITY + VALID_PRIORITY_HOMEPAGE;
+    public static final String COLUMN_DESC_TODO = " " + PREFIX_COLUMN + VALID_COLUMN_TODO;
+    public static final String COLUMN_DESC_BACKLOG = " " + PREFIX_COLUMN + VALID_COLUMN_BACKLOG;
+    public static final String QUERY_STRING_TYPICAL = " " + PREFIX_QUERYSTRING + VALID_QUERY_STRING_ONE;
+    public static final String QUERY_STRING_TRAILING =
+            "    " + PREFIX_QUERYSTRING + "    " + VALID_QUERY_STRING_ONE + "    ";
+    public static final String QUERY_STRING_REPEAT =
+            " " + PREFIX_QUERYSTRING + VALID_QUERY_STRING_TWO
+            + " " + PREFIX_QUERYSTRING + VALID_QUERY_STRING_THREE
+            + " " + PREFIX_QUERYSTRING + VALID_QUERY_STRING_ONE;
+
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Bug&"; // '&' not allowed in names
+    public static final String INVALID_STATE_DESC = " " + PREFIX_STATE + "backklog"; // typo of backog
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions cannot be empty
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE; // note cannot be empty when bug is being added
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Ui*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_OLD = " " + PREFIX_OLDTAG + "prints.java"; // '.' not allowed in tags
+    public static final String INVALID_TAG_NEW = " " + PREFIX_NEWTAG + "Javafs("; // '(' not allowed in tags
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "hig"; // typo of high
+    public static final String INVALID_COLUMN_DESC = " " + PREFIX_COLUMN + "todos"; // typo of todo
+    public static final String INVALID_QUERY_STRING_DESC = "     "; // empty prefix and argument
+    public static final String INVALID_QUERY_STRING_ARGUMENT_DESC = " " + PREFIX_QUERYSTRING + " "; // empty argument
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditBugDescriptor DESC_PARSER;
+    public static final EditCommand.EditBugDescriptor DESC_HOMEPAGE;
+
+    public static final State VALID_STATE_TODO = new State("todo");
+    public static final State VALID_STATE_BACKLOG = new State("backlog");
+    public static final State VALID_STATE_ONGOING = new State("ongoing");
+    public static final State VALID_STATE_DONE = new State("done");
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_PARSER = new EditBugDescriptorBuilder()
+                .withName(VALID_NAME_PARSER)
+                .withState(VALID_STATE_PARSER)
+                .withDescription(VALID_DESCRIPTION_PARSER)
+                .withNote(VALID_NOTE_PARSER)
+                .withTags(VALID_TAG_LOGIC)
+                .withPriority(VALID_PRIORITY_PARSER)
+                .build();
+
+        DESC_HOMEPAGE = new EditBugDescriptorBuilder()
+                .withName(VALID_NAME_HOMEPAGE)
+                .withState(VALID_STATE_HOMEPAGE)
+                .withDescription(VALID_DESCRIPTION_HOMEPAGE)
+                .withNote(VALID_NOTE_HOMEPAGE)
+                .withTags(VALID_TAG_COMPONENT, VALID_TAG_LOGIC)
+                .withPriority(VALID_PRIORITY_HOMEPAGE)
+                .build();
     }
 
     /**
@@ -99,30 +172,30 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the bug tracker, filtered bug list and selected  bug in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        KanBugTracker expectedKanBugTracker = new KanBugTracker(actualModel.getKanBugTracker());
+        List<Bug> expectedFilteredList = new ArrayList<>(actualModel.getFilteredBugList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedKanBugTracker, actualModel.getKanBugTracker());
+        assertEquals(expectedFilteredList, actualModel.getFilteredBugList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the bug at the given {@code targetIndex} in the
+     * {@code model}'s bug tracker.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showBugAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBugList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Bug bug = model.getFilteredBugList().get(targetIndex.getZeroBased());
+        final String[] splitName = bug.getName().fullName.split("\\s+");
+        model.updateFilteredBugList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredBugList().size());
     }
 
 }

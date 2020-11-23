@@ -39,6 +39,55 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code queryString}.
+     * @param sentence cannot be null
+     * @param queryString cannot be null, cannot be empty
+     */
+    public static boolean containsQueryStringIgnoreCase(String sentence, String queryString) {
+        requireNonNull(sentence);
+        requireNonNull(queryString);
+
+        String preppedWord = queryString.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        return sentence.toLowerCase().contains(queryString.toLowerCase());
+    }
+
+    /**
+     * Returns true if the {@code index} is formed by digits only.
+     * @param index cannot be null.
+     */
+    public static boolean isNumber(String index) {
+        String trimmedIndex = index.trim();
+        return trimmedIndex.matches("[0-9]+");
+    }
+
+    /**
+     * Returns true if the {@code index} is too large (when the length is at least equals to that of Integer.MAX_VALUE).
+     * @param index cannot be null and must be a number.
+     */
+    public static boolean isIndexOverflow(String index) {
+        String trimmedIndex = index.trim();
+        assert isNumber(trimmedIndex);
+
+        // remove leading zeroes
+        // @@author PhongTran98-reused
+        // Reused from https://stackoverflow.com/questions/2800739/how-to-remove-leading-zeros-from-alphanumeric-text
+        trimmedIndex = trimmedIndex.replaceFirst("^0+(?!$)", "");
+        // @@author
+
+        return trimmedIndex.length() >= Integer.toString(Integer.MAX_VALUE).length();
+    }
+
+    /**
+     * Returns true if the {@code preamble} is empty after being trimmed.
+     * @param preamble cannot be null.
+     */
+    public static boolean isEmptyArgument(String preamble) {
+        String trimmedPreamble = preamble.trim();
+        return trimmedPreamble.isEmpty();
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

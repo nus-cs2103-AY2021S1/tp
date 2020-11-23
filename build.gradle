@@ -66,7 +66,11 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = '[CS2103T-W17-1][KanBugTracker].jar'
 }
-
 defaultTasks 'clean', 'test'
+
+run {
+    standardInput = System.in
+    enableAssertions = true
+}

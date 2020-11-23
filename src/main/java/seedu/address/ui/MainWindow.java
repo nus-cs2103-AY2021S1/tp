@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,9 +33,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private BugListPanel bugListPanel;
+    private KanbanPanel kanbanPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private boolean isKanbanView = true;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +47,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem escMenuItem;
+
+    @FXML
+    private StackPane bugListPanelPlaceholder;
+
+    @FXML
+    private StackPane kanbanPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -63,9 +74,11 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
+        helpWindow = new HelpWindow();
+
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        toKanbanView();
     }
 
     public Stage getPrimaryStage() {
@@ -73,6 +86,23 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
+
+        // Solution below adapted from ceklock's answer on
+        // https://stackoverflow.com/questions/14357515/javafx-close-window-on-pressing-esc
+        primaryStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                handleExit();
+                logger.info("Key pressed: ESCAPE in primary stage");
+            }
+        });
+
+        helpWindow.getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                helpWindow.getRoot().close();
+                logger.info("Key pressed: ESCAPE in help window");
+            }
+        });
+
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
@@ -110,13 +140,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        bugListPanel = new BugListPanel(logic.getFilteredBugList());
+        bugListPanelPlaceholder.getChildren().add(bugListPanel.getRoot());
+
+        kanbanPanel = new KanbanPanel(logic);
+        kanbanPanelPlaceholder.getChildren().add(kanbanPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getKanBugTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,8 +196,33 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Switch the view.
+     */
+    private void handleSwitch() {
+        if (isKanbanView) {
+            toListView();
+        } else {
+            toKanbanView();
+        }
+    }
+
+    private void toKanbanView() {
+        isKanbanView = true;
+
+        kanbanPanelPlaceholder.setVisible(true);
+        kanbanPanelPlaceholder.setManaged(true);
+        bugListPanelPlaceholder.setVisible(false);
+        bugListPanelPlaceholder.setManaged(false);
+    }
+
+    private void toListView() {
+        isKanbanView = false;
+
+        kanbanPanelPlaceholder.setVisible(false);
+        kanbanPanelPlaceholder.setManaged(false);
+        bugListPanelPlaceholder.setVisible(true);
+        bugListPanelPlaceholder.setManaged(true);
     }
 
     /**
@@ -178,12 +236,16 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSwitch()) {
+                handleSwitch();
             }
 
             return commandResult;

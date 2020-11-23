@@ -11,34 +11,52 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.bug.Bug;
+import seedu.address.model.bug.State;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the bug tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private static boolean isKanban = true;
+
+    private final KanBugTracker kanBugTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-
+    private final FilteredList<Bug> filteredBugs;
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given kanBugTracker and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyKanBugTracker kanBugTracker, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(kanBugTracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with bug tracker: " + kanBugTracker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.kanBugTracker = new KanBugTracker(kanBugTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBugs = new FilteredList<>(this.kanBugTracker.getBugList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new KanBugTracker(), new UserPrefs());
+    }
+
+    public static boolean isKanban() {
+        return isKanban;
+    }
+
+    public static void setListViewWindow() {
+        isKanban = false;
+    }
+
+    public static void setKanbanWindow() {
+        isKanban = true;
+    }
+
+    public static void switchWindow() {
+        isKanban = !isKanban;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +84,78 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getKanBugTrackerFilePath() {
+        return userPrefs.getKanBugTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setKanBugTrackerFilePath(Path kanBugTrackerFilePath) {
+        requireNonNull(kanBugTrackerFilePath);
+        userPrefs.setKanBugTrackerFilePath(kanBugTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== KanBugTracker ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setKanBugTracker(ReadOnlyKanBugTracker kanBugTracker) {
+        this.kanBugTracker.resetData(kanBugTracker);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyKanBugTracker getKanBugTracker() {
+        return kanBugTracker;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasBug(Bug bug) {
+        requireNonNull(bug);
+        return kanBugTracker.hasBug(bug);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteBug(Bug target) {
+        kanBugTracker.removeBug(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addBug(Bug bug) {
+        kanBugTracker.addBug(bug);
+        updateFilteredBugList(PREDICATE_SHOW_ALL_BUGS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setBug(Bug target, Bug editedBug) {
+        requireAllNonNull(target, editedBug);
+
+        kanBugTracker.setBug(target, editedBug);
+    }
+
+    //=========== Filtered Bug List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Bug} backed by the internal list of
+     * {@code versionedKanBugTracker}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Bug> getFilteredBugList() {
+        return filteredBugs;
+    }
+
+    /**
+     * Returns an a filtered list of bugs backed by the internal list of
+     * {@code versionedKanBugTracker}
+     */
+    @Override
+    public ObservableList<Bug> getFilteredBugListByState(State state) {
+        FilteredList<Bug> filteredBugsByState = new FilteredList<>(filteredBugs);
+        filteredBugsByState.setPredicate(bug -> bug.getState().equals(state));
+        return filteredBugsByState;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredBugList(Predicate<Bug> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredBugs.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +172,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return kanBugTracker.equals(other.kanBugTracker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredBugs.equals(other.filteredBugs);
     }
 
 }
