@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters delete command input in
+the command box;
+
+:DeleteCommandParser parses the argument;
+
+if () then ([valid command input format])
+    :LogicManager executes the DeleteCommand;
+    :for each serial number in the set of \n serial numbers in DeleteCommand;
+    repeat
+      :check serial number exists in StockBook;
+      if () then ([serial number exists in StockBook])
+               :delete the stock mapped to serial number;
+               :store in list of stocksDeleted;
+           else ([else])
+               :stores in list of unknownSerialNumbers
+               with error message;
+           endif
+    repeat while (are there still serial numbers in set?) is ([yes])
+    ->[no];
+    :returns respective feedback that
+     includes the details in stocksDeleted
+     and unknownSerialNumbers;
+
+else ([else])
+    :throws ParseException
+     with command usage
+     direction;
+    :returns a Suggestion message to user;
+endif
+stop
+
+@enduml

@@ -5,55 +5,59 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Amy Lim Zhi Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/amylzting.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/amylzting)]
+[[portfolio](team/amylzting.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation manager - Responsible for the quality of
+project documents, Coding standards, format of deliverables
 
-### Jean Doe
+### Ang Kai Chao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kc-98.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kc-98)]
+[[portfolio](team/kc-98.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Team Leader, Overall code quality, Testing
+
+### Audrey Felicio Anwar
+
+<img src="images/audreyfelicio.png" width="200px">
+
+[[github](https://github.com/AudreyFelicio)]
+[[portfolio](team/audreyfelicio.md)]
+
+* Role: Developer
+* Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature,
+  Suggestion feature, Sort feature, and Git & GitHub expert.
+
+
+### Lau Jun Hao Ashley
+
+<img src="images/ashley-lau.png" width="200px">
+
+[[github](https://github.com/ashley-lau)]
+[[portfolio](team/ashley-lau.md)]
+
+* Role: Developer
+* Responsibilities: Scheduling and tracking manager - In charge of defining, assigning, and tracking project tasks.
+
+
+### Lim Ze Wei Dennis
+
+<img src="images/limzeweidennis.png" width="200px">
+
+[[github](https://github.com/LimZeWeiDennis)]
+[[portfolio](team/limzeweidennis.md)]
+
+* Role: Developer
+* Responsibilities: Deadline and Deliverables manager - in charge of making sure that
+members completes tasks and submit deliverables on time

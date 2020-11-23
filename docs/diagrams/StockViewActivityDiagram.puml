@@ -1,0 +1,25 @@
+@startuml
+start
+:User enters command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([stockview command])
+    :Parser for stockview command parses user input.;
+    if () then ([valid input])
+        :Stock to view is searched by its serial number.;
+        if () then ([Serial Number is found])
+            : Stock details are displayed in the Stock View tab.;
+        else([else])
+            : Error message is shown that stock cannot be found.;
+        endif
+    else ([invalid input])
+        :Parsing error messages thrown.;
+    endif
+else ([else])
+    :Warenager passes command input \n to their respective parsers.;
+
+endif
+stop
+@enduml

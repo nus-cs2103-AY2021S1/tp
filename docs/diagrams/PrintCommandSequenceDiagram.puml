@@ -1,0 +1,99 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":PrintCommandParser" as PrintCommandParser LOGIC_COLOR
+participant ":PrintCommand" as PrintCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Commons MODEL_COLOR_T1
+participant ":FileUtil" as FileUtil << class >> MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand(...)
+activate StockBookParser
+
+create PrintCommandParser
+StockBookParser -> PrintCommandParser
+activate PrintCommandParser
+
+PrintCommandParser --> StockBookParser
+deactivate PrintCommandParser
+
+StockBookParser -> PrintCommandParser : parse(...)
+activate PrintCommandParser
+
+PrintCommandParser -> PrintCommandParser : arePrefixesPresent(...)
+activate PrintCommandParser
+
+PrintCommandParser --> PrintCommandParser
+deactivate PrintCommandParser
+
+PrintCommandParser -> PrintCommandParser : doesPrefixesAppearOnce(...)
+activate PrintCommandParser
+
+PrintCommandParser --> PrintCommandParser
+deactivate PrintCommandParser
+
+create PrintCommand
+PrintCommandParser -> PrintCommand
+activate PrintCommand
+
+PrintCommand --> PrintCommandParser
+deactivate PrintCommand
+
+PrintCommandParser --> StockBookParser
+deactivate PrintCommandParser
+
+StockBookParser -> PrintCommand : execute()
+activate PrintCommand
+
+PrintCommand -> Model : getStockBook()
+activate Model
+
+Model --> PrintCommand
+deactivate Model
+
+PrintCommand -> FileUtil : createIfMissing(...)
+activate FileUtil
+
+FileUtil --> PrintCommand
+deactivate FileUtil
+
+PrintCommand -> PrintCommand : makeFileCreationTime()
+activate PrintCommand
+
+PrintCommand --> PrintCommand
+deactivate PrintCommand
+
+PrintCommand -> PrintCommand: makeTitleHeader()
+activate PrintCommand
+
+PrintCommand--> PrintCommand
+deactivate PrintCommand
+
+loop stocks
+PrintCommand -> PrintCommand : printStock(...)
+activate PrintCommand
+PrintCommand --> PrintCommand
+deactivate PrintCommand
+end
+
+PrintCommand --> StockBookParser
+deactivate PrintCommand
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

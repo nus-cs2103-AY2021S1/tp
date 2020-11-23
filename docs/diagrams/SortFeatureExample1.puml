@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Commons MODEL_COLOR_T1
+participant ":SortUtil" as SortUtil << class >> MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand()
+activate StockBookParser
+
+create SortCommandParser
+StockBookParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> StockBookParser
+deactivate SortCommandParser
+
+StockBookParser -> SortCommandParser : parse(args)
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser
+deactivate SortCommand
+
+SortCommandParser --> StockBookParser
+deactivate SortCommandParser
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> SortUtil : generateComparator()
+activate SortUtil
+
+SortUtil -> SortUtil : generateNameComparator()
+activate SortUtil
+
+SortUtil --> SortUtil
+deactivate SortUtil
+
+SortUtil --> SortCommand
+deactivate SortUtil
+
+SortCommand -> Model : sortFilteredStockList()
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand --> LogicManager
+deactivate SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

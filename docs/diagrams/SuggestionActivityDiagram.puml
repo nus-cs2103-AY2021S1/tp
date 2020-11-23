@@ -1,0 +1,21 @@
+@startuml
+start
+:User enters command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([known command])
+    :Warenager passes command input \n to their respective parsers.;
+    if () then ([parsing error occurs])
+        :Parsing error messages thrown;
+        :Generates suggestion based on error messages;
+    else ([else])
+        :Command parsed successfully and executed;
+    endif
+else ([unknown command])
+    :Infer a valid command word;
+    :Generates suggestion based on \n the inferred command word;
+endif
+stop
+@enduml

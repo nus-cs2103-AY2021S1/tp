@@ -1,0 +1,30 @@
+@startuml
+start
+:User enters command;
+
+:Warenager passes command input \n to their respective parsers.;
+
+if () then ([stats command])
+    :StatisticsParser determines the \n type of statistics command;
+    if () then ([valid input])
+        if () then ([source])
+            :Source statistics data generated;
+            :Pie chart updated;
+            :Warenager automatically toggles to \n Statistics tab;
+        else ([source-qd])
+            :Warenager checks if source exists;
+                if () then ([exists])
+                    :Source quantity distribution \n statistics data generated;
+                    :Pie chart updated;
+                    :Warenager automatically toggles to \n Statistics tab;
+                else ([dont exist])
+            endif
+        endif
+    else ([invalid input])
+    endif
+else ([non-stats command])
+
+endif
+stop
+
+@enduml

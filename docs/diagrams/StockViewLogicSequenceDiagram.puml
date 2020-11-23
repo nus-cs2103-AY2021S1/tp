@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":StockViewCommandParser" as StockViewCommandParser LOGIC_COLOR
+participant ":StockViewCommand" as StockViewCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil << class >> MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand(...)
+activate StockBookParser
+
+create StockViewCommandParser
+StockBookParser -> StockViewCommandParser
+activate StockViewCommandParser
+
+StockViewCommandParser --> StockBookParser
+deactivate StockViewCommandParser
+
+StockBookParser -> StockViewCommandParser : parse(args)
+activate StockViewCommandParser
+
+StockViewCommandParser -> ParserUtil : parseSerialNumber(...)
+activate ParserUtil
+
+ParserUtil -> StockViewCommandParser
+deactivate ParserUtil
+
+create StockViewCommand
+StockViewCommandParser -> StockViewCommand
+activate StockViewCommand
+
+StockViewCommand --> StockViewCommandParser
+deactivate StockViewCommand
+
+StockViewCommandParser --> StockBookParser
+deactivate StockViewCommandParser
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+LogicManager -> StockViewCommand : execute(...)
+activate StockViewCommand
+
+StockViewCommand -> StockViewCommand : getStockFromSerialNumber(...)
+activate StockViewCommand
+
+StockViewCommand -> StockViewCommand
+deactivate StockViewCommand
+
+StockViewCommand --> LogicManager
+deactivate StockViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

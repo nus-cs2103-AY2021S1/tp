@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":NoteCommandParser" as NoteCommandParser LOGIC_COLOR
+participant ":NoteCommand" as NoteCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil << class >> MODEL_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand(...)
+activate StockBookParser
+
+create NoteCommandParser
+StockBookParser -> NoteCommandParser
+activate NoteCommandParser
+
+NoteCommandParser --> StockBookParser
+deactivate NoteCommandParser
+
+StockBookParser -> NoteCommandParser : parse(args)
+activate NoteCommandParser
+
+NoteCommandParser -> ParserUtil : parseSerialNumber(...)
+activate ParserUtil
+
+ParserUtil -> NoteCommandParser
+deactivate ParserUtil
+
+NoteCommandParser -> ParserUtil : parseNote(...)
+activate ParserUtil
+
+ParserUtil -> NoteCommandParser
+deactivate ParserUtil
+
+create NoteCommand
+NoteCommandParser -> NoteCommand
+activate NoteCommand
+
+NoteCommand --> NoteCommandParser
+deactivate NoteCommand
+
+NoteCommandParser --> StockBookParser
+deactivate NoteCommandParser
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+LogicManager -> NoteCommand : execute(...)
+activate NoteCommand
+
+NoteCommand -> NoteCommand : getStockFromSerialNumber(...)
+activate NoteCommand
+
+NoteCommand -> NoteCommand
+deactivate NoteCommand
+
+NoteCommand -> NoteCommand : createStockWithAddedNote(...)
+activate NoteCommand
+
+NoteCommand -> NoteCommand
+deactivate NoteCommand
+
+NoteCommand -> Model : setStock(...)
+activate Model
+
+Model --> NoteCommand
+deactivate Model
+
+NoteCommand --> LogicManager
+deactivate NoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

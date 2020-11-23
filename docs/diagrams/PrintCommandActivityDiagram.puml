@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters an print command in
+the command box;
+
+:PrintCommandParser parses the argument;
+
+if () then ([valid command input format])
+    if () then ([file created successfully])
+        :generate file creation time;
+        :generate header for csv file;
+        :add all stock into the csv file;
+        :return successful PrintCommand message;
+    else ([else])
+        :throws CommandException
+        with error message;
+    endif
+else ([else])
+    :throws ParseException
+    with command usage
+    direction;
+endif
+:returns feedback to user;
+
+stop
+
+@enduml

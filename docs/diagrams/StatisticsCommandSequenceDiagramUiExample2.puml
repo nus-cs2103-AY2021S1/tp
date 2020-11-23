@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T2
+participant ":UiManager" as UiManager UI_COLOR_T3
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+participant ":StatisticsWindow" as StatisticsWindow UI_COLOR_T3
+participant ":CommandBox" as CommandBox UI_COLOR_T3
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+[-> UiManager : start()
+activate UiManager
+
+UiManager -> MainWindow : fillInnerParts()
+activate MainWindow
+
+MainWindow -> MainWindow : executeCommand(...)
+activate MainWindow
+
+MainWindow -> LogicManager : execute(...)
+activate LogicManager
+
+LogicManager -> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleStatistics(...)
+activate MainWindow
+
+MainWindow --> StatisticsWindow : updateData(...)
+activate StatisticsWindow
+
+StatisticsWindow --> StatisticsWindow : updateDataForSourceQuantityDistributionStatistics(...)
+activate StatisticsWindow
+
+StatisticsWindow --> StatisticsWindow
+deactivate StatisticsWindow
+
+StatisticsWindow --> MainWindow
+deactivate StatisticsWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+create CommandBox
+MainWindow -> CommandBox
+activate CommandBox
+
+CommandBox --> MainWindow
+deactivate CommandBox
+
+MainWindow --> UiManager
+deactivate MainWindow
+
+[<--UiManager
+deactivate UiManager
+@enduml

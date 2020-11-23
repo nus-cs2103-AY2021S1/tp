@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":StockBook" as StockBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand(...)
+activate StockBookParser
+
+create DeleteCommandParser
+StockBookParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser --> StockBookParser
+deactivate DeleteCommandParser
+
+StockBookParser -> DeleteCommandParser : parse(...)
+activate DeleteCommandParser
+
+DeleteCommandParser -> ParserUtil : parseSerialNumbers(...)
+activate ParserUtil
+
+ParserUtil --> DeleteCommandParser
+deactivate ParserUtil
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser
+deactivate DeleteCommand
+
+DeleteCommandParser --> StockBookParser
+deactivate DeleteCommandParser
+
+StockBookParser -> DeleteCommand : execute()
+activate DeleteCommand
+
+
+loop until all serial numbers checked
+    alt serial number mapped to a stock
+        DeleteCommand -> Model : deleteStock(...)
+        activate Model
+        Model -> StockBook : removeStock(...)
+        activate StockBook
+        StockBook -> Model
+        deactivate StockBook
+        Model -> DeleteCommand
+        deactivate Model
+    else no serial number can map to any stock
+    end
+end
+
+DeleteCommand -> StockBookParser
+deactivate DeleteCommand
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

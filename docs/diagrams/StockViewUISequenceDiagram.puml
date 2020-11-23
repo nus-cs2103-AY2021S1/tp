@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T2
+participant ":UiManager" as UiManager UI_COLOR_T3
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+participant ":StockViewWindow" as StockViewWindow UI_COLOR_T3
+participant ":StockViewCard" as StockViewCard UI_COLOR_T3
+participant ":CommandBox" as CommandBox UI_COLOR_T3
+end box
+
+
+[-> UiManager : start()
+activate UiManager
+
+UiManager -> MainWindow : fillInnerParts()
+activate MainWindow
+
+MainWindow -> MainWindow : executeCommand(commandText)
+activate MainWindow
+
+MainWindow -> MainWindow : handleStockView(...)
+activate MainWindow
+
+MainWindow -> MainWindow : updateStockView(...)
+activate MainWindow
+
+create StockViewWindow
+MainWindow -> StockViewWindow
+activate StockViewWindow
+
+loop stock details
+    create StockViewCard
+    StockViewWindow -> StockViewCard
+    activate StockViewCard
+
+    StockViewCard -> StockViewWindow
+    deactivate StockViewCard
+end
+
+StockViewWindow --> MainWindow
+deactivate StockViewWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+create CommandBox
+MainWindow -> CommandBox
+activate CommandBox
+
+CommandBox --> MainWindow
+deactivate CommandBox
+
+MainWindow --> UiManager
+deactivate MainWindow
+
+[<--UiManager
+deactivate UiManager
+@enduml

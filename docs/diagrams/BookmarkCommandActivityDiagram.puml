@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters an bookmark command in
+the command box;
+
+:BookmarkCommandParser parses the argument;
+
+if () then ([valid command input format])
+    if () then ([stock with given serialNumber present in Stockbook])
+        :add stock to stocksToBookmark;
+        if () then([if stock is not bookmarked before])
+            :change isBookmarked of stocks in
+            stocksToBookmark to true;
+            :add bookmarked stocks into updatedStocks;
+            :replace stock in Stockbook;
+            :return successful BookmarkCommand message
+            with serialNumber of bookmarked stocks;
+        else ([else])
+            :add stocks into notUpdatedStocks;
+            :return stocks_Already_Bookmarked message
+            with given serialNumbers of stock;
+        endif
+    else ([else])
+        :adds serialNumber to
+        stocksNotFound;
+        :return stocks_not_found message
+        with serialNumbers of stocks;
+    endif
+else ([else])
+    :throws ParseException
+    with command usage
+    direction;
+endif
+:returns feedback to user;
+
+stop
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":StatisticsCommandParser" as StatisticsCommandParser LOGIC_COLOR
+participant ":SourceStatisticsCommand" as SourceStatisticsCommand LOGIC_COLOR
+participant ":SourceQuantityDistributionStatisticsCommand" as SourceQuantityDistributionStatisticsCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand()
+activate StockBookParser
+
+create StatisticsCommandParser
+StockBookParser -> StatisticsCommandParser
+activate StatisticsCommandParser
+
+StatisticsCommandParser --> StockBookParser
+deactivate StatisticsCommandParser
+
+StockBookParser -> StatisticsCommandParser : parse(args)
+activate StatisticsCommandParser
+
+StatisticsCommandParser -> StatisticsCommandParser : parse(userInput)
+activate StatisticsCommandParser
+
+alt SourceStatistics
+
+create SourceStatisticsCommand
+StatisticsCommandParser -> SourceStatisticsCommand
+activate SourceStatisticsCommand
+SourceStatisticsCommand --> StatisticsCommandParser
+deactivate SourceStatisticsCommand
+
+else SourceQuantityDistributionStatistics
+
+create SourceQuantityDistributionStatisticsCommand
+StatisticsCommandParser -> SourceQuantityDistributionStatisticsCommand
+activate SourceQuantityDistributionStatisticsCommand
+SourceQuantityDistributionStatisticsCommand --> StatisticsCommandParser
+deactivate SourceQuantityDistributionStatisticsCommand
+
+end
+
+StatisticsCommandParser --> StatisticsCommandParser
+deactivate StatisticsCommandParser
+
+StatisticsCommandParser --> StockBookParser
+deactivate StatisticsCommandParser
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+LogicManager -> SourceStatisticsCommand : execute()
+activate SourceStatisticsCommand
+
+SourceStatisticsCommand --> LogicManager
+deactivate SourceStatisticsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

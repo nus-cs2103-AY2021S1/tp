@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockParser" as StockParser LOGIC_COLOR
+participant ":BookmarkCommandParser" as BookmarkCommandParser LOGIC_COLOR
+participant ":BookmarkCommand" as BookmarkCommand LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Stock" as Stock MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockParser : parseCommand()
+activate StockParser
+
+create BookmarkCommandParser
+StockParser -> BookmarkCommandParser
+activate BookmarkCommandParser
+
+BookmarkCommandParser --> StockParser
+deactivate BookmarkCommandParser
+
+StockParser -> BookmarkCommandParser : parse(args)
+activate BookmarkCommandParser
+
+create BookmarkCommand
+BookmarkCommandParser -> BookmarkCommand
+activate BookmarkCommand
+
+BookmarkCommand --> BookmarkCommandParser
+deactivate BookmarkCommand
+
+BookmarkCommandParser --> StockParser
+deactivate BookmarkCommandParser
+
+StockParser -> LogicManager
+deactivate StockParser
+
+LogicManager -> BookmarkCommand : execute()
+activate BookmarkCommand
+
+BookmarkCommand -> Model : updateFilteredStockList()
+    activate Model
+    Model --> BookmarkCommand
+        deactivate Model
+
+alt stock not present in Stock
+
+    create CommandException
+    BookmarkCommand -> CommandException
+    activate CommandException
+    CommandException --> BookmarkCommand
+    deactivate CommandException
+
+else if stock is already bookmarked
+    Model --> BookmarkCommand
+        deactivate Model
+        create CommandException
+        BookmarkCommand -> CommandException
+        activate CommandException
+        CommandException --> BookmarkCommand
+        deactivate CommandException
+
+else stock present in Stock
+    BookmarkCommand -> Stock:setBookmarked()
+    activate Stock
+    Stock --> BookmarkCommand
+    deactivate Stock
+    BookmarkCommand -> Model :setStock()
+    activate Model
+    Model --> BookmarkCommand
+    deactivate Model
+
+end
+
+BookmarkCommand --> LogicManager
+deactivate BookmarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

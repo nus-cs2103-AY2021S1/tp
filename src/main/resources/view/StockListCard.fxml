@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.text.TextFlow?>
+<HBox id="cardPane" fx:id="cardPane" styleClass="list-cell"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minWidth="1010" maxWidth="1010">
+
+  <GridPane fx:id="gridPane" minWidth="1010" maxWidth="1010">
+    <columnConstraints>
+        <!--      bookmark-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="30" maxWidth="30" />
+        <!--      no-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="50" maxWidth="50" />
+        <!--      name-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="175" maxWidth="175" />
+        <!--      serial number-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="150" maxWidth="150" />
+        <!--      source-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="150" maxWidth="150" />
+        <!--      quantity-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="100" maxWidth="100" />
+        <!--      location-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
+        <!--      notes-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
+    </columnConstraints>
+
+    <VBox fx:id="bookmark" styleClass="bookmark" GridPane.columnIndex="0" visible="\$bookmark"/>
+
+    <VBox styleClass="list-cell-element" prefHeight="30"  GridPane.columnIndex="1">
+
+      <Label fx:id="id" styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+    <VBox  styleClass="list-cell-element"  GridPane.columnIndex="2">
+      <Label fx:id="serialNumber"  text="\$serialNumber" styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="3">
+      <Label fx:id="name" text="\$first" styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="4">
+        <Label fx:id="source" text="\$first"  styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="5">
+        <VBox styleClass="list-cell-quantity">
+            <Label fx:id="quantity"  text="\$quantity" styleClass="list-cell-text" wrapText="true"/>
+        </VBox>
+        <Label fx:id="lowQuantity" text="\$lowQuantity" styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="6">
+      <Label fx:id="locationStored"  text="\$locationStored" styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="7">
+      <Label fx:id="notes"  styleClass="list-cell-text" wrapText="true"/>
+
+    </VBox>
+
+
+  </GridPane>
+</HBox>
