@@ -11,6 +11,8 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointmentTime(String)}
  */
 public class AppointmentTime {
+    // Solution below adapted from
+    // https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
     public static final String MESSAGE_CONSTRAINTS =
         "Appointment time should be in the 24 hour format HH:mm";
 
