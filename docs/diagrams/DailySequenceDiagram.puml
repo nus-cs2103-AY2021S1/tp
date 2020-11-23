@@ -1,0 +1,18 @@
+@startuml
+start
+:User inputs a list command;
+:TR4CKER shows a list of all current task names;
+:User inputs task index(es) that he/she wants to add to daily todo list;
+
+if() then ([task index is valid])
+    :TR4CKER adds the task in daily todo list;
+else ([task index is invalid])
+    :Error message prompting a valid index is shown;
+    :User inputs a valid index;
+    :TR4CKER adds the task in daily todo list;
+
+endif
+:TR4CKER switches to Daily tab;
+:Todo list in Daily tab is updated and shown;
+stop
+@enduml

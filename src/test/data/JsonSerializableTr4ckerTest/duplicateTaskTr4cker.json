@@ -1,0 +1,33 @@
+{
+  "tasks": [ {
+    "name": "Duplicate Task",
+    "deadline": "20-Oct-2021 1800",
+    "completionStatus": 0,
+    "description": "description 1",
+    "moduleCode" : [ ],
+    "tagged": [ "urgent" ]
+  }, {
+    "name": "Duplicate Task",
+    "deadline": "20-Oct-2021 1800",
+    "completionStatus": 0,
+    "description": "description 1",
+    "moduleCode" : [ ],
+    "tagged": [ "urgent" ]
+  } ],
+  "events" : [
+    {
+      "eventName": "Event1 Name",
+      "eventDate": "01-01-2021"
+    }
+  ],
+  "modules" : [
+    {
+      "moduleName": "Module3 Name",
+      "moduleCode": "Module3Code"
+    } ],
+  "todos" : [
+    {
+      "name": "Todo1 Name",
+      "deadline": "12-Jul-2021 0600"
+    } ]
+}

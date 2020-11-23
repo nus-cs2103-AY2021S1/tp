@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor COUNTDOWN_COLOR
+skinparam classBackgroundColor COUNTDOWN_COLOR
+skinparam ClassAttributeFontColor #FFFFFF
+skinparam classAttributeIconSize 0
+
+class Logic LOGIC_COLOR {
+    +getFilteredEventList(): ObservableList<Event>
+}
+
+class CountdownTabWindow {
+    +CountdownTabWindow(Logic)
+}
+
+class CountdownEventListPanel {
+    +CountdownEventListPanel(ObservableList<Event>)
+}
+
+class CountdownEventCard {
+    +Event
+}
+
+CountdownTabWindow -right-> Logic
+CountdownTabWindow "1" *-down-> "1" CountdownEventListPanel : < is stored in
+CountdownEventListPanel "1" -down-> "*" CountdownEventCard : < is stored in
+@enduml

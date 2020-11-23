@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fx:id="circle" fill="#ffffff00" layoutX="15.5" layoutY="14.0" radius="12.0" stroke="#d55291" strokeType="INSIDE" strokeWidth="2.0" />
+      <Label fx:id="dateNumber" contentDisplay="RIGHT" layoutX="11.0" layoutY="5.0" text="Date Number" />
+      <Rectangle fx:id="coverUp" fill="DODGERBLUE" height="12.0" layoutX="49.3" layoutY="37.3" stroke="TRANSPARENT" strokeType="INSIDE" width="12.0" />
+      <Rectangle fx:id="indicator" height="10.0" layoutX="51.0" layoutY="39.0" stroke="TRANSPARENT" strokeMiterLimit="0.0" strokeType="INSIDE" width="10.0">
+      </Rectangle>
+   </children>
+</AnchorPane>

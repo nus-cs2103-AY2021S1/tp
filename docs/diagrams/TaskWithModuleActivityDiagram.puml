@@ -1,0 +1,17 @@
+@startuml
+start
+:User wants to add a task to a module;
+if () then ([new task])
+:User requests to add new task with module;
+else ([existing task])
+:User requests to edit task to associate with module;
+endif
+if () then ([module exists])
+    :Task added to main pending tasks panel;
+    :Task added to module task list;
+else ([module does not exist])
+    :displays error message;
+
+endif
+stop
+@enduml

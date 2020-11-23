@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ModuleListPanel" as ModuleListPanel UI_COLOR
+participant ":ModuleCard" as ModuleCard UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Tr4ckerParser" as Tr4ckerParser LOGIC_COLOR
+participant ":ModuleCommandParser" as ModuleCommandParser LOGIC_COLOR
+participant "moduleCommand:ModuleCommand" as ModuleCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("modules n/Software Engineering m/CS2103T")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("modules n/Software Engineering m/CS2103T")
+activate LogicManager
+
+LogicManager -> Tr4ckerParser : parseCommand("modules n/Software Engineering m/CS2103T")
+activate Tr4ckerParser
+
+create ModuleCommandParser
+Tr4ckerParser -> ModuleCommandParser : ModuleCommandParser()
+activate ModuleCommandParser
+
+ModuleCommandParser -> Tr4ckerParser
+deactivate ModuleCommandParser
+
+Tr4ckerParser -> ModuleCommandParser : parse(" n/Software Engineering m/CS2103T")
+activate ModuleCommandParser
+
+
+ModuleCommandParser -> ParserUtil : parseModule("Software Engineering", "CS2103T")
+activate ParserUtil
+
+ParserUtil -> ModuleCommandParser : module
+deactivate ParserUtil
+
+create ModuleCommand
+ModuleCommandParser -> ModuleCommand : new ModuleCommand(module)
+activate ModuleCommand
+
+ModuleCommand -> ModuleCommandParser : moduleCommand
+deactivate ModuleCommand
+
+ModuleCommandParser -> Tr4ckerParser : moduleCommand
+deactivate ModuleCommandParser
+
+Tr4ckerParser -> LogicManager : moduleCommand
+deactivate Tr4ckerParser
+destroy ModuleCommandParser
+
+LogicManager -> ModuleCommand : execute(model)
+activate ModuleCommand
+destroy Tr4ckerParser
+
+create CommandResult
+ModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> ModuleCommand : commandResult
+deactivate CommandResult
+
+ModuleCommand -> LogicManager : commandResult
+deactivate ModuleCommand
+destroy CommandResult
+
+LogicManager -> MainWindow : commandResult
+deactivate LogicManager
+destroy ModuleCommand
+
+create ModuleListPanel
+MainWindow -> ModuleListPanel
+activate ModuleListPanel
+destroy LogicManager
+
+create ModuleCard
+ModuleListPanel -> ModuleCard
+activate ModuleCard
+
+ModuleCard -> ModuleListPanel
+deactivate ModuleCard
+
+ModuleListPanel -> MainWindow
+deactivate ModuleListPanel
+
+[<-- MainWindow : result
+deactivate MainWindow
+
+@enduml

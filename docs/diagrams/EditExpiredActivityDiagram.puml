@@ -1,0 +1,16 @@
+@startuml
+start
+:User requests to edit deadline of an Expired task;
+:TR4CKER parses new deadline;
+
+if() then ([deadline is a valid future date])
+    :TR4CKER modifies deadline;
+    :Task removed from Expired Tasks panel;
+    :Task displayed task under Pending Tasks panel;
+else ([else])
+    :TR4CKER displays error message;
+
+endif
+
+stop
+@enduml

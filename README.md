@@ -1,14 +1,20 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S1-CS2103T-T10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T10-2/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-T10-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-T10-2/tp)
+
+# TR4CKER
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+What does TR4CKER do?
+* TR4CKER is a Task Manager that helps busy students keep track of tasks and keep up with upcoming deadlines.
+* With TR4CKER, you will never forget a task as it will remind you of your most urgent task with the nearest deadline.
+* TR4CKER also keeps track of the overall progress of your tasks to improve your productivity.
+* TR4CKER provides you a calendar view of your tasks for you to keep track of your schedule.
+* TR4CKER also provides Countdowns for you to countdown to important events such as the end of final exams!
+
+### Links
+[Team Website](https://ay2021s1-cs2103t-t10-2.github.io/tp/)
+
+### Acknowledgements
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Image of Soccat from NUS Students Computing Club, 2016, _Soccat_, https://m.facebook.com/nuscomputing/posts/952757871459097

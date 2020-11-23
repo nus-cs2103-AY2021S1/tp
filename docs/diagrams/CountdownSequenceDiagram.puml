@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":CountdownTabWindow" as CountdownTabWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Tr4ckerParser" as Tr4ckerParser LOGIC_COLOR
+participant ":CountdownCommandParser" as CountdownCommandParser LOGIC_COLOR
+participant "countdownCommand:CountdownCommand" as CountdownCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("countdown days/7")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("countdown days/7")
+activate LogicManager
+
+LogicManager -> Tr4ckerParser : parseCommand("countdown days/7")
+activate Tr4ckerParser
+
+create CountdownCommandParser
+Tr4ckerParser -> CountdownCommandParser : CountdownCommandParser()
+activate CountdownCommandParser
+
+CountdownCommandParser --> Tr4ckerParser
+deactivate CountdownCommandParser
+
+Tr4ckerParser -> CountdownCommandParser : parse("countdown days/7")
+activate CountdownCommandParser
+
+CountdownCommandParser -> CountdownCommandParser : parseCountdownCommandDays("7")
+activate CountdownCommandParser
+CountdownCommandParser --> CountdownCommandParser
+deactivate CountdownCommandParser
+
+create CountdownCommand
+CountdownCommandParser -> CountdownCommand : CountdownCommand()
+activate CountdownCommand
+
+CountdownCommand --> CountdownCommandParser : countdownCommand
+deactivate CountdownCommand
+CountdownCommandParser --> Tr4ckerParser : countdownCommand
+deactivate CountdownCommandParser
+Tr4ckerParser --> LogicManager : countdownCommand
+deactivate Tr4ckerParser
+destroy CountdownCommandParser
+
+LogicManager -> CountdownCommand : execute(model)
+activate CountdownCommand
+destroy Tr4ckerParser
+
+create CommandResult
+CountdownCommand -> CommandResult : CommandResult()
+activate CommandResult
+
+CommandResult --> CountdownCommand : commandResult
+deactivate CommandResult
+CountdownCommand --> LogicManager : commandResult
+deactivate CountdownCommand
+destroy CommandResult
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+destroy CountdownCommand
+
+MainWindow -> MainWindow : handleShowTabCountdown()
+destroy LogicManager
+activate MainWindow
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow : result
+deactivate MainWindow
+destroy CountdownTabWindow
+@enduml

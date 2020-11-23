@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Pane fx:id="dailyPanelTitleHolder" minHeight="40.0" prefHeight="40.0" styleClass="all-tasks">
+        <children>
+            <Label fx:id="dailyListPanelTitle" alignment="CENTER" contentDisplay="CENTER"
+                   prefHeight="30.0" prefWidth="${dailyPanelTitleHolder.width}"
+                   text="Daily todos" textAlignment="CENTER">
+            </Label>
+        </children>
+    </Pane>
+    <ListView fx:id="dailyTodosListView" VBox.vgrow="ALWAYS" />
+</VBox>

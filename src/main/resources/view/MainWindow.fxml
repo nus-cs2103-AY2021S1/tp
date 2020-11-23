@@ -3,56 +3,130 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="775" minWidth="1500" onCloseRequest="#handleExit" title="TR4CKER" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/soccat.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@PastelTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          <Menu mnemonicParsing="false">
+            <graphic>
+              <Label fx:id="tabHome" onMouseClicked="#handleShowTabHome" text="Home" />
+            </graphic>
+          </Menu>
+          <Menu mnemonicParsing="false">
+            <graphic>
+              <Label fx:id="tabDaily" onMouseClicked="#handleShowTabDaily" text="Daily" />
+            </graphic>
+          </Menu>
+          <Menu>
+            <graphic>
+              <Label fx:id="tabModule" onMouseClicked="#handleShowTabModule" text="Modules" />
+            </graphic>
+          </Menu>
+          <Menu>
+            <graphic>
+              <Label fx:id="tabCountdown" onMouseClicked="#handleShowTabCountdown" text="Countdown" />
+            </graphic>
+          </Menu>
+          <Menu>
+            <graphic>
+              <Label fx:id="tabPlanner" onMouseClicked="#handleShowTabPlanner" text="Planner" />
+            </graphic>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+        <Pane fx:id="Header" minHeight="50.0" prefHeight="50.0" styleClass="header">
+          <Label fx:id="labelHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="${Header.height}" prefWidth="${Header.width}" text="TR4CKER" textAlignment="CENTER" />
+        </Pane>
+        <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+          <tabs>
+            <Tab text="Home">
+              <content>
+                <VBox fx:id="taskList" minWidth="900" prefHeight="110.0" prefWidth="1550.0" styleClass="pane-no-border" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                  <SplitPane dividerPositions="0.33, 0.66" minWidth="900">
+                    <StackPane fx:id="taskListPanelPlaceholder" prefWidth="400" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="expiredTaskListPanelPlaceholder" prefWidth="400" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                    <StackPane fx:id="completedTaskListPanelPlaceholder" prefWidth="400" minWidth="-Infinity" VBox.vgrow="NEVER" />
+                  </SplitPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                </VBox>
+              </content>
+            </Tab>
+            <Tab text="Daily">
+              <content>
+                <StackPane fx:id="dailyTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Module">
+              <content>
+                  <StackPane fx:id="moduleListPanelPlaceholder" prefWidth="900" minWidth="-Infinity" VBox.vgrow="NEVER" />
+              </content>
+            </Tab>
+            <Tab text="Countdown">
+              <content>
+                <StackPane fx:id="countdownTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Planner">
+              <content>
+                <StackPane fx:id="plannerTabWindowPlaceholder" prefHeight="110.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+          </tabs>
+        </TabPane>
+          <!-- Soccat -->
+        <HBox maxHeight="250" minHeight="130" styleClass="background">
+          <ImageView fitWidth="175.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+            <image>
+              <Image url="@../images/soccat.png" />
+            </image>
+            <HBox.margin>
+              <Insets bottom="40.0" top="30.0" />
+            </HBox.margin>
+          </ImageView>
+          <VBox spacing="3" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets bottom="5" left="5" right="5" top="5" />
+            </padding>
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="130" prefHeight="190" prefWidth="1100" styleClass="interaction-pane" VBox.vgrow="NEVER">
+              <padding>
+                <Insets bottom="5" right="10" />
+              </padding>
+            </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="command-pane" VBox.vgrow="ALWAYS">
+            </StackPane>
+          </VBox>
+        </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

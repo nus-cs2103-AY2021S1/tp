@@ -33,6 +33,10 @@
 
 !define USER_COLOR #000000
 
+!define PLANNER_COLOR #CC0066
+
+!define COUNTDOWN_COLOR #00ACC6
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
@@ -71,5 +75,5 @@ skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
 hide footbox
-hide members
+'hide members
 hide circle

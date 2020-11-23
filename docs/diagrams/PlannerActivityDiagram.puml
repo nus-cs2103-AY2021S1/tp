@@ -1,0 +1,36 @@
+@startuml
+start
+:User inputs a planner command;
+:PlannerCommand is parsed;
+
+if () then ([input has no "goto/"])
+    :TR4CKER switches to Planner tab;
+else ([input has "goto/"])
+    :Check validity of input;
+    note right
+    Error in parsing is not shown here.
+    In which this case, only an error
+    message will be shown in result box.
+    end note
+
+if () then ([is today])
+    :User requested for today's
+    calendar view and tasks list;
+elseif () then ([is tomorrow])
+    :User requested for tomorrow's
+    calendar view and tasks list;
+elseif () then ([is date])
+    :User requested for a specific
+    date's calendar view and tasks list;
+else ([is month])
+    :User requested for a specific
+    month's calendar view and tasks list;
+endif
+    :Update tasks list;
+    :Update calendar;
+endif
+    :Show Planner tab;
+    :Planner tab is updated and feedback
+     to user is shown in result box;
+stop
+@enduml

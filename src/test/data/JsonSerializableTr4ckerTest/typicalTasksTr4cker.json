@@ -1,0 +1,88 @@
+{
+  "_comment": "TR4CKER save file which contains the same Task values as in TypicalTasks#getTypicalTr4cker()",
+  "tasks" : [ {
+    "name" : "Task1Name",
+    "deadline" : "20-Oct-2021 1800",
+    "completionStatus" : 0,
+    "description" : "Task 1 description",
+    "tagged" : [ "homework" ]
+  }, {
+    "name" : "Task2 Name",
+    "deadline" : "30-09-2021 2359",
+    "completionStatus" : 0,
+    "description" : "Task 2 description",
+    "tagged" : [ "graded", "assignment" ]
+  }, {
+    "name" : "Task3 Name",
+    "deadline" : "10-03-2021 1200",
+    "completionStatus" : 0,
+    "description" : "Task 3 description",
+    "tagged" : [ "homework" ]
+  }, {
+    "name" : "Task4 Name",
+    "deadline" : "21-09-2021 1500",
+    "completionStatus" : 0,
+    "description" : "Task 4 description",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Task5 Name",
+    "deadline" : "10-10-2021 1010",
+    "completionStatus" : 0,
+    "description" : "Task 5 description",
+    "tagged" : [ "homework" ]
+  }, {
+    "name" : "Task6 Name",
+    "deadline" : "25-12-2021 0000",
+    "completionStatus" : 0,
+    "description" : "Task 6 description",
+    "tagged" : [ "homework" ]
+  }, {
+    "name" : "Task7 Name",
+    "deadline" : "01-01-2021 0000",
+    "completionStatus" : 0,
+    "description" : "Task 7 description",
+    "tagged" : [ "homework" ]
+  }, {
+    "name" : "An expired task",
+    "deadline" : "01-02-2020 0000",
+    "completionStatus" : 0,
+    "description" : "This is an expired task",
+    "tagged" : [ "overdue" ]
+  } ],
+  "events" : [
+    {
+      "eventName": "Event1 Name",
+      "eventDate": "01-01-2021"
+    }, {
+      "eventName": "Event2 Name",
+      "eventDate": "10-10-2020"
+    }, {
+      "eventName": "Event3 Name",
+      "eventDate": "30-11-2020"
+    }
+  ],
+  "modules" : [
+    {
+      "moduleName": "Module1 Name",
+      "moduleCode": "Module1Code"
+    }, {
+      "moduleName": "Module2 Name",
+      "moduleCode": "Module2Code"
+    }, {
+      "moduleName": "Module3 Name",
+      "moduleCode": "Module3Code"
+    }
+  ],
+  "todos" : [
+    {
+      "name": "Todo1 Name",
+      "deadline": "12-Jul-2021 0600"
+    }, {
+      "name": "Todo2 Name",
+      "deadline": "27-Sep-2021 2359"
+    }, {
+      "name": "Todo3 Name",
+      "deadline": "20-Oct-2021 1800"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Pane fx:id="plannerTaskListPanelTitleHolder" minHeight="40.0" prefHeight="40.0" styleClass="all-tasks">
+        <children>
+            <Label fx:id="plannerTaskListPanelTitle" alignment="CENTER" contentDisplay="CENTER"
+                   prefHeight="30.0" prefWidth="${plannerTaskListPanelTitleHolder.width}"
+                   text="Tasks" textAlignment="CENTER">
+            </Label>
+        </children>
+    </Pane>
+    <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
+</VBox>

@@ -1,0 +1,92 @@
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
+
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":PlannerTabWindow" as PlannerTabWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Tr4ckerParser" as Tr4ckerParser LOGIC_COLOR
+participant ":PlannerCommandParser" as PlannerCommandParser LOGIC_COLOR
+participant "plannerCommand:PlannerCommand" as PlannerCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("planner goto/today")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("planner goto/today")
+activate LogicManager
+
+LogicManager -> Tr4ckerParser : parseCommand("planner goto/today")
+activate Tr4ckerParser
+
+create PlannerCommandParser
+Tr4ckerParser -> PlannerCommandParser : PlannerCommandParser()
+activate PlannerCommandParser
+
+PlannerCommandParser --> Tr4ckerParser
+deactivate PlannerCommandParser
+
+Tr4ckerParser -> PlannerCommandParser : parse("planner goto/today")
+activate PlannerCommandParser
+
+PlannerCommandParser -> PlannerCommandParser : parseGotoDay("today")
+activate PlannerCommandParser
+PlannerCommandParser --> PlannerCommandParser
+deactivate PlannerCommandParser
+
+create PlannerCommand
+PlannerCommandParser -> PlannerCommand : PlannerCommand()
+activate PlannerCommand
+
+PlannerCommand --> PlannerCommandParser : plannerCommand
+deactivate PlannerCommand
+PlannerCommandParser --> Tr4ckerParser : plannerCommand
+deactivate PlannerCommandParser
+Tr4ckerParser --> LogicManager : plannerCommand
+deactivate Tr4ckerParser
+destroy PlannerCommandParser
+
+LogicManager -> PlannerCommand : execute(model)
+activate PlannerCommand
+destroy Tr4ckerParser
+
+create CommandResult
+PlannerCommand -> CommandResult : CommandResult()
+activate CommandResult
+
+CommandResult --> PlannerCommand : commandResult
+deactivate CommandResult
+PlannerCommand --> LogicManager : commandResult
+deactivate PlannerCommand
+destroy CommandResult
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+destroy PlannerCommand
+
+MainWindow -> PlannerTabWindow : updateCalendar(commandResult)
+activate PlannerTabWindow
+PlannerTabWindow --> MainWindow
+deactivate PlannerTabWindow
+
+MainWindow -> MainWindow : handleShowTabPlanner()
+destroy LogicManager
+activate MainWindow
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow : result
+deactivate MainWindow
+destroy PlannerTabWindow
+@enduml

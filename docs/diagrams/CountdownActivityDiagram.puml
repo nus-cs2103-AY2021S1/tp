@@ -1,0 +1,34 @@
+@startuml
+start
+:User inputs an Countdown Command;
+:TR4CKER parses Countdown Command;
+:TR4CKER parses arguments;
+note right
+Error in parsing, such as using the wrong
+prefix or giving insufficient arguments
+will result in a Parse Exception.
+end note
+
+if () then ([has arguments to add event])
+    :TR4CKER parses the given parameters
+    to create a new countdown event;
+    :TR4CKER adds new countdown event to list
+    of countdown events;
+elseif () then ([has arguments to delete event])
+    :TR4CKER parses the given index;
+    :TR4CKER deletes the countdown
+        event at the given index;
+elseif () then ([count number of events in specified days])
+     :TR4CKER counts the number of events
+     within the specified number of days
+     from today;
+else ([no additional arguments])
+endif
+
+:TR4CKER switches to Countdown tab;
+:TR4CKER displays result of Countdown
+Command in feedback display box;
+:TR4CKER displays updated countdown list
+in countdown list panel;
+stop
+@enduml
