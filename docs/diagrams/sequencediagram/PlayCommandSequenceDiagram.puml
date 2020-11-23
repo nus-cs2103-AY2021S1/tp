@@ -1,0 +1,25 @@
+@startuml
+hide footbox
+actor User
+User -> UI: "chinese" //an answer
+activate UI
+UI-> WordBankParser: parseCommand("chinese")
+activate WordBankParser
+
+    alt isPlayMode
+        WordBankParser -> Model:AnswerCommand("Chinese")
+        activate Model
+        Model -> : Check Answer
+        Model <--: Return Result
+        Model --> WordBankParser
+        deactivate Model
+        WordBankParser --> UI
+        UI --> User
+
+    else !isPlayMode
+        WordBankParser --> UI: ParserException(UNKNOWN_COMMAND)
+        deactivate WordBankParser
+        UI --> User: Display Error Message
+
+    end
+@enduml

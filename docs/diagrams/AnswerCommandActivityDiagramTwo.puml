@@ -1,0 +1,19 @@
+@startuml
+Start
+:Model checks Answer command;
+if() then ([Answer is correct])
+:Update Score in QuizAttempt;
+else(             [Answer is wrong])
+endif
+if() then ([Leitner has unanswered questions])
+
+        : Model updates next question;
+        : Display next question on the quiz tab of the UI;
+        : Display previous question, previous answer given
+        and correct answer on the right side of the quiz tab;
+        else ([Leitner has no more unanswered question])
+        : Extract current score from Model;
+        : Display a message to the UI result box indicating the current score;
+        endif
+Stop
+@enduml

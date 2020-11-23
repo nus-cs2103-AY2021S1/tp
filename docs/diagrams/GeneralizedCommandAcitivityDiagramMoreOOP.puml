@@ -1,0 +1,38 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+start
+:User enters command;
+if() then ([Logic Manager is in Play Mode])
+:Parse user input via PlayModeParser;
+:Determine command word and arguments;
+if () then ([Command Word is "/play"])
+:Throw deck already in play mode command exception;
+else ([Command Word is not "/play"])
+:Create command based on command word and arguments;
+:Perform relevant actions <$rake>;
+endif
+
+else([Logic Manager is not in Play Mode])
+:Parse user input via CommandModeParser;
+:Determine command word and arguments;
+if() then ([Command Word and arguments are valid])
+:Create command based on command word and arguments;
+:Perform relevant actions <$rake> ;
+else ([Command Word or arguments are not valid])
+:Throw invalid command format parse exception;
+
+endif
+endif
+
+stop
+
+@enduml

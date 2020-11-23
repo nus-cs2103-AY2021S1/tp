@@ -5,52 +5,77 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyWordBank <<Interface>>
 Interface Model <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
+Class WordBank
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Deck {
+Package Entry {
+Class Entry
+Class Translation
+Class UniqueEntryList
+Class Word
+}
+Class Deck
+Class DeckName
+Class UniqueDeckList
 }
 
-Package Tag {
-Class Tag
+Package View {
+Class CurrentView
 }
+
+Package Play {
+Package Scoring {
+Class BinaryScoring
+Class QuestionAttempt
+Class QuizAttempt
+Interface Scoring <<Interface>>
 }
+Class Leitner
+Class Score
+}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModelManager ..up|> Model
+ModelManager o-->"1" WordBank
+Model .> ObservableList
+ModelManager *->"1" UserPrefs
+UserPrefs .|> ReadOnlyUserPrefs
 
-ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+UniqueEntryList o->"*" Entry
+Entry *-->"1" Word
+Entry *-->"1" Translation
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+UniqueDeckList o-->"*" Deck
+Deck *-->"1" DeckName
+Deck *-->"1" UniqueEntryList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+BinaryScoring ..up|> Scoring
+QuizAttempt *-->"1" Score
+QuizAttempt *->"*" QuestionAttempt
+QuizAttempt ..> Scoring
+QuestionAttempt *->"1" Score
 
-ModelManager -->"1" Person : filtered list
+Score --up[hidden]> Leitner
+
+UniqueDeckList -[hidden]> UniqueEntryList
+
+WordBank .|> ReadOnlyWordBank
+WordBank *-->"1" UniqueEntryList
+WordBank *-->"1" UniqueDeckList
+WordBank -> Entry: has filtered list of
+
+ModelManager *--->"0..1" Leitner
+ModelManager *-->"0..1" QuizAttempt
+ModelManager -> Deck: has filtered list of
+ModelManager *--->"1" CurrentView
+
 @enduml

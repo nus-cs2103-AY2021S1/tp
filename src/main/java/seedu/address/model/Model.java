@@ -1,18 +1,33 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ConcurrentModificationException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.deck.Deck;
+import seedu.address.model.deck.entry.Entry;
+import seedu.address.model.play.Leitner;
+import seedu.address.model.play.Score;
+import seedu.address.model.play.scoring.QuizAttempt;
+import seedu.address.model.view.View;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -45,43 +60,142 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code wordBank}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setWordBank(ReadOnlyWordBank wordBank);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns the WordBank
      */
-    boolean hasPerson(Person person);
+    ReadOnlyWordBank getWordBank();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if an entry with the same identity as {@code entry} exists in the word bank.
      */
-    void deletePerson(Person target);
+    boolean hasEntry(Entry entry);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Deletes the given entry. The entry must exist in the word bank.
      */
-    void addPerson(Person person);
+    void deleteEntry(Entry target);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Adds the given entry. {@code entry} must not already exist in the word bank.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void addEntry(Entry entry);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Replaces the given entry {@code target} with {@code editedEntry}. {@code target} must exist
+     * in the address book. The entry identity of {@code editedEntry} must not be the same as
+     * another existing entry in the word bank.
+     */
+    void setEntry(Entry target, Entry editedEntry);
+
+    /**
+     * Returns an unmodifiable view of the filtered entry list
+     */
+    ObservableList<Entry> getFilteredEntryList();
+
+    /**
+     * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredEntryList(Predicate<Entry> predicate);
+
+    /**
+     * Returns true if a deck with the same identity as {@code deck} exists in the word bank.
+     */
+    boolean hasDeck(Deck deck);
+
+    /**
+     * Removes the given deck {@code target}. The deck must exist in the word bank.
+     */
+    void removeDeck(Deck target);
+
+    /**
+     * Adds the given deck. {@code deck} must not already exist in the word bank.
+     */
+    void addDeck(Deck deck);
+
+    /**
+     * Selects the deck at the specified index
+     *
+     * @param index of the selected deck
+     */
+    void selectDeck(Index index);
+
+    /**
+     * Retrieves the deck last selected by the user
+     */
+    Deck getCurrentDeck();
+
+    /**
+     * Returns an unmodifiable view of the filtered deck list
+     */
+    ObservableList<Deck> getFilteredDeckList();
+
+    /**
+     * Updates the filter of the filtered deck list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDeckList(Predicate<Deck> predicate);
+
+    void replaceEntryList() throws ConcurrentModificationException;
+
+    /**
+     * Deletes entries on the GUI when clear command is called.
+     */
+    void clearEntryList();
+
+    //game commands
+    void newGame();
+
+    Score endGame();
+
+    void playGame(String answer);
+
+    boolean checkScore();
+
+    boolean checkScoreTwo();
+
+    //view methods
+
+    /**
+     * Changes the current view of the system to the specified view {@code view}
+     *
+     * @param view View to change the current view to
+     */
+    void setCurrentView(View view);
+
+    /**
+     * Changes the current deck showing for stats pane
+     */
+    int setStatisticsDeckId(int deckIndex);
+
+    /**
+     * Get the current deck showing for stats pane
+     */
+    int getStatisticsDeckId();
+
+    /**
+     * Gets the current view of the system
+     */
+    View getCurrentView();
+
+    //UI methods
+
+    /**
+     * Returns the current leitner object to be passed to logic Should only be called when the user
+     * is playing a quiz.
+     */
+    Leitner getLeitner();
+
+    /**
+     * Returns the current quiz question that the user is at Default value is 0
+     */
+    int getCurrentIndex();
+
+    QuizAttempt getQuizAttempt();
 }

@@ -5,55 +5,44 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Gabriel Sim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gabrielsimbingyang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](http://github.com/GabrielSimbingyang)]
+[[Portfolio](team/gabrielsimbingyang.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
+* Role: Team Leader and Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Vignesh Bhuvan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vigneshbhuvan-nus.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](http://github.com/vigneshbhuvan-nus)]
+[[Portfolio](team/vigneshbhuvan-nus.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Melanie Ng
+
+<img src="images/ilyarin.png" width="200px">
+
+[[GitHub](http://github.com/IlyaRin)]
+[[Portfolio](team/ilyarin.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Georgie Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geoboom.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](http://github.com/geoboom)]
+[[Portfolio](team/geoboom.md)]
 
 * Role: Developer
 * Responsibilities: UI

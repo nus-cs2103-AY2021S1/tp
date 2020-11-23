@@ -8,13 +8,22 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class CommandModeParser
+Class PlayModeParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
 Class Prefix
+}
+
+package Statistics {
+Class Statistics
+Class StatisticsManager
+Class Event{
+ String EventType
+}
 }
 
 package Command {
@@ -31,12 +40,19 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
+LogicManager -->"1" StatisticsManager
+StatisticsManager -->"1" Statistics
+Statistics -->"*" Event
+
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" CommandModeParser
+LogicManager ->"1" PlayModeParser
+PlayModeParser .> XYZCommandParser: creates >
+CommandModeParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
@@ -51,11 +67,11 @@ ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
-Command .right.> Model
+LogicManager -> Model
+Command .right> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
+Logic ...> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser

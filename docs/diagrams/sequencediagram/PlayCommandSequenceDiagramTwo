@@ -1,0 +1,14 @@
+@startuml
+hide footbox
+-> Model: PlayCommand
+activate Model
+create Leitner
+Model -> Leitner: Create Leitner(EntryList)
+activate Leitner
+Leitner -> Leitner: Shuffle Entries
+Leitner -> Leitner: Create Questions and Answers
+Leitner --> Model
+deactivate Leitner
+<- Model :Leitner Created
+deactivate Model
+@enduml

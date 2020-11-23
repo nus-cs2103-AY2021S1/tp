@@ -1,0 +1,24 @@
+@startuml
+start
+:User enters an AddEntryCommand;
+if() then([Command is in the correct format])
+if() then ([Deck is selected])
+if() then([Words and Translations do not contain "/play" or "/stop"])
+:Create new Entry object with word and translation;
+if() then ([Deck do not contain Entry with same word or translation])
+:Add entry to selected deck in ModelManager;
+:Display entries of the selected deck on the Entries tab;
+else([Deck contains Entry with same word or translation])
+:Throw duplicate word or translation command exception;
+endif
+else([Words and Translations contain "/play" or "/stop"])
+:Throw forbidden words command exception;
+endif
+else([Deck is not selected])
+:Throw no deck selected parse exception;
+endif
+else([Command is not in the correct format])
+:Throw invalid command parse exception;
+endif
+stop
+@enduml

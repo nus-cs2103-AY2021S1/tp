@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandModeParser" as CommandModeParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "toAdd:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("Add w/word t/translation")
+activate LogicManager
+
+LogicManager -> CommandModeParser : parseCommand("Add w/word t/translation")
+activate CommandModeParser
+
+create AddCommandParser
+CommandModeParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> CommandModeParser
+deactivate AddCommandParser
+
+CommandModeParser -> AddCommandParser : parse("w/word t/translation")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : toAdd
+deactivate AddCommand
+
+AddCommandParser --> CommandModeParser : toAdd
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> CommandModeParser
+destroy AddCommandParser
+
+CommandModeParser --> LogicManager : toAdd
+deactivate CommandModeParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addEntry(toAdd)
+activate Model
+Model --> AddCommand
+AddCommand -> Model : replaceEntryList()
+Model --> AddCommand
+AddCommand -> Model : setCurrentView(view.ENTRY_VIEW)
+Model --> AddCommand
+
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

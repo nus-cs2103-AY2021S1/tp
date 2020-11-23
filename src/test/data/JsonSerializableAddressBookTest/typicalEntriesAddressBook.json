@@ -1,0 +1,25 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "entries" : [ {
+    "word" : "Apple",
+    "translation" : "りんご"
+  }, {
+    "word" : "Bridge",
+    "translation" : "橋"
+  }, {
+    "word" : "Cat",
+    "translation" : "猫"
+  }, {
+    "word" : "Deadline",
+    "translation" : "締め切り"
+  }, {
+    "word" : "Summer",
+    "translation" : "verano"
+  }, {
+    "word" : "Winter",
+    "translation" : "invierno"
+  }, {
+    "word" : "Spring",
+    "translation" : "primavera"
+  } ]
+}

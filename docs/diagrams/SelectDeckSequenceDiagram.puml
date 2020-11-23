@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandModeParser" as CommandModeParser LOGIC_COLOR
+participant ":SelectDeckCommandParser" as SelectDeckCommandParser LOGIC_COLOR
+participant "toSelect:SelectDeckCommand" as SelectDeckCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("select 1")
+activate LogicManager
+
+LogicManager -> CommandModeParser : parseCommand("select 1")
+activate CommandModeParser
+
+create SelectDeckCommandParser
+CommandModeParser -> SelectDeckCommandParser
+activate SelectDeckCommandParser
+
+SelectDeckCommandParser --> CommandModeParser
+deactivate SelectDeckCommandParser
+
+CommandModeParser -> SelectDeckCommandParser : parse("select 1")
+activate SelectDeckCommandParser
+
+create SelectDeckCommand
+SelectDeckCommandParser -> SelectDeckCommand
+activate SelectDeckCommand
+
+SelectDeckCommand --> SelectDeckCommandParser : toSelect
+deactivate SelectDeckCommand
+
+SelectDeckCommandParser --> CommandModeParser : toSelect
+deactivate SelectDeckCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectDeckCommandParser -[hidden]-> CommandModeParser
+destroy SelectDeckCommandParser
+
+CommandModeParser --> LogicManager : toSelect
+deactivate CommandModeParser
+
+LogicManager -> SelectDeckCommand : execute()
+activate SelectDeckCommand
+
+SelectDeckCommand -> Model : selectDeck(index "1")
+activate Model
+Model --> SelectDeckCommand
+SelectDeckCommand -> Model : replaceEntryList()
+Model --> SelectDeckCommand
+SelectDeckCommand -> Model : setCurrentView(view.ENTRY_VIEW)
+Model --> SelectDeckCommand
+
+deactivate Model
+
+create CommandResult
+SelectDeckCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SelectDeckCommand
+deactivate CommandResult
+
+SelectDeckCommand --> LogicManager : result
+deactivate SelectDeckCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+
+start
+:User enters an Answer;
+if() then ([Answer is not "/play"])
+    if() then ([Answer is not "/stop"])
+        : Create a new answer command based on user input;
+        : Perform relevant answer command actiom <$rake> ;
+    else ([Answer is "/stop"])
+    : Switch Logic Manager back to Command Mode;
+    : Extract current score from Model;
+    : Display a message to the UI result box indicating the current score;
+    endif
+else([Answer is "/play"])
+:Throw currently in play mode command exception;
+endif
+stop
+@enduml

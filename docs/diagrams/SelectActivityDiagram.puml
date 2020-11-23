@@ -1,0 +1,16 @@
+@startuml
+start
+:User enters a SelectDeckCommand;
+if() then([Command is in the correct format])
+if() then([Index is valid])
+:Update selected deck in ModelManager;
+:Switch the current tab on the UI to the Entries tab;
+:Display entries of the selected deck on the Entries tab (if any);
+else([Index is not valid])
+:Throw invalid index command exception;
+endif
+else([Command is not in the correct format])
+:Throw invalid command format parse exception;
+endif
+stop
+@enduml

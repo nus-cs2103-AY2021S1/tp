@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PlayModeParser" as PlayModeParser LOGIC_COLOR
+participant ":PlayCommandParser" as PlayCommandParser LOGIC_COLOR
+participant "args:PlayCommand" as PlayCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("/play")
+activate LogicManager
+
+LogicManager -> LogicManager: isPlayMode == true
+
+LogicManager -> PlayModeParser : parseCommand("/play")
+activate PlayModeParser
+
+create PlayCommandParser
+PlayModeParser -> PlayCommandParser
+activate PlayCommandParser
+
+PlayCommandParser --> PlayModeParser
+deactivate PlayCommandParser
+
+PlayModeParser -> PlayCommandParser : parse("/play")
+activate PlayCommandParser
+
+create PlayCommand
+PlayCommandParser -> PlayCommand
+activate PlayCommand
+
+PlayCommand --> PlayCommandParser : args
+deactivate PlayCommand
+
+PlayCommandParser --> PlayModeParser : args
+deactivate PlayCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PlayCommandParser -[hidden]-> PlayModeParser
+destroy PlayCommandParser
+
+PlayModeParser --> LogicManager : args
+deactivate PlayModeParser
+
+LogicManager -> PlayCommand : execute()
+activate PlayCommand
+
+activate Model
+PlayCommand -> Model : newGame()
+Model -> Model : new Leitner(deck)
+Model -> Model : new QuizAttempt(Leitner.getEntryList)
+Model --> PlayCommand
+PlayCommand -> Model : setCurrentView(view.QUIZ_VIEW)
+Model --> PlayCommand
+
+deactivate Model
+
+create CommandResult
+PlayCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PlayCommand
+deactivate CommandResult
+
+PlayCommand --> LogicManager : result
+deactivate PlayCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+@enduml
