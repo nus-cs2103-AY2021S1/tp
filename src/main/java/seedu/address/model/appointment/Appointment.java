@@ -18,7 +18,7 @@ import seedu.address.model.person.hairdresser.HairdresserId;
  * Represents an Appointment between a client and a hairdresser.
  */
 public class Appointment implements Entity {
-
+    //Solution below adapted from https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
     private static final Logger logger = LogsCenter.getLogger(Appointment.class);
     private final AppointmentId id;
     private final ClientId clientId;

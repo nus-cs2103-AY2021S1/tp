@@ -12,6 +12,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointmentDate(String)}
  */
 public class AppointmentDate {
+    //Solution below adapted from https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
     public static final String MESSAGE_CONSTRAINTS =
         "Appointment date should follow ISO8601 format (YYYY-MM-DD) and be a valid calendar date.";
 

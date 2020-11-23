@@ -4,6 +4,7 @@ package seedu.address.model.appointment;
  * Represents the status of an Appointment.
  */
 public enum AppointmentStatus {
+    //Solution below adapted from https://github.com/cs2103-ay1819s2-w13-1/main/tree/master/src/main/java/seedu/address/model/appointment
     ACTIVE("The appointment is active."),
     COMPLETED("The appointment was completed."),
     MISSED("The appointment was missed.");
