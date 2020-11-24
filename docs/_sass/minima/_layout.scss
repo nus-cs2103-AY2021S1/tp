@@ -251,7 +251,18 @@
   }
 }
 
+/**
+ * @@author erisjacey-reused
+ * Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/docs/_sass/minima/_layout.scss
+ * with minor modifications
+ *
+ * Table of Contents with no list style (empty bullets)
+ */
+.toc-no-list-style ul, .toc-no-list-style ol {
+  list-style-type: none;
+}
 
+/* @@author */
 
 /**
  * Grid helpers

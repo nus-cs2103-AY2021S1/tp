@@ -16,12 +16,12 @@ When trying to understand an unfamiliar code base, one common strategy used is t
 
 Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the application. This is provided in the 'Architecture' section of the developer guide. In particular, the architecture diagram (reproduced below), tells us that the App consists of several components.
 
-![ArchitectureDiagram](../images/ArchitectureDiagram.png)
+![ArchitectureDiagram](../images/developer-guide/3.1.1-ArchitectureDiagram.png)
 
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 
 ![Architecture sequence diagram from the developer
-guide](../images/ArchitectureSequenceDiagram.png)
+guide](../images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
 
 Note how the diagram shows only how the execution flows *between* the main components. That is, it does not show details of the execution path *inside* each component. By hiding those details, the diagram succeeds in informing the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
 
@@ -32,7 +32,7 @@ Before we proceed, ensure that you have done the following:
 
 ## Setting a break point
 
-As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in `seedu.address.ui.CommandBox.CommandExecutor`.
+As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in `atas.ui.CommandBox.CommandExecutor`.
 
 ![Using the `Search for target by name` feature. `Navigate` \> `Symbol`.](../images/tracing/Execute.png)
 
@@ -152,14 +152,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+       Person studentToEdit = lastShownList.get(index.getZeroBased());
+       Person editedStudent = createEditedPerson(studentToEdit, editStudentDescriptor);
+       if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setPerson(personToEdit, editedPerson);
+       model.setPerson(studentToEdit, editedStudent);
        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
    }
    ```
 
@@ -180,7 +180,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     * {@code JsonSerializableAddressBook}.
     */
    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-       persons.addAll(
+       students.addAll(
            source.getPersonList()
                  .stream()
                  .map(JsonAdaptedPerson::new)
