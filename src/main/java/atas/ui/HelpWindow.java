@@ -27,7 +27,8 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String FXML = "HelpWindow.fxml";
 
     //@@author nweiyue-reused
-    //Reused from https://github.com/AY2021S1-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java
+    //Reused from
+    //https://github.com/AY2021S1-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java
     //with modifications to the content of commands
 
     // general commands
