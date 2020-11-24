@@ -91,6 +91,8 @@ public class SessionStudentListPanel extends UiPart<Region> {
      * @param sessionStudentList Observable list of attributes to be listened to.
      */
     private void addAttributesListChangeListener(ObservableList<Attributes> sessionStudentList) {
+        //Solution below adapted from
+        //from https://stackoverflow.com/questions/25871578/items-changed-event-for-javafx-listview-control
         sessionStudentListView.getItems().addListener(new ListChangeListener<Attributes>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
