@@ -8,6 +8,11 @@ import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.ui.Tab;
 
+//Solution of SwitchCommand was inspired by
+//https://github.com/AY1920S2-CS2103T-T10-1/main/blob/master/src/main/
+//java/seedu/recipe/logic/commands/common/SwitchCommand.java
+//with a slightly different implementation.
+
 /**
  * Switches tabs using the name of the destination tab.
  * Name of destination tab is case insensitive.
