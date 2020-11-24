@@ -25,6 +25,9 @@ public class ClassTime implements Comparable<ClassTime> {
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     *
+     * Time Validation regex below adapted from https://examples.javacodegeeks.com/core-java/util/regex/matcher/
+     * validate-time-in-24-hours-format-with-java-regular-expression-example/
      */
     public static final String TIME_VALIDATION = "([01]?[0-9]|2[0-3])[0-5][0-9]";
     public static final String VALIDATION_REGEX = "([1-7])[\\s]" + TIME_VALIDATION + "-" + TIME_VALIDATION;
