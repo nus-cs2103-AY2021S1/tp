@@ -14,6 +14,8 @@ title: ATAS
 
 **Addendum for Teaching Assistants (ATAS)** is a desktop application that aims to *elevate* user's efficiency and make their experience of handling administrative tasks in classes as seamless as possible. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 
+[//]: # (@@author nweiyue-reused)
+[//]: # (Reused layout from https://github.com/AY1920S2-CS2103T-W13-3/main/blob/master/README.adoc with modifications to the content)
 In the current version, **ATAS** targets NUS Teaching Assistants (TAs) that are teaching the CS1010S module.
 
 With **ATAS**, users can manage students' particulars, track students' attendance and in-class participation, take down notes and many more.
@@ -29,3 +31,5 @@ With **ATAS**, users can manage students' particulars, track students' attendanc
 ## Acknowledgments
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
+[//]: # (@@author)
