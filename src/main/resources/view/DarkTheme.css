@@ -47,6 +47,9 @@
     -fx-padding: 0 0 -5 5;
 }
 
+/*
+ * Table styling below adapted from https://stackoverflow.com/questions/33938811/styling-a-tableview-in-css-javafx
+ */
 .table-view {
     -fx-background-color: transparent !important;
 }
