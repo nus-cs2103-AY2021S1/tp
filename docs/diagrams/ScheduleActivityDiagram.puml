@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes ScheduleViewCommand;
+:Parses the command;
+if () then ([command is valid])
+    :ScheduleViewCommand executed;
+    : set the schedule view date;
+    : set the schedule view mode;
+    : get student data;
+    : translate student's class time to events;
+
+else ([command is invalid - missing or invalid arguments])
+    :Display parse error message;
+endif
+:Return result to user;
+stop
+@enduml

@@ -4,14 +4,27 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.notes.Notebook;
+import seedu.address.model.notes.ReadOnlyNotebook;
+import seedu.address.model.notes.note.Note;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.SchedulePrefs;
+import seedu.address.model.schedule.ScheduleViewMode;
+import seedu.address.model.schedule.Scheduler;
+import seedu.address.model.student.NameComparator;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,26 +32,35 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Reeve reeve;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
+    private final Scheduler scheduler;
+    private final SchedulePrefs schedulePrefs;
+    private final SortedList<Student> sortedStudents;
+    private final Notebook notebook;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs and notebook.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyReeve addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyNotebook notebook) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with reeve: " + addressBook + " , user prefs " + userPrefs + "and "
+            + "notebook: " + notebook);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.reeve.getStudentList());
+        this.scheduler = new Scheduler();
+        this.schedulePrefs = new SchedulePrefs(ScheduleViewMode.WEEKLY, LocalDate.now());
+        sortedStudents = new SortedList<>(this.filteredStudents, new NameComparator());
+        this.notebook = new Notebook(notebook);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Reeve(), new UserPrefs(), new Notebook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,55 +101,138 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setReeve(ReadOnlyReeve reeve) {
+        this.reeve.resetData(reeve);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyReeve getReeve() {
+        return reeve;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return reeve.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteStudent(Student target) {
+        reeve.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        reeve.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        reeve.setStudent(target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
+
+    //=========== schedule ================================================================================
+
+    @Override
+    public ReadOnlyEvent getSchedule() {
+        return scheduler;
+    }
+
+    @Override
+    public LocalDateTime getScheduleViewDateTime() {
+        return schedulePrefs.getViewDate();
+    }
+
+    @Override
+    public void setScheduleViewDate(LocalDate viewDate) {
+        schedulePrefs.setViewDate(viewDate);
+    }
+
+    @Override
+    public ScheduleViewMode getScheduleViewMode() {
+        return schedulePrefs.getViewMode();
+    }
+
+    @Override
+    public void setScheduleViewMode(ScheduleViewMode viewMode) {
+        schedulePrefs.setViewMode(viewMode);
+    }
+
+    @Override
+    public ObservableList<VEvent> getVEventList() {
+        return scheduler.getVEvents();
+    }
+
+    //=========== Sorted Student List Accessors ===============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Student> getSortedStudentList() {
+        return sortedStudents;
+    }
+
+    @Override
+    public void updateSortedStudentList(Comparator<? super Student> comparator) {
+        requireNonNull(comparator);
+        sortedStudents.setComparator(comparator);
+    }
+
+    //=========== Notebook =====================================================================================
+
+    @Override
+    public void setNotebook(ReadOnlyNotebook notebook) {
+        this.notebook.resetData(notebook);
+    }
+
+    @Override
+    public ReadOnlyNotebook getNotebook() {
+        return notebook;
+    }
+
+    @Override
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return notebook.hasNote(note);
+    }
+
+    @Override
+    public void deleteNote(Note target) {
+        notebook.removeNote(target);
+    }
+
+    @Override
+    public void addNote(Note note) {
+        notebook.addNote(note);
+    }
+
+    @Override
+    public void setNote(Note target, Note editedNote) {
+        requireAllNonNull(target, editedNote);
+        notebook.setNote(target, editedNote);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -143,9 +248,26 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return reeve.equals(other.reeve)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents)
+                && notebook.equals(other.notebook);
     }
 
+    @Override
+    public void updateClassTimesToEvent() {
+        scheduler.mapClassTimesToLessonEvent(reeve.getStudentList());
+    }
+
+    @Override
+    public ObservableList<VEvent> getLessonEventsList() {
+        updateClassTimesToEvent();
+        return scheduler.getVEvents();
+    }
+
+    @Override
+    public boolean hasClashingClassTimeWith(Student toCheck) {
+        return reeve.hasClashingClassTimeWith(toCheck);
+    }
 }
+

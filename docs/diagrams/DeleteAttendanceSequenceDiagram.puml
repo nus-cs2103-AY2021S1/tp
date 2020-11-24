@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ReeveParser" as ReeveParser LOGIC_COLOR
+participant ":AttendanceCommandParser" as AttendanceCommandParser LOGIC_COLOR
+participant "d:DeleteAttendanceCommand" as DeleteAttendanceCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "updatedStudent:Student" as Student MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(...)
+activate LogicManager
+
+LogicManager -> ReeveParser : parseCommand(...)
+activate ReeveParser
+
+create AttendanceCommandParser
+ReeveParser -> AttendanceCommandParser : AttendanceCommandParser()
+activate AttendanceCommandParser
+
+AttendanceCommandParser --> ReeveParser
+deactivate AttendanceCommandParser
+
+ReeveParser -> AttendanceCommandParser : parse(...)
+activate AttendanceCommandParser
+
+create DeleteAttendanceCommand
+AttendanceCommandParser -> DeleteAttendanceCommand : DeleteAttendanceCommand(...)
+activate DeleteAttendanceCommand
+
+DeleteAttendanceCommand --> AttendanceCommandParser : d
+deactivate DeleteAttendanceCommand
+
+AttendanceCommandParser --> ReeveParser : d
+deactivate AttendanceCommandParser
+
+AttendanceCommandParser -[hidden]> ReeveParser
+destroy AttendanceCommandParser
+
+ReeveParser --> LogicManager : d
+deactivate ReeveParser
+
+LogicManager -> DeleteAttendanceCommand : execute(...)
+activate DeleteAttendanceCommand
+
+DeleteAttendanceCommand -> DeleteAttendanceCommand : updateStudentAttendance(...)
+activate DeleteAttendanceCommand
+
+create Student
+DeleteAttendanceCommand -> Student : Student(...)
+activate Student
+
+Student --> DeleteAttendanceCommand : updatedStudent
+deactivate Student
+
+DeleteAttendanceCommand --> DeleteAttendanceCommand : updatedStudent
+deactivate DeleteAttendanceCommand
+
+DeleteAttendanceCommand -> Model : setStudent(student, updatedStudent)
+activate Model
+
+Model --> DeleteAttendanceCommand
+deactivate Model
+
+DeleteAttendanceCommand --> LogicManager : result
+deactivate DeleteAttendanceCommand
+
+DeleteAttendanceCommand -[hidden]> LogicManager
+destroy DeleteAttendanceCommand
+
+[<-- LogicManager : result
+deactivate LogicManager
+@enduml

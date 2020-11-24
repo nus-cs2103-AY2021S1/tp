@@ -1,0 +1,50 @@
+@startuml
+!include ./style.puml
+
+box "Logic" LOGIC_COLOR_T1
+
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":ReeveParser" as rp LOGIC_COLOR
+Participant ":FindCommandParser" as fcp LOGIC_COLOR
+Participant "d:FindStudentDescriptor" as fcd LOGIC_COLOR
+Participant "command:FindCommand" as fc LOGIC_COLOR
+
+
+[-> logic : execute()
+activate logic
+logic -> rp ++: parseCommand(commandText)
+create fcp
+rp -> fcp ++:
+return
+rp -> fcp ++: parse(args)
+create fcd
+fcp -> fcd ++:
+return d
+
+create fc
+fcp -> fc ++: new FindCommand(d)
+return command
+return command
+return command
+destroy fcp
+
+logic -> fc ++: execute(model)
+fc -> fcd++: getPredicates()
+return predicates
+
+end box
+
+box "Model" MODEL_COLOR_T1
+
+Participant ":Model" as model MODEL_COLOR
+
+fc -> model++: updateFilteredStudentList(predicates)
+return
+return result
+return
+destroy fc
+destroy fcd
+
+end box
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+start
+:User executes add Attendance command;
+:Parses the command;
+if() then([command is valid])
+    if() then([student index is valid])
+        :Add Attendance to Student <$rake>;
+    else([student index is invalid])
+        :Display invalid student index error message;
+    endif
+else ([command is invalid - missing or invalid parameters])
+    :Display parse error message;
+endif
+stop
+
+partition "Activity: Add Attendance to Student" {
+    start
+    if() then([valid attendance date])
+        :Create student copy with added attendance;
+        :Replace student with modified copy;
+        :Display success message;
+    else([duplicate attendance date])
+        :Display duplicate attendance date error;
+    endif
+    stop
+}
+@enduml

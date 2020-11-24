@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ong Ying Gao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/stoptakingallthenames.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/StopTakingAllTheNames)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Vaishak Anand
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vaishakanand.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/VaishakAnand)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Alex Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alexcqy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/AlexCQY)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Ng Choon Siong
+
+<img src="images/csiongn.png" width="200px">
+
+[[github](http://github.com/csiongn)]
+
+* Role: Developer
+
+### Hogan Tan
+
+<img src="images/hogantan.png" width="200px">
+
+[[github](http://github.com/hogantan)]
+
+* Role: Developer

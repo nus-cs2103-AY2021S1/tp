@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes add detail command;
+:Parses the command;
+if() then([command is valid])
+    if() then([student index is valid])
+        :Create student copy with added detail;
+        :Replace student with modified copy;
+        :Display success message;
+    else([student index is invalid])
+        :Display invalid student index error message;
+    endif
+else ([command is invalid - missing or invalid parameters])
+    :Display parse error message;
+endif
+stop
+@enduml

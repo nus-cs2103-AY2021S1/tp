@@ -2,19 +2,23 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ReeveParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyReeve;
+import seedu.address.model.notes.ReadOnlyNotebook;
+import seedu.address.model.schedule.ScheduleViewMode;
+import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +30,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ReeveParser reeveParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        reeveParser = new ReeveParser();
     }
 
     @Override
@@ -42,11 +46,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = reeveParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getReeve());
+            storage.saveNotebook(model.getNotebook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,13 +60,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyReeve getAddressBook() {
+        return model.getReeve();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ReadOnlyNotebook getNotebook() {
+        return model.getNotebook();
+    }
+
+    @Override
+    public ObservableList<Student> getFilteredPersonList() {
+        return model.getSortedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedStudentList() {
+        return model.getSortedStudentList();
     }
 
     @Override
@@ -77,5 +92,20 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public LocalDateTime getScheduleViewDateTime() {
+        return model.getScheduleViewDateTime();
+    }
+
+    @Override
+    public ScheduleViewMode getScheduleViewMode() {
+        return model.getScheduleViewMode();
+    }
+
+    @Override
+    public ObservableList<VEvent> getVEventList() {
+        return model.getLessonEventsList();
     }
 }

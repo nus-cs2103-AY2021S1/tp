@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+start
+:User executes delete Attendance command;
+:Parses the command;
+if() then([command is valid])
+    if() then([student index is valid])
+        :Delete Attendance from Student <$rake>;
+    else([student index is invalid])
+        :Display invalid student index error message;
+    endif
+else ([command is invalid - missing or invalid parameters])
+    :Display parse error message;
+endif
+stop
+
+partition "Activity: Delete Attendance from Student" {
+    start
+    if() then([valid attendance date])
+        :Create student copy with deleted attendance;
+        :Replace student with modified copy;
+        :Display success message;
+    else([invalid attendance date])
+        :Display invalid attendance date error;
+    endif
+    stop
+}
+@enduml
