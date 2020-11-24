@@ -26,6 +26,10 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
+    //@@author nweiyue-reused
+    //Reused from https://github.com/AY2021S1-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java
+    //with modifications to the content of commands
+
     // general commands
     private final CommandSummary helpCmd =
             new CommandSummary("Get help", "help");
@@ -90,6 +94,7 @@ public class HelpWindow extends UiPart<Stage> {
             new CommandSummary("Save memo", "Keyboard shortcut: \"ctrl + s\" or \"command + s\" for MacOS");
     public final ObservableList<CommandSummary> memoCmds = FXCollections
             .observableArrayList(addNoteCmd, saveMemoCmd);
+    //@@author
 
     @FXML
     private Button copyButton;
@@ -208,9 +213,9 @@ public class HelpWindow extends UiPart<Stage> {
      * @params table Table to resize.
      */
     private void resizeTableHeight(TableView<CommandSummary> table) {
-        //@@author eckig-reused
+        //@@author nweiyue-reused
         //Reused from https://stackoverflow.com/questions/27945817/javafx-adapt-tableview-height-to-number-of-rows
-        // with minor modifications
+        //with minor modifications
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(table.fixedCellSizeProperty()
                 .multiply(Bindings.size(table.getItems()).add(1.9)));
