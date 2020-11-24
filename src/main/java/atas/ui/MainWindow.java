@@ -191,6 +191,8 @@ public class MainWindow extends UiPart<Stage> {
      * @param textBox TextArea to listen to.
      */
     private void setSaveMemoCommandListener(TextArea textBox) {
+        //Solution below adapted from
+        //https://stackoverflow.com/questions/52460857/javafx-keycombination-for-commandt-new-tab
         textBox.setOnKeyPressed(event -> {
             if (new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN).match(event)) {
                 logger.info("----------------[USER COMMAND][SHORTCUT_DOWN + KeyCode.S)]");
@@ -205,6 +207,9 @@ public class MainWindow extends UiPart<Stage> {
      * @param textBox TextArea to listen to.
      */
     private void setAutoSaveMemo(TextArea textBox) {
+        //@@author nweiyue-reused
+        //Reused from https://stackoverflow.com/questions/9863047/javafx-textarea-onchange-event
+        //with minor modifications
         textBox.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -216,6 +221,7 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
         });
+        //@@author
     }
 
     /**
