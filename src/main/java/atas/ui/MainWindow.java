@@ -207,9 +207,8 @@ public class MainWindow extends UiPart<Stage> {
      * @param textBox TextArea to listen to.
      */
     private void setAutoSaveMemo(TextArea textBox) {
-        //@@author nweiyue-reused
-        //Reused from https://stackoverflow.com/questions/9863047/javafx-textarea-onchange-event
-        //with minor modifications
+        //Solution below adapted from
+        //from https://stackoverflow.com/questions/9863047/javafx-textarea-onchange-event
         textBox.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -221,7 +220,6 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
         });
-        //@@author
     }
 
     /**
