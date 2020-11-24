@@ -70,6 +70,8 @@ public class SessionListPanel extends UiPart<Region> {
      * @param sessionList Observable list of sessions to be listened to.
      */
     private void addSessionListChangeListener(ObservableList<Session> sessionList) {
+        //Solution below adapted from
+        //from https://stackoverflow.com/questions/25871578/items-changed-event-for-javafx-listview-control
         sessionListView.getItems().addListener(new ListChangeListener<Session>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
