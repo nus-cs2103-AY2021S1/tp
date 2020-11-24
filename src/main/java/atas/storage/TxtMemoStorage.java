@@ -69,10 +69,14 @@ public class TxtMemoStorage implements MemoStorage {
         requireNonNull(memo);
         requireNonNull(filePath);
         createIfMissing(filePath);
-
+        
+        //@@author nweiyue-reused
+        //Reused from https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/cppToJava.html#file-access
+        //with minor modifications
         FileWriter fw = new FileWriter(String.valueOf(filePath));
         String memoContent = memo.getContent();
         fw.write(memoContent);
         fw.close();
+        //@@author
     }
 }
