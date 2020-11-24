@@ -73,6 +73,8 @@ public class StudentListPanel extends UiPart<Region> {
      * @param studentList Observable list of students to be listened to.
      */
     private void addStudentListChangeListener(ObservableList<Student> studentList) {
+        //Solution below adapted from
+        //from https://stackoverflow.com/questions/25871578/items-changed-event-for-javafx-listview-control
         studentListView.getItems().addListener(new ListChangeListener<Student>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
