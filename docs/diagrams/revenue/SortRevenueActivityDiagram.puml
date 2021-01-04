@@ -1,0 +1,41 @@
+@startuml
+
+!include ../style.puml
+title Sorting Revenue
+
+start
+
+:Receives a ""sortrev"" command;
+
+if () then ([valid command])
+    :Parses the ""sortrev""
+    command and the parameters;
+
+    if () then ([parameter is "asc"])
+
+    :Sorts the revenue list
+    in ascending order
+    based on value;
+
+    else ([parameter is "desc"])
+
+    :Sorts the revenue list
+    in descending order
+    based on value;
+
+    endif
+
+    :Displays the sorted list;
+
+    :Shows a success message;
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml

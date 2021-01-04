@@ -1,0 +1,35 @@
+{
+  "appointments": [ {
+    "date" : "21-10-2020",
+    "timeOfDay" : "1300",
+    "status" : false,
+    "client" : {
+      "name" : "Valid Appointment",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "tagged" : [ "friends" ]
+    },
+    "service" : {
+      "title" : "Manicure",
+      "price" : 21.50,
+      "duration" : 1.0,
+      "serviceCode" : "SC005"
+    }
+  }, {
+    "date" : "22-10-2020",
+    "timeOfDay" : "abcd",
+    "status" : false,
+    "client" : {
+      "name" : "Client with invalid time of day field",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "tagged" : [ "friends" ]
+    },
+    "service" : {
+      "title" : "Nail Extension",
+      "price" : 28.90,
+      "duration" : 0.5,
+      "serviceCode" : "SC001"
+    }
+  } ]
+}

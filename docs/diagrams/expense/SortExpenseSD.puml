@@ -1,0 +1,51 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":**SortExpenseCommand**" as SortExpenseCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
+participant "**e:ExpenseTracker**" as ExpenseTracker MODEL_COLOR
+participant "**:NonUniqueList**" as NonUniqueList MODEL_COLOR
+end box
+
+[-> SortExpenseCommand : ""execute(m, h)""
+activate SortExpenseCommand
+
+note right
+""h"" refers to the HistoryManager
+which keeps track of the history of
+commands executed.
+end note
+
+SortExpenseCommand -> ModelManager : ""getExpenseTracker()""
+activate ModelManager
+SortExpenseCommand <-- ModelManager: ""e""
+deactivate ModelManager
+
+SortExpenseCommand -> ExpenseTracker: ""sort(isAcending)""
+activate ExpenseTracker
+ExpenseTracker -> NonUniqueList: ""sort(isAscending)""
+activate NonUniqueList
+ExpenseTracker <-- NonUniqueList: """"
+deactivate NonUniqueList
+SortExpenseCommand <-- ExpenseTracker: """"
+deactivate ExpenseTracker
+
+create CommandResult
+SortExpenseCommand -> CommandResult: """"
+activate CommandResult
+SortExpenseCommand <-- CommandResult: ""r""
+deactivate CommandResult
+
+[<-- SortExpenseCommand: ""r""
+
+
+@enduml
+
+
+
+

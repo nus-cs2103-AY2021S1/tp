@@ -1,0 +1,54 @@
+@startuml
+!include ../style.puml
+
+skinparam arrowThickness 1.1
+skinparam classBackgroundColor LOGIC_COLOR
+
+show member
+
+interface ReadOnlyServiceManager <<interface>>
+
+class UniqueListItem <<interface>>
+
+class ReadOnlyServiceManager {
++ getServiceList() : ObservableList
+}
+
+class ServiceManager {
+    + addService(service : Service)
+    + hasService(service: Service) : boolean
+    + setService(target : Service, editedService : Service)
+    + removeService(key : Service)
+}
+
+class UniqueList {
+    - internalList : ObservableList
+    - internalUnmodifiableList : ObservableList
+    + contains(toCheck : UniqueListItem) : boolean
+    + add(toAdd : UniqueListItem)
+    + setItem(target : UniqueListItem, edited : UniqueListItem)
+    + remove(toRemove : UniqueListItem)
+}
+
+class UniqueListItem {
++ isSame(UniqueListItem) : boolean
+}
+
+class Service {
+    - title : Title
+    - duration : Duration
+    - price : Amount
+    - serviceCode : ServiceCode
+    + getTitle() : Title
+    + getDuration() : Duration
+    + getPrice() : Amount
+    + getServiceCode() : ServiceCode
+    + isSame(UniqueListItem) : boolean
+}
+
+ReadOnlyServiceManager <|.. ServiceManager
+ServiceManager "1 " --> UniqueList
+UniqueList --> " * " UniqueListItem
+UniqueListItem <|.. Service
+
+@enduml

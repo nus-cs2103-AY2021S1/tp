@@ -1,0 +1,75 @@
+@startuml
+
+!include ../style.puml
+box Logic LOGIC_COLOR_T1
+participant "**:DoneAppointmentCommand**" as DoneAppointmentCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:Model**" as Model MODEL_COLOR
+participant "**lastShownList:List<Appointment>**" as List MODEL_COLOR
+participant "**appointmentToMarkDone:Appointment**" as Appointment MODEL_COLOR
+participant "**revenueToAdd:Revenue**" as Revenue MODEL_COLOR
+end box
+
+[-> DoneAppointmentCommand : ""execute(m, h)""
+activate DoneAppointmentCommand
+
+note right
+""h"" refers to the HistoryManager
+which keeps track of the history of
+commands executed.
+end note
+
+DoneAppointmentCommand -> Model : ""getFilteredAppointmentList()""
+activate Model
+
+Model --> DoneAppointmentCommand : lastShownList
+deactivate Model
+
+DoneAppointmentCommand -> List : get(targetIndex.getZeroBased())
+activate List
+
+List --> DoneAppointmentCommand : appointmentToMarkDone
+deactivate List
+
+DoneAppointmentCommand -> Appointment : markDone()
+activate Appointment
+
+Appointment --> DoneAppointmentCommand
+deactivate Appointment
+
+create Revenue
+DoneAppointmentCommand -> Revenue : Revenue(appointmentToMarkDone.getService(), appointmentToMarkDone.getAppointmentDate())
+activate Revenue
+Revenue --> DoneAppointmentCommand
+deactivate Revenue
+
+DoneAppointmentCommand -> Model : addRevenue(revenueToAdd)
+activate Model
+
+Model --> DoneAppointmentCommand
+deactivate Model
+
+
+
+DoneAppointmentCommand -> Model : refreshSchedule()
+activate Model
+
+Model --> DoneAppointmentCommand
+deactivate Model
+
+create CommandResult
+DoneAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DoneAppointmentCommand : r
+deactivate CommandResult
+
+[<-- DoneAppointmentCommand : r
+deactivate DoneAppointmentCommand
+
+DoneAppointmentCommand -[hidden]> CommandResult
+
+@enduml

@@ -1,0 +1,46 @@
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+}
+
+.chart-pie-label {
+    -fx-fill: #000000;
+    -fx-font-size: 1em;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.chart-title {
+    -fx-text-fill: #000000;
+    -fx-font-size: 1.6em;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.chart-legend {
+    -fx-background-color: #edf2f7;
+    -fx-stroke: #daa520;
+    -fx-background-radius: 10;
+}
+
+.default-color0.chart-pie {
+    -fx-pie-color: #F1E0E0;
+}
+
+.default-color1.chart-pie {
+    -fx-pie-color: #ECE4F0;
+}
+
+.default-color2.chart-pie {
+    -fx-pie-color: #E0E7F1;
+}
+
+.default-color3.chart-pie {
+    -fx-pie-color: #faf4d7;
+}
+
+.default-color4.chart-pie {
+    -fx-pie-color: #DEEEDC;
+}
+
+.chart {
+    -fx-padding: 10px;
+}

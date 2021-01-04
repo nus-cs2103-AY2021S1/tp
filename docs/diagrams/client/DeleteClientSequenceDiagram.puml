@@ -1,0 +1,62 @@
+@startuml
+
+!include ../style.puml
+box Logic LOGIC_COLOR_T1
+participant ":**DeleteClientCommand**" as DeleteClientCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
+participant "**ObservableList<Client>**" as ObservableList MODEL_COLOR
+participant "**AppointmentManager**" as AppointmentManager MODEL_COLOR
+end box
+
+[-> DeleteClientCommand : ""execute(m, h)""
+activate DeleteClientCommand
+
+DeleteClientCommand -> ModelManager : ""getFilteredClientList()""
+activate ModelManager
+
+ModelManager -> ObservableList : ""get(index)""
+activate ObservableList
+
+ObservableList --> ModelManager : ""c""
+deactivate ObservableList
+
+ModelManager --> DeleteClientCommand: ""c""
+deactivate ModelManager
+
+
+DeleteClientCommand -> ModelManager : "getAppointmentManager()""
+activate ModelManager
+
+ModelManager -> AppointmentManager : "getAppointmentList()""
+activate AppointmentManager
+
+AppointmentManager --> ModelManager : ""a""
+deactivate AppointmentManager
+
+ModelManager --> DeleteClientCommand : ""a""
+deactivate ModelManager
+
+DeleteClientCommand -> DeleteClientCommand : ""isValidDeletion(c, a)""
+activate DeleteClientCommand
+
+DeleteClientCommand --> DeleteClientCommand : ""result""
+deactivate DeleteClientCommand
+
+
+create CommandResult
+DeleteClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteClientCommand : ""r""
+deactivate CommandResult
+
+[<-- DeleteClientCommand : ""r""
+deactivate DeleteClientCommand
+
+DeleteClientCommand -[hidden]> CommandResult
+
+@enduml

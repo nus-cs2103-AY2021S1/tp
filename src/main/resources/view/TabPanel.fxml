@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.StackPane?>
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" >
+    <Tab text="Clients">
+        <StackPane fx:id="clientListPanelPlaceholder" />
+    </Tab>
+    <Tab text="Services">
+        <StackPane fx:id="serviceListPanelPlaceholder"/>
+    </Tab>
+
+</TabPane>

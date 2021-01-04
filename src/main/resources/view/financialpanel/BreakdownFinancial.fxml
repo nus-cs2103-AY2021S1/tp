@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="false" title="Financial Breakdown" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <scene>
+      <Scene>
+         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+               <SplitPane orientation="VERTICAL" prefHeight="385.0" prefWidth="700.0">
+                  <items>
+                     <SplitPane dividerPositions="0.5" prefHeight="233.0" prefWidth="598.0">
+                        <items>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <PieChart fx:id="revenueChart" prefHeight="825.0" prefWidth="296.0" stylesheets="@style.css" title="Revenue" />
+                              </children>
+                           </VBox>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <PieChart fx:id="expenseChart" prefHeight="825.0" prefWidth="296.0" stylesheets="@style.css" title="Expense" />
+                              </children>
+                           </VBox>
+                        </items>
+                     </SplitPane>
+                  </items>
+               </SplitPane>
+               <Pane id="profitPane" prefHeight="200.0" prefWidth="700.0">
+                  <children>
+                     <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#deeedc" height="37.0" layoutX="37.0" layoutY="68.0" opacity="0.7" stroke="WHITE" strokeType="INSIDE" width="163.0" />
+                     <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f1e0e0" height="37.0" layoutX="268.0" layoutY="68.0" opacity="0.7" stroke="#f1e0e0" strokeType="INSIDE" width="163.0" />
+                     <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e0e7f1" height="37.0" layoutX="499.0" layoutY="68.0" opacity="0.7" stroke="#e0e7f1" strokeType="INSIDE" width="163.0" />
+                     <Text layoutX="299.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profits" textAlignment="CENTER" wrappingWidth="103.22900390625">
+                        <font>
+                           <Font size="23.0" />
+                        </font>
+                     </Text>
+                     <Text id="expenseText" fx:id="expenseText" layoutX="269.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="163.22900390625">
+                        <font>
+                           <Font size="12.0" />
+                        </font>
+                     </Text>
+                     <Text id="profitText" fx:id="profitText" layoutX="505.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="151.22900390625">
+                        <font>
+                           <Font size="12.0" />
+                        </font>
+                     </Text>
+                     <Text id="revenueText" fx:id="revenueText" layoutX="39.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="157.22900390625">
+                        <font>
+                           <Font size="12.0" />
+                        </font>
+                     </Text>
+                  </children>
+               </Pane>
+            </children>
+         </VBox>
+      </Scene>
+   </scene>
+</fx:root>

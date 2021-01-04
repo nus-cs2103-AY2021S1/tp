@@ -1,5 +1,5 @@
-title: "AB-3"
-theme: minima
+title: "Homerce"
+theme: jekyll-theme-midnight
 
 header_pages:
   - UserGuide.md
@@ -7,8 +7,7 @@ header_pages:
   - AboutUs.md
 
 markdown: kramdown
-
-repository: "se-edu/addressbook-level3"
+repository: "AY2021S1-CS2103T-W13-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

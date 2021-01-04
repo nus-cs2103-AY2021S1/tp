@@ -1,0 +1,23 @@
+{
+  "revenues": [
+    {
+      "title": "Lash Lift",
+      "price": 5.0,
+      "duration": 5.0,
+      "serviceCode": "SC999",
+      "date": "25-10-2020"
+    }, {
+      "title": "Hair Treatment",
+      "price": 6.0,
+      "duration": 6.0,
+      "serviceCode": "SC998",
+      "date": "26-10-2020"
+    }, {
+      "title": "Manicure",
+      "price": 7.0,
+      "duration": 7.0,
+      "serviceCode": "SC997",
+      "date": "27-10-2020"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "services" : [ {
+    "title" : "Service with a name that is too long and hence it is an invalid service name",
+    "price" : 38.00,
+    "duration" : 0.5,
+    "serviceCode" : "SC000"
+  } ]
+}

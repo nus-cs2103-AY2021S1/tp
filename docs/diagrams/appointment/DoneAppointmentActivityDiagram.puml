@@ -1,0 +1,30 @@
+@startuml
+
+!include ../style.puml
+title Marking an Appointment as Done
+
+start
+
+:Receive a ""done"" command;
+
+if () then ([valid ""index""])
+
+    :Get the appointment based on the
+    ""index"" specified by the user;
+
+    :Mark appointment's ""status"" as done;
+
+    :Add ""Revenue"" object to ""RevenueTracker"";
+
+    :Shows a success message;
+
+else ([else])
+
+    :Shows an invalid
+    ""index"" message;
+
+endif
+
+stop
+
+@enduml

@@ -1,0 +1,19 @@
+{
+  "appointments": [ {
+    "date" : "invalid!2asd1-g10-2e020",
+    "timeOfDay" : "1300",
+    "status" : false,
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "tagged" : [ "friends" ]
+    },
+    "service" : {
+      "title" : "Manicure",
+      "price" : 21.50,
+      "duration" : 1.0,
+      "serviceCode" : "SC005"
+    }
+  } ]
+}

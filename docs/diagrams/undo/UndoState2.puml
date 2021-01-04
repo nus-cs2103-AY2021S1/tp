@@ -1,0 +1,30 @@
+@startuml
+!include ../style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+show members
+hide PreviousState members
+
+title After command "undo"
+
+package HistoryManager {
+
+    Object "__h0:History__" as State1 {
+        Command = DeleteServiceCommand
+    }
+
+    Object "__h1:History__" as State2 {
+        Command = DeleteServiceCommand
+    }
+}
+
+State1 -[hidden]right-> State2
+
+hide State2
+hide State3
+
+
+class PreviousState as "Previous State" #FFFFF
+PreviousState -up-> State1
+@end

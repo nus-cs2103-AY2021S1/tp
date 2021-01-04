@@ -1,0 +1,30 @@
+@startuml
+
+!include ../style.puml
+title Finance Breakdown
+
+start
+
+:Receives an ""breakdownfinance"" command;
+
+if () then ([valid command])
+      :Parses the
+      ""breakdownfinance"" command
+      and the keywords;
+
+      :Filter expenses and revenue by given month and year;
+
+      :Show breakdown of finances to user;
+
+      :Shows a success message;
+
+else ([else])
+
+    :Shows an
+    invalid command
+    error message;
+endif
+
+stop
+
+@enduml

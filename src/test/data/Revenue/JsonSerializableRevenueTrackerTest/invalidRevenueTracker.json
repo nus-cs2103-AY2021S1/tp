@@ -1,0 +1,9 @@
+{
+  "revenues": [ {
+    "title": "Invalid service code",
+    "price": 18.50,
+    "duration": 0.5,
+    "serviceCode": "003",
+    "date": "22-10-2020"
+  } ]
+}

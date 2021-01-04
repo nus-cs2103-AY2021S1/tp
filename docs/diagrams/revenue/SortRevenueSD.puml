@@ -1,0 +1,50 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":**SortRevenueCommand**" as SortRevenueCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
+participant "**e:RevenueTracker**" as RevenueTracker MODEL_COLOR
+participant "**:NonUniqueList**" as NonUniqueList MODEL_COLOR
+end box
+
+[-> SortRevenueCommand : ""execute(m, h)""
+activate SortRevenueCommand
+
+note right
+""h"" refers to the HistoryManager
+which keeps track of the history of
+commands executed.
+end note
+
+SortRevenueCommand -> ModelManager : ""getRevenueTracker()""
+activate ModelManager
+SortRevenueCommand <-- ModelManager: ""e""
+deactivate ModelManager
+
+SortRevenueCommand -> RevenueTracker: ""sort(isAcending)""
+activate RevenueTracker
+RevenueTracker -> NonUniqueList: ""sort(isAscending)""
+activate NonUniqueList
+RevenueTracker <-- NonUniqueList: """"
+deactivate NonUniqueList
+SortRevenueCommand <-- RevenueTracker: """"
+deactivate RevenueTracker
+
+create CommandResult
+SortRevenueCommand -> CommandResult: """"
+activate CommandResult
+SortRevenueCommand <-- CommandResult: ""r""
+deactivate CommandResult
+
+[<-- SortRevenueCommand: ""r""
+
+@enduml
+
+
+
+

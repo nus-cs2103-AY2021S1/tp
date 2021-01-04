@@ -1,0 +1,18 @@
+{
+  "services" : [ {
+    "title" : "Lash Lift",
+    "price" : 17.90,
+    "duration" : 0.5,
+    "serviceCode" : "SC000"
+  }, {
+    "title" : "Hair Treatment",
+    "price" : 55.50,
+    "duration" : 2.0,
+    "serviceCode" : "SC001"
+  }, {
+    "title" : "MANICURE",
+    "price" : 49.90,
+    "duration" : 1.5,
+    "serviceCode" : "SC002"
+  } ]
+}

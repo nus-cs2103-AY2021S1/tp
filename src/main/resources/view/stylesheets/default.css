@@ -1,0 +1,16 @@
+.schedule-grid {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+
+}
+
+.schedule-grid-cell {
+    -fx-background-insets: 5 0 5 0;
+    -fx-padding: 10;
+    -fx-border-color: black;
+}
+
+.schedule-grid-buffer {
+    -fx-background-color: transparent;
+}
+

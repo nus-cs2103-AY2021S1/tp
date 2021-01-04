@@ -1,0 +1,20 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+ClientManager *-right-> "1" UniqueClientList
+ClientManager *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueClientList
+UniqueTagList -[hidden]down- UniqueClientList
+
+UniqueTagList *-right-> "*" Tag
+UniqueClientList o-right->Client
+
+Client -up-> "*" Tag
+
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+@enduml

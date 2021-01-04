@@ -1,0 +1,30 @@
+@startuml
+
+!include ../style.puml
+title Finding a Client
+
+start
+
+:Receives a ""findcli"" command;
+
+if () then ([valid command])
+    :Parses the ""findcli""
+    command, prefix and parameter;
+
+    :Search for all clients based on the
+    prefix and parameter specified (phone or name);
+
+    :Displays all the found clients to the user;
+
+    :Shows a success message;
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml

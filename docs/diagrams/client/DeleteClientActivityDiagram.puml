@@ -1,0 +1,34 @@
+@startuml
+
+!include ../style.puml
+title Deleting a Client
+
+start
+
+:Receives a ""deletecli"" command;
+
+if () then ([valid command])
+    :Parses the ""deletecli""
+    command, prefix and parameter;
+
+    :Gets the client from the client manager
+    based on the index specified;
+
+    if () then ([client exists in future appointment])
+        :Shows an invalid deletion error message;
+    else ([else])
+        :Deletes the client from the client manager;
+
+        :Shows a success message;
+    endif
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml

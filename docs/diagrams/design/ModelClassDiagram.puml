@@ -1,0 +1,54 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyClientManager <<Interface>>
+Interface Model <<Interface>>
+Interface ObservableList <<Interface>>
+Class ClientManager
+Class ReadOnlyClientManager
+Class Model
+Class ModelManager
+Class UserPrefs
+Class ReadOnlyUserPrefs
+
+Package Client {
+Class Client
+Class Email
+Class Name
+Class Phone
+Class UniqueClientList
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+ClientManager .up.|> ReadOnlyClientManager
+
+ModelManager .up.|> Model
+Model .right.> ObservableList
+ModelManager o--> "1" ClientManager
+ModelManager o-left-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+ClientManager *--> "1" UniqueClientList
+UniqueClientList o--> "*"Client
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+Client *--> "*" Tag
+
+Name -[hidden]right-> Phone
+
+note right of ClientManager : Manager or Tracker classes also exist for Service,\n Appointment, Revenue and Expense.
+
+ModelManager -->"1" Client : filtered list
+@enduml

@@ -1,0 +1,8 @@
+{
+  "services" : [ {
+    "title" : "Lash Lift",
+    "price" : 38.00,
+    "duration" : 0.5,
+    "serviceCode" : "InvalidServiceCODESC000"
+  } ]
+}

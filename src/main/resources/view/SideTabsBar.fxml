@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<VBox fx:id="sideTabsBar" layoutY="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0"
+      AnchorPane.topAnchor="30.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <Button fx:id="schedule" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToScheduleTab"
+            VBox.vgrow="NEVER">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+        <graphic>
+            <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/schedule.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="clients" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToClientTab"
+            VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+        <graphic>
+            <ImageView fitHeight="110.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/clients.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="services" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToServiceTab"
+             VBox.vgrow="NEVER">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+        <graphic>
+            <ImageView fitHeight="110.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/services.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="appointments" contentDisplay="CENTER" mnemonicParsing="false"
+            onAction="#handleSwitchToAppointmentTab" VBox.vgrow="NEVER">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+        <graphic>
+            <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/appointments.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="revenue" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToRevenueTab"
+            VBox.vgrow="NEVER">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+        <graphic>
+            <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/revenue.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="expense" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToExpenseTab"
+            VBox.vgrow="NEVER">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+        <graphic>
+            <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/expenses.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</VBox>

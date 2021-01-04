@@ -1,0 +1,60 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":**BreakdownFinanceCommand**" as BreakdownFinanceCommand LOGIC_COLOR
+participant "**r:CommandResult**" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "**m:ModelManager**" as ModelManager MODEL_COLOR
+participant "**ep:ExpenseMonthYearPredicate**" as ExpenseMonthYearPredicate MODEL_COLOR
+participant "**rp:RevenueMonthYearPredicate**" as RevenueMonthYearPredicate MODEL_COLOR
+end box
+
+[-> BreakdownFinanceCommand : ""execute(m, h)""
+activate BreakdownFinanceCommand
+
+note right
+""h"" refers to the HistoryManager
+which keeps track of the history of
+commands executed.
+end note
+
+create ExpenseMonthYearPredicate
+BreakdownFinanceCommand -> ExpenseMonthYearPredicate: ""ExpenseMonthYearPredicate(month, year)""
+activate ExpenseMonthYearPredicate
+BreakdownFinanceCommand <-- ExpenseMonthYearPredicate : ""ep""
+deactivate ExpenseMonthYearPredicate
+
+create RevenueMonthYearPredicate
+BreakdownFinanceCommand -> RevenueMonthYearPredicate: ""RevenueMonthYearPredicate(month, year)""
+activate RevenueMonthYearPredicate
+BreakdownFinanceCommand <-- RevenueMonthYearPredicate : ""rp""
+deactivate RevenueMonthYearPredicate
+
+BreakdownFinanceCommand -> ModelManager : ""updateFilteredExpenseList(ep)""
+activate ModelManager
+BreakdownFinanceCommand <-- ModelManager
+deactivate ModelManager
+
+BreakdownFinanceCommand -> ModelManager : ""updateFilteredRevenueList(rp)""
+activate ModelManager
+BreakdownFinanceCommand <-- ModelManager
+deactivate ModelManager
+
+deactivate ModelManager
+
+create CommandResult
+BreakdownFinanceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> BreakdownFinanceCommand : ""r""
+deactivate CommandResult
+
+[<-- BreakdownFinanceCommand : ""r""
+deactivate BreakdownFinanceCommand
+
+BreakdownFinanceCommand -[hidden]> CommandResult
+
+@enduml

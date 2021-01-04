@@ -1,0 +1,18 @@
+@startuml
+
+!include ../style.puml
+title Clear Revenue
+
+start
+
+:Receives a ""clearrev"" command;
+
+:Parses the ""clearrev"" command;
+
+:Clears the revenue list;
+
+:Shows a success message;
+
+stop
+
+@enduml

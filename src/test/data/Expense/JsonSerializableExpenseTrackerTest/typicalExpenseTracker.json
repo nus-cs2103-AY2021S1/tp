@@ -1,0 +1,24 @@
+{
+  "expenses" : [ {
+    "value" : 15.00,
+    "date" : "10-12-2020",
+    "description" : "Conditioner",
+    "isFixed" : "n",
+    "tag" : "Hairsupplies",
+    "isRecurring" : false
+  }, {
+    "value" : 50.00,
+    "date" : "10-12-2019",
+    "description" : "Chair",
+    "isFixed" : "n",
+    "tag" : "others",
+    "isRecurring" : false
+  }, {
+    "value" : 100.00,
+    "date" : "30-10-2020",
+    "description" : "Aircon",
+    "isFixed" : "y",
+    "tag" : "utility",
+    "isRecurring" : true
+    } ]
+}

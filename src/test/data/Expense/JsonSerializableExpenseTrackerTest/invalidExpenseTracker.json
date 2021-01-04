@@ -1,0 +1,12 @@
+{
+  "expenses": [
+    {
+      "value": -100.00,
+      "date": "20-30-2020",
+      "description": "defaultt",
+      "isFixed": "n",
+      "tag": "no",
+      "isRecurring": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+@startuml
+!include ../style.puml
+
+skinparam arrowThickness 1.1
+skinparam classBackgroundColor LOGIC_COLOR
+
+show member
+
+interface ReadOnlyRevenueTracker <<interface>>
+
+class NonUniqueListItem <<interface>>
+
+class ReadOnlyRevenueTracker {
++ getRevenueList() : ObservableList
+}
+
+class RevenueTracker {
+    + addRevenue(revenue : Revenue)
+    + hasRevenue(revenue: Revenue) : boolean
+    + setRevenue(target : Revenue, editedRevenue : Revenue)
+    + removeRevenue(key : Revenue)
+}
+
+class NonUniqueList {
+    - internalList : ObservableList
+    - internalUnmodifiableList : ObservableList
+    + contains(toCheck : NonUniqueListItem) : boolean
+    + add(toAdd : NonUniqueListItem)
+    + setItem(target : NonUniqueListItem, edited : NonUniqueListItem)
+    + remove(toRemove : NonUniqueListItem)
+}
+
+class NonUniqueListItem {
+}
+
+class Revenue {
+    - service : Service
+    - date : Date
+    - value : Amount
+    + getService() : Service
+    + getDate() : Date
+    + getValue() : Amount
+}
+
+ReadOnlyRevenueTracker <|.. RevenueTracker
+RevenueTracker "1 " --> NonUniqueList
+NonUniqueList --> " * " NonUniqueListItem
+NonUniqueListItem <|.. Revenue
+
+@enduml
