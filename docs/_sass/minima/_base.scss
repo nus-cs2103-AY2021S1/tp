@@ -271,8 +271,8 @@ table {
   }
 }
 
-@media print {
-  div, body, table{
-    break-inside: avoid;
-  }
-}
+//@media print {
+//  body, table{
+//    break-inside: avoid;
+//  }
+//}
