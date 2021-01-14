@@ -8,8 +8,6 @@ SimplyKitchen was developed by CS2103-F13-4 team.
 
 We are a team of Year 2 Computer Science undergraduates based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Roland Yu
