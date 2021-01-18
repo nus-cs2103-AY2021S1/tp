@@ -1,5 +1,5 @@
 # Hospify e-Medical Records solution
-![Java CI](https://github.com/AY2021S1-CS2103T-W15-3/tp/workflows/Java%20CI/badge.svg)\
+![Java CI](https://github.com/AY2021S1-CS2103T-W15-3/tp/actions)\
 **Hospify** is an application to help clinics digitalise their medical records.\
 It is a brown-field project adapted from [`AddressBook 3`](https://se-education.org/addressbook-level3/).
 
