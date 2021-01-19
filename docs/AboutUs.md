@@ -5,55 +5,49 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Cao Qin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ringo1225.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ringo1225)] [[portfolio](team/ringo1225.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Development + Documentation + Testing
 
-### Jane Doe
+### Peh Jun Siang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/todoge.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/todoge)] [[portfolio](team/todoge.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Gabriel Teo Yu Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gabrielteo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/GabrielTeo)] [[portfolio](team/gabrielteo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + Deliverables and deadlines
+
+### Cedric Lim Jun Wei
+
+<img src="images/cedo8.png" width="200px">
+
+[[github](https://github.com/Cedo8)] [[portfolio](team/cedo8.md)]
+
+* Role: Developer
+* Responsibilities: Code quality + Scheduling & tracking
+
+### Chong Jia Le
+
+<img src="images/chiabs.png" width="200px">
+
+[[github](https://github.com/chiabs)] [[portfolio](team/chiabs.md)]
+
+* Role: Developer
+* Responsibilities: Storage

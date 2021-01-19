@@ -2,22 +2,25 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HospifyBook;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears Hospify.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Hospify has been cleared!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears all the patients stored in Hospify.\n"
+            + "Example: " + COMMAND_WORD;
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setHospifyBook(new HospifyBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

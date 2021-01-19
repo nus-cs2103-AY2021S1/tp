@@ -1,0 +1,7 @@
+@startuml
+start
+:User inputs count command;
+:The success message and result is displayed to user;
+
+stop
+@enduml

@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as L LOGIC_COLOR
+participant ":HospifyParser" as H LOGIC_COLOR
+participant ":findCommandParser" as P LOGIC_COLOR
+participant "f:findCommand" as S LOGIC_COLOR
+participant ":CommandResult" as R LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as M MODEL_COLOR
+participant ":HospifyBook" as B MODEL_COLOR
+participant ":UniquePatientList" as U MODEL_COLOR
+end box
+
+-> L : execute("find Alex A0000002S")
+activate L
+
+L -> H : parseCommand("find Alex A0000002S")
+activate H
+
+H -> P**
+activate P
+return
+
+H -> P : parse(" Alex S0000002A")
+activate P
+
+P -> S** :
+activate S
+return f
+
+return f
+
+return f
+
+L -> S : execute(model)
+activate S
+
+S -> M :
+activate M
+
+M -> B : updateFilteredPatientList(predicate)
+activate B
+
+B -> U : updateFilteredPatientList(predicate)
+activate U
+
+return
+return
+return
+
+S -> R**
+activate R
+return result
+
+return result
+destroy S
+
+return
+
+@enduml

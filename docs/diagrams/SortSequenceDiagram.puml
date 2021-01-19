@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as L LOGIC_COLOR
+participant ":HospifyParser" as H LOGIC_COLOR
+participant ":SortCommandParser" as P LOGIC_COLOR
+participant "s:SortCommand" as S LOGIC_COLOR
+participant ":CommandResult" as R LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as M MODEL_COLOR
+participant ":HospifyBook" as B MODEL_COLOR
+participant ":UniquePatientList" as U MODEL_COLOR
+end box
+
+-> L : execute("sort name")
+activate L
+
+L -> H : parseCommand("sort name")
+activate H
+
+H -> P**
+activate P
+return
+
+H -> P : parse("name")
+activate P
+
+P -> S** : sortCommand("name")
+activate S
+return
+
+return sortCommand
+
+return sortCommand
+
+L -> S : execute(model)
+activate S
+
+S -> M : sortBy("name")
+activate M
+
+M -> B : sort(comparator)
+activate B
+
+B -> U : sort(comparator)
+activate U
+
+return
+return
+return
+
+S -> R**
+activate R
+return
+
+return result
+destroy S
+
+return
+
+@enduml

@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +12,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.allergy.Allergy;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Appointment;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Phone;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -48,6 +54,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String nric} into a {@code Nric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nric} is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmedNric);
     }
 
     /**
@@ -96,29 +117,92 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String allergy} into a {@code Allergy}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code allergy} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Allergy parseAllergy(String allergy) throws ParseException {
+        requireNonNull(allergy);
+        String trimmedAllergy = allergy.trim();
+        if (!Allergy.isValidAllergyName(trimmedAllergy)) {
+            throw new ParseException(Allergy.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Allergy(trimmedAllergy);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String appointment} into a {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code appointment} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Appointment parseAppointment(String appointment, boolean allowPast) throws ParseException {
+        requireNonNull(appointment);
+        String trimmedAppointment = appointment.trim();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(trimmedAppointment, PREFIX_DESCRIPTION);
+        String timing = argMultimap.getPreamble().trim();
+        String description;
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        } else {
+            description = "";
         }
-        return tagSet;
+
+        if (!Appointment.isValidDateTime(timing)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+
+        LocalDateTime localDateTime =
+                LocalDateTime.parse(timing, DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
+        if (!allowPast && Appointment.isPassed(localDateTime)) {
+            throw new ParseException(Appointment.TIME_RANGE_CONSTRAINTS);
+        }
+
+        if (!Appointment.isValidDescription(description)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS_INVALID_DESCRIPTION);
+        }
+
+        return new Appointment().setTime(timing).setDescription(description);
+    }
+
+    /**
+     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>}.
+     */
+    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
+        requireNonNull(allergies);
+        final Set<Allergy> allergySet = new HashSet<>();
+        for (String allergyName : allergies) {
+            allergySet.add(parseAllergy(allergyName));
+        }
+        return allergySet;
+    }
+
+    /**
+     * Parses {@code Collection<String> appointments} into a {@code Set<Appointment>}.
+     */
+    public static Set<Appointment> parseAppointments(Collection<String> appointments) throws ParseException {
+        requireNonNull(appointments);
+        final Set<Appointment> appointmentSet = new HashSet<>();
+        for (String appointmentTime : appointments) {
+            appointmentSet.add(parseAppointment(appointmentTime, false));
+        }
+        return appointmentSet;
+    }
+
+    /**
+     * Parses a {@code String url} into an {@code MedicalRecord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code url} is invalid.
+     */
+    public static MedicalRecord parseMedicalRecord(String url) throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+        if (!MedicalRecord.isValidUrl(trimmedUrl)) {
+            throw new ParseException(MedicalRecord.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalRecord(trimmedUrl);
     }
 }

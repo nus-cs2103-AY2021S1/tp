@@ -1,0 +1,16 @@
+@startuml
+start
+:User inputs sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Valid sort command])
+    :Sorts patients in Hospify;
+    :Success message and sorted list displayed
+    using the 'MR URL' button;
+else ([else])
+    :Error message dispayed to user;
+endif
+stop
+@enduml
