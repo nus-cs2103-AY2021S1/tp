@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package Model <<Rectangle>>{
+interface Iterable <<Interface>>
+interface ReadOnlyAppointmentBook <<Interface>>
+class AppointmentBook
+class UniqueAppointmentList
+class Appointment
+class Date
+class Time
+class AppointmentId
+class Patient
+
+AppointmentBook .up.|> ReadOnlyAppointmentBook
+AppointmentBook *-right-> "1" UniqueAppointmentList
+UniqueAppointmentList .up.|> Iterable
+UniqueAppointmentList o--> "*" Appointment
+Appointment *--> Date
+Appointment *--> Time
+Appointment *--> AppointmentId
+Appointment *--> Patient
+
+}
+@enduml

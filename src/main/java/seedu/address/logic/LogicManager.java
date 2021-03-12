@@ -10,11 +10,13 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.NuudleParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyPatientBook;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +28,8 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final NuudleParser nuudleParser;
+    private final CommandHistory commandHistory;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,19 +37,28 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        nuudleParser = new NuudleParser();
+        commandHistory = new CommandHistory();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+
+        //Logging, safe to ignore
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        commandHistory.add(commandText);
+
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        //Parse user input from String to a Command
+        Command command = nuudleParser.parseCommand(commandText);
+        //Executes the Command and stores the result
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            // We can deduce that the previous line of code modifies model in some way
+            // since it's being stored here.
+            saveData();
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +67,39 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public void saveData() throws IOException {
+        storage.savePatientBook(model.getPatientBook());
+        storage.saveAppointmentBook(model.getAppointmentBook());
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ReadOnlyPatientBook getPatientBook() {
+        return model.getPatientBook();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
+    }
+
+    @Override
+    public Path getPatientBookFilePath() {
+        return model.getPatientBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyAppointmentBook getAppointmentBook() {
+        return model.getAppointmentBook();
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return model.getAppointmentBookFilePath();
     }
 
     @Override
@@ -77,5 +110,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public String getStorageStatus() {
+        return storage.getStatusMessage();
+    }
+
+    @Override
+    public ObservableList<String> getCommandHistory() {
+        return commandHistory.asUnmodifiableObservableList();
     }
 }

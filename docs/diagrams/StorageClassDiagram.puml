@@ -4,21 +4,66 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+Package Storage <<Rectangle>> {
 Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
-
 Class StorageManager
+
+Interface UserPrefsStorage <<Interface>>
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+
+Package Patient {
+Interface PatientBookStorage <<Interface>>
+Class JsonPatientBookStorage
+Class JsonSerializablePatientBook
+Class JsonAdaptedPatient
+Class JsonAdaptedTag
+}
+
+Package Appointment {
+Interface AppointmentBookStorage <<Interface>>
+Class JsonAppointmentBookStorage
+Class JsonSerializableAppointmentBook
+Class JsonAdaptedAppointment
+}
+
+Package Archive {
+Interface AppointmentArchive <<Interface>>
+Class CsvAppointmentArchive
+Class CsvAdaptedAppointment
+Class CsvAdaptedPatient
+}
+
+Class StorageStatsManager
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> PatientBookStorage
+StorageManager o--> AppointmentBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+
+JsonPatientBookStorage .up.|> PatientBookStorage
+JsonPatientBookStorage ..> JsonSerializablePatientBook
+JsonSerializablePatientBook .down.> JsonAdaptedPatient
+JsonAdaptedPatient ..> JsonAdaptedTag
+
+JsonAppointmentBookStorage .up.|> AppointmentBookStorage
+JsonAppointmentBookStorage .down.> JsonSerializableAppointmentBook
+JsonSerializableAppointmentBook ..> JsonAdaptedAppointment
+JsonAdaptedAppointment .right.> JsonAdaptedPatient
+
+JsonAppointmentBookStorage o-right-> AppointmentArchive
+CsvAppointmentArchive .up.|> AppointmentArchive
+CsvAppointmentArchive .down.> CsvAdaptedAppointment
+CsvAdaptedAppointment ..> CsvAdaptedPatient
+
+StorageManager --> StorageStatsManager
+JsonAppointmentBookStorage -up-> StorageStatsManager
+JsonPatientBookStorage -up-> StorageStatsManager
+CsvAppointmentArchive -up-> StorageStatsManager
 @enduml
+

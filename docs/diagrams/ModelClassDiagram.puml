@@ -5,23 +5,34 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyPatientBook <<Interface>>
+Interface ReadOnlyAppointmentBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class PatientBook
+Class AppointmentBook
+Class ReadOnlyPatientBook
+Class ReadOnlyAppointmentBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
+Package Patient {
+Class Patient
 Class Address
-Class Email
+Class Nric
+Class Remark
 Class Name
 Class Phone
-Class UniquePersonList
+Class UniquePatientList
+}
+
+Package Appointment {
+Class Appointment
+Class Date
+Class Time
+Class UniqueAppointmentList
 }
 
 Package Tag {
@@ -30,27 +41,38 @@ Class Tag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside .down.> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+PatientBook .left.|> ReadOnlyPatientBook
+AppointmentBook .right.|> ReadOnlyAppointmentBook
 
-ModelManager .up.|> Model
+ModelManager .right.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" PatientBook
+ModelManager o--> "1" AppointmentBook
 ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+UserPrefs .left.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+PatientBook *--> "1" UniquePatientList
+UniquePatientList o--> "*" Patient
+Patient *--> Name
+Patient *--> Phone
+Patient *--> Nric
+Patient *--> Remark
+Patient *--> Address
+Patient *--> "*" Tag
+
+AppointmentBook *--> "1" UniqueAppointmentList
+UniqueAppointmentList o--> " * " Appointment
+UniqueAppointmentList -[hidden]down-> Appointment
+Appointment *--> Date
+Appointment *--> "2 " Time
+Appointment *--> "1" Patient
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"1" Person : filtered list
+
+ModelManager -->"*" Patient : filtered list
+ModelManager -->"*" Appointment : filtered list
 @enduml
